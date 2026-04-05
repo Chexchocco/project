@@ -1,0 +1,38 @@
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Overview"}, {"role": "assistant", "content": "Slay the Spire is a roguelike deck-building game where you build and refine your deck through randomized encounters each run."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Overview"}, {"role": "assistant", "content": "The game consists of three Acts (Act 1–3) and an optional Act 4 that can be accessed under specific conditions."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Overview"}, {"role": "assistant", "content": "Each run starts with a basic deck and character, and you gradually develop a strategy as you progress."}]}
+
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Game Start & Progression"}, {"role": "assistant", "content": "At the start of each run, you choose a starting bonus from Neow."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Game Start & Progression"}, {"role": "assistant", "content": "The Map is branching, allowing you to choose your path through each floor."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Game Start & Progression"}, {"role": "assistant", "content": "You progress node by node, aiming to reach and defeat the Act Boss at the top."}]}
+
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Enemy nodes are standard combats that provide card rewards."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Elite nodes feature stronger enemies and guarantee a Relic upon victory."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Boss nodes appear at the end of each Act and reward a Boss Relic."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Rest Sites allow you to either Rest (heal HP) or Smith (upgrade a card)."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Shops let you spend Gold to buy cards, Relics, and Potions, or Remove cards from your deck."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Map Nodes"}, {"role": "assistant", "content": "Event nodes (?) present random encounters with choices that lead to various outcomes including enemy encounter."}]}
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat System"}, {"role": "assistant", "content": "Combat is turn-based, with the player acting first, followed by enemies."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat System"}, {"role": "assistant", "content": "At the start of each turn, you draw 5 cards."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat System"}, {"role": "assistant", "content": "Basically, you have 3 Energy per turn, which is spent to play cards."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat System"}, {"role": "assistant", "content": "Cards are categorized as Attack, Skill, or Power."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat System"}, {"role": "assistant", "content": "Enemies display their Intent, showing their next action in advance."}]}
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat Rewards"}, {"role": "assistant", "content": "After winning a combat, you gain Gold."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat Rewards"}, {"role": "assistant", "content": "You are offered a Card Reward, typically choosing 1 out of 3 cards to add to your deck."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Combat Rewards"}, {"role": "assistant", "content": "There is a chance to receive a Potion after combat."}]}
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Deck-Building"}, {"role": "assistant", "content": "You build your deck by adding, removing (Remove), or transforming (Transform) cards."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Deck-Building"}, {"role": "assistant", "content": "Cards can be upgraded at Rest Sites using Smith or various events at event nodes."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Deck-Building"}, {"role": "assistant", "content": "Deck size and consistency are critical factors in overall performance."}]}
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Relics"}, {"role": "assistant", "content": "Relics provide passive effects that influence your run."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Relics"}, {"role": "assistant", "content": "They can be obtained from Elites, Bosses, Events, and Shops."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Relics"}, {"role": "assistant", "content": "Certain Relic combinations create powerful synergies."}]}
+
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Potions"}, {"role": "assistant", "content": "Potion slots are limited but can be increased with Relics."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Potions"}, {"role": "assistant", "content": "They provide various effects such as damage, defense, or utility."}]}
+{"messages": [{"role": "system", "content": "You are an expert on the game mechanics of Slay the Spire."}, {"role": "user", "content": "Potions"}, {"role": "assistant", "content": "Potions are consumable items that can be used during combat."}]}

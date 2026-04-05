@@ -1,5 +1,7 @@
 import sys
 
+
+
 def damage_dfs(current_hand, current_energy, CARD_DB, is_vulnerable):
     max_dmg_here = 0    
     
@@ -127,3 +129,42 @@ def defensive_expert(hand, energy, player_block, CARD_DB, monsters):
                 
     return next_card_idx
 
+
+
+def lethal_expert(hand, energy, target_monster, CARD_DB):
+    """
+    적을 죽일 수 있는 카드 중 가장 에너지를 적게 소모하는 카드의 인덱스를 찾습니다.
+    """
+    target_hp = target_monster.get("current_hp", 0)
+    
+    # 적의 체력이 이미 0 이하라면 무시
+    if target_hp <= 0:
+        return -1
+        
+    is_vulnerable = any(p['id'] == 'Vulnerable' for p in target_monster.get('powers', []))
+    
+    best_card_idx = -1
+    min_cost_to_kill = 999
+    min_damage = 999
+    for i, card in enumerate(hand):
+        name = card.get("name")
+        cost = card.get("cost", 99)
+        
+        # 안전한 조회를 위해 .get(name, {}) 사용
+        base_dmg = CARD_DB.get(name, {}).get("damage", 0)
+        
+        if energy >= cost and card.get("is_playable", False):
+            # 실시간 데미지 계산 (취약 적용)
+            current_dmg = base_dmg
+            if is_vulnerable:
+                current_dmg = int(current_dmg * 1.5)
+                
+            # 이 카드 한 장으로 적을 죽일 수 있다면?
+            if current_dmg >= target_hp:
+                # 기존에 찾은 킬각 카드보다 코스트가 낮을 때만 갱신 (예: 강타(2)보다 타격(1) 우선)
+                if cost <= min_cost_to_kill and min_damage < current_dmg:
+                    min_cost_to_kill = cost
+                    best_card_idx = i
+                    min_damage = current_dmg
+                    
+    return best_card_idx

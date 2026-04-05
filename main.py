@@ -5,9 +5,7 @@ import os
 import re
 import module
 
-LOCAL_PATH  = r"C:\Users\yongjin\Desktop\project"
-DB_PATH = os.path.join(LOCAL_PATH, "items.json")
-LOG_PATH = os.path.join(LOCAL_PATH, "agent_log.txt")
+from config import LOCAL_PATH, DB_PATH, LOG_PATH
 
 CARD_DB = {}
 RELIC_DB = {}
@@ -89,6 +87,8 @@ def load_database():
         print(f"DB 파싱 중 에러 발생: {e}", file=sys.stderr, flush=True)
 
 
+
+
 def main():
     print("ready", flush=True)
     log("✅ 파이썬 에이전트 연결 완료!")
@@ -139,11 +139,17 @@ def main():
                     if "play" in avail:
                         monsters = combat.get("monsters", [])
                         target_idx = 0
+                        target_monster = None
                         for m_idx, m in enumerate(monsters):
-                            if not m.get("is_gone", False) and not m.get("half_dead", False):
+                            if not m.get("is_gone", False) and not m.get("half_dead", False) and m.get("current_hp", 0) > 0:
                                 target_idx = m_idx
+                                target_monster = m
                                 break
-                                
+                        
+                        next_card_idx = module.lethal_expert(hand, energy, target_monster, CARD_DB)
+                        if next_card_idx != -1:
+                            log(f"[마무리] 최소 비용으로 적 처치: {next_card_idx+1}번째 카드")        
+
                         next_card_idx = module.defensive_expert(hand, energy, player_block, CARD_DB, monsters)
                         if next_card_idx != -1 :    
                             log(f"{next_card_idx+1}번째 카드로 방어하기")
@@ -169,7 +175,8 @@ def main():
                         # print("proceed", flush=True)
                         log(" 💤 턴 종료")
                     continue
-                    
+
+            
             # 전투가 아닐 때의 화면 처리 (보상, 이벤트, 상점 등에서 멈춤 방지)
             if "start" in avail:
                 print("start ironclad", flush=True)
@@ -190,7 +197,9 @@ def main():
                 log(f"자동 탈출 로직 발동: {cmd}")
             else:
                 print("wait", flush=True)
+            
 
+            
         except Exception as e:
             # 파이썬 코드가 죽었을 때 원인을 검은 터미널 창에 적나라하게 출력합니다.
             log("\n🚨 파이썬 스크립트에 치명적 에러 발생!")
