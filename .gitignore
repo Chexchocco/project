@@ -1,2 +1,8 @@
 agent_log.txt
 Qwen2.5-7B-Instruct.Q4_K_M.gguf
+__pycache__/config.cpython-313.pyc
+__pycache__/db_util.cpython-313.pyc
+__pycache__/deck_building.cpython-313.pyc
+__pycache__/module.cpython-313.pyc
+__pycache__/module.cpython-313.pyc
+__pycache__/module.cpython-313.pyc
