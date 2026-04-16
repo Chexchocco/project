@@ -1,10 +1,11 @@
 import ollama
 import json
 import re
+import logging
 
 from db_util import get_card_info
 from collections import Counter
-
+log = logging.getLogger("STS_AI")
 
 def choose_card_reward(current_deck, offered_cards):
     """
@@ -53,7 +54,7 @@ def choose_card_reward(current_deck, offered_cards):
     Selected Option: [Card Name from Offered Cards, or "Skip"]
     """
 
-    print("덱 빌딩 전략을 구상하는 중...\n" + "="*50)
+    log.info("덱 빌딩 전략을 구상하는 중...\n" + "="*50)
 
     # 4. LLM 호출 (객관적 판단을 위해 창의성 0)
     response = ollama.chat(
@@ -66,7 +67,7 @@ def choose_card_reward(current_deck, offered_cards):
     )
 
     content = response['message']['content']
-    print(f"🤖 LLM의 고민:\n{content.strip()}\n")
+    log.info(f"🤖 LLM의 고민:\n{content.strip()}\n")
 
     # 5. 파싱
     match = re.search(r"Selected Option:\s*(.+)", content, re.IGNORECASE)
@@ -75,15 +76,15 @@ def choose_card_reward(current_deck, offered_cards):
         
         # 유효성 검사
         if selected_option.lower() == "skip":
-            return "Skip"
-        
-        for card in offered_cards:
-            if card.lower() in selected_option.lower():
-                return card
+            return -1
                 
-        print(f"🚨 LLM이 선택지에 없는 카드({selected_option})를 골랐습니다. 안전을 위해 Skip 처리합니다.")
+        for i, card in enumerate(offered_cards):
+            if card.lower() in selected_option.lower():
+                return i  # 카드 이름 대신 숫자 인덱스를 반환!
+                
+        log.info(f"🚨 LLM이 선택지에 없는 카드({selected_option})를 골랐습니다. 안전을 위해 Skip 처리합니다.")
         return "Skip"
     else:
-        print("🚨 파싱 실패. 안전을 위해 Skip 처리합니다.")
+        log.info("🚨 파싱 실패. 안전을 위해 Skip 처리합니다.")
         return "Skip"
 
