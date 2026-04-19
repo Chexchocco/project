@@ -8,7 +8,6 @@ import module
 import db_util
 import logging
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
-from db_util import CARD_DB, RELIC_DB, POTION_DB, KEYWORD_DB
 from llm_rag import choose_card_reward , evaluate_event
 
 log = logging.getLogger("STS_AI")
@@ -52,8 +51,9 @@ def battle_module(state, avail):
         if next_card_idx != -1:
             log.info(f"[마무리] 최소 비용으로 적 처치: {next_card_idx+1}번째 카드")        
 
-        next_card_idx = module.defensive_expert(hand, energy, player_block,  monsters)
-        if next_card_idx != -1 :    
+        
+        if next_card_idx == -1 :    
+            next_card_idx = module.defensive_expert(hand, energy, player_block,  monsters)
             log.info(f"{next_card_idx+1}번째 카드로 방어하기")
 
         if next_card_idx == -1 :
@@ -121,16 +121,7 @@ def main():
                 max_hp = state.get("core", {}).get("max_hp", 80)
                 gold = state.get("core", {}).get("gold", 0)
                 
-                if "proceed" in avail:
-                    print("proceed", flush=True)
-                    continue
-                if "leave" in avail:
-                    print("leave", flush=True)
-                    continue
-                if "skip" in avail and screen_type != "CARD_REWARD": # 카드 보상 스킵은 신중해야 하므로 예외 처리
-                    print("skip", flush=True)
-                    continue
-
+               
 
                 # [상황 A] 전투 중 (팝업 없고, room_phase가 COMBAT)
                 if room_phase == "COMBAT" and screen_type == "NONE":
@@ -138,6 +129,27 @@ def main():
                         log.info(f"⚔️ [전투] 에이전트 가동)")
                         battle_module(state, avail)
                   # [상황 B] 카드 보상 화면
+                elif screen_type == "COMBAT_REWARD":
+                    log.info("🎁 전투 보상 챙기기")
+                    rewards = state.get("screen_state", {}).get("rewards", [])
+                    picked_something = False
+                    for i, reward in enumerate(rewards):
+                        r_type = reward.get("reward_item_class", "")
+                        if r_type in ["GOLD", "POTION", "RELIC"]:
+                            print(f"choose {i}", flush=True)
+                            picked_something = True
+                            break
+                            
+                        elif r_type == "CARD":
+                            print(f"choose {i}", flush=True)
+                            picked_something = True
+                            break
+                    if picked_something:
+                        continue
+                        
+                    if "proceed" in state.get("available_commands", []):
+                        print("proceed", flush=True)
+                        continue
                 elif screen_type == "CARD_REWARD":
                     log.info("🎁 [보상] 덱 빌딩 에이전트 가동")
                     current_deck = [c["name"] for c in state.get("deck", [])]
@@ -202,7 +214,6 @@ def main():
                         print(f"choose {choice_idx}", flush=True)
                         continue
 
-    
 
 
 

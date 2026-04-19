@@ -7,14 +7,14 @@ RELIC_DB = {}
 POTION_DB = {}
 KEYWORD_DB = {}
 
-def load_database(db_path='tagged_items.json'): # 💡 파일명 변경
+def load_database(DB_PATH): # 💡 파일명 변경
     global CARD_DB, RELIC_DB, POTION_DB, KEYWORD_DB
     
     try:
-        with open(db_path, "r", encoding="utf-8") as f:
+        with open(DB_PATH, "r", encoding="utf-8") as f:
             raw_data = json.load(f)
     except FileNotFoundError:
-        print(f"Error: {db_path} not found.", file=sys.stderr)
+        print(f"Error: {DB_PATH} not found.", file=sys.stderr)
         return False
         
     for card in raw_data.get("cards", []):

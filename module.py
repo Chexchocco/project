@@ -3,6 +3,7 @@ import db_util
 import random
 
 import logging
+
 log = logging.getLogger("STS_AI")
 def enrich_hand(hand):
     """
@@ -34,7 +35,7 @@ def enrich_hand(hand):
 def damage_dfs(current_hand, current_energy, is_vulnerable):
     # 💡 인자에서 CARD_DB 삭제, 내부 DB 호출 삭제 (순수 연산만 수행)
     max_dmg_here = 0    
-    
+    log.info("bfs 실시")
     for i, card in enumerate(current_hand):
         cost = card.get("cost", 99)
         
@@ -81,7 +82,7 @@ def max_damage_expert(hand, energy, monster):
             if "Vulnerable" in card.get("effects", {}): next_vulnerable = True
             
             remaining_hand = enriched_hand[:i] + enriched_hand[i+1:]
-            # 💡 2. DFS 호출 (미리 세팅된 손패를 넘겨줌)
+            
             total_potential = current_dmg + damage_dfs(remaining_hand, energy - cost, next_vulnerable)
             
             if total_potential > best_dmg:
