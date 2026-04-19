@@ -7,6 +7,14 @@ from db_util import get_card_info
 from collections import Counter
 log = logging.getLogger("STS_AI")
 
+EVENT_SPOILER_DB = {}
+try:
+    with open('event.json', "r", encoding="utf-8") as f:
+        EVENT_SPOILER_DB = json.load(f)
+    log.info(f"✅ 이벤트 스포일러 DB 로드 완료! ({len(EVENT_SPOILER_DB)}개 이벤트)")
+except FileNotFoundError:
+    log.warning("🚨 event.json 파일을 찾을 수 없습니다. (스포일러 없이 진행)")
+
 def choose_card_reward(current_deck, offered_cards):
     """
     현재 덱과 보상 카드들을 보고 LLM이 하나를 선택하는 함수
@@ -88,3 +96,61 @@ def choose_card_reward(current_deck, offered_cards):
         log.info("🚨 파싱 실패. 안전을 위해 Skip 처리합니다.")
         return "Skip"
 
+
+def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
+    """
+    이벤트 이름과 현재 상태를 받아 최적의 선택지 인덱스(0, 1, 2...)를 반환합니다.
+    """
+    # 1. 스포일러 탐색 (부분 일치)
+    spoiler_info = None
+    for key, val in EVENT_SPOILER_DB.items():
+        if key in event_name:
+            spoiler_info = val
+            break
+            
+    # 2. 프롬프트 생성
+        prompt = f"""
+    You are a top-tier Slay the Spire AI player.
+
+    [Current State]
+    - HP: {hp}/{max_hp}
+    - Gold: {gold}
+    - Deck Summary: {deck_profile}
+
+    [Event Info]
+    - Name: {event_name}
+    - Available Options: {options_text}
+    """
+    # 스포일러가 있으면 추가
+    if spoiler_info:
+        prompt += f"""
+    [⚠️ CRITICAL SPOILER/HINT for this event]
+    - Mechanics: {spoiler_info.get('spoiler', '')}
+    - Strategy: {spoiler_info.get('hint', '')}
+    """
+
+    prompt += "\nBased on the information, output ONLY a single integer (0, 1, 2...) corresponding to the best option index to choose. Do not output any other text."
+
+    # 3. LLM 호출 
+    try:
+        response = ollama.chat(
+        model='my_sts_qwen', 
+        messages=[
+            {'role': 'system', 'content': 'You are playing Slay the Spire and encounter event in ? node.'},
+            {'role': 'user', 'content': prompt}
+        ],
+        options={'temperature': 0.0, 'num_predict': 256}
+    )
+        
+        # 텍스트에서 숫자만 추출
+        result_text = response['message']['content'].strip()
+        import re
+        match = re.search(r'\d+', result_text)
+        if match:
+            return int(match.group())
+        else:
+            return 0 # 숫자를 못 찾으면 기본 0번 선택
+            
+    except Exception as e:
+        log.error(f"LLM 이벤트 평가 중 에러: {e}")
+        return 0 # 에러 시 0번 선택  

@@ -9,7 +9,7 @@ import db_util
 import logging
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
 from db_util import CARD_DB, RELIC_DB, POTION_DB, KEYWORD_DB
-from deck_building import choose_card_reward
+from llm_rag import choose_card_reward , evaluate_event
 
 log = logging.getLogger("STS_AI")
 log.setLevel(logging.INFO)
@@ -83,6 +83,7 @@ def battle_module(state, avail):
 
 
 def main():
+    print("ready", flush=True)  
     log.info("✅ 파이썬 에이전트 연결 완료!")
 
     db_util.load_database(DB_PATH)
@@ -107,6 +108,8 @@ def main():
                 time.sleep(10)
                 continue
             
+
+            
             if "game_state" in data:
                 state = data["game_state"]
                 
@@ -114,7 +117,21 @@ def main():
                 room_phase = state.get("room_phase", "")
                 screen_type = state.get("screen_type", "")
                 avail = data.get("available_commands", [])
+                player_hp = state.get("core", {}).get("hp", 0)
+                max_hp = state.get("core", {}).get("max_hp", 80)
+                gold = state.get("core", {}).get("gold", 0)
                 
+                if "proceed" in avail:
+                    print("proceed", flush=True)
+                    continue
+                if "leave" in avail:
+                    print("leave", flush=True)
+                    continue
+                if "skip" in avail and screen_type != "CARD_REWARD": # 카드 보상 스킵은 신중해야 하므로 예외 처리
+                    print("skip", flush=True)
+                    continue
+
+
                 # [상황 A] 전투 중 (팝업 없고, room_phase가 COMBAT)
                 if room_phase == "COMBAT" and screen_type == "NONE":
                     if "combat_state" in state:
@@ -137,12 +154,64 @@ def main():
                 elif screen_type == "MAP":
                     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")
                     # run_map_routing()
+                elif screen_type == "REST":
+                    log.info("🔥 모닥불 에이전트 가동")
                     
+                    rest_options = state.get("screen_state", {}).get("rest_options", [])
+                    
+                    # 휴리스틱: 체력이 30% 이하면 무조건 휴식
+                    # 일단 단순하게 구현;;
+                    if player_hp < (max_hp * 0.3):
+                        for i, opt in enumerate(rest_options):
+                            if opt.get("option_name") == "rest":
+                                print(f"choose {i}", flush=True)
+                                break
+                    else:
+                        for i, opt in enumerate(rest_options):
+                            if opt.get("option_name") == "smith":
+                                print(f"choose {i}", flush=True)
+                                break
+                elif screen_type == "EVENT":
+                    log.info("❓ 이벤트 에이전트 가동 (LLM 호출)")
+                    
+                    event_name = state.get("screen_state", {}).get("event_name", "Unknown")
+                    body_text = state.get("screen_state", {}).get("body_text", "")
+                    options = state.get("screen_state", {}).get("options", [])
+                    if event_name == "Match and Keep!":
+                        log.info("🃏 짝맞추기 에이전트 가동")
+                        cards = state.get("screen_state", {}).get("cards", [])
+                        avail_cmds = state.get("available_commands", [])
+                        
+                        cmd = module.match_and_keep_expert(cards, avail_cmds)
+                        print(cmd, flush=True)
+                        continue
+                    else:
+                        log.info(f"❓ LLM 이벤트 전문가 호출: {event_name}")
+                        options_text = state.get("screen_state", {}).get("options", [])
+                        
+                        # core 데이터 가져오기
+                        core = state.get("core", {})
+                        hp = core.get("hp", 0)
+                        max_hp = core.get("max_hp", 80)
+                        gold = core.get("gold", 0)
+                        
+                        # 덱 프로필 (나중에 만드실 함수, 지금은 임시 문자열)
+                        deck_profile = "Balanced deck with 20 cards." 
+                        
+                        choice_idx = evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile)
+                        print(f"choose {choice_idx}", flush=True)
+                        continue
+
+    
+
+
+
+
                 # [그 외 상황] 
                 else:
                     log.info(f"대기 중... (phase: {room_phase}, screen: {screen_type})")
                     time.sleep(0.5)  
-            
+
             
         except Exception as e:
             # 파이썬 코드가 죽었을 때 원인을 검은 터미널 창에 적나라하게 출력합니다.

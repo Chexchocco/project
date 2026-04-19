@@ -1,6 +1,9 @@
 import sys
 import db_util
+import random
 
+import logging
+log = logging.getLogger("STS_AI")
 def enrich_hand(hand):
     """
     [핵심 전처리 함수]
@@ -15,14 +18,15 @@ def enrich_hand(hand):
         info = db_util.get_card_info(name)
         
         if info:
-            parsed_data = info.get("parsed", {})
-            card["damage"] = parsed_data.get("damage", 0)
-            card["block"] = parsed_data.get("block", 0)
-            card["effects"] = parsed_data.get("effects", {})
+            card["damage"] = info.get("damage", 0)
+            card["block"] = info.get("block", 0)
+            card["draw"] = info.get("draw", 0) # V3에서 추가된 드로우
+            
+            # 시너지와 Base Value도 그대로 가져옵니다
+            card["base_value"] = info.get("base_value", 0)
+            card["synergy"] = info.get("synergy", {"requires": {}, "provides": {}})
         else:
-            card["damage"] = 0
-            card["block"] = 0
-            card["effects"] = {}
+            log.info("info 발견 x")
             
     return hand
 
@@ -153,3 +157,59 @@ def lethal_expert(hand, energy, target_monster):
                     min_damage = current_dmg
                     
     return best_card_idx
+
+
+
+
+
+MATCH_AND_KEEP_MEMORY = {i: None for i in range(12)}
+def reset_match_and_keep():
+    global MATCH_AND_KEEP_MEMORY
+    MATCH_AND_KEEP_MEMORY = {i: None for i in range(12)}
+
+def match_and_keep_expert(cards, available_commands):
+    """
+    짝맞추기 이벤트를 진행하고 게임에 보낼 명령어(예: "choose 3" 또는 "proceed")를 문자열로 반환합니다.
+    """
+    global MATCH_AND_KEEP_MEMORY
+    
+    # 1. 화면의 카드 상태를 읽어 메모리에 저장
+    for i, card in enumerate(cards):
+        if card.get("is_face_up"):
+            MATCH_AND_KEEP_MEMORY[i] = card.get("id")
+            
+    choice_idx = -1
+    
+    # 2. 매칭 전략: 짝이 맞는 좋은 카드가 메모리에 있는지 확인 (저주 제외)
+    known_counts = {}
+    for idx, card_id in MATCH_AND_KEEP_MEMORY.items():
+        if card_id is not None and "Curse" not in card_id:
+            if card_id not in known_counts:
+                known_counts[card_id] = []
+            known_counts[card_id].append(idx)
+            
+    for card_id, indices in known_counts.items():
+        if len(indices) >= 2:
+            # 아직 안 뒤집힌 상태인 인덱스를 찾아 고름
+            for idx in indices:
+                if not cards[idx].get("is_face_up"):
+                    choice_idx = idx
+                    break
+        if choice_idx != -1:
+            break
+            
+    # 3. 탐색 전략: 매칭할 카드가 없으면 무작위(안 까본 것 중) 탐색
+    if choice_idx == -1:
+        unknown_indices = [idx for idx, card_id in MATCH_AND_KEEP_MEMORY.items() if card_id is None]
+        if unknown_indices:
+            choice_idx = random.choice(unknown_indices)
+        else:
+            # 다 까봤는데도 매칭이 안 되면 그냥 남은 거 아무거나 누름
+            unflipped = [i for i, c in enumerate(cards) if not c.get("is_face_up")]
+            if unflipped:
+                choice_idx = unflipped[0]
+            else:
+                if "proceed" in available_commands:
+                    return "proceed"
+                    
+    return f"choose {choice_idx}"
