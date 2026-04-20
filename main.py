@@ -109,7 +109,7 @@ def main():
                 time.sleep(10)
                 continue
             
-
+                
             
             if "game_state" in data:
                 state = data["game_state"]
@@ -118,12 +118,13 @@ def main():
                 room_phase = state.get("room_phase", "")
                 screen_type = state.get("screen_type", "")
                 avail = data.get("available_commands", [])
-                player_hp = state.get("core", {}).get("hp", 0)
-                max_hp = state.get("core", {}).get("max_hp", 80)
+                player_hp = state.get("current_hp", 0)
+                max_hp = state.get("max_hp", 80)
                 gold = state.get("core", {}).get("gold", 0)
                 
-               
-
+                log.info(f"room phase {room_phase}")
+                log.info(f"room phase {player_hp}")
+                log.info(f"room phase {max_hp}")
                 # [상황 A] 전투 중 (팝업 없고, room_phase가 COMBAT)
                 if room_phase == "COMBAT" and screen_type == "NONE":
                     if "combat_state" in state:
@@ -135,7 +136,7 @@ def main():
                     rewards = state.get("screen_state", {}).get("rewards", [])
                     picked_something = False
                     for i, reward in enumerate(rewards):
-                        r_type = reward.get("reward_item_class", "")
+                        r_type = reward.get("reward_type", "")
                         if r_type in ["GOLD", "POTION", "RELIC"]:
                             print(f"choose {i}", flush=True)
                             picked_something = True
@@ -148,7 +149,9 @@ def main():
                     if picked_something:
                         continue
                         
-                    if "proceed" in state.get("available_commands", []):
+                    if "proceed" in avail:
+                        
+                        log.info("다 골랐으니 진행1")
                         print("proceed", flush=True)
                         continue
                 elif screen_type == "CARD_REWARD":
@@ -163,27 +166,37 @@ def main():
                     else : 
                         log.info(f"skip 선택")
                         print(f"skip", flush = True)
+                    if "proceed" in avail:
+                        log.info("다 골랐으니 진행2")
+                        print("proceed", flush=True)
+                        continue    
                 # [상황 C] 맵 이동 화면
                 elif screen_type == "MAP":
                     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")
+                    print(f"choose {0}", flush=True)
+                    # 일단 멍청하게 구현
                     # run_map_routing()
                 elif screen_type == "REST":
                     log.info("🔥 모닥불 에이전트 가동")
                     
-                    rest_options = state.get("screen_state", {}).get("rest_options", [])
-                    
-                    # 휴리스틱: 체력이 30% 이하면 무조건 휴식
+                    if "choose" not in avail :
+                       print(f"proceed", flush=True)
+                        # 선택 다 한 상황이라 고를 게 없으면 넘기기
+                    # 휴리스틱: 체력이 70% 이하면 무조건 휴식
                     # 일단 단순하게 구현;;
-                    if player_hp < (max_hp * 0.3):
-                        for i, opt in enumerate(rest_options):
-                            if opt.get("option_name") == "rest":
-                                print(f"choose {i}", flush=True)
-                                break
-                    else:
-                        for i, opt in enumerate(rest_options):
-                            if opt.get("option_name") == "smith":
-                                print(f"choose {i}", flush=True)
-                                break
+                    # 사실 옵션이 3개 다보니 llm 한테 물어봐도 되고
+                    # 아니면
+                    if player_hp < (max_hp * 0.7):
+                        print(f"choose rest", flush=True)
+                                
+                    elif True == False: #여기다 이제 need smith 판단 함수 넣든가말든가 혹은 이 전체적으로 llm에 넣거나
+                        print(f"choose smith", flush=True)
+                    else :
+                        print(f"choose recall", flush=True)
+                    
+                    #일단 멈춤 방지로 넣어둠
+                    print(f"choose rest", flush=True)
+                    #    
                 elif screen_type == "EVENT":
                     log.info("❓ 이벤트 에이전트 가동 (LLM 호출)")
                     

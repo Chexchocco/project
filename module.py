@@ -35,7 +35,7 @@ def enrich_hand(hand):
 def damage_dfs(current_hand, current_energy, is_vulnerable):
     # 💡 인자에서 CARD_DB 삭제, 내부 DB 호출 삭제 (순수 연산만 수행)
     max_dmg_here = 0    
-    log.info("bfs 실시")
+    # log.info("bfs 실시")
     for i, card in enumerate(current_hand):
         cost = card.get("cost", 99)
         

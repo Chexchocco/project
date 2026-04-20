@@ -107,12 +107,21 @@ def create_database():
                 damage, hits, is_x_cost = int(x_hit_match.group(1)), "X", True
             else:
                 multi_hit_match = re.search(r"deal (\d+) damage (\d+) times", desc)
-                if multi_hit_match: damage, hits = int(multi_hit_match.group(1)), int(multi_hit_match.group(2))
+                if multi_hit_match: 
+                    damage, hits = int(multi_hit_match.group(1)), int(multi_hit_match.group(2))
                 else:
+                    dmg_twice = re.search(r"deal (\d+) damage twice", desc)
+                    if dmg_twice :
+                        damage = int(dmg_twice.group(1))
+                        hits =2
                     dmg_match = re.search(r"deal (\d+) damage", desc)
                     if dmg_match: 
                         damage = int(dmg_match.group(1))
                         hits =1 
+
+            if re.search(r"all enemies", desc) :
+                is_aoe = True
+            #  all enemies 라는 desc 가 있으면 is_aoe 가 true 가 되는 식
             x_blk_match = re.search(r"gain (\d+) block x times", desc)
             if x_blk_match:
                 block, is_x_cost = int(x_blk_match.group(1)), True
