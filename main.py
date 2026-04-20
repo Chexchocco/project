@@ -83,6 +83,7 @@ def battle_module(state, avail):
 
 
 def main():
+    log.info(f"🚨 현재 통신 모드가 훔쳐 쓰고 있는 파이썬 경로: {sys.executable}")
     print("ready", flush=True)  
     log.info("✅ 파이썬 에이전트 연결 완료!")
 

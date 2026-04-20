@@ -6,8 +6,9 @@ import logging
 from db_util import get_card_info
 from collections import Counter
 log = logging.getLogger("STS_AI")
-
+from config import MODEL_NAME
 EVENT_SPOILER_DB = {}
+
 try:
     with open('event.json', "r", encoding="utf-8") as f:
         EVENT_SPOILER_DB = json.load(f)
@@ -66,7 +67,7 @@ def choose_card_reward(current_deck, offered_cards):
 
     # 4. LLM 호출 (객관적 판단을 위해 창의성 0)
     response = ollama.chat(
-        model='my_sts_qwen', 
+        model=MODEL_NAME, 
         messages=[
             {'role': 'system', 'content': 'You are a master Slay the Spire deck-builder.'},
             {'role': 'user', 'content': prompt}
@@ -134,7 +135,7 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
     # 3. LLM 호출 
     try:
         response = ollama.chat(
-        model='my_sts_qwen', 
+        model='MODEL_NAME', 
         messages=[
             {'role': 'system', 'content': 'You are playing Slay the Spire and encounter event in ? node.'},
             {'role': 'user', 'content': prompt}
