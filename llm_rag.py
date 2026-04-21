@@ -110,7 +110,8 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
             break
             
     # 2. 프롬프트 생성
-        prompt = f"""
+    
+    prompt = f"""
     You are a top-tier Slay the Spire AI player.
 
     [Current State]
@@ -130,28 +131,32 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
     - Strategy: {spoiler_info.get('hint', '')}
     """
 
-    prompt += "\nBased on the information, output ONLY a single integer (0, 1, 2...) corresponding to the best option index to choose. Do not output any other text."
-
-    # 3. LLM 호출 
+    prompt += """
+    Based on the information, decide the best option.
+    You MUST output your response in the following JSON format strictly. Do not add markdown or other text outside the JSON.
+    {
+        "reasoning": "Explain in 1-2 sentences why this option is the best based on current HP, gold, and deck.",
+        "choice": <integer_index>
+    }
+    """
+    
     try:
-        response = ollama.chat(
-        model='MODEL_NAME', 
-        messages=[
-            {'role': 'system', 'content': 'You are playing Slay the Spire and encounter event in ? node.'},
-            {'role': 'user', 'content': prompt}
-        ],
-        options={'temperature': 0.0, 'num_predict': 256}
-    )
-        
-        # 텍스트에서 숫자만 추출
+        response = ollama.chat(model='my_sts_qwen', messages=[{'role': 'user', 'content': prompt}])
         result_text = response['message']['content'].strip()
-        import re
-        match = re.search(r'\d+', result_text)
-        if match:
-            return int(match.group())
+        
+        json_match = re.search(r'\{.*\}', result_text, re.DOTALL)
+        
+        if json_match:
+            parsed_data = json.loads(json_match.group(0))
+            
+            log.info(f"🤖 LLM의 생각: {parsed_data.get('reasoning', '이유 없음')}")
+            
+            return int(parsed_data.get('choice', 0))
         else:
-            return 0 # 숫자를 못 찾으면 기본 0번 선택
+            log.warning(f"⚠️ JSON 파싱 실패, 원본 텍스트: {result_text}")
+            num_match = re.search(r'\d+', result_text)
+            return int(num_match.group(0)) if num_match else 0
             
     except Exception as e:
-        log.error(f"LLM 이벤트 평가 중 에러: {e}")
-        return 0 # 에러 시 0번 선택  
+        log.error(f"LLM 호출 중 에러 발생: {e}")
+        return 0  # 에러가 나면 멈추지 않고 0번을 고르며 게임 속행
