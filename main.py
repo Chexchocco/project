@@ -33,7 +33,7 @@ def battle_module(state, avail):
     hand = combat.get("hand", [])
     player_block = player.get("block", 0)
     
-    log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
+    #log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
     
     action_taken = False
     
@@ -56,11 +56,11 @@ def battle_module(state, avail):
         
         if next_card_idx == -1 :    
             next_card_idx = module.defensive_expert(hand, energy, player_block,  monsters)
-            log.info(f"{next_card_idx+1}번째 카드로 방어하기")
+            #log.info(f"{next_card_idx+1}번째 카드로 방어하기")
 
         if next_card_idx == -1 :
             next_card_idx = module.max_damage_expert(hand, energy, monsters[target_idx])
-            log.info(f"{next_card_idx+1}번째 카드로 공격하기")
+            #log.info(f"{next_card_idx+1}번째 카드로 공격하기")
         
         if next_card_idx == -1 :
             pass
@@ -107,11 +107,24 @@ def main():
                 time.sleep(10)
                 continue
             
-                
+            if not data.get("in_game", False):
+                available_cmds = data.get("available_commands", [])
+        
+                if "resume" in available_cmds:
+                    log.info("💾 기존에 진행 중이던 게임을 발견했습니다. 이어서 시작합니다 (Resume).")
+                    print("resume", flush=True)
+                    
+                else:
+                    log.info("🏠 진행 중인 게임이 없습니다. 새로운 게임을 시작합니다.")
+                    print("start ironclad 0", flush=True) 
+                    
+                # 루프를 넘겨서 게임이 켜진 후의 상태를 기다립니다.
+                continue
+                        
             
             if "game_state" in data:
-                state = data["game_state"]
                 
+                state = data["game_state"]
                 # 💡 1. 현재 게임의 명시적 상태 변수들을 먼저 추출합니다.
                 room_phase = state.get("room_phase", "")
                 screen_type = state.get("screen_type", "")
@@ -119,12 +132,17 @@ def main():
                 player_hp = state.get("current_hp", 0)
                 max_hp = state.get("max_hp", 80)
                 gold = state.get("gold", 0)
-                
+
+                if screen_type =="GAME_OVER" :
+                    print(f"proceed", flush= True)
+                    continue
+
                 # [상황 A] 전투 중 (팝업 없고, room_phase가 COMBAT)
                 if room_phase == "COMBAT" and screen_type == "NONE":
                     if "combat_state" in state:
-                        log.info(f"⚔️ [전투] 에이전트 가동)")
+                        #log.info(f"⚔️ [전투] 에이전트 가동)")
                         battle_module(state, avail)
+                        continue
                   # [상황 B] 카드 보상 화면
                 elif screen_type == "COMBAT_REWARD":
                     log.info("🎁 전투 보상 챙기기")
@@ -167,23 +185,73 @@ def main():
                     offered_cards = [c["name"] for c in state.get("screen_state", {}).get("cards", [])]
                     
                     choice = choose_card_reward(current_deck, offered_cards)
-                    if(choice != -1):
-                        log.info(f"{choice}번 카드 선택")
-                        print(f"choose {choice}", flush=True)
-                    else : 
+                    if(choice != "skip"):
                         log.info(f"skip 선택")
                         print(f"skip", flush = True)
-                    if "proceed" in avail:
-                        log.info("다 골랐으니 진행2")
-                        print("proceed", flush=True)
-                        continue    
+                        continue
+                    else : 
+                        log.info(f"{choice}번 카드 선택")
+                        print(f"choose {choice}", flush=True)
+                        continue
+                elif screen_type == "GRID":
+                    log.info("🗂️ 그리드(카드 선택) 화면 진입")
+                    screen_state = state.get("screen_state", {})
+                    grid_cards = screen_state.get("cards", [])
+                    
+                    for_upgrade = screen_state.get("for_upgrade", False)
+                    for_purge = screen_state.get("for_purge", False)
+                    for_transform = screen_state.get("for_transform", False)
+                    
+
+                    selected_cards = screen_state.get("selected_cards", [])
+                    num_cards_needed = screen_state.get("num_cards", 1)
+                    
+                    # 🚨 [핵심] 수문장 로직: 이미 필요한 만큼 카드를 다 골랐다면?
+                    # -> 다른 거 누르지 말고 무조건 Confirm만 누르고 루프를 넘깁니다!
+                    if len(selected_cards) >= num_cards_needed:
+                        log.info("✅ 카드 선택 완료! Confirm을 누릅니다.")
+                        print("confirm", flush=True)
+                        continue
+                    
+                    if for_upgrade:
+                        log.info("🔨 [강화]할 카드를 고릅니다.")
+                        #cmd = module.smith_expert(grid_cards)
+                        cmd= (f"choose 7")
+                        print(cmd, flush=True)
+                        continue
+                        
+                    elif for_purge:
+                        log.info("🗑️ [제거]할 카드를 고릅니다.")
+                        # 타격(Strike) 1순위, 수비(Defend) 2순위로 지우는 로직
+                        #cmd = module.purge_expert(grid_cards) 
+                        cmd= (f"choose 0")
+                        print(cmd, flush=True)
+                        continue
+                        
+                    elif for_transform:
+                        log.info("✨ [변화]시킬 카드를 고릅니다.")
+                        # 타격/수비를 우선적으로 고르되, 제거 로직과 동일하게 써도 무방함
+                        #cmd = module.purge_expert(grid_cards)
+                        cmd= (f"choose 0")
+                        print(cmd, flush=True)
+                        continue
+                        
+                    # 4. 기타 (병 속의 번개, 도박꾼의 물약 등)
+                    else:
+                        log.info("❓ 기타 그리드 선택 (기본 1번 선택)")
+                        print("choose 0", flush=True)
+                        time.sleep(1.0)
+                        print("confirm", flush=True)
+                        continue
+
                 # [상황 C] 맵 이동 화면
                 elif screen_type == "MAP":
                     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")
                     global WAITING_FOR_SHOP, SHOP_DONE
                     WAITING_FOR_SHOP = False
                     SHOP_DONE = False
-                    #print(f"choose {0}", flush=True)
+                    print(f"choose {0}", flush=True)
+                    continue
                     # 일단 멍청하게 구현
                     # run_map_routing()
                 elif screen_type == "REST":
@@ -191,6 +259,7 @@ def main():
                     
                     if "choose" not in avail :
                        print(f"proceed", flush=True)
+                       continue
                         # 선택 다 한 상황이라 고를 게 없으면 넘기기
                     # 휴리스틱: 체력이 70% 이하면 무조건 휴식
                     # 일단 단순하게 구현;;
@@ -198,6 +267,7 @@ def main():
                     # 아니면
                     if player_hp < (max_hp * 0.7):
                         print(f"choose rest", flush=True)
+                        continue
                                 
                     elif True == False: #여기다 이제 need smith 판단 함수 넣든가말든가 혹은 이 전체적으로 llm에 넣거나
                         print(f"choose smith", flush=True)
@@ -206,6 +276,7 @@ def main():
                     
                     #일단 멈춤 방지로 넣어둠
                     print(f"choose rest", flush=True)
+                    continue
                     #    
                 elif screen_type == "EVENT":
                     log.info("❓ 이벤트 에이전트 가동 (LLM 호출)")
@@ -231,20 +302,16 @@ def main():
                             log.info(f"❓ LLM 이벤트 전문가 호출: {event_name}")
                             options_text = state.get("screen_state", {}).get("options", [])
                             
-                            # core 데이터 가져오기
-                            core = state.get("core", {})
-                            hp = core.get("hp", 0)
-                            max_hp = core.get("max_hp", 80)
-                            gold = core.get("gold", 0)
                             
                             # 덱 프로필 (나중에 만드실 함수, 지금은 임시 문자열)
                             deck_profile = "Balanced deck with 20 cards." 
                             
-                            choice_idx = evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile)
+                            choice_idx = evaluate_event(event_name, options_text, player_hp, max_hp, gold, deck_profile)
                             print(f"choose {choice_idx}", flush=True)
                             continue
                 elif screen_type == "CHEST":
                     print(f"choose open", flush=True) 
+                    continue
                     # 보물상자는 여는거말고 딱히 할 게 없어서?
                     # 굳이 따지면 보물상자 열 경우 패널티 생기는 저주 유물 먹은 경우인데 그건 나중에 고려
                     # 그거랑 이제 유물vs초록 키 도 고려사항인데 이것도 나중에 고려
@@ -277,6 +344,7 @@ def main():
                         continue
                     if SHOP_DONE :
                         print("proceed", flush=True)
+                        continue
                 elif screen_type == "SHOP_SCREEN":
                     log.info("💰 상점 화면 진입")
                     screen_state = state.get("screen_state", {})
@@ -314,58 +382,7 @@ def main():
                     print("choose 0", flush=True)
                     continue
 
-                elif screen_type == "GRID":
-                    log.info("🗂️ 그리드(카드 선택) 화면 진입")
-                    screen_state = state.get("screen_state", {})
-                    grid_cards = screen_state.get("cards", [])
-                    
-                    for_upgrade = screen_state.get("for_upgrade", False)
-                    for_purge = screen_state.get("for_purge", False)
-                    for_transform = screen_state.get("for_transform", False)
-                    
-
-                    selected_cards = screen_state.get("selected_cards", [])
-                    num_cards_needed = screen_state.get("num_cards", 1)
-                    
-                    # 🚨 [핵심] 수문장 로직: 이미 필요한 만큼 카드를 다 골랐다면?
-                    # -> 다른 거 누르지 말고 무조건 Confirm만 누르고 루프를 넘깁니다!
-                    if len(selected_cards) >= num_cards_needed:
-                        log.info("✅ 카드 선택 완료! Confirm을 누릅니다.")
-                        print("confirm", flush=True)
-                        continue
-
-                    # 이게 고르고 좀 지나야 컨펌 버튼이 눌리는건지 모르겠는데 뭔가 애매해서 일단 sleep 넣기
-                    if for_upgrade:
-                        log.info("🔨 [강화]할 카드를 고릅니다.")
-                        #cmd = module.smith_expert(grid_cards)
-                        cmd= (f"choose 7")
-                        print(cmd, flush=True)
-                        continue
-                        
-                    elif for_purge:
-                        log.info("🗑️ [제거]할 카드를 고릅니다.")
-                        # 타격(Strike) 1순위, 수비(Defend) 2순위로 지우는 로직
-                        #cmd = module.purge_expert(grid_cards) 
-                        cmd= (f"choose 0")
-                        print(cmd, flush=True)
-                        continue
-                        
-                    elif for_transform:
-                        log.info("✨ [변화]시킬 카드를 고릅니다.")
-                        # 타격/수비를 우선적으로 고르되, 제거 로직과 동일하게 써도 무방함
-                        #cmd = module.purge_expert(grid_cards)
-                        cmd= (f"choose 0")
-                        print(cmd, flush=True)
-                        continue
-                        
-                    # 4. 기타 (병 속의 번개, 도박꾼의 물약 등)
-                    else:
-                        log.info("❓ 기타 그리드 선택 (기본 1번 선택)")
-                        print("choose 0", flush=True)
-                        time.sleep(1.0)
-                        print("confirm", flush=True)
-                        continue
-
+                
 
                 # [그 외 상황] 
                 else:

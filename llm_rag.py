@@ -92,10 +92,10 @@ def choose_card_reward(current_deck, offered_cards):
                 return i  # 카드 이름 대신 숫자 인덱스를 반환!
                 
         log.info(f"🚨 LLM이 선택지에 없는 카드({selected_option})를 골랐습니다. 안전을 위해 Skip 처리합니다.")
-        return "Skip"
+        return "skip"
     else:
         log.info("🚨 파싱 실패. 안전을 위해 Skip 처리합니다.")
-        return "Skip"
+        return "skip"
 
 
 def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
