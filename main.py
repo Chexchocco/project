@@ -22,7 +22,6 @@ console_handler.setFormatter(formatter)
 log.addHandler(file_handler)
 log.addHandler(console_handler)
 
-
 WAITING_FOR_SHOP = False
 SHOP_DONE = False
 CARD_SKIP = False
@@ -65,8 +64,13 @@ def battle_module(state, avail):
         
         if next_card_idx == -1 :
             pass
-        else :
-            print(f"play {next_card_idx+1} {target_idx}", flush=True)
+        else :# 💡 카드가 타겟팅이 필요한지(공격, 약화 등) 확인합니다!
+            if hand[next_card_idx].get("has_target", False):
+                print(f"play {next_card_idx+1} {target_idx}", flush=True)
+            else:
+                # 타겟이 필요 없는 카드(방어, 버프 등)는 대상 없이 카드 번호만 보냅니다.
+                print(f"play {next_card_idx+1}", flush=True)
+                
             action_taken = True
     # 카드를 냈다면 다음 턴 진행으로 넘어가고 루프 재시작
     if action_taken:
@@ -82,6 +86,8 @@ def battle_module(state, avail):
 
 
 def main():
+    
+    global WAITING_FOR_SHOP, SHOP_DONE, CARD_SKIP
     log.info(f"🚨 현재 통신 모드가 훔쳐 쓰고 있는 파이썬 경로: {sys.executable}")
     print("ready", flush=True)  
     log.info("✅ 파이썬 에이전트 연결 완료!")
@@ -104,17 +110,17 @@ def main():
             data = json.loads(line)
             
             if "error" in data:
-                log.info(f"⚠️ 엔진 에러: {data['error']}")
-                time.sleep(10)
+                log.info(f"⚠️ 엔진 에러: {data}")
+                time.sleep(1)
+                print("state", flush=True)
                 continue
             
             if not data.get("in_game", False):
                 available_cmds = data.get("available_commands", [])
-        
+
                 if "resume" in available_cmds:
                     log.info("💾 기존에 진행 중이던 게임을 발견했습니다. 이어서 시작합니다 (Resume).")
-                    print("resume", flush=True)
-                    
+                    # 이게 안 됨;; 그냥 문제가 start 밖에 쓸 수 있는게 없네;;   
                 else:
                     log.info("🏠 진행 중인 게임이 없습니다. 새로운 게임을 시작합니다.")
                     print("start ironclad 0", flush=True) 
@@ -206,15 +212,10 @@ def main():
                     
 
                     selected_cards = screen_state.get("selected_cards", [])
-                    num_cards_needed = screen_state.get("num_cards", 1)
-                    
-                    # 🚨 [핵심] 수문장 로직: 이미 필요한 만큼 카드를 다 골랐다면?
                     # -> 다른 거 누르지 말고 무조건 Confirm만 누르고 루프를 넘깁니다!
-                    if len(selected_cards) >= num_cards_needed:
-                        log.info("✅ 카드 선택 완료! Confirm을 누릅니다.")
+                    if "confirm" in avail:
                         print("confirm", flush=True)
                         continue
-                    
                     if for_upgrade:
                         log.info("🔨 [강화]할 카드를 고릅니다.")
                         #cmd = module.smith_expert(grid_cards)
@@ -242,8 +243,6 @@ def main():
                     else:
                         log.info("❓ 기타 그리드 선택 (기본 1번 선택)")
                         print("choose 0", flush=True)
-                        time.sleep(1.0)
-                        print("confirm", flush=True)
                         continue
 
                 # [상황 C] 맵 이동 화면
@@ -389,8 +388,13 @@ def main():
                 # [그 외 상황] 
                 else:
                     log.info(f"대기 중... (phase: {room_phase}, screen: {screen_type})")
+                    
+                    print("state", flush= True)
                     time.sleep(0.5)  
-
+            else:
+                log.info(f"문제 발생 {data}")
+                print("state", flush= True)
+                time.sleep(0.5)  
             
         except Exception as e:
             # 파이썬 코드가 죽었을 때 원인을 검은 터미널 창에 적나라하게 출력합니다.
@@ -401,4 +405,5 @@ def main():
 
 
 if __name__ == "__main__":
+    
     main()
