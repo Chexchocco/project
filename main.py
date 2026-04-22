@@ -33,7 +33,7 @@ def battle_module(state, avail):
     hand = combat.get("hand", [])
     player_block = player.get("block", 0)
     
-    #log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
+    log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
     
     action_taken = False
     
@@ -81,6 +81,10 @@ def battle_module(state, avail):
         print("end", flush=True)
         log.info(" 💤 턴 종료")
         return -1
+    
+    time.sleep(0.5)
+    print("wait", flush=True)
+    return 0
 
 
 
@@ -112,7 +116,7 @@ def main():
             if "error" in data:
                 log.info(f"⚠️ 엔진 에러: {data}")
                 time.sleep(1)
-                print("state", flush=True)
+                print("wait", flush=True)
                 continue
             
             if not data.get("in_game", False):
@@ -251,7 +255,12 @@ def main():
                     WAITING_FOR_SHOP = False
                     SHOP_DONE = False
                     CARD_SKIP = False
-                    print(f"choose {0}", flush=True)
+                    choices = state.get("choice_list", [])
+                    if choices:
+                        print(f"choose {choices[0]}", flush=True)
+                    else:
+                        log.info("이동 오류?")
+                        print("choose 0", flush=True)
                     continue
                     # 일단 멍청하게 구현
                     # run_map_routing()
@@ -259,6 +268,7 @@ def main():
                     log.info("🔥 모닥불 에이전트 가동")
                     
                     if "choose" not in avail :
+                       log.info("휴식 나가기")
                        print(f"proceed", flush=True)
                        continue
                         # 선택 다 한 상황이라 고를 게 없으면 넘기기
@@ -270,10 +280,12 @@ def main():
                         print(f"choose rest", flush=True)
                         continue
                                 
-                    elif True == False: #여기다 이제 need smith 판단 함수 넣든가말든가 혹은 이 전체적으로 llm에 넣거나
+                    else: #여기다 이제 need smith 판단 함수 넣든가말든가 혹은 이 전체적으로 llm에 넣거나
                         print(f"choose smith", flush=True)
-                    else :
-                        print(f"choose recall", flush=True)
+                        continue
+                    #else :
+                    #    print(f"choose recall", flush=True)
+                    #    continue
                     
                     #일단 멈춤 방지로 넣어둠
                     print(f"choose rest", flush=True)
@@ -389,16 +401,17 @@ def main():
                 else:
                     log.info(f"대기 중... (phase: {room_phase}, screen: {screen_type})")
                     
-                    print("state", flush= True)
+                    print("wait", flush= True)
                     time.sleep(0.5)  
-                log.info(f"문제 발생 {data}")
-                print("state", flush= True)
-                    
-            else:
-                log.info(f"문제 발생 {data}")
-                print("state", flush= True)
-                time.sleep(0.5)  
+                
+                log.info(f"문제 발생3 {data}")
+                print("wait", flush= True)
+
             
+            
+            log.info(f"문제 발생2 {data}")
+            print("wait", flush= True)
+
         except Exception as e:
             # 파이썬 코드가 죽었을 때 원인을 검은 터미널 창에 적나라하게 출력합니다.
             log.info("\n🚨 파이썬 스크립트에 치명적 에러 발생!")
