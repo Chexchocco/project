@@ -85,7 +85,7 @@ def choose_card_reward(current_deck, offered_cards):
         
         # 유효성 검사
         if selected_option.lower() == "skip":
-            return -1
+            return "skip"
                 
         for i, card in enumerate(offered_cards):
             if card.lower() in selected_option.lower():

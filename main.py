@@ -25,6 +25,7 @@ log.addHandler(console_handler)
 
 WAITING_FOR_SHOP = False
 SHOP_DONE = False
+CARD_SKIP = False
 def battle_module(state, avail):
     combat = state["combat_state"]
     player = combat.get("player", {})
@@ -166,7 +167,7 @@ def main():
                                 # 꽉 찼으면 로그만 띄우고 무시 (다음 보상 탐색)
                                 log.info("🧪 포션 가방이 꽉 차서 스킵합니다")
                             
-                        elif r_type == "CARD":
+                        elif r_type == "CARD" and CARD_SKIP == False:
                             print(f"choose {i}", flush=True)
                             picked_something = True
                             break
@@ -185,9 +186,10 @@ def main():
                     offered_cards = [c["name"] for c in state.get("screen_state", {}).get("cards", [])]
                     
                     choice = choose_card_reward(current_deck, offered_cards)
-                    if(choice != "skip"):
+                    if(choice == "skip"):
                         log.info(f"skip 선택")
                         print(f"skip", flush = True)
+                        CARD_SKIP= True
                         continue
                     else : 
                         log.info(f"{choice}번 카드 선택")
@@ -250,6 +252,7 @@ def main():
                     global WAITING_FOR_SHOP, SHOP_DONE
                     WAITING_FOR_SHOP = False
                     SHOP_DONE = False
+                    CARD_SKIP = False
                     print(f"choose {0}", flush=True)
                     continue
                     # 일단 멍청하게 구현
