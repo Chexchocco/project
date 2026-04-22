@@ -5,7 +5,7 @@ import time
 import os
 import re
 import module
-from db import db_util
+from db import db_loader
 import logging
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
 from llm.llm_rag import choose_card_reward, evaluate_event
@@ -85,7 +85,7 @@ def main():
     print("ready", flush=True)  
     log.info("✅ 파이썬 에이전트 연결 완료!")
 
-    db_util.load_database(DB_PATH)
+    db_loader.load_database(DB_PATH)
     while True:
         try:
             
