@@ -391,6 +391,9 @@ def main():
                     
                     print("state", flush= True)
                     time.sleep(0.5)  
+                log.info(f"문제 발생 {data}")
+                print("state", flush= True)
+                    
             else:
                 log.info(f"문제 발생 {data}")
                 print("state", flush= True)
