@@ -10,3 +10,5 @@ agent_log.txt
 __pycache__/module.cpython-313.pyc
 Qwen2.5-7B-Instruct.Q4_K_M.gguf
 myvenv/
+db/__pycache__
+llm/__pycache__
