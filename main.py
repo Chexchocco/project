@@ -185,11 +185,11 @@ def main():
                     offered_cards = [c["name"] for c in state.get("screen_state", {}).get("cards", [])]
                     
                     choice = choose_card_reward(current_deck, offered_cards)
-                    if(choice != "skip"):
-                        log.info(f"skip 선택")
-                        print(f"skip", flush = True)
+                    if choice == -1 or choice == "skip":
+                        log.info("skip 선택")
+                        print("skip", flush=True)
                         continue
-                    else : 
+                    else:
                         log.info(f"{choice}번 카드 선택")
                         print(f"choose {choice}", flush=True)
                         continue
