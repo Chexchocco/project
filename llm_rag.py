@@ -3,14 +3,14 @@ import json
 import re
 import logging
 
-from db_util import get_card_info
+from db.db_util import get_card_info
 from collections import Counter
 log = logging.getLogger("STS_AI")
 from config import MODEL_NAME
 EVENT_SPOILER_DB = {}
 
 try:
-    with open('event.json', "r", encoding="utf-8") as f:
+    with open('db/event.json', "r", encoding="utf-8") as f:
         EVENT_SPOILER_DB = json.load(f)
     log.info(f"✅ 이벤트 스포일러 DB 로드 완료! ({len(EVENT_SPOILER_DB)}개 이벤트)")
 except FileNotFoundError:

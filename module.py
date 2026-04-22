@@ -1,5 +1,5 @@
 import sys
-import db_util
+from db import db_util
 import random
 
 import logging
