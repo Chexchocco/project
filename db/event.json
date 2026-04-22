@@ -1,0 +1,42 @@
+{
+  "Golden Idol": {
+    "spoiler": "Clicking 'Take' immediately forces a trap choice: Gain 'Injury' curse, take 25% (35% on Ascension 15+) Max HP damage, or lose 8% (10%) Max HP.",
+    "hint": "Take the damage if HP allows. Never take the 'Injury' curse unless you have a strong synergy with curse or exhaust. Choose 'Leave' initially if your HP is critical and you cannot afford the trap."
+  },
+  "Cursed Tome": {
+    "spoiler": "Clicking 'Continue' repeatedly increases HP loss (1, 2, 3, 4, 5, 6...). Obtaining the book costs a total of 21 HP (16 HP on low ascensions) and gives a powerful relic. Note: If you get the Necronomicon, you also receive an un-removable Necronomicurse.",
+    "hint": "If your HP is plenty enough, at least 25, keep clicking 'Continue' until you get the book(It may be Relic named Enchiridion, Nilry's Codex, or Necronomicon). If your HP is below 20, do not even start reading; choose 'Leave' immediately."
+  },
+  "Scrap Ooze": {
+    "spoiler": "Clicking 'Reach Inside' repeatedly increases HP loss (3, 5, 7, 9...). The chance to find a relic starts at 25% and increases by 10% each time.",
+    "hint": "Only click if your current HP is plenty enough, at least 25. Stop immediately once you get the relic, or if your HP drops to a dangerous level."
+  },
+  "Dead Adventurer": {
+    "spoiler": "Clicking 'Search' increases the chance of fighting an Elite (Lagavulin / Sentries / Gremlin Nob) by 25% each time (25% -> 50% -> 75%).",
+    "hint": "If your deck cannot beat an Act 1 Elite, search only once and leave. If your deck is strong enough, you can risk searching more for the relic and gold."
+  },
+  "Knowing Skull": {
+    "spoiler": "Each time you ask for a specific reward (Gold / Cards / Relic / Heal), the HP cost for that specific option increases for the next click.",
+    "hint": "Getting gold is usually the best option if your HP permits. Avoid getting colorless cards as they are often not worth the HP. Do not click any options if your HP is below 20."
+  },
+  "Colosseum": {
+    "spoiler": "Winning the first easy fight gives a choice: 'Leave', or fight TWO Elites at once (Gremlin Nob + Taskmaster) for 2 Rare Relics.",
+    "hint": "Only accept the second fight if your deck has massive burst damage or extremely strong AoE. Otherwise, take the first win and choose 'Leave'."
+  },
+  "Face Trader": {
+    "spoiler": "Clicking 'Touch' has a 50% chance to give a Bad Face (weak turn 1, lose HP every combat, etc.) and a 50% chance for a Good Face.",
+    "hint": "Usually not worth the risk. A Bad Face can easily ruin a run. 'Leave' is the most consistent and optimal play."
+  },
+  "The Mausoleum": {
+    "spoiler": "Opening the coffin guarantees a relic but has a 50% chance to give you the 'Writhe' curse (Innate, unplayable).",
+    "hint": "If you have the Omamori relic (blocks curses) or Blue Candle, definitely open it. Otherwise, the 50% chance to ruin your turn 1 card draw is usually not worth the risk. 'Leave' is safer."
+  },
+  "Mind Bloom": {
+    "spoiler": "'I am Rich' gives 999 Gold but adds 2 'Normality' curses, which restrict you to playing only 3 cards per turn (Run-ending trap). 'I am Awake' fights an Act 1 Boss for a Rare Relic.",
+    "hint": "NEVER choose 'I am Rich' unless you have 2 Omamori charges. 'I am Awake' is usually the best choice as fighting an Act 1 Boss in Act 3 is very easy. 'I am Healthy' (Full Heal + Doubt curse) is only for extreme emergencies."
+  },
+  "Sensory Stone": {
+    "spoiler": "1st memory costs 0 HP (choose 1 colorless card). 2nd memory costs 5 HP (choose 2 cards). 3rd memory costs 10 HP (choose 3 cards).",
+    "hint": "Spending 5 HP to see 2 cards is usually the best value. Getting 3 cards for 10 HP is only viable if you desperately need Apotheosis and have very high HP."
+  }
+}
