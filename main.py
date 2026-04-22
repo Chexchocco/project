@@ -218,7 +218,7 @@ def main():
                     if for_upgrade:
                         log.info("🔨 [강화]할 카드를 고릅니다.")
                         #cmd = module.smith_expert(grid_cards)
-                        cmd= (f"choose 7")
+                        cmd= (f"choose 0")
                         print(cmd, flush=True)
                         continue
                         
@@ -249,7 +249,6 @@ def main():
                 # [상황 C] 맵 이동 화면
                 elif screen_type == "MAP":
                     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")
-                    global WAITING_FOR_SHOP, SHOP_DONE
                     WAITING_FOR_SHOP = False
                     SHOP_DONE = False
                     CARD_SKIP = False
@@ -336,8 +335,8 @@ def main():
                     # (일단은 게임이 안 멈추고 계속 굴러가게 만드는 것이 목표이므로 무조건 0번을 고릅니다)
                     # 추후 '전장의 함성'이면 똥카드(상태이상/타격)를 고르고, '무장'이면 좋은 카드를 고르게 업그레이드 가능!
                     
-                    log.info("👉 패에서 2번 카드를 선택합니다.")
-                    print("choose 2", flush=True)
+                    log.info("👉 패에서 0번 카드를 선택합니다.")
+                    print("choose 0", flush=True)
                     continue
                 elif screen_type == "SHOP_ROOM":
                     if not WAITING_FOR_SHOP :
