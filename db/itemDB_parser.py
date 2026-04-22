@@ -63,7 +63,7 @@ def create_database():
     print("🔄  DB 변환 시작...")
     
     try:
-        with open('items.json', "r", encoding="utf-8") as f:
+        with open('db/itemDB.json', "r", encoding="utf-8") as f:
             raw_data = json.load(f)
             
         new_cards = []
@@ -169,10 +169,10 @@ def create_database():
             
         raw_data["cards"] = new_cards
         
-        with open('tagged_items.json', "w", encoding="utf-8") as f:
+        with open('db/parsed_item.json', "w", encoding="utf-8") as f:
             json.dump(raw_data, f, indent=4, ensure_ascii=False)
-            
-        print("✅  'tagged_items.json' 생성.")
+
+        print("✅  'parsed_item.json' 생성.")
         
     except Exception as e:
         print(f"🚨 에러 발생: {e}")

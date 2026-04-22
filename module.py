@@ -1,5 +1,5 @@
 import sys
-import db_util
+from db import db_loader
 import random
 
 import logging
@@ -16,7 +16,7 @@ def enrich_hand(hand):
             continue
             
         name = card.get("name")
-        info = db_util.get_card_info(name)
+        info = db_loader.get_card_info(name)
         
         if info:
             card["damage"] = info.get("damage", 0)
