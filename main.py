@@ -378,7 +378,7 @@ def main():
                     relics = state.get("screen_state", {}).get("relics", [])
                     relic_names = [r.get("name") for r in relics]
                     
-                    log.info(f"🎁 보스 유물 후보: {relic_names}")
+                    log.info(f" 보스 유물 후보: {relic_names}")
 
                     # [임시 로직] 일단은 멈추지 않기 위해 무조건 첫 번째(0번) 유물을 고릅니다.
                     log.info(f"✅ 첫 번째 유물({relic_names[0]})을 선택합니다.")
