@@ -27,7 +27,7 @@ def enrich_hand(hand):
             card["base_value"] = info.get("base_value", 0)
             card["synergy"] = info.get("synergy", {"requires": {}, "provides": {}})
         else:
-            log.info("info 발견 x")
+            log.info(f"info 발견 x, {name}")
             
     return hand
 
