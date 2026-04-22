@@ -8,7 +8,7 @@ import module
 from db import db_util
 import logging
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
-from llm_rag import choose_card_reward , evaluate_event
+from llm.llm_rag import choose_card_reward, evaluate_event
 
 log = logging.getLogger("STS_AI")
 log.setLevel(logging.INFO)
