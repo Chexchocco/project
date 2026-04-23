@@ -12,7 +12,7 @@ For more detailed information that is not directly related to run this program, 
 This project implements an intelligent game controller that communicates with a Slay the Spire game engine via stdin/stdout, making real-time gameplay decisions across multiple domains:
 
 
-- **Combat**: Rule-based AI experts (lethal, defensive, max damage)
+- **Combat**: Rule-based API (lethal, defensive, max damage)
 - **Deck Building**: LLM-powered card selection with RAG (Retrieval-Augmented Generation)
 - **Event Resolution**: LLM reasoning with event spoiler hints
 - **Map Navigation**: Currently basic routing (enhancement pending)
@@ -49,7 +49,7 @@ TBD
 
 ## Key Features
 
-### Combat AI (Deterministic)
+### Combat API (Deterministic)
 - **Lethal Expert**: Finds minimum-cost killing blow
 - **Defensive Expert**: Selects optimal defense when needed
 - **Max Damage Expert**: DFS lookahead to maximize damage output
