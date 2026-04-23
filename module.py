@@ -1,7 +1,7 @@
 import sys
 from db import db_loader
 import random
-
+import re
 import logging
 
 log = logging.getLogger("STS_AI")
@@ -168,49 +168,54 @@ def reset_match_and_keep():
     global MATCH_AND_KEEP_MEMORY
     MATCH_AND_KEEP_MEMORY = {i: None for i in range(12)}
 
-def match_and_keep_expert(cards, available_commands):
+def evaluate_card_for_match(card_id):
     """
-    짝맞추기 이벤트를 진행하고 게임에 보낼 명령어(예: "choose 3" 또는 "proceed")를 문자열로 반환합니다.
+    [임시 카드 평가 함수]
+    카드가 덱에 필요한지(GOOD), 피해야 하는 저주/쓰레기인지(BAD) 평가합니다.
+    나중에 LLM RAG 등을 연결해서 덱 시너지 기반으로 고도화할 수 있습니다.
     """
-    global MATCH_AND_KEEP_MEMORY
-    
-    # 1. 화면의 카드 상태를 읽어 메모리에 저장
-    for i, card in enumerate(cards):
-        if card.get("is_face_up"):
-            MATCH_AND_KEEP_MEMORY[i] = card.get("id")
-            
-    choice_idx = -1
-    
-    # 2. 매칭 전략: 짝이 맞는 좋은 카드가 메모리에 있는지 확인 (저주 제외)
-    known_counts = {}
-    for idx, card_id in MATCH_AND_KEEP_MEMORY.items():
-        if card_id is not None and "Curse" not in card_id:
-            if card_id not in known_counts:
-                known_counts[card_id] = []
-            known_counts[card_id].append(idx)
-            
-    for card_id, indices in known_counts.items():
-        if len(indices) >= 2:
-            # 아직 안 뒤집힌 상태인 인덱스를 찾아 고름
-            for idx in indices:
-                if not cards[idx].get("is_face_up"):
-                    choice_idx = idx
-                    break
-        if choice_idx != -1:
-            break
-            
-    # 3. 탐색 전략: 매칭할 카드가 없으면 무작위(안 까본 것 중) 탐색
-    if choice_idx == -1:
-        unknown_indices = [idx for idx, card_id in MATCH_AND_KEEP_MEMORY.items() if card_id is None]
-        if unknown_indices:
-            choice_idx = random.choice(unknown_indices)
+    if card_id is None:
+        return "UNKNOWN"
+        
+    # 슬더스의 대표적인 저주 카드들 (필요에 따라 추가)
+    bad_cards = ["CurseOfTheBell", "AscendersBane", "Necronomicurse", 
+                 "Normality", "Pain", "Regret", "Doubt", "Decay", "Writhe", "Shame", "Injury"]
+                 
+    # 카드 ID에 Curse가 포함되어 있거나, 나쁜 카드 목록에 있으면 무조건 회피
+    if "Curse" in card_id or card_id in bad_cards:
+        return "BAD"
+        
+    # 그 외의 카드는 일단 먹을 가치가 있다고 판단
+    return "GOOD"
+
+
+def match_and_keep_expert(available_commands, choices):
+    """
+커뮤니케이션 모드의 미구현으로 간략하게만 구현...
+    """
+    if "proceed" in available_commands:
+        log.info("🚪 짝맞추기 이벤트 완료! 진행(proceed)합니다.")
+        print("proceed", flush=True)
+        return  
+        
+    elif "leave" in available_commands:
+        log.info("🚪 짝맞추기 이벤트 완료! 나갑니다(leave).")
+        print("leave", flush=True)
+        return
+
+    if "choose" in available_commands and choices:
+        raw_pick = choices[0]
+        
+        # "card5" 같은 문자열에서 숫자만 추출
+        match = re.search(r'\d+', str(raw_pick))
+        if match:
+            pick_index = match.group()
         else:
-            # 다 까봤는데도 매칭이 안 되면 그냥 남은 거 아무거나 누름
-            unflipped = [i for i, c in enumerate(cards) if not c.get("is_face_up")]
-            if unflipped:
-                choice_idx = unflipped[0]
-            else:
-                if "proceed" in available_commands:
-                    return "proceed"
-                    
-    return f"choose {choice_idx}"
+            pick_index = raw_pick
+            
+        print(f"choose {pick_index}", flush=True)
+        return  # 🚨 여기서도 return!
+
+    # 💡 3순위: 카드가 뒤집히는 애니메이션 중이거나 할 게 없을 땐 대기!
+    print("wait 30", flush=True)
+    return

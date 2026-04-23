@@ -114,21 +114,23 @@ def main():
             data = json.loads(line)
             
             if "error" in data:
-                log.info(f"⚠️ 엔진 에러: {data}")
-                time.sleep(1)
-                print("wait", flush=True)
+                # 💡 available_commands 대신 진짜 에러 내용을 뽑아냅니다!
+                real_error = data.get("error", "알 수 없는 에러")
+                
+                log.error(f"⚠️ 엔진 에러 발생! 이유: {real_error}")
+                
+                # 핑퐁 복구를 위해 상태를 다시 요구합니다.
+                print("wait 3000", flush=True) 
                 continue
             
             if not data.get("in_game", False):
                 available_cmds = data.get("available_commands", [])
-
-                if "resume" in available_cmds:
-                    log.info("💾 기존에 진행 중이던 게임을 발견했습니다. 이어서 시작합니다 (Resume).")
-                    # 이게 안 됨;; 그냥 문제가 start 밖에 쓸 수 있는게 없네;;   
-                else:
-                    log.info("🏠 진행 중인 게임이 없습니다. 새로운 게임을 시작합니다.")
-                    print("start ironclad 0", flush=True) 
-                    
+                log.info("🏠 진행 중인 게임이 없습니다. 새로운 게임을 시작합니다.")
+                print("start ironclad 0", flush=True) 
+                # communication mod가 모든 상태를 주고 받게 해주는건 아니어서
+                # 세이브 된 거 시작을 못함;;
+                # 이게 좀 문제긴한데 만약 계속 돌려보고 싶으면 이렇게 돌리고 아니면 주석처리하고 킨담에
+                # continue 눌러줘야함    
                 # 루프를 넘겨서 게임이 켜진 후의 상태를 기다립니다.
                 continue
                         
@@ -147,7 +149,9 @@ def main():
                 if screen_type =="GAME_OVER" :
                     print(f"proceed", flush= True)
                     continue
+                
 
+                
                 # [상황 A] 전투 중 (팝업 없고, room_phase가 COMBAT)
                 if room_phase == "COMBAT" and screen_type == "NONE":
                     if "combat_state" in state:
@@ -163,7 +167,7 @@ def main():
                     picked_something = False
                     for i, reward in enumerate(rewards):
                         r_type = reward.get("reward_type", "")
-                        if r_type == "GOLD" or r_type == "RELIC":
+                        if r_type in ["GOLD", "STOLEN_GOLD", "RELIC", "EMERALD_KEY"]:
                             print(f"choose {i}", flush=True)
                             picked_something = True
                             break
@@ -300,16 +304,14 @@ def main():
                         log.info(f"옵션하나니까 바로선택 {choice_list[0]}")
                         print(f"choose {choice_list[0]}", flush=True)
                         continue
+
                     else :
                         body_text = state.get("screen_state", {}).get("body_text", "")
                         options = state.get("screen_state", {}).get("options", [])
                         if event_name == "Match and Keep!":
                             log.info("🃏 짝맞추기 에이전트 가동")
-                            cards = state.get("screen_state", {}).get("cards", [])
-                            avail_cmds = state.get("available_commands", [])
-                            
-                            cmd = module.match_and_keep_expert(cards, avail_cmds)
-                            print(cmd, flush=True)
+                            choices = state.get("choice_list", [])
+                            module.match_and_keep_expert(avail, choices)
                             continue
                         else:
                             log.info(f"❓ LLM 이벤트 전문가 호출: {event_name}")
@@ -322,9 +324,20 @@ def main():
                             choice_idx = evaluate_event(event_name, options_text, player_hp, max_hp, gold, deck_profile)
                             print(f"choose {choice_idx}", flush=True)
                             continue
+
+                    
                 elif screen_type == "CHEST":
-                    print(f"choose open", flush=True) 
-                    continue
+
+                    chest_open = state.get("screen_state", "").get("chest_open", [])
+                    if(chest_open == True):
+                        print(f"proceed", flush =True)
+                        continue
+                        #이게 보스 잡고 나서 갑자기 screen type 이 바뀜 그래서 그 경우 처리용 
+                        
+                    else :
+                        log.info(f"상자 열기 : {chest_open}")
+                        print(f"choose open", flush=True) 
+                        continue
                     # 보물상자는 여는거말고 딱히 할 게 없어서?
                     # 굳이 따지면 보물상자 열 경우 패널티 생기는 저주 유물 먹은 경우인데 그건 나중에 고려
                     # 그거랑 이제 유물vs초록 키 도 고려사항인데 이것도 나중에 고려
@@ -384,15 +397,27 @@ def main():
                 
 
                 elif screen_type == "BOSS_REWARD":
-                    log.info("👑 보스 유물 선택 화면 진입")
-                    relics = state.get("screen_state", {}).get("relics", [])
-                    relic_names = [r.get("name") for r in relics]
                     
-                    log.info(f" 보스 유물 후보: {relic_names}")
-
-                    # [임시 로직] 일단은 멈추지 않기 위해 무조건 첫 번째(0번) 유물을 고릅니다.
-                    log.info(f"✅ 첫 번째 유물({relic_names[0]})을 선택합니다.")
-                    print("choose 0", flush=True)
+                    if "proceed" in avail:
+                        log.info("🚪 보스 유물을 성공적으로 획득했습니다. 다음 막으로 이동합니다.")
+                        print("proceed", flush=True)
+                        continue
+                        
+                    if "choose" in avail:
+                        log.info("👑 보스 유물 선택 화면 진입")
+                        relics = state.get("screen_state", {}).get("relics", [])
+                        
+                        if relics:
+                            relic_names = [r.get("name") for r in relics]
+                            log.info(f" 보스 유물 후보: {relic_names}")
+                            log.info(f"✅ 첫 번째 유물({relic_names[0]})을 선택합니다.")
+                        
+                        # [임시 로직] 무조건 첫 번째(0번) 유물을 고릅니다.
+                        print("choose 0", flush=True)
+                        continue
+                        
+                    log.info("⏳ 보스 유물 획득 처리 중... 대기합니다.")
+                    print("wait 30", flush=True)
                     continue
 
                 
@@ -401,16 +426,18 @@ def main():
                 else:
                     log.info(f"대기 중... (phase: {room_phase}, screen: {screen_type})")
                     
-                    print("wait", flush= True)
-                    time.sleep(0.5)  
+                    print("wait 30", flush= True)
+                    time.sleep(1.5)  
                 
                 log.info(f"문제 발생3 {data}")
-                print("wait", flush= True)
+                print("wait 30", flush= True)
+                time.sleep(1.5)  
 
             
             
             log.info(f"문제 발생2 {data}")
             print("wait", flush= True)
+            time.sleep(1.5)  
 
         except Exception as e:
             # 파이썬 코드가 죽었을 때 원인을 검은 터미널 창에 적나라하게 출력합니다.
