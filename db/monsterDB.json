@@ -1,0 +1,865 @@
+{
+  "shared_powers": {
+    "Split": "When HP is at or below 50%, the monster's current Intent is immediately interrupted and changed to 'Split'. On its next turn, it disappears and spawns smaller versions with its current HP.",
+    "Ritual": "At the end of its turn, gains Strength equal to the Ritual amount. (Strength increases attack damage directly).",
+    "Curl Up": "Gains a pre-determined amount of Block (usually 3-7) upon first receiving attack damage. This triggers only once per combat.",
+    "Spore Cloud": "On death, applies Vulnerable to the player",
+    "Angry": "Upon receiving attack damage, gains Strength equal to the Angry amount. (Multi-hit attacks will trigger this multiple times).",
+    "Thievery": "Steals Gold whenever it attacks. All stolen gold is completely returned if this enemy is killed before it escapes.",
+    "Entangled": "Status effect applied to the player. The player CANNOT play any Attack cards during their turn.",
+    "Flying": "Takes 50% less attack damage. Cancelled if dealt attack damage X times (usually 3) in a single turn. If not completely removed, the hit counter resets at the start of the next turn. When cancelled, the monster is grounded and its current intent is replaced by 'Stunned'.",
+    "Hex": "Whenever the player plays a non-Attack card (Skill or Power), shuffle 1 Dazed (unplayable status card) into the draw pile. This severely clogs the deck over time.",
+    "Plated Armor": "At the end of its turn, gains Block equal to its Plated Armor amount. Receiving unblocked attack damage reduces Plated Armor by 1. (Multi-hit attacks are highly effective for stripping this quickly).",
+    "Artifact": "Negates the next X debuffs applied to this entity.",
+    "Barricade": "Block is not removed at the end of its turn. (Block stacks infinitely).",
+    "Malleable": "Upon receiving attack damage, gains Block equal to the Malleable amount. The amount of Block gained increases by 1 for each subsequent hit taken in the same turn. The counter resets at the start of the player's turn. (Extremely punishing against multi-hit attacks).",
+    "Confused": "Status effect applied to the player. Whenever the player draws a card, its energy cost is completely randomized between 0 and 3. This effect lasts for the entire combat. (High-cost cards become highly efficient on average, while 0-cost cards become a liability).",
+    "Life Link": "If its HP reaches 0, it does not die immediately. Instead, it enters a 'Regrowing' state. If any other enemies with Life Link are still alive after 2 turns, it will revive with 50% of its Max HP. All Life Link enemies must be killed at the same time (or within the 2-turn window) to end the combat.",
+    "Strength Up": "At the end of its turn, gains Strength. (Acts as a strict DPS check, scaling its damage infinitely over time).",
+    "Explosive": "Explodes after X turns. The monster will die, but deals massive damage to the player if not killed before the timer hits 0.",
+    "Thorns": "Whenever this entity receives Attack damage, it deals X damage back to the attacker. (Multi-hit attacks will trigger Thorns damage for EVERY hit).",
+    "Constricted": "Player takes X damage at the end of their turn.",
+    "Fading": "Dies automatically in X turns. Surviving until the timer runs out counts as a victory.",
+    "Shifting": "Upon receiving attack damage, loses that much Strength until the end of the turn. (This directly reduces its incoming damage for the current turn).",
+    "Reactive": "Upon receiving attack damage, immediately changes its Intent to a different move. (Cannot reroll into the exact same move).",
+    "Enrage": "Whenever the player plays a Skill card (like Block or Draw cards), this monster gains Strength equal to its Enrage amount. (This permanently increases its attack damage. Highly punishes defensive play).",
+    "Metallicize": "At the end of its turn, gains Block equal to the Metallicize amount.",
+    "Sleeping": "Starts the combat asleep and does not act. Wakes up immediately if it takes any HP damage (losing its Block does not wake it up). If not attacked, it wakes up automatically after 3 turns. Waking up removes its Metallicize.",
+    "Dazed": "Status effect card. Unplayable and Ethereal. When added to the discard pile, it does nothing immediately, but will severely clog the player's hand after the deck reshuffles.",
+    "Painful Stabs": "Whenever the player receives unblocked attack damage from this entity, add 1 Wound into the discard pile.",
+    "Wound": "Status effect card. Unplayable. Clutters the deck and reduces draw efficiency when the deck reshuffles.",
+    "Slow": "Whenever the player plays a card, the target receives 10% more damage from Attacks for the rest of the turn. This stacks multiplicatively per card played. (Card play order is extremely important: play setup/skill cards first, and high-damage attacks last).",
+    "Intangible": "Reduces ALL incoming damage and HP loss to exactly 1. (Do not waste high-damage attack cards while this is active).",
+    "Back Attack": "This enemy is attacking the player from behind. Deals 50% MORE damage. (The player faces the last enemy they targeted with an attack. The enemy behind them will gain this bonus).",
+    "Surrounded": "Status effect signaling that the player is between two enemies. Managing which direction you face is critical to surviving.",
+    "Slimed": "Status card. Costs 1 Energy to Exhaust. Clutters the hand and draw pile if not exhausted.",
+    "Mode Shift": "After losing X HP in its current stance, it immediately gains 20 Block and changes its current Intent to 'Defensive Mode'.",
+    "Sharp Hide": "Whenever the player plays an Attack card, the player takes X damage. (Severely punishes multi-hit or low-value attack cards).",
+    "Burn": "Status card. Unplayable. At the end of your turn, take 2 damage.",
+    "Burn+": "Upgraded Status card. Unplayable. At the end of your turn, take 4 damage.",
+    "Minion": "This enemy was summoned and will flee if all non-minion enemies die. (Do not prioritize if you can kill the main boss).",
+    "Stasis": "Status effect for Bronze Orbs. The Orb steals the rarest card from the player's draw/discard pile. The card is unplayable until the Orb is killed, at which point it returns to the player's hand for free.",
+    "Curiosity": "Whenever the player plays a Power card, this entity gains Strength. (Heavily punishes Power-heavy decks).",
+    "Time Warp": "Whenever the player plays a card, a counter increases. At 12 cards, the player's turn IMMEDIATELY ends, and this entity gains Strength. The counter does NOT reset at the end of the turn.",
+    "Draw Reduction": "Debuff applied to the player. The player draws X fewer cards next turn.",
+    "Void": "Status card. Unplayable. Ethereal. When drawn, lose 1 Energy.",
+    "Beat of Death": "Whenever the player plays ANY card, the player takes X damage.",
+    "Invincible": "Limits the maximum amount of HP this entity can lose in a single turn. Any damage dealt beyond this cap is reduced to 0."
+
+},
+
+
+  "monsters": {
+    "Spike Slime (L)": {
+      "name": "Spike Slime (L)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "64-70",
+      "powers": ["Split"],
+      "patterns": {
+        "Flame Tackle": {"damage": 16, "status": "2 Slimed into discard", "chance": "30%"},
+        "Lick": {"damage": 0, "debuff": "2 Frail", "chance": "70%"},
+        "Split": {"effect": "Spawns 2 Spike Slimes (M)"}
+      },
+      "logic_notes": "Cannot use the same move 3 times in a row. Split triggers immediately upon dropping below 50% HP."
+    },
+    "Acid Slime (L)": {
+      "name": "Acid Slime (L)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "65-69",
+      "powers": ["Split"],
+      "patterns": {
+        "Corrosive Spit": {"damage": 11, "status": "2 Slimed into discard", "chance": "30%"},
+        "Tackle": {"damage": 16, "chance": "40%"},
+        "Lick": {"damage": 0, "debuff": "2 Weak", "chance": "30%"},
+        "Split": {"effect": "Spawns 2 Acid Slimes (M)"}
+      },
+      "logic_notes": "Cannot use Tackle twice in a row. Cannot use other moves 3 times in a row. Split triggers at <= 50% HP."
+    },
+    "Spike Slime (M)": {
+      "name": "Spike Slime (M)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "28-32",
+      "powers": [],
+      "patterns": {
+        "Flame Tackle": {"damage": 8, "status": "1 Slimed into discard"},
+        "Lick": {"damage": 0, "debuff": "1 Frail"}
+      }
+    },
+    "Acid Slime (M)": {
+      "name": "Acid Slime (M)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "28-32",
+      "powers": [],
+      "patterns": {
+        "Corrosive Spit": {"damage": 7, "status": "1 Slimed into discard"},
+        "Tackle": {"damage": 10},
+        "Lick": {"damage": 0, "debuff": "1 Weak"}
+      }
+    },
+    "Spike Slime (S)": {
+      "name": "Spike Slime (S)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "10-14",
+      "patterns": {
+        "Tackle": {"damage": 5}
+      }
+    },
+    "Acid Slime (S)": {
+      "name": "Acid Slime (S)",
+      "type": "Normal",
+      "act": 1,
+      "hp": "8-12",
+      "patterns": {
+        "Tackle": {"damage": 3},
+        "Lick": {"damage": 0, "debuff": "1 Weak"}
+      }
+    },
+    "Cultist": {
+    "name": "Cultist",
+    "type": "Normal",
+    "act": "1, 2, 3",
+    "hp": "48-54",
+    "powers": ["Ritual"],
+    "patterns": {
+      "Incantation": {
+        "damage": 0,
+        "buff": "Gains 3 Ritual",
+        "effect": "Strength increases by 3 at the end of its turn."
+      },
+      "Dark Strike": {
+        "damage": 6,
+        "effect": "Damage increases every turn due to Ritual."
+      }
+    },
+    "logic_notes": "Deterministic pattern: Always uses Incantation on Turn 1, and then exclusively uses Dark Strike every turn after that. The damage of Dark Strike scales up rapidly every turn."
+    },
+    
+  "Jaw Worm": {
+    "name": "Jaw Worm",
+    "type": "Normal",
+    "act": "1, 3",
+    "hp": "40-44",
+    "powers": [],
+    "patterns": {
+      "Chomp": {
+        "damage": 11
+      },
+      "Bellow": {
+        "damage": 0,
+        "buff": "Gains 3 Strength, 6 Block",
+        "effect": "Increases its future damage and defends itself."
+      },
+      "Thrash": {
+        "damage": 7,
+        "buff": "Gains 5 Block"
+      }
+    },
+    "logic_notes": "Act 1 Turn 1: ALWAYS uses Chomp. Turn 2+: Move probabilities depend on the previous move. After Chomp: 59% Bellow, 41% Thrash. After Bellow: 56% Thrash, 44% Chomp. After Thrash: 45% Bellow, 30% Thrash, 25% Chomp. (Cannot use Thrash 3 times in a row). Act 3 variant starts with Bellow effects already applied."
+  },
+  "Red Louse": {
+      "name": "Red Louse",
+    "type": "Normal",
+      "act": 1,
+      "hp": "10-15",
+      "powers": ["Curl Up"],
+      "patterns": {
+        "Bite": {"damage": "5-7", "chance": "75%"},
+        "Grow": {"damage": 0, "buff": "Gains 3 Strength", "chance": "25%"}
+      },
+      "logic_notes": "The exact damage of 'Bite' (between 5 and 7) is determined at the start of combat and remains constant. Cannot use the same move 3 times in a row."
+    },
+    "Green Louse": {
+      "name": "Green Louse",
+    "type": "Normal",
+      "act": 1,
+      "hp": "11-17",
+      "powers": ["Curl Up"],
+      "patterns": {
+        "Bite": {"damage": "5-7", "chance": "75%"},
+        "Spit Web": {"damage": 0, "debuff": "2 Weak", "chance": "25%"}
+      },
+      "logic_notes": "The exact damage of 'Bite' (between 5 and 7) is determined at the start of combat and remains constant. Cannot use the same move 3 times in a row."
+    },
+    "Fungi Beast": {
+      "name": "Fungi Beast",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "22-28",
+      "powers": ["Spore Cloud"],
+      "patterns": {
+        "Bite": {"damage": 6, "chance": "60%"},
+        "Grow": {"damage": 0, "buff": "Gains 3 Strength", "chance": "40%"}
+      },
+      "logic_notes": "Cannot use Bite 3 times in a row. Cannot use Grow twice in a row. Spore Cloud applies 2 Vulnerable upon death. (When fighting multiple enemies, killing this first will make you take 50% more damage from the others)."
+    },
+    "Fat Gremlin": {
+      "name": "Fat Gremlin",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "13-17",
+      "powers": [],
+      "patterns": {
+        "Smash": {"damage": 4, "debuff": "1 Weak"}
+      },
+      "logic_notes": "Always uses Smash every turn. The Weak debuff heavily reduces your damage, so it is often a high-priority target in group fights."
+    },
+    "Mad Gremlin": {
+      "name": "Mad Gremlin",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "20-24",
+      "powers": ["Angry"],
+      "patterns": {
+        "Scratch": {"damage": 4}
+      },
+      "logic_notes": "Always uses Scratch every turn. Because of the 'Angry' power, you must kill it in as few hits as possible. DO NOT use weak multi-hit attacks against it."
+    },
+    "Shield Gremlin": {
+      "name": "Shield Gremlin",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "12-15",
+      "powers": [],
+      "patterns": {
+        "Protect": {"damage": 0, "effect": "Grants 7 Block to a random ally"},
+        "Shield Bash": {"damage": 6}
+      },
+      "logic_notes": "Uses Protect every turn to shield other enemies. If it is the ONLY enemy remaining in combat, it switches to using Shield Bash every turn."
+    },
+    "Sneaky Gremlin": {
+      "name": "Sneaky Gremlin",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "10-14",
+      "powers": [],
+      "patterns": {
+        "Puncture": {"damage": 9}
+      },
+      "logic_notes": "Always uses Puncture every turn. Has low HP but deals high consistent damage. Good target for a quick kill to reduce incoming damage."
+    },
+    "Gremlin Wizard": {
+      "name": "Gremlin Wizard",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "21-25",
+      "powers": [],
+      "patterns": {
+        "Charging": {"damage": 0, "effect": "Does nothing"},
+        "Ultimate Blast": {"damage": 25}
+      },
+      "logic_notes": "Deterministic pattern: Turn 1 and Turn 2 uses Charging (doing nothing). Turn 3 uses Ultimate Blast (massive damage). Must be killed before Turn 3, or you must prepare massive Block for Turn 3."
+    },
+    "Looter": {
+      "name": "Looter",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "44-48",
+      "powers": ["Thievery"],
+      "patterns": {
+        "Mug": {"damage": 10},
+        "Lunge": {"damage": 12},
+        "Smoke Bomb": {"damage": 0, "buff": "Gains 6 Block"},
+        "Escape": {"damage": 0, "effect": "Flees combat with your stolen Gold"}
+      },
+      "logic_notes": "Deterministic early pattern: Turn 1 and 2 always use Mug. Turn 3 is a 50/50 chance between Lunge or Smoke Bomb. If Lunge is used on Turn 3, Turn 4 will be Smoke Bomb. IMPORTANT: The turn immediately after using Smoke Bomb, it will always use Escape. Must be killed before it escapes to retrieve stolen gold."
+    },
+    "Mugger": {
+      "name": "Mugger",
+    "type": "Normal",
+      "act": "2",
+      "hp": "48-52",
+      "powers": ["Thievery"],
+      "patterns": {
+        "Mug": {"damage": 10},
+        "Lunge": {"damage": 16},
+        "Smoke Bomb": {"damage": 0, "buff": "Gains 11 Block"},
+        "Escape": {"damage": 0, "effect": "Flees combat with your stolen Gold"}
+      },
+      "logic_notes": "Follows the exact same turn pattern as Looter (Mug -> Mug -> Lunge/Smoke Bomb -> Smoke Bomb -> Escape). It always Escapes the turn immediately after using Smoke Bomb. Prioritize killing it before it escapes, using Max Damage Solver if Smoke Bomb was just used."
+    },
+    "Blue Slaver": {
+      "name": "Blue Slaver",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "46-50",
+      "powers": [],
+      "patterns": {
+        "Stab": {"damage": 12, "chance": "60%"},
+        "Rake": {"damage": 7, "debuff": "1 Weak", "chance": "40%"}
+      },
+      "logic_notes": "Cannot use the same attack 3 times in a row."
+    },
+    "Red Slaver": {
+      "name": "Red Slaver",
+    "type": "Normal",
+      "act": "1, 2",
+      "hp": "46-50",
+      "powers": ["Entangled"],
+      "patterns": {
+        "Stab": {"damage": 13},
+        "Scrape": {"damage": 8, "debuff": "1 Vulnerable"},
+        "Entangle": {"damage": 0, "debuff": "1 Entangled"}
+      },
+      "logic_notes": "Turn 1: ALWAYS uses Stab. Pre-Entangle: Tries to follow a repeating pattern of [Scrape -> Scrape -> Stab], but has a 25% chance each turn to use Entangle instead. Post-Entangle: Entangle can only be used ONCE per combat. After it is used, switches to 55% Stab and 45% Scrape. Cannot use the same attack 3 times in a row."
+    },
+    "Byrd": {
+      "name": "Byrd",
+    "type": "Normal",
+      "act": "2",
+      "hp": "25-31",
+      "powers": ["Flying"],
+      "patterns": {
+        "Peck": {"damage": "1x5", "chance": "50%"},
+        "Caw": {"damage": 0, "buff": "Gains 1 Strength", "chance": "30%"},
+        "Swoop": {"damage": 12, "chance": "20%"},
+        "Stunned": {"damage": 0, "effect": "Does nothing. Triggered immediately when Flying is lost."},
+        "Headbutt": {"damage": 3, "effect": "Used the turn after being Stunned."},
+        "Go Airborne": {"damage": 0, "buff": "Gains 3 Flying", "effect": "Used the turn after Headbutt."}
+      },
+      "logic_notes": "Turn 1: Never uses Swoop. Airborne Rules: Cannot use Caw or Swoop twice in a row. Cannot use Peck 3 times in a row. Grounded Sequence: When hit by 3 attacks in one turn, Flying is removed and intent changes to Stunned. It will then strictly follow the pattern: [Stunned -> Headbutt -> Go Airborne] before returning to its Airborne random pattern."
+    },
+    "Chosen": {
+      "name": "Chosen",
+    "type": "Normal",
+      "act": "2",
+      "hp": "95-99",
+      "powers": ["Hex"],
+      "patterns": {
+        "Poke": {"damage": "5x2"},
+        "Hex": {"damage": 0, "debuff": "Applies Hex status to player"},
+        "Debilitate": {"damage": 10, "debuff": "2 Vulnerable"},
+        "Drain": {"damage": 0, "debuff": "3 Weak", "buff": "Gains 3 Strength"},
+        "Zap": {"damage": 18}
+      },
+      "logic_notes": "Highly Deterministic Pattern: Turn 1 is ALWAYS Poke. Turn 2 is ALWAYS Hex. From Turn 3 onwards, it repeats a strict 2-turn cycle. Cycle Step 1: Debilitate (50%) or Drain (50%). Cycle Step 2: Poke (60%) or Zap (40%). After Turn 2, playing non-Attack cards will ruin the deck."
+    },
+    "Shelled Parasite": {
+      "name": "Shelled Parasite",
+    "type": "Normal",
+      "act": "2",
+      "hp": "68-72",
+      "powers": ["Plated Armor (Starts with 14)"],
+      "patterns": {
+        "Double Strike": {"damage": "6x2", "chance": "40%"},
+        "Life Suck": {"damage": 10, "effect": "Heals HP equal to the unblocked damage dealt to the player.", "chance": "40%"},
+        "Fell": {"damage": 18, "debuff": "2 Frail", "chance": "20%"},
+        "Stunned": {"damage": 0, "effect": "Does nothing. Triggered immediately when Plated Armor is reduced to 0."}
+      },
+      "logic_notes": "Turn 1: Never uses Fell. Cannot use Double Strike or Life Suck 3 times in a row. Cannot use Fell twice in a row. Armor Break Mechanic: If its Plated Armor reaches 0, its current intent is immediately changed to Stunned (this can only happen once per combat). Strategy: Defend completely against Life Suck to deny its healing. Prioritize playing multi-hit attack cards to break its armor and gain a free turn."
+    },
+    "Spheric Guardian": {
+      "name": "Spheric Guardian",
+    "type": "Normal",
+      "act": "2, 3",
+      "hp": "20",
+      "powers": ["Starts with 40 Block", "Artifact 3", "Barricade"],
+      "patterns": {
+        "Activate": {"damage": 0, "buff": "Gains 25 Block"},
+        "Debuff Attack": {"damage": 10, "debuff": "5 Frail"},
+        "Slam": {"damage": "10x2"},
+        "Harden": {"damage": 10, "buff": "Gains 15 Block"}
+      },
+      "logic_notes": "Extremely Deterministic Pattern: Turn 1 is ALWAYS Activate. Turn 2 is ALWAYS Debuff Attack. From Turn 3 onwards, it strictly alternates between Slam and Harden (Slam -> Harden -> Slam -> ...). Important: It starts combat with 40 Block and has Barricade, so its block never expires. It also starts with 3 Artifact, making initial debuffs useless."
+    },
+    "Centurion": {
+      "name": "Centurion",
+    "type": "Normal",
+      "act": "2",
+      "hp": "76-80",
+      "powers": [],
+      "patterns": {
+        "Slash": {"damage": 12},
+        "Protect": {"damage": 0, "effect": "Grants 15 Block to the Mystic (or to itself if the Mystic is dead)."},
+        "Fury": {"damage": "6x3"}
+      },
+      "logic_notes": "Behavior heavily depends on the Mystic's status. If Mystic is ALIVE: 65% Slash, 35% Protect. If Mystic is DEAD: Protect is permanently replaced by Fury (65% Slash, 35% Fury). Cannot use the same move 3 times in a row. Warning: Killing the Mystic transforms the Centurion into a heavy multi-hit damage dealer."
+    },
+    "Mystic": {
+      "name": "Mystic",
+    "type": "Normal",
+      "act": "2",
+      "hp": "48-56",
+      "powers": [],
+      "patterns": {
+        "Attack": {"damage": 8, "debuff": "2 Frail"},
+        "Buff": {"damage": 0, "buff": "All enemies gain 2 Strength"},
+        "Heal": {"damage": 0, "effect": "All enemies heal 16 HP"}
+      },
+      "logic_notes": "Conditional Healing: If ANY enemy is missing 16 or more HP, she will use Heal (can use up to twice in a row). If no enemy is missing 16+ HP, she uses Attack (60%) or Buff (40%). Cannot use Attack or Buff 3 times in a row."
+    },
+    "Snake Plant": {
+      "name": "Snake Plant",
+    "type": "Normal",
+      "act": "2",
+      "hp": "75-79",
+      "powers": ["Malleable 3"],
+      "patterns": {
+        "Chomp Chomp": {"damage": "7x3", "chance": "65%"},
+        "Enfeebling Spores": {"damage": 0, "debuff": "2 Frail, 2 Weak", "chance": "35%"}
+      },
+      "logic_notes": "Cannot use Chomp Chomp 3 times in a row. Cannot use Enfeebling Spores twice in a row. Malleable heavily punishes multi-hit attacks. Hitting it with a 3-hit attack will grant it 3+4+5=12 Block mid-attack. Strategy: Strongly prefer single, high-damage attacks (Max Damage Solver must account for block gained mid-calculation). Avoid weak multi-hit cards completely."
+    },
+    "Snecko": {
+      "name": "Snecko",
+    "type": "Normal",
+      "act": "2",
+      "hp": "114-120",
+      "powers": [],
+      "patterns": {
+        "Perplexing Glare": {"damage": 0, "debuff": "Applies Confused"},
+        "Bite": {"damage": 15, "chance": "60%"},
+        "Tail Whip": {"damage": 8, "debuff": "2 Vulnerable", "chance": "40%"}
+      },
+      "logic_notes": "Turn 1: ALWAYS uses Perplexing Glare. Turn 2+: Randomly uses Bite (60%) or Tail Whip (40%). Cannot use Bite 3 times in a row. Strategy: Turn 1 deals exactly 0 damage. The Defensive Module should be completely ignored on Turn 1. Maximize damage or play all setup cards (Powers) before card costs become unpredictable from Turn 2 onwards."
+    },
+    "Darkling": {
+      "name": "Darkling",
+    "type": "Normal",
+      "act": "3",
+      "hp": "48-56",
+      "powers": ["Life Link"],
+      "patterns": {
+        "Harden": {"damage": 0, "buff": "Gains 12 Block"},
+        "Nip": {"damage": "7-11"},
+        "Chomp": {"damage": "8x2"},
+        "Regrowing...": {"damage": 0, "effect": "Does nothing. Triggered on the first turn after HP reaches 0."},
+        "Reincarnate": {"damage": 0, "effect": "Revives with 50% HP. Triggered on the second turn after HP reaches 0."}
+      },
+      "logic_notes": "Always encountered in groups. The exact damage of 'Nip' (7-11) is fixed at the start of combat. Death Mechanic: When HP is reduced to 0, its intent changes to 'Regrowing...' for one turn, then 'Reincarnate' the next turn. Strategy: You MUST manage their health pools evenly. Do not kill one completely unless you are confident you can kill the others within the next 2 turns. AoE (Area of Effect) attacks are extremely valuable here."
+    },
+    "Orb Walker": {
+      "name": "Orb Walker",
+    "type": "Normal",
+      "act": "3",
+      "hp": "90-96",
+      "powers": ["Strength Up (Starts at 3)"],
+      "patterns": {
+        "Laser": {"damage": 10, "status": "Adds 1 Burn to draw pile, 1 Burn to discard pile", "chance": "60%"},
+        "Claw": {"damage": 15, "chance": "40%"}
+      },
+      "logic_notes": "Cannot use the same action 3 times in a row. It gains 3 Strength every single turn. This is a severe DPS check. Strategy: Do not drag the fight out. Playing setup/Power cards early is mandatory to out-scale its rapidly increasing damage. Burns will also quickly clog the deck."
+    },
+    "Exploder": {
+      "name": "Exploder",
+    "type": "Normal",
+      "act": "3",
+      "hp": "30",
+      "powers": ["Explosive 3"],
+      "patterns": {
+        "Attack": {"damage": 9},
+        "Explode": {"damage": 30, "effect": "Dies"}
+      },
+      "logic_notes": "100% Deterministic Timer: Turn 1 is Attack. Turn 2 is Attack. Turn 3 is ALWAYS Explode (30 Damage). Strategy: MUST be killed within 3 turns, OR you must guarantee 30 Block on Turn 3. Defensive modules can be ignored on Turn 1 and 2 if it guarantees a kill before Turn 3."
+    },
+    "Repulsor": {
+      "name": "Repulsor",
+    "type": "Normal",
+      "act": "3",
+      "hp": "29-35",
+      "powers": [],
+      "patterns": {
+        "Attack": {"damage": 11, "chance": "20%"},
+        "Daze": {"damage": 0, "status": "Adds 2 Dazed into your draw pile", "chance": "80%"}
+      },
+      "logic_notes": "Cannot use Attack twice in a row. Does not deal high physical damage, but rapidly floods the draw pile with unplayable Dazed cards. Priority target if your deck relies on drawing specific combos or Power cards."
+    },
+    "Spiker": {
+      "name": "Spiker",
+    "type": "Normal",
+      "act": "3",
+      "hp": "42-56",
+      "powers": ["Thorns (Starts with 3)"],
+      "patterns": {
+        "Attack": {"damage": 7, "chance": "50%"},
+        "Buff Thorns": {"damage": 0, "buff": "Gains 2 Thorns", "chance": "50%"}
+      },
+      "logic_notes": "Cannot use Attack twice in a row. Thorns heavily punish multi-hit attacks. Using a 3-hit attack when it has 5 Thorns means you will take 15 damage. Strategy: NEVER use weak multi-hit cards. Rely entirely on high-damage single attacks (Max Damage Solver must weigh self-damage). If your hand only has weak attacks, do not play them."
+    },
+    "The Maw": {
+      "name": "The Maw",
+    "type": "Normal",
+      "act": "3",
+      "hp": "300",
+      "powers": [],
+      "patterns": {
+        "Roar": {"damage": 0, "debuff": "3 Weak, 3 Frail"},
+        "Slam": {"damage": 25},
+        "Nom Nom": {"damage": "5xN (N = Current turn divided by 2, rounded up)"},
+        "Drool": {"damage": 0, "buff": "Gains 3 Strength"}
+      },
+      "logic_notes": "Turn 1 is ALWAYS Roar. Turn transitions follow strict rules. After Drool: 50% Slam, 50% Nom Nom. After Slam: 50% Nom Nom, 50% Drool. After Nom Nom: ALWAYS Drool."
+    },
+    "Spire Growth": {
+      "name": "Spire Growth",
+    "type": "Normal",
+      "act": "3",
+      "hp": "170",
+      "powers": [],
+      "patterns": {
+        "Constrict": {"damage": 0, "debuff": "Applies 10 Constricted"},
+        "Quick Tackle": {"damage": 16},
+        "Smash": {"damage": 22}
+      },
+      "logic_notes": "Base logic is 50% Quick Tackle or 50% Constrict. However, if Constrict was used last turn OR the player already has the Constricted debuff, it will use Smash instead of Constrict. Cannot use Quick Tackle or Smash 3 times in a row."
+    },
+    "Transient": {
+      "name": "Transient",
+    "type": "Normal",
+      "act": "3",
+      "hp": "999",
+      "powers": ["Fading 5", "Shifting"],
+      "patterns": {
+        "Attack": {"damage": "20 + (Current turn * 10)"}
+      },
+      "logic_notes": "Always attacks. Damage scales up by 10 every turn. Hitting it directly reduces its damage for the current turn due to the Shifting power. Surviving for 5 turns will automatically win the combat due to Fading."
+    },
+    "Writhing Mass": {
+      "name": "Writhing Mass",
+    "type": "Normal",
+      "act": "3",
+      "hp": "160",
+      "powers": ["Malleable 4", "Reactive"],
+      "patterns": {
+        "Multi Hit": {"damage": "7x3", "chance": "30%"},
+        "Debuff Attack": {"damage": 10, "debuff": "2 Weak, 2 Vulnerable", "chance": "20%"},
+        "Big Hit": {"damage": 32, "chance": "10%"},
+        "Block Attack": {"damage": 15, "buff": "Gains 16 Block", "chance": "30%"},
+        "Parasite": {"damage": 0, "status": "Permanently adds a Parasite curse to your deck", "chance": "10%"}
+      },
+      "logic_notes": "Intent changes every time it takes attack damage (Reactive). Malleable provides Block when hit, punishing multi-hit attacks. If its current intent is highly dangerous (like Parasite or Big Hit), you can attack it to force a reroll. Parasite can only be used once per combat."
+    },
+    "Gremlin Nob": {
+      "name": "Gremlin Nob",
+    "type": "Elite",
+      "act": "1, 2",
+      "hp": "82-86",
+      "powers": ["Enrage"],
+      "patterns": {
+        "Bellow": {"damage": 0, "buff": "Gains 2 Enrage"},
+        "Skull Bash": {"damage": 6, "debuff": "2 Vulnerable", "chance": "33%"},
+        "Bull Rush": {"damage": 14, "chance": "67%"}
+      },
+      "logic_notes": "Turn 1: ALWAYS uses Bellow (0 damage, gains Enrage). Turn 2+: 33% chance for Skull Bash, 67% chance for Bull Rush. Cannot use Bull Rush 3 times in a row. Strategy: Extremely punishing to Defensive Modules. Playing Skill cards will cause his damage to spiral out of control. Prioritize Max Damage Solver entirely. Accept taking raw damage in exchange for killing it as fast as possible."
+    },
+    "Lagavulin": {
+      "name": "Lagavulin",
+    "type": "Elite",
+      "act": "1",
+      "hp": "109-111",
+      "powers": ["Metallicize 8", "Starts with 8 Block", "Sleeping (if Elite encounter)"],
+      "patterns": {
+        "Sleep": {"damage": 0, "effect": "Does nothing. Used while Sleeping."},
+        "Stunned": {"damage": 0, "effect": "Does nothing. Triggered for exactly one turn after being woken up by an attack."},
+        "Attack": {"damage": 18},
+        "Siphon Soul": {"damage": 0, "debuff": "Applies -1 Strength, -1 Dexterity (Permanent debuff)"}
+      },
+      "logic_notes": "Encounter variants: In normal Elite combat, starts Sleeping. Turn 1-3 uses Sleep. If hit and woken up, uses Stunned for 1 turn. Once fully awake (or if found in Dead Adventurer event), it follows a strict repeating pattern: [Attack -> Attack -> Siphon Soul]. Strategy: NEVER attack while it is sleeping UNLESS you are fully prepared to burst it down or you have played all your setup (Power) cards. Siphon Soul permanently ruins your scaling, so the fight must not drag on."
+    },
+    "Sentry": {
+      "name": "Sentry",
+    "type": "Elite",
+      "act": "1, 2",
+      "hp": "38-42",
+      "powers": ["Artifact 1"],
+      "patterns": {
+        "Bolt": {"damage": 0, "status": "Adds 2 Dazed into your discard pile"},
+        "Beam": {"damage": 9}
+      },
+      "logic_notes": "Encountered in groups of 3 (Act 1 Elite). Extremely Deterministic Alternating Pattern. Outer Sentries (Left and Right) follow: [Bolt -> Beam -> Bolt...]. Middle Sentry follows: [Beam -> Bolt -> Beam...]. This means Turn 1 incoming damage is 9 (Middle), and Turn 2 is 18 (Outer two). Strategy: NEVER spread damage. Focus entirely on killing ONE of the outer Sentries first to break the synchronized 18-damage turns. Must kill at least one before the deck reshuffles, or the drawn Dazed cards will paralyze the deck."
+    },
+    "Book of Stabbing": {
+      "name": "Book of Stabbing",
+      "type": "Elite",
+      "act": "2",
+      "hp": "160-164",
+      "powers": ["Painful Stabs"],
+      "patterns": {
+        "Multi Stab": {"damage": "6xN", "effect": "N starts at 2, and increases by 1 every time Multi Stab is used in this combat.", "chance": "85%"},
+        "Big Stab": {"damage": 21, "chance": "15%"}
+      },
+      "logic_notes": "Cannot use Multi Stab 3 times in a row. Cannot use Big Stab twice in a row. The hit count of Multi Stab scales infinitely (2 hits -> 3 hits -> 4 hits...). Taking unblocked damage floods the discard pile with Wounds due to Painful Stabs. Strategy: Severe DPS check. You cannot out-block it in the long run. Requires extreme burst damage to kill it before it reaches 4+ hits on Multi Stab."
+    },
+    "Gremlin Leader": {
+      "name": "Gremlin Leader",
+      "type": "Elite",
+      "act": "2",
+      "hp": "140-148",
+      "powers": [],
+      "patterns": {
+        "Rally!": {"damage": 0, "effect": "Summons 2 random Gremlins (up to a max of 3 total minions)."},
+        "Stab": {"damage": "6x3"},
+        "Encourage": {"damage": 0, "buff": "All enemies gain 3 Strength. All minions gain 6 Block."}
+      },
+      "logic_notes": "Behavior depends on the number of alive Gremlin minions. 1) If 0 minions: 75% Rally!, 25% Stab. 2) If 1 minion: 50/50% between Rally! and Stab (unless last move was Encourage), or 62.5% Rally! and 37.5% Encourage (if last move was Stab). 3) If 2+ minions: 66% Encourage, 34% Stab. IMPORTANT: Cannot use the same intent twice in a row. Max 3 minions can be present."
+    },
+    "Taskmaster": {
+      "name": "Taskmaster",
+      "type": "Elite",
+      "act": "2",
+      "hp": "54-60",
+      "powers": [],
+      "patterns": {
+        "Scouring Whip": {"damage": 7, "status": "Adds 1 Wound into your discard pile"}
+      },
+      "logic_notes": "Extremely simple pattern: ALWAYS uses Scouring Whip every turn. Constant 7 damage and deck bloat. Strategy: Kill as quickly as possible before the Wounds reshuffle into the draw pile and paralyze your hand."
+    },
+    "Giant Head": {
+      "name": "Giant Head",
+      "type": "Elite",
+      "act": "3",
+      "hp": "500",
+      "powers": ["Slow"],
+      "patterns": {
+        "Count": {"damage": 13},
+        "Glare": {"damage": 0, "debuff": "1 Weak"},
+        "It Is Time": {"damage": "30 + (5 * uses)", "effect": "Damage increases by 5 every time it is used (30, 35, 40... up to a max of 60)."}
+      },
+      "logic_notes": "Strict Timer Pattern. Turn 1 to 4: Randomly alternates between Count (50%) and Glare (50%). Cannot use either 3 times in a row. Turn 5 and onwards: ALWAYS uses 'It Is Time' every single turn, dealing massive scaling damage. Strategy: Take advantage of the 'Slow' power by playing all non-attack or low-damage cards FIRST to build up the damage multiplier, then use your strongest attacks LAST."
+    },
+    "Nemesis": {
+      "name": "Nemesis",
+      "type": "Elite",
+      "act": "3",
+      "hp": "185",
+      "powers": ["Intangible (Gained every other turn)"],
+      "patterns": {
+        "Tri Attack": {"damage": "6x3", "chance": "35%"},
+        "Tri Burn": {"damage": 0, "status": "Adds 3 Burns into your discard pile", "chance": "35%"},
+        "Scythe": {"damage": 45, "chance": "30%"}
+      },
+      "logic_notes": "Alternating Vulnerability. It starts the combat with Intangible, meaning Turn 1 it takes only 1 damage per hit. Turn 2 it loses Intangible and takes normal damage. Turn 3 it is Intangible again, and so on. Action logic: Turn 1 is 50/50 Tri Burn or Tri Attack. Turn 2+ follows the stated percentages. Cannot use Tri Burn or Scythe twice in a row. Cannot use Tri Attack 3 times in a row. Strategy: DO NOT play heavy attacks on odd turns (Intangible). Save energy, defend, or set up powers on Intangible turns, and unleash all Max Damage modules on even turns."
+    },
+    "Reptomancer": {
+      "name": "Reptomancer",
+      "type": "Elite",
+      "act": "3",
+      "hp": "180-190",
+      "powers": [],
+      "patterns": {
+        "Spawn Dagger": {"damage": 0, "effect": "Summons 1 Dagger (up to a max of 4 Daggers in play)."},
+        "Big Bite": {"damage": 30},
+        "Snake Strike": {"damage": "13x2", "debuff": "1 Weak"}
+      },
+      "logic_notes": "Turn 1 is ALWAYS Spawn Dagger. Turn 2+: Roughly 33% chance for each intent. Cannot use Snake Strike or Big Bite twice in a row. Cannot use Spawn Dagger 3 times in a row. Max 4 Daggers allowed. Strategy: The Daggers themselves deal massive suicidal damage. You MUST continuously kill the Daggers with AoE or efficient attacks to survive, while slowly chipping down the Reptomancer."
+    },
+    "Spire Shield": {
+      "name": "Spire Shield",
+      "type": "Elite",
+      "act": "4",
+      "hp": "110",
+      "powers": ["Artifact 1", "Back Attack (Conditional)"],
+      "patterns": {
+        "Bash": {"damage": 12, "debuff": "Applies -1 Strength (or -1 Focus if player has Orb Slots)"},
+        "Fortify": {"damage": 0, "buff": "All enemies gain 30 Block"},
+        "Smash": {"damage": 34, "buff": "Gains Block equal to the unblocked damage dealt to player"}
+      },
+      "logic_notes": "Always encountered alongside Spire Spear. STRICT Turn Pattern: Turn 3, 6, 9... ALWAYS uses Smash. On other turns, it has a 50/50 chance to follow either [Bash -> Fortify] or [Fortify -> Bash]. Strategy: Smash gives it massive Block if it deals damage to you, so you must full-block it. Manage your facing direction carefully to avoid taking 50% extra damage from Smash."
+    },
+    "Spire Spear": {
+      "name": "Spire Spear",
+      "type": "Elite",
+      "act": "4",
+      "hp": "160",
+      "powers": ["Artifact 1", "Back Attack (Conditional)"],
+      "patterns": {
+        "Burn Strike": {"damage": "5x2", "status": "Adds 2 Burns into your discard pile"},
+        "Skewer": {"damage": "10x3"},
+        "Piercer": {"damage": 0, "buff": "All enemies gain 2 Strength"}
+      },
+      "logic_notes": "Always encountered alongside Spire Shield. STRICT Turn Pattern: Turn 1 is ALWAYS Burn Strike. Turn 2, 5, 8... ALWAYS uses Skewer. On other turns, it has a 50/50 chance to follow either [Burn Strike -> Piercer] or [Piercer -> Burn Strike]. Strategy: Turn 2 Skewer (10x3) is devastating. You must prepare massive Block or Weakness for Turn 2, and ensure your back is NOT turned to the Spear on this turn."
+    },
+    "Slime Boss": {
+      "name": "Slime Boss",
+      "type": "Boss",
+      "act": "1",
+      "hp": "140",
+      "powers": ["Split (Triggers at 50% HP or lower)"],
+      "patterns": {
+        "Goop Spray": {"damage": 0, "status": "Adds 3 Slimed into your discard pile"},
+        "Preparing": {"damage": 0, "effect": "Does nothing"},
+        "Slam": {"damage": 35},
+        "Split": {"damage": 0, "effect": "Disappears and spawns 1 Acid Slime (L) and 1 Spike Slime (L) with its EXACT current HP."}
+      },
+      "logic_notes": "Follows a strict 3-turn loop: [Goop Spray -> Preparing -> Slam]. HP Threshold Mechanic: When its HP reaches 50% (70 HP) or lower, its current intent is IMMEDIATELY interrupted and changed to 'Split'. Strategy: Do not trigger Split at exactly 70 HP. Bring it as close to 71 HP as possible, then use your Max Damage Solver to burst it down in one massive hit. The resulting split Slimes will have much lower starting HP, making the rest of the fight significantly easier."
+    },
+    "The Guardian": {
+      "name": "The Guardian",
+      "type": "Boss",
+      "act": "1",
+      "hp": "240",
+      "powers": ["Mode Shift (Starts at 30 HP threshold)"],
+      "patterns": {
+        "Charging Up": {"damage": 0, "buff": "Gains 9 Block"},
+        "Fierce Bash": {"damage": 32},
+        "Vent Steam": {"damage": 0, "debuff": "2 Weak, 2 Vulnerable"},
+        "Whirlwind": {"damage": "5x4"},
+        "Defensive Mode": {"damage": 0, "buff": "Gains 3 Sharp Hide. Triggered via Mode Shift."},
+        "Roll Attack": {"damage": 9},
+        "Twin Slam": {"damage": "8x2", "effect": "Loses Sharp Hide. Resets Mode Shift threshold (threshold increases by 10)."}
+      },
+      "logic_notes": "Stance-switching Boss. Offensive Loop: [Charging Up -> Fierce Bash -> Vent Steam -> Whirlwind]. If you deal enough damage to break its 'Mode Shift' threshold, its intent instantly changes to 'Defensive Mode' and it gains 20 Block. Defensive Loop: [Defensive Mode -> Roll Attack -> Twin Slam -> Whirlwind -> Back to Offensive Loop]. Strategy: Force the Mode Shift before 'Fierce Bash' (32 DMG) or 'Whirlwind' (5x4 DMG) to avoid massive damage. During Defensive Mode, it has 'Sharp Hide', so playing attack cards will damage you. Avoid weak attacks during this phase."
+    },
+    "Hexaghost": {
+      "name": "Hexaghost",
+      "type": "Boss",
+      "act": "1",
+      "hp": "250",
+      "powers": [],
+      "patterns": {
+        "Activate": {"damage": 0, "effect": "Does nothing"},
+        "Divider": {"damage": "((Player HP / 12, rounded down) + 1) x 6", "effect": "Damage scales with the player's CURRENT HP at the start of the turn."},
+        "Sear": {"damage": 6, "status": "Adds 1 Burn to discard pile"},
+        "Tackle": {"damage": "5x2"},
+        "Inflame": {"damage": 0, "buff": "Gains 12 Block, 2 Strength"},
+        "Inferno": {"damage": "2x6", "effect": "Adds 3 Burn+ to discard pile. Upgrades all existing Burns. Any future Burns from Sear will also be upgraded."}
+      },
+      "logic_notes": "Turn 1 is ALWAYS Activate. Turn 2 is ALWAYS Divider (Damage scales with your current HP - lower HP means lower damage). Turn 3 to 8 follows a strict loop: [Sear -> Tackle -> Sear -> Inflame -> Tackle -> Sear]. Turn 9 is ALWAYS Inferno, which acts as a soft enrage. Strategy: You MUST kill Hexaghost before Turn 9. Entering the fight with high HP is actually a disadvantage because Divider will hit extremely hard on Turn 2. Prioritize Max Damage Solver over healing."
+    },
+    "Bronze Automaton": {
+      "name": "Bronze Automaton",
+      "type": "Boss",
+      "act": "2",
+      "hp": "300",
+      "powers": ["Artifact 3"],
+      "patterns": {
+        "Spawn Orbs": {"damage": 0, "effect": "Summons 2 Bronze Orbs."},
+        "Flail": {"damage": "7x2"},
+        "Boost": {"damage": 0, "buff": "Gains 3 Strength, 9 Block"},
+        "HYPER BEAM": {"damage": 45},
+        "Stunned": {"damage": 0, "effect": "Does nothing for 1 turn after Hyper Beam."}
+      },
+      "logic_notes": "Turn 1 is ALWAYS Spawn Orbs. Afterwards, follows a strict loop: [Flail -> Boost -> Flail -> Boost -> HYPER BEAM -> Stunned]. Strategy: HYPER BEAM deals massive damage (45+ depending on Boosts). You must have a defensive plan ready for the Hyper Beam turn, but you get a free turn (Stunned) immediately after. Artifact 3 makes initial debuffs useless."
+    },
+    "Bronze Orb": {
+      "name": "Bronze Orb",
+      "type": "Minion",
+      "act": "2",
+      "hp": "52-58",
+      "powers": ["Minion", "Stasis"],
+      "patterns": {
+        "Stasis": {"damage": 0, "effect": "Steals the highest rarity card from your draw/discard pile. Returns it when killed."},
+        "Support Beam": {"damage": 0, "buff": "Grants 12 Block to the Bronze Automaton", "chance": "70%"},
+        "Beam": {"damage": 8, "chance": "30%"}
+      },
+      "logic_notes": "Summoned by Bronze Automaton. Has a 75% chance to use Stasis until it successfully steals a card (can only be used once). After stealing, heavily favors blocking for the Boss. Strategy: If an Orb steals a critical combo/scaling card, it becomes a high-priority target. If it steals an irrelevant card, ignore it and focus the Automaton."
+    },
+    "The Collector": {
+      "name": "The Collector",
+      "type": "Boss",
+      "act": "2",
+      "hp": "282",
+      "powers": [],
+      "patterns": {
+        "Spawn": {"damage": 0, "effect": "Summons up to 2 Torch Heads."},
+        "Fireball": {"damage": 18},
+        "Buff": {"damage": 0, "buff": "All enemies gain 3 Strength. Gains 15 Block."},
+        "Mega Debuff": {"damage": 0, "debuff": "3 Weak, 3 Vulnerable, 3 Frail"}
+      },
+      "logic_notes": "Turn 1 is ALWAYS Spawn. Turn 4 is ALWAYS Mega Debuff (Extremely dangerous turn). Behavior depends on Torch Heads alive (Max 2): If 0-1 alive, 25% Spawn, 45% Fireball, 30% Buff. If 2 alive, 70% Fireball, 30% Buff. Cannot use Buff twice in a row. Cannot use Fireball 3 times in a row. Strategy: You must manage the Torch Heads to prevent overwhelming incoming damage, but do not ignore the Collector. Turn 4 requires heavy mitigation or artifact charges."
+    },
+    "Torch Head": {
+      "name": "Torch Head",
+      "type": "Minion",
+      "act": "2",
+      "hp": "38-40",
+      "powers": ["Minion"],
+      "patterns": {
+        "Tackle": {"damage": 7}
+      },
+      "logic_notes": "Summoned by The Collector. Always attacks for 7 damage every turn (scales with Collector's Strength buffs). Priority target if the combined incoming damage is unblockable, but otherwise secondary to the main boss."
+    },
+    "The Champ": {
+      "name": "The Champ",
+      "type": "Boss",
+      "act": "2",
+      "hp": "420",
+      "powers": [],
+      "patterns": {
+        "Heavy Slash": {"damage": 16},
+        "Face Slap": {"damage": 12, "debuff": "2 Frail, 2 Vulnerable"},
+        "Defensive Stance": {"damage": 0, "buff": "Gains 15 Block, 5 Metallicize"},
+        "Gloat": {"damage": 0, "buff": "Gains 2 Strength"},
+        "Taunt": {"damage": 0, "debuff": "2 Weak, 2 Vulnerable"},
+        "Anger": {"damage": 0, "effect": "Removes all Debuffs. Gains 6 Strength. (Phase 2 transition)"},
+        "Execute": {"damage": "10x2"}
+      },
+      "logic_notes": "Phase One (>50% HP): ALWAYS uses Taunt every 4 turns. On other turns: 45% Heavy Slash, 25% Face Slap, 15% Defensive Stance, 15% Gloat. Cannot use the same move twice in a row. Phase Two (<50% HP): When HP drops below 210, his next turn will ALWAYS be Anger (clears debuffs, +6 Str). The turn immediately after Anger is ALWAYS Execute (16x2 damage due to Strength). After that, repeats a 3-turn loop: [Random Move -> Random Move -> Execute]. Strategy: DO NOT drop him below 210 HP until you have fully set up your scaling or have a hand capable of bursting him down. When you push him below 50%, prepare for massive damage 2 turns later."
+    },
+    "Awakened One": {
+      "name": "Awakened One",
+      "type": "Boss",
+      "act": "3",
+      "hp": "300",
+      "powers": ["Regenerate 10", "Curiosity 1", "Unawakened"],
+      "patterns": {
+        "Slash": {"damage": 20},
+        "Soul Strike": {"damage": "6x4"},
+        "Rebirth": {"damage": 0, "effect": "Phase transition. Heals to full HP. Removes all Debuffs. Loses Curiosity."},
+        "Dark Echo": {"damage": 40},
+        "Sludge": {"damage": 18, "status": "Adds 1 Void into your draw pile"},
+        "Tackle": {"damage": "10x3"}
+      },
+      "logic_notes": "Two-Phase Boss. Phase One: Starts with Slash. Then 75% Slash, 25% Soul Strike. (Cannot use Slash 3 times in a row, or Soul Strike twice in a row). Phase Two: When HP reaches 0, interrupts current turn and uses Rebirth. Starts Phase 2 with Dark Echo (40 DMG). Then 50/50 Tackle or Sludge. Strategy: Do NOT play unnecessary Power cards in Phase 1 due to Curiosity. All Strength gained is kept in Phase 2, but Curiosity is lost, so save Powers for Phase 2."
+    },
+    "Time Eater": {
+      "name": "Time Eater",
+      "type": "Boss",
+      "act": "3",
+      "hp": "456",
+      "powers": ["Time Warp (12 card limit)"],
+      "patterns": {
+        "Reverberate": {"damage": "7x3"},
+        "Head Slam": {"damage": 26, "debuff": "1 Draw Reduction"},
+        "Ripple": {"damage": 0, "buff": "Gains 20 Block. Applies 1 Vulnerable, 1 Weak"},
+        "Haste": {"damage": 0, "effect": "Removes all Debuffs. Heals to 50% HP (228 HP)."}
+      },
+      "logic_notes": "Time Warp restricts playing more than 12 cards total across turns. HP Threshold Mechanic: When its HP drops below 50% (228 HP), its next turn will ALWAYS be Haste (Heals back to 50% and clears debuffs). This can only happen ONCE. Other turns: 45% Reverberate, 35% Head Slam, 20% Ripple. Strategy: Carefully manage the Time Warp counter. Try to end your turn at 7-8 or exactly 12 cards. Push its HP just above 228, then burst it as hard as possible to minimize the Haste heal."
+    },
+    "Donu": {
+      "name": "Donu",
+      "type": "Boss",
+      "act": "3",
+      "hp": "250",
+      "powers": ["Artifact 2"],
+      "patterns": {
+        "Circle of Power": {"damage": 0, "buff": "All enemies gain 3 Strength"},
+        "Beam": {"damage": "10x2"}
+      },
+      "logic_notes": "Encountered alongside Deca. Extremely simple deterministic pattern: Alternates between Circle of Power and Beam. Strategy: Donu scales the damage of BOTH bosses every other turn. He must be killed first."
+    },
+    "Deca": {
+      "name": "Deca",
+      "type": "Boss",
+      "act": "3",
+      "hp": "250",
+      "powers": ["Artifact 2"],
+      "patterns": {
+        "Beam": {"damage": "10x2", "status": "Adds 2 Dazed into your discard pile"},
+        "Square of Protection": {"damage": 0, "buff": "All enemies gain 16 Block"}
+      },
+      "logic_notes": "Encountered alongside Donu. Extremely simple deterministic pattern: Alternates between Beam and Square of Protection. Strategy: Acts as the shielder and deck-clogger. Less of an immediate threat than Donu's Strength scaling."
+    },
+    "Corrupt Heart": {
+      "name": "Corrupt Heart",
+      "type": "Boss",
+      "act": "4",
+      "hp": "750",
+      "powers": ["Beat of Death 1", "Invincible 300"],
+      "patterns": {
+        "Debilitate": {"damage": 0, "debuff": "2 Vulnerable, 2 Weak, 2 Frail", "status": "Adds 1 Burn, 1 Dazed, 1 Slimed, 1 Void, 1 Wound to draw pile"},
+        "Blood Shots": {"damage": "2x12"},
+        "Echo": {"damage": 40},
+        "Buff": {"damage": 0, "buff": "Clears negative Strength, gains 2 Strength, PLUS escalating buffs: (1st: 2 Artifact. 2nd: +1 Beat of Death. 3rd: Painful Stabs. 4th: +10 Str. 5th: +50 Str)."}
+      },
+      "logic_notes": "The Ultimate Test. Turn 1 is ALWAYS Debilitate. Then it loops a 3-turn cycle: [Attack A -> Attack B -> Buff]. The Attacks are always one Blood Shots and one Echo (order is 50/50). Buff escalates in danger over time, acting as a hard enrage. Strategy: Beat of Death requires you to generate Block passively or block BEFORE playing many cards. Invincible 300 means you CANNOT kill it in fewer than 3 turns. You must survive its massive 2nd and 3rd turn attacks while managing the trash cards drawn from Debilitate."
+    }
+
+
+
+  }
+}

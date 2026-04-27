@@ -163,11 +163,6 @@ def lethal_expert(hand, energy, target_monster):
 
 
 
-MATCH_AND_KEEP_MEMORY = {i: None for i in range(12)}
-def reset_match_and_keep():
-    global MATCH_AND_KEEP_MEMORY
-    MATCH_AND_KEEP_MEMORY = {i: None for i in range(12)}
-
 def evaluate_card_for_match(card_id):
     """
     [임시 카드 평가 함수]
