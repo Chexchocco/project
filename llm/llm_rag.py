@@ -16,7 +16,24 @@ try:
 except FileNotFoundError:
     log.warning("🚨 eventDB.json 파일을 찾을 수 없습니다. (스포일러 없이 진행)")
 
-def choose_card_reward(current_deck, offered_cards):
+def summarize_card_list(raw_card_list):
+    """
+    나중에 다른데로 옮길거임
+    """
+    counts = Counter()
+    
+    for card_dict in raw_card_list:
+        info = get_card_info(card_dict)
+        if info:
+            counts[info["name"]] += 1
+        else:
+            counts[card_dict.get("name", "Unknown")] += 1
+            
+    return dict(counts) 
+
+
+
+def choose_card_reward(state):
     """
     현재 덱과 보상 카드들을 보고 LLM이 하나를 선택하는 함수
     :param current_deck: list of strings (e.g., ["Strike", "Strike", "Bash", "Cleave"])
@@ -24,14 +41,14 @@ def choose_card_reward(current_deck, offered_cards):
     :return: 선택된 카드 이름 또는 "Skip"
     """
     
-    # 1. 현재 덱 요약 (Counter를 써서 깔끔하게 압축)
-    deck_counts = Counter(current_deck)
-    deck_summary = ", ".join([f"{count}x {card}" for card, count in deck_counts.items()])
+    offered_cards = state.get("screen_state", {}).get("cards", [])
+    current_deck = state.get("deck", [])
 
+    deck_summary = summarize_card_list(current_deck)
     # 2. RAG: 보상으로 나온 카드들의 정확한 스펙만 DB에서 추출
     reward_db_text = "[Offered Cards Info]\n"
-    for c_name in offered_cards:
-        info = get_card_info(c_name)
+    for card_dict in offered_cards:
+        info = get_card_info(card_dict)
         if info:
             desc = info.get('description', '').replace('\n', ' ')
             reward_db_text += f"- {info['name']} (Type: {info.get('type')}, Cost: {info.get('cost')}): {desc}\n"
@@ -60,7 +77,7 @@ def choose_card_reward(current_deck, offered_cards):
     1. Deck Needs: Briefly state what the Current Deck lacks.
     2. Synergy Analysis: Evaluate the offered cards against the deck.
     3. Conclusion: Why the selected option is the best.
-    Selected Option: [Card Name from Offered Cards, or "Skip"]
+    Selected Option: [Index number from Offered Cards(0, 1, 2...), or "skip"]
     """
 
     log.info("덱 빌딩 전략을 구상하는 중...\n" + "="*50)
@@ -87,9 +104,7 @@ def choose_card_reward(current_deck, offered_cards):
         if selected_option.lower() == "skip":
             return "skip"
                 
-        for i, card in enumerate(offered_cards):
-            if card.lower() in selected_option.lower():
-                return i  # 카드 이름 대신 숫자 인덱스를 반환!
+        return selected_option
                 
         log.info(f"🚨 LLM이 선택지에 없는 카드({selected_option})를 골랐습니다. 안전을 위해 Skip 처리합니다.")
         return "skip"

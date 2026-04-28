@@ -195,11 +195,7 @@ def main():
                         print("proceed", flush=True)
                         continue
                 elif screen_type == "CARD_REWARD":
-                    log.info("🎁 [보상] 덱 빌딩 에이전트 가동")
-                    current_deck = [c["name"] for c in state.get("deck", [])]
-                    offered_cards = [c["name"] for c in state.get("screen_state", {}).get("cards", [])]
-                    
-                    choice = choose_card_reward(current_deck, offered_cards)
+                    choice = choose_card_reward(state)
                     if(choice == "skip"):
                         log.info(f"skip 선택")
                         print(f"skip", flush = True)
@@ -213,46 +209,53 @@ def main():
                     log.info("🗂️ 그리드(카드 선택) 화면 진입")
                     screen_state = state.get("screen_state", {})
                     grid_cards = screen_state.get("cards", [])
-                    
+                    selected_cards = screen_state.get("selected_cards", [])
+                    num_cards = screen_state.get("num_cards", 1)
+
+                    # 🚨 1. [비상 방어선] 게임이 choose를 차단했는가? (애니메이션 중이거나, 선택이 완료된 직후)
+                    if "choose" not in avail:
+                        if "confirm" in avail:
+                            log.info("✅ 카드 선택 완료 (choose 비활성화됨). Confirm 실행!")
+                            print("confirm", flush=True)
+                        else:
+                            # 카드가 날아가는 애니메이션 중이거나 서버 틱 대기 중
+                            log.info("⏳ 화면 전환 또는 애니메이션 대기 중...")
+                        continue
+
+                    # 2. [목표 달성 체크] (기존 로직 유지)
+                    if len(selected_cards) >= num_cards:
+                        if "confirm" in avail:
+                            log.info(f"✅ 목표치({num_cards}장) 선택 완료. Confirm 실행!")
+                            print("confirm", flush=True)
+                        else:
+                            log.info("⏳ Confirm 버튼 활성화를 대기 중입니다...")
+                        continue
+
+                    # 3. [아직 목표 장수를 못 채웠을 때] 카드 선택
+                    target_index = len(selected_cards)
+
+                    if target_index >= len(grid_cards):
+                        log.error("❌ 선택할 수 있는 카드보다 목표 장수가 더 큽니다. 에러 방지.")
+                        continue
+
                     for_upgrade = screen_state.get("for_upgrade", False)
                     for_purge = screen_state.get("for_purge", False)
                     for_transform = screen_state.get("for_transform", False)
-                    
 
-                    selected_cards = screen_state.get("selected_cards", [])
-                    # -> 다른 거 누르지 말고 무조건 Confirm만 누르고 루프를 넘깁니다!
-                    if "confirm" in avail:
-                        print("confirm", flush=True)
-                        continue
                     if for_upgrade:
-                        log.info("🔨 [강화]할 카드를 고릅니다.")
-                        #cmd = module.smith_expert(grid_cards)
-                        cmd= (f"choose 0")
-                        print(cmd, flush=True)
-                        continue
-                        
+                        log.info(f"🔨 [강화]할 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
                     elif for_purge:
-                        log.info("🗑️ [제거]할 카드를 고릅니다.")
-                        # 타격(Strike) 1순위, 수비(Defend) 2순위로 지우는 로직
-                        #cmd = module.purge_expert(grid_cards) 
-                        cmd= (f"choose 0")
-                        print(cmd, flush=True)
-                        continue
-                        
+                        log.info(f"🗑️ [제거]할 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
                     elif for_transform:
-                        log.info("✨ [변화]시킬 카드를 고릅니다.")
-                        # 타격/수비를 우선적으로 고르되, 제거 로직과 동일하게 써도 무방함
-                        #cmd = module.purge_expert(grid_cards)
-                        cmd= (f"choose 0")
-                        print(cmd, flush=True)
-                        continue
-                        
-                    # 4. 기타 (병 속의 번개, 도박꾼의 물약 등)
+                        log.info(f"✨ [변화]시킬 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
                     else:
-                        log.info("❓ 기타 그리드 선택 (기본 1번 선택)")
-                        print("choose 0", flush=True)
-                        continue
+                        log.info(f"❓ 이벤트/다중 선택 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
 
+                    cmd = f"choose {target_index}"
+                    log.info(f"👉 명령어 전송: {cmd}")
+                    print(cmd, flush=True)
+                    continue
+                
                 # [상황 C] 맵 이동 화면
                 elif screen_type == "MAP":
                     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")

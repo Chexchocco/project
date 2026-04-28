@@ -17,6 +17,12 @@ def enrich_hand(hand):
             
         name = card.get("name")
         info = db_loader.get_card_info(name)
+        upgrades = card.get("upgrades", 0)
+        
+        
+        lookup_name = name
+        if upgrades > 0:
+            lookup_name += "+"
         
         if info:
             card["damage"] = info.get("damage", 0)

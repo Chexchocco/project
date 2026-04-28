@@ -28,12 +28,21 @@ def load_database(DB_PATH): # 💡 파일명 변경
         
     return True
 
-def get_card_info(name):
-    """
-    카드 이름을 받아 DB에서 정보를 깊은 복사하여 반환합니다.
-    (깊은 복사를 통해 module.py에서 값을 수정해도 원본 DB가 오염되지 않음)
-    """
-    name_lower = name.lower()
+def get_card_info(card_data):
+
+    if isinstance(card_data, str):
+        lookup_name = card_data
+        
+    elif isinstance(card_data, dict):
+        name = card_data.get("name", "")
+        upgrades = card_data.get("upgrades", 0)
+        lookup_name = name
+        if upgrades > 0 and not lookup_name.endswith("+"):
+            lookup_name += "+"
+    else:
+        return None
+
+    name_lower = lookup_name.lower()
     if name_lower in CARD_DB:
         return copy.deepcopy(CARD_DB[name_lower])
     return None
