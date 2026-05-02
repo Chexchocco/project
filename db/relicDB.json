@@ -1,1154 +1,2924 @@
 {
   "relics": [
+    // ==========================================
+    // [1] Starter Relics
+    // ==========================================
     {
       "id": "Burning_Blood",
       "name": "Burning Blood",
       "tier": "Starter",
       "pool": "Red",
-      "provides": ["Action: Heal(6)"],
-      "requires": ["Trigger: End_Combat"],
+      "trigger": "End_Combat",
+      "provides_text": ["Heal 6 HP"],
       "tags": ["Sustain", "Post_Combat"],
-      "agent_hints": "Provides passive post-combat healing. Reduces the need to Rest at Campfires, allowing for more Upgrades."
+      "agent_hints": "Provides passive post-combat healing. Reduces the need to Rest at Campfires, allowing for more Upgrades.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 6.0
+        }
+      }
     },
     {
       "id": "Cracked_Core",
       "name": "Cracked Core",
       "tier": "Starter",
       "pool": "Blue",
-      "provides": ["Action: Channel_Orb(Lightning, 1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Channel 1 Lightning Orb"],
       "tags": ["Orb_Generation", "Turn_1_Setup", "Passive_Damage"],
-      "agent_hints": "Guarantees 3 passive damage per turn or 8 burst damage if Evoked. Synergizes with early Evoke or Focus cards."
+      "agent_hints": "Guarantees 3 passive damage per turn or 8 burst damage if Evoked. Synergizes with early Evoke or Focus cards.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "LIGHTNING_ORB": 1.0,
+          "ORB_GENERATION": 1.0
+        }
+      }
     },
     {
       "id": "Pure_Water",
       "name": "Pure Water",
       "tier": "Starter",
       "pool": "Purple",
-      "provides": ["Action: Add_Card(Miracle, 1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Add 1 Miracle to your hand"],
       "tags": ["Energy_Generation", "Turn_1_Setup", "Retain"],
-      "agent_hints": "Miracle provides 1 temporary Energy and Retains. High synergy with high-cost cards or crucial setup powers on Turn 1."
+      "agent_hints": "Miracle provides 1 temporary Energy and Retains. High synergy with high-cost cards or crucial setup powers on Turn 1.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 2.0
+        },
+        "provides": {
+          "ENERGY": 1.0,
+          "RETAIN": 1.0
+        }
+      }
     },
     {
       "id": "Ring_of_the_Snake",
       "name": "Ring of the Snake",
       "tier": "Starter",
       "pool": "Green",
-      "provides": ["Action: Draw(2)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Draw 2 additional cards"],
       "tags": ["Card_Draw", "Turn_1_Setup"],
-      "agent_hints": "Massively increases Turn 1 consistency. Prioritize innate cards or key powers to draw them immediately."
+      "agent_hints": "Massively increases Turn 1 consistency. Prioritize innate cards or key powers to draw them immediately.",
+      "synergy": {
+        "requires": {
+          "SETUP_POWER": 2.0
+        },
+        "provides": {
+          "CARD_DRAW": 2.0
+        }
+      }
     },
+
+    // ==========================================
+    // [2] Common Relics
+    // ==========================================
     {
       "id": "Akabeko",
       "name": "Akabeko",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Damage_Modifier(+8)"],
-      "requires": ["Trigger: First_Attack_Played"],
+      "trigger": "First_Attack_Played",
+      "provides_text": ["Your first attack deals 8 additional damage"],
       "tags": ["Burst_Damage", "Attack_Synergy"],
-      "agent_hints": "Extremely powerful with multi-hit attacks (e.g., Whirlwind, Pummel) as the +8 applies to EVERY hit of that first attack."
+      "agent_hints": "Extremely powerful with multi-hit attacks (e.g., Whirlwind, Pummel) as the +8 applies to EVERY hit of that first attack.",
+      "synergy": {
+        "requires": {
+          "MULTI_HIT": 3.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 8.0
+        }
+      }
     },
     {
       "id": "Anchor",
       "name": "Anchor",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Block(10)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Gain 10 Block"],
       "tags": ["Defense", "Turn_1_Setup"],
-      "agent_hints": "Mitigates Turn 1 damage, allowing energy to be spent entirely on attacks or setup Powers."
+      "agent_hints": "Mitigates Turn 1 damage, allowing energy to be spent entirely on attacks or setup Powers.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BLOCK_GENERATION": 10.0,
+          "TURN_1_DEFENSE": 1.0
+        }
+      }
     },
     {
       "id": "Art_of_War",
       "name": "Art of War",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy_Next_Turn(1)"],
-      "requires": ["Trigger: End_Turn", "Condition: No_Attacks_Played"],
+      "trigger": "End_Turn_Without_Attacking",
+      "provides_text": ["Gain 1 Energy next turn"],
       "tags": ["Energy_Generation", "Defensive_Synergy", "Skill_Synergy"],
-      "agent_hints": "High synergy with Defect (Orb passive damage) or Poison decks where playing attacks every turn is unnecessary."
+      "agent_hints": "High synergy with Defect (Orb passive damage) or Poison decks where playing attacks every turn is unnecessary.",
+      "synergy": {
+        "requires": {
+          "SKILL_CARD": 3.0,
+          "PASSIVE_DAMAGE": 3.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Bag_of_Marbles",
       "name": "Bag of Marbles",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Apply_Debuff(Vulnerable, 1)"],
-      "requires": ["Trigger: Start_Combat", "Target: All_Enemies"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Apply 1 Vulnerable to ALL enemies"],
       "tags": ["Debuff", "Burst_Damage", "Turn_1_Setup", "AoE_Synergy"],
-      "agent_hints": "Multiplies attack damage by 1.5x on Turn 1. Extremely strong with Bag of Preparation or Akabeko."
+      "agent_hints": "Multiplies attack damage by 1.5x on Turn 1. Extremely strong with Bag of Preparation or Akabeko.",
+      "synergy": {
+        "requires": {
+          "TURN_1_DAMAGE": 3.0
+        },
+        "provides": {
+          "VULNERABLE": 1.0,
+          "AOE_DEBUFF": 1.0
+        }
+      }
     },
     {
       "id": "Centennial_Puzzle",
       "name": "Centennial Puzzle",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Draw(3)"],
-      "requires": ["Trigger: Take_HP_Damage", "Condition: First_Time_Per_Combat"],
+      "trigger": "Take_HP_Damage(First_Time)",
+      "provides_text": ["Draw 3 cards"],
       "tags": ["Card_Draw", "Damage_Synergy"],
-      "agent_hints": "Synergizes with self-damage cards (e.g., Offering, Hemokinesis) to trigger the draw exactly when needed."
+      "agent_hints": "Synergizes with self-damage cards (e.g., Offering, Hemokinesis) to trigger the draw exactly when needed.",
+      "synergy": {
+        "requires": {
+          "SELF_DAMAGE": 3.0
+        },
+        "provides": {
+          "CARD_DRAW": 3.0
+        }
+      }
     },
     {
       "id": "Nunchaku",
       "name": "Nunchaku",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy(1)"],
-      "requires": ["Trigger: Play_Attack(10th)"],
+      "trigger": "Play_Attack(10th)",
+      "provides_text": ["Gain 1 Energy"],
       "tags": ["Energy_Generation", "Attack_Synergy", "Infinite_Synergy"],
-      "agent_hints": "Tracks across turns. High synergy with 0-cost attacks (Shivs, Anger) or infinite loops. Keep track of the counter to plan big turns."
+      "agent_hints": "Tracks across turns. High synergy with 0-cost attacks (Shivs, Anger) or infinite loops. Keep track of the counter to plan big turns.",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_ATTACK": 2.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Pen_Nib",
       "name": "Pen Nib",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Damage_Multiplier(x2)"],
-      "requires": ["Trigger: Play_Attack(10th)"],
+      "trigger": "Play_Attack(10th)",
+      "provides_text": ["Your next attack deals double damage"],
       "tags": ["Burst_Damage", "Attack_Synergy"],
-      "agent_hints": "Tracks across turns. Must carefully plan to land the 10th attack on the highest damage card in the deck for maximum value."
+      "agent_hints": "Tracks across turns. Must carefully plan to land the 10th attack on the highest damage card in the deck for maximum value.",
+      "synergy": {
+        "requires": {
+          "HIGH_DAMAGE_ATTACK": 3.0,
+          "ZERO_COST_ATTACK": 1.5
+        },
+        "provides": {
+          "BURST_DAMAGE": 5.0
+        }
+      }
     },
     {
       "id": "Smiling_Mask",
       "name": "Smiling Mask",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Set_Cost(Card_Removal, 50_Gold)"],
-      "requires": ["Trigger: Enter_Shop"],
+      "trigger": "Enter_Shop",
+      "provides_text": ["Card removal service always costs 50 Gold"],
       "tags": ["Economy", "Deck_Thinning"],
-      "agent_hints": "Massively increases the value of hitting Shops early and often to thin out basic Strikes and Defends."
+      "agent_hints": "Massively increases the value of hitting Shops early and often to thin out basic Strikes and Defends.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DECK_THINNING": 3.0,
+          "ECONOMY": 2.0
+        }
+      }
     },
     {
       "id": "Ancient_Tea_Set",
       "name": "Ancient Tea Set",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy_Next_Combat(2)"],
-      "requires": ["Trigger: Enter_Rest_Site"],
+      "trigger": "Enter_Rest_Site",
+      "provides_text": ["Start the next combat with 2 extra Energy"],
       "tags": ["Energy_Generation", "Pathing_Synergy"],
-      "agent_hints": "Incentivizes routing through Rest Sites immediately before Elite or Boss combats for a massive Turn 1 advantage."
+      "agent_hints": "Incentivizes routing through Rest Sites immediately before Elite or Boss combats for a massive Turn 1 advantage.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 2.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "ENERGY": 2.0
+        }
+      }
     },
     {
       "id": "Bag_of_Preparation",
       "name": "Bag of Preparation",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Draw(2)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Draw 2 additional cards"],
       "tags": ["Card_Draw", "Turn_1_Setup"],
-      "agent_hints": "Excellent for finding key setup Powers or mitigating bad Turn 1 hands. Synergizes perfectly with Bag of Marbles or Lantern."
+      "agent_hints": "Excellent for finding key setup Powers or mitigating bad Turn 1 hands. Synergizes perfectly with Bag of Marbles or Lantern.",
+      "synergy": {
+        "requires": {
+          "SETUP_POWER": 2.0
+        },
+        "provides": {
+          "CARD_DRAW": 2.0
+        }
+      }
     },
     {
       "id": "Blood_Vial",
       "name": "Blood Vial",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Heal(2)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Heal 2 HP"],
       "tags": ["Sustain"],
-      "agent_hints": "Provides minor but consistent sustain. Also triggers a specific beneficial event in Act 2 (Vampires)."
+      "agent_hints": "Provides minor but consistent sustain. Also triggers a specific beneficial event in Act 2 (Vampires).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 2.0
+        }
+      }
     },
     {
       "id": "Bronze_Scales",
       "name": "Bronze Scales",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Thorns(3)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start with 3 Thorns"],
       "tags": ["Passive_Damage", "Defensive_Synergy"],
-      "agent_hints": "Highly effective against enemies with multi-hit attacks (e.g., Byrds, Book of Stabbing, Corrupt Heart)."
+      "agent_hints": "Highly effective against enemies with multi-hit attacks (e.g., Byrds, Book of Stabbing, Corrupt Heart).",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 2.0
+        },
+        "provides": {
+          "PASSIVE_DAMAGE": 3.0
+        }
+      }
     },
     {
       "id": "Ceramic_Fish",
       "name": "Ceramic Fish",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Gold(9)"],
-      "requires": ["Trigger: Add_Card_To_Deck"],
+      "trigger": "Add_Card_To_Deck",
+      "provides_text": ["Gain 9 Gold"],
       "tags": ["Economy"],
-      "agent_hints": "Increases the value of card reward screens, shops, and events that add multiple cards to your deck."
+      "agent_hints": "Increases the value of card reward screens, shops, and events that add multiple cards to your deck.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 2.0
+        }
+      }
     },
     {
       "id": "Damaru",
       "name": "Damaru",
       "tier": "Common",
       "pool": "Purple",
-      "provides": ["Action: Gain_Mantra(1)"],
-      "requires": ["Trigger: Start_Turn"],
+      "trigger": "Start_Turn",
+      "provides_text": ["Gain 1 Mantra"],
       "tags": ["Stance_Synergy", "Scaling"],
-      "agent_hints": "Slowly builds towards Divinity stance. Synergizes with other Mantra-generating cards to reach Divinity faster."
+      "agent_hints": "Slowly builds towards Divinity stance. Synergizes with other Mantra-generating cards to reach Divinity faster.",
+      "synergy": {
+        "requires": {
+          "MANTRA_GENERATION": 3.0 // 만트라 카드 수요 증가
+        },
+        "provides": {
+          "MANTRA_GENERATION": 1.0
+        }
+      }
     },
     {
       "id": "Data_Disk",
       "name": "Data Disk",
       "tier": "Common",
       "pool": "Blue",
-      "provides": ["Action: Gain_Focus(1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start with 1 Focus"],
       "tags": ["Orb_Synergy", "Scaling"],
-      "agent_hints": "Permanent flat buff to all Orb passive and evoke effects. Extremely high priority for Defect."
+      "agent_hints": "Permanent flat buff to all Orb passive and evoke effects. Extremely high priority for Defect.",
+      "synergy": {
+        "requires": {
+          "ORB_GENERATION": 3.0
+        },
+        "provides": {
+          "FOCUS": 1.0
+        }
+      }
     },
     {
       "id": "Dream_Catcher",
       "name": "Dream Catcher",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Add_Card_Reward"],
-      "requires": ["Trigger: Rest"],
+      "trigger": "Rest",
+      "provides_text": ["Choose a card to add to your deck"],
       "tags": ["Deck_Generation", "Rest_Site"],
-      "agent_hints": "Makes resting at Campfires less punishing to your deck's power growth. Good when forced to heal frequently."
+      "agent_hints": "Makes resting at Campfires less punishing to your deck's power growth. Good when forced to heal frequently.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "CARD_GENERATION": 2.0
+        }
+      }
     },
     {
       "id": "Happy_Flower",
       "name": "Happy Flower",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy(1)"],
-      "requires": ["Trigger: Turn_Count(3)"],
+      "trigger": "Turn_Count(3)",
+      "provides_text": ["Gain 1 Energy every 3 turns"],
       "tags": ["Energy_Generation"],
-      "agent_hints": "Turn counter carries over between combats. AI should track the counter to align the extra energy with high-cost card draws."
+      "agent_hints": "Turn counter carries over between combats. AI should track the counter to align the extra energy with high-cost card draws.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 1.5,
+          "CARD_DRAW": 1.5
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Juzu_Bracelet",
       "name": "Juzu Bracelet",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Prevent_Normal_Combat"],
-      "requires": ["Trigger: Enter_Question_Room"],
+      "trigger": "Enter_Question_Room",
+      "provides_text": ["You no longer encounter monsters in ? rooms"],
       "tags": ["Pathing_Synergy", "Event_Synergy"],
-      "agent_hints": "Makes '?' rooms entirely safe from regular enemies, greatly increasing the value of event-heavy routing."
+      "agent_hints": "Makes '?' rooms entirely safe from regular enemies, greatly increasing the value of event-heavy routing.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "EVENT_SYNERGY": 4.0
+        }
+      }
     },
     {
       "id": "Lantern",
       "name": "Lantern",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy(1)"],
-      "requires": ["Trigger: Turn_1"],
+      "trigger": "Turn_1",
+      "provides_text": ["Gain 1 Energy on the first turn"],
       "tags": ["Energy_Generation", "Turn_1_Setup"],
-      "agent_hints": "Crucial for playing expensive setup Powers or maximizing burst damage on the very first turn."
+      "agent_hints": "Crucial for playing expensive setup Powers or maximizing burst damage on the very first turn.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 2.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Maw_Bank",
       "name": "Maw Bank",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Gold(12)"],
-      "requires": ["Trigger: Climb_Floor", "Condition: No_Gold_Spent_At_Shop"],
+      "trigger": "Climb_Floor",
+      "provides_text": ["Gain 12 Gold per floor. Stops working when you spend Gold at a shop."],
       "tags": ["Economy"],
-      "agent_hints": "Delay visiting shops as long as safely possible to maximize the gold generation."
+      "agent_hints": "Delay visiting shops as long as safely possible to maximize the gold generation.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 3.0
+        }
+      }
     },
     {
       "id": "Meal_Ticket",
       "name": "Meal Ticket",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Heal(15)"],
-      "requires": ["Trigger: Enter_Shop"],
+      "trigger": "Enter_Shop",
+      "provides_text": ["Heal 15 HP"],
       "tags": ["Sustain", "Pathing_Synergy"],
-      "agent_hints": "Effectively turns Shops into Rest Sites, allowing for much more aggressive pathing."
+      "agent_hints": "Effectively turns Shops into Rest Sites, allowing for much more aggressive pathing.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 5.0
+        }
+      }
     },
     {
       "id": "Oddly_Smooth_Stone",
       "name": "Oddly Smooth Stone",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Dexterity(1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start with 1 Dexterity"],
       "tags": ["Defense", "Scaling"],
-      "agent_hints": "Permanent flat boost to all Block cards. Extremely valuable for surviving long boss fights."
+      "agent_hints": "Permanent flat boost to all Block cards. Extremely valuable for surviving long boss fights.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 3.0
+        },
+        "provides": {
+          "DEXTERITY": 1.0
+        }
+      }
     },
     {
       "id": "Omamori",
       "name": "Omamori",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Negate_Curse(2)"],
-      "requires": ["Trigger: Obtain_Curse"],
+      "trigger": "Obtain_Curse",
+      "provides_text": ["Negate the next 2 Curses you obtain"],
       "tags": ["Curse_Synergy", "Event_Synergy"],
-      "agent_hints": "Allows taking highly profitable Event options (e.g., gain Gold/Relic but obtain a Curse) with absolutely zero penalty."
+      "agent_hints": "Allows taking highly profitable Event options (e.g., gain Gold/Relic but obtain a Curse) with absolutely zero penalty.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "CURSE_NEGATION": 2.0
+        }
+      }
     },
     {
       "id": "Orichalcum",
       "name": "Orichalcum",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Block(6)"],
-      "requires": ["Trigger: End_Turn", "Condition: Block_Equals_0"],
+      "trigger": "End_Turn",
+      "provides_text": ["If you have 0 Block, gain 6 Block"],
       "tags": ["Defense"],
-      "agent_hints": "Do NOT play a basic Defend (5 Block) if you are taking 6 or less damage, as playing the card overrides Orichalcum's 6 Block."
+      "agent_hints": "Do NOT play a basic Defend (5 Block) if you are taking 6 or less damage, as playing the card overrides Orichalcum's 6 Block.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BLOCK_GENERATION": 6.0
+        }
+      }
     },
     {
       "id": "Potion_Belt",
       "name": "Potion Belt",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Increase_Potion_Slots(2)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Gain 2 Potion slots"],
       "tags": ["Potion_Synergy"],
-      "agent_hints": "Increases flexibility and allows hoarding of critical potions (e.g., Ghost in a Jar, Fairy in a Bottle) for Boss fights."
+      "agent_hints": "Increases flexibility and allows hoarding of critical potions (e.g., Ghost in a Jar, Fairy in a Bottle) for Boss fights.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "POTION_SLOT": 2.0
+        }
+      }
     },
     {
       "id": "Preserved_Insect",
       "name": "Preserved Insect",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Reduce_Enemy_Max_HP(25%)"],
-      "requires": ["Trigger: Enter_Elite_Combat"],
+      "trigger": "Enter_Elite_Combat",
+      "provides_text": ["Elites start with 25% less HP"],
       "tags": ["Elite_Synergy", "Pathing_Synergy"],
-      "agent_hints": "Massively increases the value of Elite pathing. Allows for aggressive Elite hunting to snowball relic acquisition."
+      "agent_hints": "Massively increases the value of Elite pathing. Allows for aggressive Elite hunting to snowball relic acquisition.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BURST_DAMAGE": 5.0
+        }
+      }
     },
     {
       "id": "Red_Skull",
       "name": "Red Skull",
       "tier": "Common",
       "pool": "Red",
-      "provides": ["Action: Gain_Strength(3)"],
-      "requires": ["Trigger: Player_HP_Below_50%"],
+      "trigger": "Player_HP_Below_50%",
+      "provides_text": ["While your HP is at or below 50%, gain 3 Strength"],
       "tags": ["Attack_Synergy", "Low_HP_Synergy"],
-      "agent_hints": "Massive damage boost. AI should consider intentionally staying slightly below 50% HP to retain this buff if defense is adequate."
+      "agent_hints": "Massive damage boost. AI should consider intentionally staying slightly below 50% HP to retain this buff if defense is adequate.",
+      "synergy": {
+        "requires": {
+          "MULTI_HIT": 2.0
+        },
+        "provides": {
+          "STRENGTH": 3.0
+        }
+      }
     },
     {
       "id": "Regal_Pillow",
       "name": "Regal Pillow",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Increase_Rest_Heal(15)"],
-      "requires": ["Trigger: Rest"],
+      "trigger": "Rest",
+      "provides_text": ["Heal an additional 15 HP when resting"],
       "tags": ["Sustain", "Rest_Site"],
-      "agent_hints": "Makes resting highly efficient, rescuing runs with low HP and allowing riskier plays between campfires."
+      "agent_hints": "Makes resting highly efficient, rescuing runs with low HP and allowing riskier plays between campfires.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 5.0
+        }
+      }
     },
     {
       "id": "Snecko_Skull",
       "name": "Snecko Skull",
       "tier": "Common",
       "pool": "Green",
-      "provides": ["Action: Increase_Poison_Applied(+1)"],
-      "requires": ["Trigger: Apply_Poison"],
+      "trigger": "Apply_Poison",
+      "provides_text": ["Whenever you apply Poison, apply 1 additional Poison"],
       "tags": ["Poison_Synergy", "Debuff_Synergy"],
-      "agent_hints": "Extremely powerful with multi-hit poison application (e.g., Bouncing Flask, Envenom) as the +1 applies to every single instance."
+      "agent_hints": "Extremely powerful with multi-hit poison application (e.g., Bouncing Flask, Envenom) as the +1 applies to every single instance.",
+      "synergy": {
+        "requires": {
+          "POISON": 3.0
+        },
+        "provides": {
+          "POISON": 1.0
+        }
+      }
     },
     {
       "id": "Strawberry",
       "name": "Strawberry",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_HP(7)", "Action: Heal(7)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Raise your Max HP by 7"],
       "tags": ["Max_HP", "Sustain"],
-      "agent_hints": "Immediate flat survivability increase. Also heals for the max HP gained."
+      "agent_hints": "Immediate flat survivability increase. Also heals for the max HP gained.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "MAX_HP": 7.0
+        }
+      }
     },
     {
       "id": "The_Boot",
       "name": "The Boot",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Set_Damage(5)"],
-      "requires": ["Trigger: Deal_Unblocked_Damage(<=4)"],
+      "trigger": "Deal_Unblocked_Damage(<=4)",
+      "provides_text": ["If an attack deals 4 or less unblocked damage, it deals 5 instead"],
       "tags": ["Attack_Synergy"],
-      "agent_hints": "Excellent for pushing damage through Weakness, countering Byrds, or dealing exactly 5 damage to Nemesis during its Intangible turns."
+      "agent_hints": "Excellent for pushing damage through Weakness, countering Byrds, or dealing exactly 5 damage to Nemesis during its Intangible turns.",
+      "synergy": {
+        "requires": {
+          "MULTI_HIT": 2.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 2.0
+        }
+      }
     },
     {
       "id": "Tiny_Chest",
       "name": "Tiny Chest",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Force_Treasure_Room"],
-      "requires": ["Trigger: Enter_Question_Room(4th)"],
+      "trigger": "Enter_Question_Room(4th)",
+      "provides_text": ["Every 4th ? room is a Treasure room"],
       "tags": ["Event_Synergy", "Pathing_Synergy", "Economy"],
-      "agent_hints": "Tracks across acts. Heavily incentivizes routing through '?' rooms to guarantee free relics."
+      "agent_hints": "Tracks across acts. Heavily incentivizes routing through '?' rooms to guarantee free relics.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 3.0
+        }
+      }
     },
     {
       "id": "Toy_Ornithopter",
       "name": "Toy Ornithopter",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Heal(5)"],
-      "requires": ["Trigger: Use_Potion"],
+      "trigger": "Use_Potion",
+      "provides_text": ["Heal 5 HP whenever you use a potion"],
       "tags": ["Sustain", "Potion_Synergy"],
-      "agent_hints": "Turns every potion into a minor healing item. Excellent synergy with White Beast Statue or Alchemize."
+      "agent_hints": "Turns every potion into a minor healing item. Excellent synergy with White Beast Statue or Alchemize.",
+      "synergy": {
+        "requires": {
+          "POTION_GENERATION": 3.0
+        },
+        "provides": {
+          "SUSTAIN": 3.0
+        }
+      }
     },
     {
       "id": "Vajra",
       "name": "Vajra",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Gain_Strength(1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start with 1 Strength"],
       "tags": ["Attack_Synergy", "Scaling"],
-      "agent_hints": "Flat, permanent damage boost. Synergizes well with multi-hit attacks (e.g., Twin Strike, Sword Boomerang)."
+      "agent_hints": "Flat, permanent damage boost. Synergizes well with multi-hit attacks (e.g., Twin Strike, Sword Boomerang).",
+      "synergy": {
+        "requires": {
+          "MULTI_HIT": 3.0
+        },
+        "provides": {
+          "STRENGTH": 1.0
+        }
+      }
     },
     {
       "id": "War_Paint",
       "name": "War Paint",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Upgrade_Random_Skills(2)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Upgrade 2 random Skills"],
       "tags": ["Upgrade"],
-      "agent_hints": "Immediate deck power spike. Removes the need to upgrade basic Defends or setup Skills at campfires."
+      "agent_hints": "Immediate deck power spike. Removes the need to upgrade basic Defends or setup Skills at campfires.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "UPGRADE": 2.0
+        }
+      }
     },
     {
       "id": "Whetstone",
       "name": "Whetstone",
       "tier": "Common",
       "pool": "Any",
-      "provides": ["Action: Upgrade_Random_Attacks(2)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Upgrade 2 random Attacks"],
       "tags": ["Upgrade", "Burst_Damage"],
-      "agent_hints": "Immediate damage spike. Removes the need to upgrade Strikes or basic attacks at campfires."
+      "agent_hints": "Immediate damage spike. Removes the need to upgrade Strikes or basic attacks at campfires.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "UPGRADE": 2.0,
+          "BURST_DAMAGE": 3.0
+        }
+      }
     },
     {
       "id": "Blue_Candle",
       "name": "Blue Candle",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Play_Curse", "Action: Exhaust_Card", "Action: Take_HP_Damage(1)"],
-      "requires": ["Trigger: Have_Curse_In_Hand"],
+      "trigger": "Have_Curse_In_Hand",
+      "provides_text": ["Unplayable Curses can be played. Exhaust them and lose 1 HP."],
       "tags": ["Curse_Synergy", "Exhaust_Synergy", "Damage_Synergy"],
-      "agent_hints": "Allows Curses to be Exhausted for 1 HP. Extremely powerful with Rupture (+Strength on HP loss) or Feel No Pain (+Block on Exhaust)."
+      "agent_hints": "Allows Curses to be Exhausted for 1 HP. Extremely powerful with Rupture (+Strength on HP loss) or Feel No Pain (+Block on Exhaust).",
+      "synergy": {
+        "requires": {
+          "CURSE_CARD": 2.0
+        },
+        "provides": {
+          "EXHAUST_EVENT": 2.0,
+          "SELF_DAMAGE": 1.0
+        }
+      }
     },
     {
       "id": "Bottled_Flame",
       "name": "Bottled Flame",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Innate(Selected_Attack)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Choose an Attack card to start in your opening hand."],
       "tags": ["Turn_1_Setup", "Consistency"],
-      "agent_hints": "Forces a chosen Attack into the opening hand. High priority for core setup attacks or immediate burst damage to eliminate threats on Turn 1."
+      "agent_hints": "Forces a chosen Attack into the opening hand. High priority for core setup attacks or immediate burst damage to eliminate threats on Turn 1.",
+      "synergy": {
+        "requires": {
+          "HIGH_VALUE_ATTACK": 3.0
+        },
+        "provides": {
+          "TURN_1_CONSISTENCY": 2.0
+        }
+      }
     },
     {
       "id": "Bottled_Lightning",
       "name": "Bottled Lightning",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Innate(Selected_Skill)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Choose a Skill card to start in your opening hand."],
       "tags": ["Turn_1_Setup", "Consistency"],
-      "agent_hints": "Forces a chosen Skill into the opening hand. Ideal for crucial defensive skills or key draw/setup cards like Apotheosis."
+      "agent_hints": "Forces a chosen Skill into the opening hand. Ideal for crucial defensive skills or key draw/setup cards like Apotheosis.",
+      "synergy": {
+        "requires": {
+          "HIGH_VALUE_SKILL": 3.0
+        },
+        "provides": {
+          "TURN_1_CONSISTENCY": 2.0
+        }
+      }
     },
     {
       "id": "Bottled_Tornado",
       "name": "Bottled Tornado",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Innate(Selected_Power)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Choose a Power card to start in your opening hand."],
       "tags": ["Turn_1_Setup", "Consistency", "Scaling"],
-      "agent_hints": "Forces a chosen Power into the opening hand. Extremely high value for decks reliant on specific scaling powers (e.g., Demon Form, Echo Form)."
+      "agent_hints": "Forces a chosen Power into the opening hand. Extremely high value for decks reliant on specific scaling powers (e.g., Demon Form, Echo Form).",
+      "synergy": {
+        "requires": {
+          "SETUP_POWER": 4.0
+        },
+        "provides": {
+          "TURN_1_CONSISTENCY": 3.0
+        }
+      }
     },
     {
       "id": "Darkstone_Periapt",
       "name": "Darkstone Periapt",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_HP(6)"],
-      "requires": ["Trigger: Obtain_Curse"],
+      "trigger": "Obtain_Curse",
+      "provides_text": ["Gain 6 Max HP whenever you obtain a Curse."],
       "tags": ["Max_HP", "Curse_Synergy"],
-      "agent_hints": "Transforms negative events (gaining curses) into permanent survivability scaling. Value increases heavily in event-focused pathing."
+      "agent_hints": "Transforms negative events (gaining curses) into permanent survivability scaling. Value increases heavily in event-focused pathing.",
+      "synergy": {
+        "requires": {
+          "EVENT_SYNERGY": 2.0
+        },
+        "provides": {
+          "MAX_HP": 3.0
+        }
+      }
     },
     {
       "id": "Gremlin_Horn",
       "name": "Gremlin Horn",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy(1)", "Action: Draw(1)"],
-      "requires": ["Trigger: Enemy_Death"],
+      "trigger": "Enemy_Death",
+      "provides_text": ["Whenever an enemy dies, gain 1 Energy and draw 1 card."],
       "tags": ["Energy_Generation", "Card_Draw", "AoE_Synergy"],
-      "agent_hints": "Massive momentum swing in multi-enemy fights (e.g., Slime Boss, Reptomancer, Gremlin Leader). Prioritize killing minions to fuel further attacks."
+      "agent_hints": "Massive momentum swing in multi-enemy fights (e.g., Slime Boss, Reptomancer, Gremlin Leader). Prioritize killing minions to fuel further attacks.",
+      "synergy": {
+        "requires": {
+          "BURST_DAMAGE": 2.0,
+          "AOE_DAMAGE": 2.0
+        },
+        "provides": {
+          "ENERGY": 1.0,
+          "CARD_DRAW": 1.0
+        }
+      }
     },
     {
       "id": "Horn_Cleat",
       "name": "Horn Cleat",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Block(14)"],
-      "requires": ["Trigger: Turn_Count(2)"],
+      "trigger": "Turn_Count(2)",
+      "provides_text": ["Gain 14 Block at the start of your 2nd turn."],
       "tags": ["Defense", "Turn_2_Setup"],
-      "agent_hints": "Guarantees 14 Block on Turn 2. The AI should use Turn 2 energy primarily for attacks or powers, relying on this relic for defense."
+      "agent_hints": "Guarantees 14 Block on Turn 2. The AI should use Turn 2 energy primarily for attacks or powers, relying on this relic for defense.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BLOCK_GENERATION": 4.0
+        }
+      }
     },
     {
       "id": "Ink_Bottle",
       "name": "Ink Bottle",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Draw(1)"],
-      "requires": ["Trigger: Play_Card(10th)"],
+      "trigger": "Play_Card(10th)",
+      "provides_text": ["Whenever you play 10 cards, draw 1 card."],
       "tags": ["Card_Draw", "Infinite_Synergy"],
-      "agent_hints": "Counter carries over between combats. AI must track this carefully at 9 stacks to ensure the 10th card played is optimal for drawing."
+      "agent_hints": "Counter carries over between combats. AI must track this carefully at 9 stacks to ensure the 10th card played is optimal for drawing.",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_CARD": 2.0
+        },
+        "provides": {
+          "CARD_DRAW": 2.0
+        }
+      }
     },
     {
       "id": "Kunai",
       "name": "Kunai",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Dexterity(1)"],
-      "requires": ["Trigger: Play_Attack(3_In_One_Turn)"],
+      "trigger": "Play_Attack(3_In_One_Turn)",
+      "provides_text": ["Whenever you play 3 Attacks in a single turn, gain 1 Dexterity."],
       "tags": ["Scaling", "Defense", "Attack_Synergy"],
-      "agent_hints": "Provides permanent defensive scaling during combat for playing attacks. Requires a deck with cheap/0-cost attacks (e.g., Shivs, Flurry of Blows) to trigger consistently."
+      "agent_hints": "Provides permanent defensive scaling during combat for playing attacks. Requires a deck with cheap/0-cost attacks (e.g., Shivs, Flurry of Blows) to trigger consistently.",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_ATTACK": 4.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "DEXTERITY": 3.0
+        }
+      }
     },
     {
       "id": "Letter_Opener",
       "name": "Letter Opener",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Deal_Damage_All(5)"],
-      "requires": ["Trigger: Play_Skill(3_In_One_Turn)"],
+      "trigger": "Play_Skill(3_In_One_Turn)",
+      "provides_text": ["Whenever you play 3 Skills in a single turn, deal 5 damage to ALL enemies."],
       "tags": ["Passive_Damage", "Skill_Synergy", "AoE"],
-      "agent_hints": "Rewards playing multiple skills with free AoE damage. Synergizes exceptionally well with Defect (hologram loops) or Silent (cheap skills)."
+      "agent_hints": "Rewards playing multiple skills with free AoE damage. Synergizes exceptionally well with Defect (hologram loops) or Silent (cheap skills).",
+      "synergy": {
+        "requires": {
+          "LOW_COST_SKILL": 3.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "AOE_DAMAGE": 3.0
+        }
+      }
     },
     {
       "id": "Matryoshka",
       "name": "Matryoshka",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Extra_Relic(1)"],
-      "requires": ["Trigger: Open_Chest(Next_2)"],
+      "trigger": "Open_Chest(Next_2)",
+      "provides_text": ["Your next 2 chests contain 2 Relics."],
       "tags": ["Economy", "Pathing_Synergy"],
-      "agent_hints": "Increases the value of Treasure Rooms. If obtained early, ensures a massive power spike in later acts."
+      "agent_hints": "Increases the value of Treasure Rooms. If obtained early, ensures a massive power spike in later acts.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "RELIC_GENERATION": 4.0
+        }
+      }
     },
     {
       "id": "Meat_on_the_Bone",
       "name": "Meat on the Bone",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Heal(12)"],
-      "requires": ["Trigger: End_Combat", "Condition: Player_HP_Below_50%"],
+      "trigger": "End_Combat",
+      "provides_text": ["If your HP is at or below 50% at the end of combat, heal 12 HP."],
       "tags": ["Sustain", "Low_HP_Synergy"],
-      "agent_hints": "One of the strongest sustain relics. AI can intentionally end combats just below 50% HP to trigger the 12 HP heal, effectively making HP a rechargeable resource."
+      "agent_hints": "One of the strongest sustain relics. AI can intentionally end combats just below 50% HP to trigger the 12 HP heal, effectively making HP a rechargeable resource.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 8.0
+        }
+      }
     },
     {
       "id": "Mercury_Hourglass",
       "name": "Mercury Hourglass",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Deal_Damage_All(3)"],
-      "requires": ["Trigger: Start_Turn"],
+      "trigger": "Start_Turn",
+      "provides_text": ["At the start of your turn, deal 3 damage to ALL enemies."],
       "tags": ["Passive_Damage", "AoE"],
-      "agent_hints": "Consistent free AoE damage every turn. Excellent for stripping Artifact charges or dealing with low-HP minions (e.g., Byrds, Darklings)."
+      "agent_hints": "Consistent free AoE damage every turn. Excellent for stripping Artifact charges or dealing with low-HP minions (e.g., Byrds, Darklings).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "AOE_DAMAGE": 2.0,
+          "PASSIVE_DAMAGE": 3.0
+        }
+      }
     },
     {
       "id": "Mummified_Hand",
       "name": "Mummified Hand",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Set_Cost_To_Zero(Random_Card, This_Turn)"],
-      "requires": ["Trigger: Play_Power"],
+      "trigger": "Play_Power",
+      "provides_text": ["Whenever you play a Power, a random card in your hand costs 0 for the turn."],
       "tags": ["Energy_Cheat", "Power_Synergy"],
-      "agent_hints": "Game-breaking energy generation for Power-heavy decks (especially Defect). AI should play Powers first to discount other high-cost cards in hand."
+      "agent_hints": "Game-breaking energy generation for Power-heavy decks (especially Defect). AI should play Powers first to discount other high-cost cards in hand.",
+      "synergy": {
+        "requires": {
+          "POWER_CARD": 4.0,
+          "HIGH_COST_CARD": 2.0
+        },
+        "provides": {
+          "ENERGY": 4.0
+        }
+      }
     },
     {
       "id": "Ornamental_Fan",
       "name": "Ornamental Fan",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Block(4)"],
-      "requires": ["Trigger: Play_Attack(3_In_One_Turn)"],
+      "trigger": "Play_Attack(3_In_One_Turn)",
+      "provides_text": ["Whenever you play 3 Attacks in a single turn, gain 4 Block."],
       "tags": ["Defense", "Attack_Synergy"],
-      "agent_hints": "Generates block passively while attacking. Reduces the need to play dedicated Block cards in decks with high attack volume (e.g., Shivs)."
+      "agent_hints": "Generates block passively while attacking. Reduces the need to play dedicated Block cards in decks with high attack volume (e.g., Shivs).",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_ATTACK": 3.0
+        },
+        "provides": {
+          "BLOCK_GENERATION": 3.0
+        }
+      }
     },
     {
       "id": "Pantograph",
       "name": "Pantograph",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Heal(25)"],
-      "requires": ["Trigger: Start_Boss_Combat"],
+      "trigger": "Start_Boss_Combat",
+      "provides_text": ["At the start of boss combats, heal 25 HP."],
       "tags": ["Sustain", "Boss_Synergy"],
-      "agent_hints": "Provides a massive health buffer specifically for Bosses. Allows the AI to take riskier paths (more Elites/Upgrades) right before the act boss."
+      "agent_hints": "Provides a massive health buffer specifically for Bosses. Allows the AI to take riskier paths (more Elites/Upgrades) right before the act boss.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SUSTAIN": 5.0,
+          "BOSS_SURVIVABILITY": 3.0
+        }
+      }
     },
     {
       "id": "Pear",
       "name": "Pear",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_HP(10)", "Action: Heal(10)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Raise your Max HP by 10."],
       "tags": ["Max_HP", "Sustain"],
-      "agent_hints": "Immediate and permanent increase to survivability."
+      "agent_hints": "Immediate and permanent increase to survivability.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "MAX_HP": 10.0,
+          "SUSTAIN": 4.0
+        }
+      }
     },
     {
       "id": "Question_Card",
       "name": "Question Card",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Add_Card_Reward_Option(1)"],
-      "requires": ["Trigger: Card_Reward_Screen"],
+      "trigger": "Card_Reward_Screen",
+      "provides_text": ["Future card rewards have 1 additional card to choose from."],
       "tags": ["Deck_Generation", "Consistency"],
-      "agent_hints": "Increases card reward options from 3 to 4. Significantly boosts the chances of finding core synergy cards. Value is highest when obtained in Act 1."
+      "agent_hints": "Increases card reward options from 3 to 4. Significantly boosts the chances of finding core synergy cards. Value is highest when obtained in Act 1.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DECK_CONSISTENCY": 4.0
+        }
+      }
     },
     {
       "id": "Shuriken",
       "name": "Shuriken",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Strength(1)"],
-      "requires": ["Trigger: Play_Attack(3_In_One_Turn)"],
+      "trigger": "Play_Attack(3_In_One_Turn)",
+      "provides_text": ["Whenever you play 3 Attacks in a single turn, gain 1 Strength."],
       "tags": ["Scaling", "Attack_Synergy"],
-      "agent_hints": "One of the best damage scaling relics in the game. Requires decks that can play 3+ attacks per turn consistently (Shivs, 0-cost attacks)."
+      "agent_hints": "One of the best damage scaling relics in the game. Requires decks that can play 3+ attacks per turn consistently (Shivs, 0-cost attacks).",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_ATTACK": 4.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "STRENGTH": 3.0,
+          "SCALING_DAMAGE": 5.0
+        }
+      }
     },
     {
       "id": "Singing_Bowl",
       "name": "Singing Bowl",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_HP(2)"],
-      "requires": ["Trigger: Skip_Card_Reward"],
+      "trigger": "Skip_Card_Reward",
+      "provides_text": ["Whenever you skip a card reward, gain +2 Max HP."],
       "tags": ["Max_HP", "Deck_Thinning"],
-      "agent_hints": "Transforms skipped card rewards into permanent Max HP. Extremely synergistic with Question Card or Prayer Wheel."
+      "agent_hints": "Transforms skipped card rewards into permanent Max HP. Extremely synergistic with Question Card or Prayer Wheel.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "MAX_HP": 4.0,
+          "DECK_THINNING": 3.0
+        }
+      }
     },
     {
       "id": "Strike_Dummy",
       "name": "Strike Dummy",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Damage_Modifier(+3)"],
-      "requires": ["Condition: Card_Name_Contains(Strike)"],
+      "trigger": "Passive",
+      "provides_text": ["Cards containing 'Strike' deal 3 additional damage."],
       "tags": ["Attack_Synergy"],
-      "agent_hints": "Flat damage boost for Strike cards. High synergy with Perfected Strike, Twin Strike, or Pommel Strike."
+      "agent_hints": "Flat damage boost for Strike cards. High synergy with Perfected Strike, Twin Strike, or Pommel Strike.",
+      "synergy": {
+        "requires": {
+          "STRIKE_CARD": 3.0
+        },
+        "provides": {
+          "ATTACK_DAMAGE": 3.0
+        }
+      }
     },
     {
       "id": "Sundial",
       "name": "Sundial",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Gain_Energy(2)"],
-      "requires": ["Trigger: Shuffle_Draw_Pile(3)"],
+      "trigger": "Shuffle_Draw_Pile(3)",
+      "provides_text": ["Every 3 times you shuffle your deck, gain 2 Energy."],
       "tags": ["Energy_Generation", "Infinite_Synergy"],
-      "agent_hints": "Extremely powerful in infinite or highly compressed decks that shuffle frequently."
+      "agent_hints": "Extremely powerful in infinite or highly compressed decks that shuffle frequently.",
+      "synergy": {
+        "requires": {
+          "CARD_DRAW": 3.0,
+          "SMALL_DECK": 4.0
+        },
+        "provides": {
+          "ENERGY": 2.0
+        }
+      }
     },
     {
       "id": "Symbiotic_Virus",
       "name": "Symbiotic Virus",
       "tier": "Uncommon",
       "pool": "Blue",
-      "provides": ["Action: Channel_Orb(Dark, 1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat with 1 Dark Orb channeled."],
       "tags": ["Orb_Synergy", "Scaling", "Turn_1_Setup"],
-      "agent_hints": "Dark orbs scale passively over time. Excellent for slow boss fights where the orb can cook."
+      "agent_hints": "Dark orbs scale passively over time. Excellent for slow boss fights where the orb can cook.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DARK_ORB": 1.0,
+          "SCALING_DAMAGE": 2.0
+        }
+      }
     },
     {
       "id": "Teardrop_Locket",
       "name": "Teardrop Locket",
       "tier": "Uncommon",
       "pool": "Purple",
-      "provides": ["Action: Enter_Stance(Calm)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat in Calm."],
       "tags": ["Stance_Synergy", "Turn_1_Setup"],
-      "agent_hints": "Instantly sets up an energy generation turn by exiting Calm early on Turn 1 or 2."
+      "agent_hints": "Instantly sets up an energy generation turn by exiting Calm early on Turn 1 or 2.",
+      "synergy": {
+        "requires": {
+          "STANCE_DANCE": 2.0
+        },
+        "provides": {
+          "ENERGY_POTENTIAL": 3.0,
+          "CALM_STANCE": 1.0
+        }
+      }
     },
     {
       "id": "The_Courier",
       "name": "The Courier",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Restock_Shop", "Action: Apply_Discount(20%)"],
-      "requires": ["Trigger: Enter_Shop"],
+      "trigger": "Enter_Shop",
+      "provides_text": ["Restock items in shops. Prices are reduced by 20%."],
       "tags": ["Economy", "Pathing_Synergy"],
-      "agent_hints": "Massive economy boost. AI should path heavily through shops to build a powerful deck and relic collection."
+      "agent_hints": "Massive economy boost. AI should path heavily through shops to build a powerful deck and relic collection.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 5.0
+        }
+      }
     },
     {
       "id": "Toxic_Egg",
       "name": "Toxic Egg",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Upgrade_Card"],
-      "requires": ["Trigger: Add_Card_To_Deck(Skill)"],
+      "trigger": "Add_Card_To_Deck(Skill)",
+      "provides_text": ["Whenever you add a Skill card to your deck, it is Upgraded."],
       "tags": ["Upgrade", "Skill_Synergy"],
-      "agent_hints": "Tremendous long-term value. Defensive cards become immediately potent without campfire upgrades."
+      "agent_hints": "Tremendous long-term value. Defensive cards become immediately potent without campfire upgrades.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "SKILL_UPGRADE": 5.0
+        }
+      }
     },
     {
       "id": "White_Beast_Statue",
       "name": "White Beast Statue",
       "tier": "Uncommon",
       "pool": "Any",
-      "provides": ["Action: Force_Potion_Reward"],
-      "requires": ["Trigger: Combat_Reward_Screen"],
+      "trigger": "Combat_Reward_Screen",
+      "provides_text": ["Potions always drop after combat."],
       "tags": ["Potion_Synergy"],
-      "agent_hints": "Ensure potion slots are open. Solves difficult elite/boss fights by guaranteeing a constant stream of consumables."
+      "agent_hints": "Ensure potion slots are open. Solves difficult elite/boss fights by guaranteeing a constant stream of consumables.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "POTION_GENERATION": 5.0
+        }
+      }
     },
     {
       "id": "Bird_Faced_Urn",
       "name": "Bird-Faced Urn",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Heal(2)"],
-      "requires": ["Trigger: Play_Power"],
+      "trigger": "Play_Power",
+      "provides_text": ["Heal 2 HP whenever you play a Power card."],
       "tags": ["Sustain", "Power_Synergy"],
-      "agent_hints": "Powerful healing engine for Defect or any deck running multiple setup powers. Can stall fights against weak enemies to full heal."
+      "agent_hints": "Powerful healing engine for Defect or any deck running multiple setup powers. Can stall fights against weak enemies to full heal.",
+      "synergy": {
+        "requires": {
+          "POWER_CARD": 3.0
+        },
+        "provides": {
+          "SUSTAIN": 4.0
+        }
+      }
     },
     {
       "id": "Calipers",
       "name": "Calipers",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Retain_Block_Partial(-15)"],
-      "requires": ["Trigger: Start_Turn"],
+      "trigger": "Start_Turn",
+      "provides_text": ["At the start of your turn, lose 15 Block rather than all of your Block."],
       "tags": ["Defense", "Scaling"],
-      "agent_hints": "Enables extreme block scaling. Synergizes with Frost Orbs or high-block turns without needing Barricade/Blur."
+      "agent_hints": "Enables extreme block scaling. Synergizes with Frost Orbs or high-block turns without needing Barricade/Blur.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 4.0
+        },
+        "provides": {
+          "BLOCK_RETENTION": 5.0
+        }
+      }
     },
     {
       "id": "Captains_Wheel",
       "name": "Captain's Wheel",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Block(18)"],
-      "requires": ["Trigger: Turn_Count(3)"],
+      "trigger": "Turn_Count(3)",
+      "provides_text": ["Gain 18 Block at the start of your 3rd turn."],
       "tags": ["Defense", "Turn_3_Setup"],
-      "agent_hints": "Solves Turn 3 defense natively, allowing energy to be spent purely on offense (crucial against Exploder or Spire Shield)."
+      "agent_hints": "Solves Turn 3 defense natively, allowing energy to be spent purely on offense (crucial against Exploder or Spire Shield).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BLOCK_GENERATION": 5.0,
+          "TURN_3_DEFENSE": 3.0
+        }
+      }
     },
     {
       "id": "Champion_Belt",
       "name": "Champion Belt",
       "tier": "Rare",
       "pool": "Red",
-      "provides": ["Action: Apply_Debuff(Weak, 1)"],
-      "requires": ["Trigger: Apply_Debuff(Vulnerable)"],
+      "trigger": "Apply_Debuff(Vulnerable)",
+      "provides_text": ["Whenever you apply Vulnerable, also apply 1 Weak."],
       "tags": ["Debuff_Synergy", "Defense"],
-      "agent_hints": "Turns offensive Vulnerable cards (e.g., Bash, Uppercut) into incredibly strong defensive mitigation tools."
+      "agent_hints": "Turns offensive Vulnerable cards (e.g., Bash, Uppercut) into incredibly strong defensive mitigation tools.",
+      "synergy": {
+        "requires": {
+          "VULNERABLE": 3.0
+        },
+        "provides": {
+          "WEAK": 3.0
+        }
+      }
     },
     {
       "id": "Charons_Ashes",
       "name": "Charon's Ashes",
       "tier": "Rare",
       "pool": "Red",
-      "provides": ["Action: Deal_Damage_All(3)"],
-      "requires": ["Trigger: Exhaust_Card"],
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Whenever you Exhaust a card, deal 3 damage to ALL enemies."],
       "tags": ["Exhaust_Synergy", "AoE", "Passive_Damage"],
-      "agent_hints": "Massive AoE scaling for Exhaust-heavy Ironclad decks (e.g., Fiend Fire, Corruption)."
+      "agent_hints": "Massive AoE scaling for Exhaust-heavy Ironclad decks (e.g., Fiend Fire, Corruption).",
+      "synergy": {
+        "requires": {
+          "EXHAUST_EVENT": 5.0
+        },
+        "provides": {
+          "AOE_DAMAGE": 3.0,
+          "PASSIVE_DAMAGE": 2.0
+        }
+      }
     },
     {
       "id": "Cloak_Clasp",
       "name": "Cloak Clasp",
       "tier": "Rare",
       "pool": "Purple",
-      "provides": ["Action: Gain_Block(Cards_In_Hand)"],
-      "requires": ["Trigger: End_Turn"],
+      "trigger": "End_Turn",
+      "provides_text": ["At the end of your turn, gain 1 Block for each card in your hand."],
       "tags": ["Defense", "Retain_Synergy"],
-      "agent_hints": "High synergy with Runic Pyramid or Retain-heavy Watcher decks. Allows for completely passive blocking."
+      "agent_hints": "High synergy with Runic Pyramid or Retain-heavy Watcher decks. Allows for completely passive blocking.",
+      "synergy": {
+        "requires": {
+          "RETAIN": 3.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "BLOCK_GENERATION": 3.0
+        }
+      }
     },
     {
       "id": "Dead_Branch",
       "name": "Dead Branch",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Add_Card_To_Hand(Random)"],
-      "requires": ["Trigger: Exhaust_Card"],
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Whenever you Exhaust a card, add a random card to your hand."],
       "tags": ["Exhaust_Synergy", "Deck_Generation", "Infinite_Potential"],
-      "agent_hints": "One of the most game-breaking relics. Perfect synergy with Corruption. If generated cards are viable, exhaust everything."
+      "agent_hints": "One of the most game-breaking relics. Perfect synergy with Corruption. If generated cards are viable, exhaust everything.",
+      "synergy": {
+        "requires": {
+          "EXHAUST_EVENT": 5.0
+        },
+        "provides": {
+          "CARD_GENERATION": 5.0
+        }
+      }
     },
     {
       "id": "Du_Vu_Doll",
       "name": "Du-Vu Doll",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Strength(Curse_Count)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["For each Curse in your deck, start each combat with 1 additional Strength."],
       "tags": ["Scaling", "Curse_Synergy"],
-      "agent_hints": "Turns curses from pure detriments into flat scaling. Incredible synergy with Calling Bell or Necronomicon."
+      "agent_hints": "Turns curses from pure detriments into flat scaling. Incredible synergy with Calling Bell or Necronomicon.",
+      "synergy": {
+        "requires": {
+          "CURSE_CARD": 3.0
+        },
+        "provides": {
+          "STRENGTH": 2.0
+        }
+      }
     },
     {
       "id": "Emotion_Chip",
       "name": "Emotion Chip",
       "tier": "Rare",
       "pool": "Blue",
-      "provides": ["Action: Trigger_Orb_Passives"],
-      "requires": ["Trigger: Start_Turn", "Condition: Lost_HP_Previous_Turn"],
+      "trigger": "Start_Turn_If_Damaged_Last_Turn",
+      "provides_text": ["If you took HP damage last turn, trigger the passive ability of all your Orbs at the start of your turn."],
       "tags": ["Orb_Synergy", "Damage_Synergy"],
-      "agent_hints": "Rewards taking small chip damage to trigger massive Frost or Lightning passive procs."
+      "agent_hints": "Rewards taking small chip damage to trigger massive Frost or Lightning passive procs.",
+      "synergy": {
+        "requires": {
+          "ORB_GENERATION": 3.0,
+          "SELF_DAMAGE": 1.0
+        },
+        "provides": {
+          "ORB_PASSIVE": 3.0
+        }
+      }
     },
     {
       "id": "Fossilized_Helix",
       "name": "Fossilized Helix",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Prevent_HP_Loss(1_Time)"],
-      "requires": ["Trigger: Take_HP_Damage"],
+      "trigger": "Take_HP_Damage",
+      "provides_text": ["Prevent the first time you would lose HP in combat."],
       "tags": ["Defense"],
-      "agent_hints": "AI should intentionally NOT block small early hits if a massive hit is expected later, saving the buffer for the big hit."
+      "agent_hints": "AI should intentionally NOT block small early hits if a massive hit is expected later, saving the buffer for the big hit.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DAMAGE_MITIGATION": 5.0
+        }
+      }
     },
     {
       "id": "Gambling_Chip",
       "name": "Gambling Chip",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Discard_And_Draw"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, discard any number of cards then draw that many."],
       "tags": ["Turn_1_Setup", "Consistency"],
-      "agent_hints": "Perfect consistency for Turn 1. Discard basic attacks/defends to aggressively dig for key setup powers."
+      "agent_hints": "Perfect consistency for Turn 1. Discard basic attacks/defends to aggressively dig for key setup powers.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "TURN_1_CONSISTENCY": 5.0,
+          "DISCARD_SYNERGY": 2.0
+        }
+      }
     },
     {
       "id": "Ginger",
       "name": "Ginger",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Prevent_Debuff(Weak)"],
-      "requires": ["Trigger: Passive"],
+      "trigger": "Passive",
+      "provides_text": ["You can no longer be Weakened."],
       "tags": ["Debuff_Immunity", "Attack_Synergy"],
-      "agent_hints": "Ensures damage output is never reduced. High value against bosses that constantly apply Weak (e.g., Nemesis, Corrupt Heart)."
+      "agent_hints": "Ensures damage output is never reduced. High value against bosses that constantly apply Weak (e.g., Nemesis, Corrupt Heart).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DEBUFF_IMMUNITY_WEAK": 5.0
+        }
+      }
     },
     {
       "id": "Girya",
       "name": "Girya",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Lift(Gain_Strength_1)"],
-      "requires": ["Trigger: Rest_Site"],
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Lift at Rest Sites. Lifts increase your Strength permanently (Max 3)."],
       "tags": ["Scaling", "Rest_Site"],
-      "agent_hints": "Permanent +3 Strength if fully utilized. AI should evaluate if the deck has enough sustain to skip healing and lift instead."
+      "agent_hints": "Permanent +3 Strength if fully utilized. AI should evaluate if the deck has enough sustain to skip healing and lift instead.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 2.0
+        },
+        "provides": {
+          "STRENGTH": 3.0
+        }
+      }
     },
     {
       "id": "Golden_Eye",
       "name": "Golden Eye",
       "tier": "Rare",
       "pool": "Purple",
-      "provides": ["Action: Scry_Modifier(+2)"],
-      "requires": ["Trigger: Scry"],
+      "trigger": "Scry",
+      "provides_text": ["Whenever you Scry, Scry 2 additional cards."],
       "tags": ["Scry_Synergy", "Consistency"],
-      "agent_hints": "Makes Scry cards incredibly deep, allowing near-perfect manipulation of upcoming draws."
+      "agent_hints": "Makes Scry cards incredibly deep, allowing near-perfect manipulation of upcoming draws.",
+      "synergy": {
+        "requires": {
+          "SCRY": 4.0
+        },
+        "provides": {
+          "CARD_MANIPULATION": 4.0
+        }
+      }
     },
     {
       "id": "Ice_Cream",
       "name": "Ice Cream",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Retain_Energy"],
-      "requires": ["Trigger: End_Turn"],
+      "trigger": "End_Turn",
+      "provides_text": ["Energy is now conserved between turns."],
       "tags": ["Energy_Generation", "Scaling"],
-      "agent_hints": "Game-breaking utility. AI can fully skip turns defensively to unleash massive X-cost cards (e.g., Whirlwind, Skewer) later."
+      "agent_hints": "Game-breaking utility. AI can fully skip turns defensively to unleash massive X-cost cards (e.g., Whirlwind, Skewer) later.",
+      "synergy": {
+        "requires": {
+          "ENERGY_GENERATION": 2.0,
+          "HIGH_COST_CARD": 3.0
+        },
+        "provides": {
+          "ENERGY_RETENTION": 5.0
+        }
+      }
     },
     {
       "id": "Incense_Burner",
       "name": "Incense Burner",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Intangible(1)"],
-      "requires": ["Trigger: Turn_Count(6)"],
+      "trigger": "Turn_Count(6)",
+      "provides_text": ["Every 6 turns, gain 1 Intangible."],
       "tags": ["Defense", "Boss_Synergy"],
-      "agent_hints": "Counter persists across combats. AI must track the counter to set up Intangible for exact turns when Bosses do massive attacks (e.g., Hyperbeam, Execution)."
+      "agent_hints": "Counter persists across combats. AI must track the counter to set up Intangible for exact turns when Bosses do massive attacks (e.g., Hyperbeam, Execution).",
+      "synergy": {
+        "requires": {
+          "STALL_SYNERGY": 3.0
+        },
+        "provides": {
+          "DAMAGE_MITIGATION": 5.0
+        }
+      }
     },
     {
       "id": "Mango",
       "name": "Mango",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_HP(14)", "Action: Heal(14)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Raise your Max HP by 14 and heal 14 HP."],
       "tags": ["Max_HP", "Sustain"],
-      "agent_hints": "Massive flat survivability increase. Extremely high value if picked up when at low HP."
+      "agent_hints": "Massive flat survivability increase. Extremely high value if picked up when at low HP.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "MAX_HP": 14.0,
+          "SUSTAIN": 8.0
+        }
+      }
     },
     {
       "id": "Old_Coin",
       "name": "Old Coin",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Gold(300)"],
-      "requires": ["Trigger: Pickup"],
+      "trigger": "Pickup",
+      "provides_text": ["Gain 300 Gold."],
       "tags": ["Economy"],
-      "agent_hints": "Instantly provides enough gold for 1~2 powerful relics or card removals at the next shop. Prioritize pathing to a shop after acquiring."
+      "agent_hints": "Instantly provides enough gold for 1~2 powerful relics or card removals at the next shop. Prioritize pathing to a shop after acquiring.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 10.0
+        }
+      }
     },
     {
       "id": "Peace_Pipe",
       "name": "Peace Pipe",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Toke(Remove_Card_From_Deck)"],
-      "requires": ["Trigger: Rest_Site"],
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Toke at Rest Sites to remove a card from your deck."],
       "tags": ["Deck_Thinning", "Rest_Site"],
-      "agent_hints": "Enables aggressive deck thinning. AI should prioritize removing basic Strikes/Defends at Campfires if HP is safe."
+      "agent_hints": "Enables aggressive deck thinning. AI should prioritize removing basic Strikes/Defends at Campfires if HP is safe.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 2.0
+        },
+        "provides": {
+          "DECK_THINNING": 5.0
+        }
+      }
     },
     {
       "id": "Pocketwatch",
       "name": "Pocketwatch",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Draw(3)"],
-      "requires": ["Trigger: Start_Turn", "Condition: Played_3_Or_Fewer_Cards_Previous_Turn"],
+      "trigger": "Start_Turn",
+      "provides_text": ["Whenever you play 3 or fewer cards in a turn, draw 3 additional cards at the start of your next turn."],
       "tags": ["Card_Draw", "High_Cost_Synergy"],
-      "agent_hints": "Incredible draw engine for high-energy/cost decks. AI must weigh the value of playing a 4th weak card vs drawing 3 extra cards next turn."
+      "agent_hints": "Incredible draw engine for high-energy/cost decks. AI must weigh the value of playing a 4th weak card vs drawing 3 extra cards next turn.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 4.0
+        },
+        "provides": {
+          "CARD_DRAW": 5.0
+        }
+      }
     },
     {
       "id": "Prayer_Wheel",
       "name": "Prayer Wheel",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Add_Card_Reward(Normal_Combat)"],
-      "requires": ["Trigger: Combat_Reward_Screen"],
+      "trigger": "Combat_Reward_Screen",
+      "provides_text": ["Normal enemies drop an additional card reward."],
       "tags": ["Deck_Generation", "Consistency"],
-      "agent_hints": "Doubles card rewards from normal enemies. Massively increases the chance of finding core synergy cards. Pairs perfectly with Singing Bowl."
+      "agent_hints": "Doubles card rewards from normal enemies. Massively increases the chance of finding core synergy cards. Pairs perfectly with Singing Bowl.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DECK_CONSISTENCY": 5.0
+        }
+      }
     },
     {
       "id": "Shovel",
       "name": "Shovel",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Dig(Gain_Random_Relic)"],
-      "requires": ["Trigger: Rest_Site"],
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Dig for loot at Rest Sites to gain a Relic."],
       "tags": ["Scaling", "Rest_Site"],
-      "agent_hints": "Turns Campfires into Relic nodes. AI should prioritize Campfire pathing and avoid resting/upgrading unless absolutely necessary."
+      "agent_hints": "Turns Campfires into Relic nodes. AI should prioritize Campfire pathing and avoid resting/upgrading unless absolutely necessary.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 3.0
+        },
+        "provides": {
+          "RELIC_GENERATION": 5.0
+        }
+      }
     },
     {
       "id": "Stone_Calendar",
       "name": "Stone Calendar",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Deal_Damage_All(52)"],
-      "requires": ["Trigger: Turn_Count(7)"],
+      "trigger": "Turn_Count(7)",
+      "provides_text": ["At the end of turn 7, deal 52 damage to ALL enemies."],
       "tags": ["Burst_Damage", "AoE", "Stall_Synergy"],
-      "agent_hints": "Provides massive AoE on Turn 7. If the AI detects it can survive until Turn 7, it can play purely defensively and let the calendar kill the enemies."
+      "agent_hints": "Provides massive AoE on Turn 7. If the AI detects it can survive until Turn 7, it can play purely defensively and let the calendar kill the enemies.",
+      "synergy": {
+        "requires": {
+          "STALL_SYNERGY": 3.0
+        },
+        "provides": {
+          "AOE_DAMAGE": 5.0,
+          "BURST_DAMAGE": 5.0
+        }
+      }
     },
     {
       "id": "Thread_and_Needle",
       "name": "Thread and Needle",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Gain_Plated_Armor(4)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, gain 4 Plated Armor."],
       "tags": ["Defense", "Scaling"],
-      "agent_hints": "Passive defense that persists until HP damage is taken. AI should prioritize full-blocking early turns to keep the armor active."
+      "agent_hints": "Passive defense that persists until HP damage is taken. AI should prioritize full-blocking early turns to keep the armor active.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 2.0
+        },
+        "provides": {
+          "PASSIVE_DEFENSE": 4.0
+        }
+      }
     },
     {
       "id": "Torii",
       "name": "Torii",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Set_Damage_Taken(1)"],
-      "requires": ["Trigger: Take_Unblocked_Damage(Between_2_and_5)"],
+      "trigger": "Take_Unblocked_Damage(Between_2_and_5)",
+      "provides_text": ["Whenever you would receive 5 or less unblocked attack damage, reduce it to 1."],
       "tags": ["Defense", "Mitigation"],
-      "agent_hints": "Massively reduces multi-hit damage (e.g., Byrds, Book of Stabbing). AI should calculate exact block to let 5 or less damage through, reducing it to 1."
+      "agent_hints": "Massively reduces multi-hit damage (e.g., Byrds, Book of Stabbing). AI should calculate exact block to let 5 or less damage through, reducing it to 1.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DAMAGE_MITIGATION": 4.0
+        }
+      }
     },
     {
       "id": "Tough_Bandages",
       "name": "Tough Bandages",
       "tier": "Rare",
       "pool": "Green",
-      "provides": ["Action: Gain_Block(3)"],
-      "requires": ["Trigger: Discard_Card"],
+      "trigger": "Discard_Card",
+      "provides_text": ["Whenever you discard a card during your turn, gain 3 Block."],
       "tags": ["Defense", "Discard_Synergy"],
-      "agent_hints": "Core defensive engine for Discard Silent decks. Turns Calculated Gamble or Dagger Throw into massive block cards."
+      "agent_hints": "Core defensive engine for Discard Silent decks. Turns Calculated Gamble or Dagger Throw into massive block cards.",
+      "synergy": {
+        "requires": {
+          "DISCARD_SYNERGY": 4.0
+        },
+        "provides": {
+          "BLOCK_GENERATION": 4.0
+        }
+      }
     },
     {
       "id": "Turnip",
       "name": "Turnip",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Prevent_Debuff(Frail)"],
-      "requires": ["Trigger: Passive"],
+      "trigger": "Passive",
+      "provides_text": ["You can no longer be Frail."],
       "tags": ["Debuff_Immunity", "Defense"],
-      "agent_hints": "Ensures Block output is never reduced. High value against bosses that apply Frail (e.g., Slime Boss, Corrupt Heart)."
+      "agent_hints": "Ensures Block output is never reduced. High value against bosses that apply Frail (e.g., Slime Boss, Corrupt Heart).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DEBUFF_IMMUNITY_FRAIL": 5.0
+        }
+      }
     },
     {
       "id": "Unceasing_Top",
       "name": "Unceasing Top",
       "tier": "Rare",
       "pool": "Any",
-      "provides": ["Action: Draw(1)"],
-      "requires": ["Trigger: Hand_Empty"],
+      "trigger": "Hand_Empty",
+      "provides_text": ["Whenever you have no cards in hand during your turn, draw a card."],
       "tags": ["Card_Draw", "Infinite_Synergy", "Low_Cost_Synergy"],
-      "agent_hints": "Can enable infinite turns with 0-cost cards. AI must prioritize playing all cards in hand to trigger the draw. Anti-synergy with Curses/Statuses."
+      "agent_hints": "Can enable infinite turns with 0-cost cards. AI must prioritize playing all cards in hand to trigger the draw. Anti-synergy with Curses/Statuses.",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_CARD": 5.0,
+          "LOW_COST_CARD": 3.0
+        },
+        "provides": {
+          "CARD_DRAW": 5.0,
+          "INFINITE_POTENTIAL": 4.0
+        }
+      }
     },
+
+    // ==========================================
+    // [5] Shop Relics (상점 전용 유물)
+    // ==========================================
     {
       "id": "Clockwork_Souvenir",
       "name": "Clockwork Souvenir",
       "tier": "Shop",
       "pool": "Any",
-      "provides": ["Action: Gain_Artifact(1)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat with 1 Artifact."],
       "tags": ["Debuff_Immunity", "Turn_1_Setup"],
-      "agent_hints": "Blocks the first enemy debuff OR prevents a self-inflicted debuff from cards like Biased Cognition or Wraith Form."
+      "agent_hints": "Blocks the first enemy debuff OR prevents a self-inflicted debuff from cards like Biased Cognition or Wraith Form.",
+      "synergy": {
+        "requires": {
+          "SELF_DEBUFF": 3.0
+        },
+        "provides": {
+          "ARTIFACT": 1.0,
+          "DEBUFF_IMMUNITY": 2.0
+        }
+      }
     },
     {
       "id": "Medical_Kit",
       "name": "Medical Kit",
       "tier": "Shop",
       "pool": "Any",
-      "provides": ["Action: Play_Unplayable_Status", "Action: Exhaust_Card"],
-      "requires": ["Trigger: Play_Status"],
+      "trigger": "Play_Status",
+      "provides_text": ["Unplayable Status cards can now be played. Exhaust them."],
       "tags": ["Status_Synergy", "Exhaust_Synergy"],
-      "agent_hints": "Allows exhausting Dazed, Wounds, etc. High priority against Status-heavy enemies (Nemesis, Corrupt Heart). Triggers Exhaust synergies."
+      "agent_hints": "Allows exhausting Dazed, Wounds, etc. High priority against Status-heavy enemies (Nemesis, Corrupt Heart). Triggers Exhaust synergies.",
+      "synergy": {
+        "requires": {
+          "STATUS_CARD": 3.0
+        },
+        "provides": {
+          "EXHAUST_EVENT": 2.0,
+          "DECK_THINNING": 2.0
+        }
+      }
     },
     {
       "id": "Orange_Pellets",
       "name": "Orange Pellets",
       "tier": "Shop",
       "pool": "Any",
-      "provides": ["Action: Remove_All_Debuffs"],
-      "requires": ["Trigger: Play_Combination(Power, Attack, Skill_Same_Turn)"],
+      "trigger": "Play_Combination",
+      "provides_text": ["Whenever you play a Power, Attack, and Skill in the same turn, remove all of your Debuffs."],
       "tags": ["Debuff_Immunity", "Combo_Synergy"],
-      "agent_hints": "One of the strongest items in the game. AI must plan hand sequences to play Attack+Skill+Power in the same turn to clear self-debuffs (e.g., Fasting, Biased Cognition)."
+      "agent_hints": "One of the strongest items in the game. AI must plan hand sequences to play Attack+Skill+Power in the same turn to clear self-debuffs (e.g., Fasting, Biased Cognition).",
+      "synergy": {
+        "requires": {
+          "LOW_COST_CARD": 3.0,
+          "SELF_DEBUFF": 4.0
+        },
+        "provides": {
+          "DEBUFF_CLEAR": 5.0
+        }
+      }
     },
     {
       "id": "Strange_Spoon",
       "name": "Strange Spoon",
       "tier": "Shop",
       "pool": "Any",
-      "provides": ["Action: Discard_Instead_Of_Exhaust(50%)"],
-      "requires": ["Trigger: Exhaust_Card"],
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Cards which Exhaust when played have a 50% chance to Discard instead."],
       "tags": ["Exhaust_Synergy", "Card_Recursion"],
-      "agent_hints": "Allows replaying powerful exhaust cards (e.g., Apparition, Catalyst). Do NOT buy if relying on Exhaust to thin the deck for an infinite combo."
+      "agent_hints": "Allows replaying powerful exhaust cards (e.g., Apparition, Catalyst). Do NOT buy if relying on Exhaust to thin the deck for an infinite combo.",
+      "synergy": {
+        "requires": {
+          "EXHAUST_CARD": 3.0
+        },
+        "provides": {
+          "CARD_RECURSION": 4.0
+        }
+      }
     },
+
+    // ==========================================
+    // [6] Boss Relics (보스 유물: 압도적 메리트와 패널티)
+    // ==========================================
     {
       "id": "Busted_Crown",
       "name": "Busted Crown",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Reduce_Card_Reward_Options(By_2)"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. On Card Reward screens, you have 2 fewer cards to choose from."],
       "tags": ["Energy_Generation", "Deck_Generation_Penalty"],
-      "agent_hints": "Provides Energy but cripples deck building. AI should ONLY pick this if the core deck synergy is already fully assembled and requires no further key cards."
+      "agent_hints": "Provides Energy but cripples deck building. AI should ONLY pick this if the core deck synergy is already fully assembled and requires no further key cards.",
+      "synergy": {
+        "requires": {
+          "DECK_CONSISTENCY": -5.0 // 페널티로 인해 덱 일관성을 깎아먹음
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Coffee_Dripper",
       "name": "Coffee Dripper",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Disable_Rest_Action"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer Rest at Rest Sites."],
       "tags": ["Energy_Generation", "Sustain_Penalty"],
-      "agent_hints": "Disables healing at Campfires. AI MUST have alternative sustain (Meat on the Bone, Reaper, passive healing) or overwhelming defense before routing with this."
+      "agent_hints": "Disables healing at Campfires. AI MUST have alternative sustain (Meat on the Bone, Reaper, passive healing) or overwhelming defense before routing with this.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Cursed_Key",
       "name": "Cursed Key",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Open_Non_Boss_Chest", "Action: Obtain_Curse"],
+      "trigger": "Open_Non_Boss_Chest",
+      "provides_text": ["Gain 1 Energy at the start of each turn. Whenever you open a non-boss chest, obtain a Curse."],
       "tags": ["Energy_Generation", "Curse_Synergy"],
-      "agent_hints": "AI must evaluate: Skip chests to avoid curses, or take the curse and route to a Shop/use Omamori to remove it."
+      "agent_hints": "AI must evaluate: Skip chests to avoid curses, or take the curse and route to a Shop/use Omamori to remove it.",
+      "synergy": {
+        "requires": {
+          "CURSE_NEGATION": 3.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Ectoplasm",
       "name": "Ectoplasm",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Disable_Gold_Gain"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer gain Gold."],
       "tags": ["Energy_Generation", "Economy_Penalty"],
-      "agent_hints": "Completely kills shop scaling. AI should drastically lower the priority of Shop nodes in the pathing algorithm after acquiring."
+      "agent_hints": "Completely kills shop scaling. AI should drastically lower the priority of Shop nodes in the pathing algorithm after acquiring.",
+      "synergy": {
+        "requires": {
+          "ECONOMY": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Fusion_Hammer",
       "name": "Fusion Hammer",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Disable_Smith_Action"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer Smith at Rest Sites."],
       "tags": ["Energy_Generation", "Upgrade_Penalty"],
-      "agent_hints": "Disables upgrading at Campfires. Excellent if AI already has Apotheosis, Toxic Egg, or a fully upgraded core deck. Pairs well with Shovel/Peace Pipe."
+      "agent_hints": "Disables upgrading at Campfires. Excellent if AI already has Apotheosis, Toxic Egg, or a fully upgraded core deck. Pairs well with Shovel/Peace Pipe.",
+      "synergy": {
+        "requires": {
+          "UPGRADE_SYNERGY": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Philosophers_Stone",
       "name": "Philosopher's Stone",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Start_Combat", "Target: All_Enemies", "Action: Gain_Strength(1)"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Gain 1 Energy at the start of each turn. ALL enemies start with 1 Strength."],
       "tags": ["Energy_Generation", "Defense_Check"],
-      "agent_hints": "Gives enemies +1 Strength. AI must increase the weight of Defensive Modules, especially against multi-hit enemies (e.g., Byrds, Book of Stabbing)."
+      "agent_hints": "Gives enemies +1 Strength. AI must increase the weight of Defensive Modules, especially against multi-hit enemies (e.g., Byrds, Book of Stabbing).",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Runic_Dome",
       "name": "Runic Dome",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Hide_Enemy_Intents"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer see enemy Intents."],
       "tags": ["Energy_Generation", "Information_Penalty"],
-      "agent_hints": "Hides enemy intents. AI must rely entirely on the determinism in its 'Monster DB' (logic_notes) to predict attacks. If a pattern is highly random, AI must over-block."
+      "agent_hints": "Hides enemy intents. AI must rely entirely on the determinism in its logic to predict attacks. If a pattern is highly random, AI must over-block.",
+      "synergy": {
+        "requires": {
+          "DEFENSIVE_CONSISTENCY": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Runic_Pyramid",
       "name": "Runic Pyramid",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Retain_All_Hand"],
-      "requires": ["Trigger: End_Turn", "Condition: Disable_Hand_Discard"],
+      "trigger": "End_Turn",
+      "provides_text": ["At the end of your turn, you no longer discard your hand."],
       "tags": ["Hand_Manipulation", "Combo_Synergy"],
-      "agent_hints": "Game-changing relic. AI should HOLD situational cards (board clears, massive blocks) until the exact optimal turn. Anti-synergy with Snecko Eye and Wounds."
+      "agent_hints": "Game-changing relic. AI should HOLD situational cards (board clears, massive blocks) until the exact optimal turn. Anti-synergy with Snecko Eye and Wounds.",
+      "synergy": {
+        "requires": {
+          "LOW_COST_CARD": 2.0
+        },
+        "provides": {
+          "RETAIN": 5.0,
+          "COMBO_POTENTIAL": 5.0
+        }
+      }
     },
     {
       "id": "Snecko_Eye",
       "name": "Snecko Eye",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Draw(+2)"],
-      "requires": ["Trigger: Start_Combat", "Condition: Apply_Confused_Buff"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Draw 2 additional cards. Card costs are randomized."],
       "tags": ["Card_Draw", "Energy_Cheat"],
-      "agent_hints": "Card costs are randomized (0-3). AI must prioritize drafting high-cost cards (Meteor Strike, Demon Form). AI routing must ignore standard energy curve math."
+      "agent_hints": "Card costs are randomized (0-3). AI must prioritize drafting high-cost cards (Meteor Strike, Demon Form) and completely ignore 0-cost cards.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 8.0,
+          "ZERO_COST_CARD": -5.0
+        },
+        "provides": {
+          "CARD_DRAW": 2.0
+        }
+      }
     },
     {
       "id": "Sozu",
       "name": "Sozu",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Passive", "Condition: Disable_Potion_Obtain"],
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer obtain potions."],
       "tags": ["Energy_Generation", "Potion_Penalty"],
-      "agent_hints": "Cannot obtain potions. AI must remove potion reliance from boss-fight survival calculations."
+      "agent_hints": "Cannot obtain potions. AI must remove potion reliance from boss-fight survival calculations.",
+      "synergy": {
+        "requires": {
+          "POTION_SYNERGY": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Velvet_Choker",
       "name": "Velvet Choker",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Gain_Max_Energy(1)"],
-      "requires": ["Trigger: Play_Card(6)", "Action: Prevent_Card_Play"],
+      "trigger": "Play_Card(6)",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You cannot play more than 6 cards per turn."],
       "tags": ["Energy_Generation", "Card_Play_Limit"],
-      "agent_hints": "Hard limit of 6 cards per turn. AI MUST disable 'Infinite Combo' evaluations and avoid drafting 0-cost cards (Shivs, Flurry of Blows)."
+      "agent_hints": "Hard limit of 6 cards per turn. AI MUST disable 'Infinite Combo' evaluations and avoid drafting 0-cost cards (Shivs, Flurry of Blows).",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 4.0,
+          "ZERO_COST_CARD": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
     },
     {
       "id": "Calling_Bell",
       "name": "Calling Bell",
       "tier": "Boss",
       "pool": "Any",
-      "provides": ["Action: Obtain_Relics(3)"],
-      "requires": ["Trigger: Pickup", "Action: Obtain_Curse(Curse_of_the_Bell)"],
+      "trigger": "Pickup",
+      "provides_text": ["Upon pickup, obtain a unique Curse and 3 relics."],
       "tags": ["Scaling", "Curse_Synergy"],
-      "agent_hints": "Massive instant power spike at the cost of an unremovable curse. Excellent with Du-Vu Doll or Blue Candle."
+      "agent_hints": "Massive instant power spike at the cost of an unremovable curse. Excellent with Du-Vu Doll or Blue Candle.",
+      "synergy": {
+        "requires": {
+          "CURSE_SYNERGY": 2.0
+        },
+        "provides": {
+          "RELIC_GENERATION": 3.0
+        }
+      }
     },
     {
       "id": "Enchiridion",
       "name": "Enchiridion",
       "tier": "Event",
       "pool": "Any",
-      "provides": ["Action: Add_Card_To_Hand(Random_Power)", "Action: Set_Cost_To_Zero(This_Turn)"],
-      "requires": ["Trigger: Start_Combat"],
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, add a random Power card to your hand. It costs 0 until the end of turn."],
       "tags": ["Power_Synergy", "Turn_1_Setup"],
-      "agent_hints": "Guarantees a free Power on Turn 1. AI should always evaluate playing this Power immediately unless it actively harms the current strategy."
+      "agent_hints": "Guarantees a free Power on Turn 1. AI should always evaluate playing this Power immediately unless it actively harms the current strategy.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "POWER_SYNERGY": 2.0,
+          "TURN_1_SETUP": 2.0
+        }
+      }
     },
     {
       "id": "Mutagenic_Strength",
       "name": "Mutagenic Strength",
       "tier": "Event",
       "pool": "Any",
-      "provides": ["Action: Gain_Strength(3)"],
-      "requires": ["Trigger: Start_Combat", "Condition: Lose_Strength_End_Of_Turn(3)"],
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat with 3 Strength. Lose 3 Strength at the end of your first turn."],
       "tags": ["Turn_1_Setup", "Burst_Damage"],
-      "agent_hints": "Provides +3 Strength only for Turn 1. AI must heavily bias Max Damage Solvers to use all attacks on Turn 1 to maximize this buff."
+      "agent_hints": "Provides +3 Strength only for Turn 1. AI must heavily bias Max Damage Solvers to use all attacks on Turn 1 to maximize this buff.",
+      "synergy": {
+        "requires": {
+          "TURN_1_DAMAGE": 4.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 4.0
+        }
+      }
     },
     {
       "id": "Necronomicon",
       "name": "Necronomicon",
       "tier": "Event",
       "pool": "Any",
-      "provides": ["Action: Play_Card_Twice"],
-      "requires": ["Trigger: Play_First_Attack(Cost_>=_2)"],
+      "trigger": "Play_First_Attack(Cost_>=_2)",
+      "provides_text": ["The first Attack played each turn that costs 2 or more is played twice. Upon pickup, obtain a special Curse."],
       "tags": ["Burst_Damage", "High_Cost_Synergy"],
-      "agent_hints": "Doubles the first 2+ cost attack played each turn. AI must structure its hand sequence to ALWAYS play the heaviest attack first to trigger this effect."
+      "agent_hints": "Doubles the first 2+ cost attack played each turn. AI must structure its hand sequence to ALWAYS play the heaviest attack first to trigger this effect.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_ATTACK": 5.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 5.0
+        }
+      }
     },
     {
       "id": "Mark_of_the_Bloom",
       "name": "Mark of the Bloom",
       "tier": "Event",
       "pool": "Any",
-      "provides": ["Action: Upgrade_All_Cards"],
-      "requires": ["Trigger: Passive", "Condition: Disable_All_Healing"],
+      "trigger": "Passive",
+      "provides_text": ["You can no longer heal."],
       "tags": ["Upgrade", "Sustain_Penalty"],
-      "agent_hints": "Prevents ALL healing (Campfires, Potions, Relics). AI must shift to a 100% flawless defense strategy, as chip damage is now permanent."
+      "agent_hints": "Prevents ALL healing (Campfires, Potions, Relics). AI must shift to a 100% flawless defense strategy, as chip damage is now permanent.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 5.0,
+          "SUSTAIN": -10.0
+        },
+        "provides": {
+          "UPGRADE_ALL": 5.0
+        }
+      }
+    },
+    {
+      "id": "Bird_Faced_Urn",
+      "name": "Bird-Faced Urn",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Play_Power",
+      "provides_text": ["Heal 2 HP whenever you play a Power card."],
+      "tags": ["Sustain", "Power_Synergy"],
+      "agent_hints": "Powerful healing engine for Defect or any deck running multiple setup powers. Can stall fights against weak enemies to full heal.",
+      "synergy": {
+        "requires": {
+          "POWER_CARD": 3.0
+        },
+        "provides": {
+          "SUSTAIN": 4.0
+        }
+      }
+    },
+    {
+      "id": "Calipers",
+      "name": "Calipers",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Start_Turn",
+      "provides_text": ["At the start of your turn, lose 15 Block rather than all of your Block."],
+      "tags": ["Defense", "Scaling"],
+      "agent_hints": "Enables extreme block scaling. Synergizes with Frost Orbs or high-block turns without needing Barricade/Blur.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 4.0
+        },
+        "provides": {
+          "BLOCK_RETENTION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Captains_Wheel",
+      "name": "Captain's Wheel",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Turn_Count(3)",
+      "provides_text": ["Gain 18 Block at the start of your 3rd turn."],
+      "tags": ["Defense", "Turn_3_Setup"],
+      "agent_hints": "Solves Turn 3 defense natively, allowing energy to be spent purely on offense (crucial against Exploder or Spire Shield).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "BLOCK_GENERATION": 5.0,
+          "TURN_3_DEFENSE": 3.0
+        }
+      }
+    },
+    {
+      "id": "Champion_Belt",
+      "name": "Champion Belt",
+      "tier": "Rare",
+      "pool": "Red",
+      "trigger": "Apply_Debuff(Vulnerable)",
+      "provides_text": ["Whenever you apply Vulnerable, also apply 1 Weak."],
+      "tags": ["Debuff_Synergy", "Defense"],
+      "agent_hints": "Turns offensive Vulnerable cards (e.g., Bash, Uppercut) into incredibly strong defensive mitigation tools.",
+      "synergy": {
+        "requires": {
+          "VULNERABLE": 3.0
+        },
+        "provides": {
+          "WEAK": 3.0
+        }
+      }
+    },
+    {
+      "id": "Charons_Ashes",
+      "name": "Charon's Ashes",
+      "tier": "Rare",
+      "pool": "Red",
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Whenever you Exhaust a card, deal 3 damage to ALL enemies."],
+      "tags": ["Exhaust_Synergy", "AoE", "Passive_Damage"],
+      "agent_hints": "Massive AoE scaling for Exhaust-heavy Ironclad decks (e.g., Fiend Fire, Corruption).",
+      "synergy": {
+        "requires": {
+          "EXHAUST_EVENT": 5.0
+        },
+        "provides": {
+          "AOE_DAMAGE": 3.0,
+          "PASSIVE_DAMAGE": 2.0
+        }
+      }
+    },
+    {
+      "id": "Cloak_Clasp",
+      "name": "Cloak Clasp",
+      "tier": "Rare",
+      "pool": "Purple",
+      "trigger": "End_Turn",
+      "provides_text": ["At the end of your turn, gain 1 Block for each card in your hand."],
+      "tags": ["Defense", "Retain_Synergy"],
+      "agent_hints": "High synergy with Runic Pyramid or Retain-heavy Watcher decks. Allows for completely passive blocking.",
+      "synergy": {
+        "requires": {
+          "RETAIN": 3.0,
+          "CARD_DRAW": 2.0
+        },
+        "provides": {
+          "BLOCK_GENERATION": 3.0
+        }
+      }
+    },
+    {
+      "id": "Dead_Branch",
+      "name": "Dead Branch",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Whenever you Exhaust a card, add a random card to your hand."],
+      "tags": ["Exhaust_Synergy", "Deck_Generation", "Infinite_Potential"],
+      "agent_hints": "One of the most game-breaking relics. Perfect synergy with Corruption. If generated cards are viable, exhaust everything.",
+      "synergy": {
+        "requires": {
+          "EXHAUST_EVENT": 5.0
+        },
+        "provides": {
+          "CARD_GENERATION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Du_Vu_Doll",
+      "name": "Du-Vu Doll",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["For each Curse in your deck, start each combat with 1 additional Strength."],
+      "tags": ["Scaling", "Curse_Synergy"],
+      "agent_hints": "Turns curses from pure detriments into flat scaling. Incredible synergy with Calling Bell or Necronomicon.",
+      "synergy": {
+        "requires": {
+          "CURSE_CARD": 3.0
+        },
+        "provides": {
+          "STRENGTH": 2.0
+        }
+      }
+    },
+    {
+      "id": "Emotion_Chip",
+      "name": "Emotion Chip",
+      "tier": "Rare",
+      "pool": "Blue",
+      "trigger": "Start_Turn_If_Damaged_Last_Turn",
+      "provides_text": ["If you took HP damage last turn, trigger the passive ability of all your Orbs at the start of your turn."],
+      "tags": ["Orb_Synergy", "Damage_Synergy"],
+      "agent_hints": "Rewards taking small chip damage to trigger massive Frost or Lightning passive procs.",
+      "synergy": {
+        "requires": {
+          "ORB_GENERATION": 3.0,
+          "SELF_DAMAGE": 1.0
+        },
+        "provides": {
+          "ORB_PASSIVE": 3.0
+        }
+      }
+    },
+    {
+      "id": "Fossilized_Helix",
+      "name": "Fossilized Helix",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Take_HP_Damage",
+      "provides_text": ["Prevent the first time you would lose HP in combat."],
+      "tags": ["Defense"],
+      "agent_hints": "AI should intentionally NOT block small early hits if a massive hit is expected later, saving the buffer for the big hit.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DAMAGE_MITIGATION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Gambling_Chip",
+      "name": "Gambling Chip",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, discard any number of cards then draw that many."],
+      "tags": ["Turn_1_Setup", "Consistency"],
+      "agent_hints": "Perfect consistency for Turn 1. Discard basic attacks/defends to aggressively dig for key setup powers.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "TURN_1_CONSISTENCY": 5.0,
+          "DISCARD_SYNERGY": 2.0
+        }
+      }
+    },
+    {
+      "id": "Ginger",
+      "name": "Ginger",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["You can no longer be Weakened."],
+      "tags": ["Debuff_Immunity", "Attack_Synergy"],
+      "agent_hints": "Ensures damage output is never reduced. High value against bosses that constantly apply Weak (e.g., Nemesis, Corrupt Heart).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DEBUFF_IMMUNITY_WEAK": 5.0
+        }
+      }
+    },
+    {
+      "id": "Girya",
+      "name": "Girya",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Lift at Rest Sites. Lifts increase your Strength permanently (Max 3)."],
+      "tags": ["Scaling", "Rest_Site"],
+      "agent_hints": "Permanent +3 Strength if fully utilized. AI should evaluate if the deck has enough sustain to skip healing and lift instead.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 2.0
+        },
+        "provides": {
+          "STRENGTH": 3.0
+        }
+      }
+    },
+    {
+      "id": "Golden_Eye",
+      "name": "Golden Eye",
+      "tier": "Rare",
+      "pool": "Purple",
+      "trigger": "Scry",
+      "provides_text": ["Whenever you Scry, Scry 2 additional cards."],
+      "tags": ["Scry_Synergy", "Consistency"],
+      "agent_hints": "Makes Scry cards incredibly deep, allowing near-perfect manipulation of upcoming draws.",
+      "synergy": {
+        "requires": {
+          "SCRY": 4.0
+        },
+        "provides": {
+          "CARD_MANIPULATION": 4.0
+        }
+      }
+    },
+    {
+      "id": "Ice_Cream",
+      "name": "Ice Cream",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "End_Turn",
+      "provides_text": ["Energy is now conserved between turns."],
+      "tags": ["Energy_Generation", "Scaling"],
+      "agent_hints": "Game-breaking utility. AI can fully skip turns defensively to unleash massive X-cost cards (e.g., Whirlwind, Skewer) later.",
+      "synergy": {
+        "requires": {
+          "ENERGY_GENERATION": 2.0,
+          "HIGH_COST_CARD": 3.0
+        },
+        "provides": {
+          "ENERGY_RETENTION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Incense_Burner",
+      "name": "Incense Burner",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Turn_Count(6)",
+      "provides_text": ["Every 6 turns, gain 1 Intangible."],
+      "tags": ["Defense", "Boss_Synergy"],
+      "agent_hints": "Counter persists across combats. AI must track the counter to set up Intangible for exact turns when Bosses do massive attacks (e.g., Hyperbeam, Execution).",
+      "synergy": {
+        "requires": {
+          "STALL_SYNERGY": 3.0
+        },
+        "provides": {
+          "DAMAGE_MITIGATION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Mango",
+      "name": "Mango",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Pickup",
+      "provides_text": ["Raise your Max HP by 14 and heal 14 HP."],
+      "tags": ["Max_HP", "Sustain"],
+      "agent_hints": "Massive flat survivability increase. Extremely high value if picked up when at low HP.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "MAX_HP": 14.0,
+          "SUSTAIN": 8.0
+        }
+      }
+    },
+    {
+      "id": "Old_Coin",
+      "name": "Old Coin",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Pickup",
+      "provides_text": ["Gain 300 Gold."],
+      "tags": ["Economy"],
+      "agent_hints": "Instantly provides enough gold for 1~2 powerful relics or card removals at the next shop. Prioritize pathing to a shop after acquiring.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "ECONOMY": 10.0
+        }
+      }
+    },
+    {
+      "id": "Peace_Pipe",
+      "name": "Peace Pipe",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Toke at Rest Sites to remove a card from your deck."],
+      "tags": ["Deck_Thinning", "Rest_Site"],
+      "agent_hints": "Enables aggressive deck thinning. AI should prioritize removing basic Strikes/Defends at Campfires if HP is safe.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 2.0
+        },
+        "provides": {
+          "DECK_THINNING": 5.0
+        }
+      }
+    },
+    {
+      "id": "Pocketwatch",
+      "name": "Pocketwatch",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Start_Turn",
+      "provides_text": ["Whenever you play 3 or fewer cards in a turn, draw 3 additional cards at the start of your next turn."],
+      "tags": ["Card_Draw", "High_Cost_Synergy"],
+      "agent_hints": "Incredible draw engine for high-energy/cost decks. AI must weigh the value of playing a 4th weak card vs drawing 3 extra cards next turn.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 4.0
+        },
+        "provides": {
+          "CARD_DRAW": 5.0
+        }
+      }
+    },
+    {
+      "id": "Prayer_Wheel",
+      "name": "Prayer Wheel",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Combat_Reward_Screen",
+      "provides_text": ["Normal enemies drop an additional card reward."],
+      "tags": ["Deck_Generation", "Consistency"],
+      "agent_hints": "Doubles card rewards from normal enemies. Massively increases the chance of finding core synergy cards. Pairs perfectly with Singing Bowl.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DECK_CONSISTENCY": 5.0
+        }
+      }
+    },
+    {
+      "id": "Shovel",
+      "name": "Shovel",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Rest_Site",
+      "provides_text": ["You can now Dig for loot at Rest Sites to gain a Relic."],
+      "tags": ["Scaling", "Rest_Site"],
+      "agent_hints": "Turns Campfires into Relic nodes. AI should prioritize Campfire pathing and avoid resting/upgrading unless absolutely necessary.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 3.0
+        },
+        "provides": {
+          "RELIC_GENERATION": 5.0
+        }
+      }
+    },
+    {
+      "id": "Stone_Calendar",
+      "name": "Stone Calendar",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Turn_Count(7)",
+      "provides_text": ["At the end of turn 7, deal 52 damage to ALL enemies."],
+      "tags": ["Burst_Damage", "AoE", "Stall_Synergy"],
+      "agent_hints": "Provides massive AoE on Turn 7. If the AI detects it can survive until Turn 7, it can play purely defensively and let the calendar kill the enemies.",
+      "synergy": {
+        "requires": {
+          "STALL_SYNERGY": 3.0
+        },
+        "provides": {
+          "AOE_DAMAGE": 5.0,
+          "BURST_DAMAGE": 5.0
+        }
+      }
+    },
+    {
+      "id": "Thread_and_Needle",
+      "name": "Thread and Needle",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, gain 4 Plated Armor."],
+      "tags": ["Defense", "Scaling"],
+      "agent_hints": "Passive defense that persists until HP damage is taken. AI should prioritize full-blocking early turns to keep the armor active.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 2.0
+        },
+        "provides": {
+          "PASSIVE_DEFENSE": 4.0
+        }
+      }
+    },
+    {
+      "id": "Torii",
+      "name": "Torii",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Take_Unblocked_Damage(Between_2_and_5)",
+      "provides_text": ["Whenever you would receive 5 or less unblocked attack damage, reduce it to 1."],
+      "tags": ["Defense", "Mitigation"],
+      "agent_hints": "Massively reduces multi-hit damage (e.g., Byrds, Book of Stabbing). AI should calculate exact block to let 5 or less damage through, reducing it to 1.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DAMAGE_MITIGATION": 4.0
+        }
+      }
+    },
+    {
+      "id": "Tough_Bandages",
+      "name": "Tough Bandages",
+      "tier": "Rare",
+      "pool": "Green",
+      "trigger": "Discard_Card",
+      "provides_text": ["Whenever you discard a card during your turn, gain 3 Block."],
+      "tags": ["Defense", "Discard_Synergy"],
+      "agent_hints": "Core defensive engine for Discard Silent decks. Turns Calculated Gamble or Dagger Throw into massive block cards.",
+      "synergy": {
+        "requires": {
+          "DISCARD_SYNERGY": 4.0
+        },
+        "provides": {
+          "BLOCK_GENERATION": 4.0
+        }
+      }
+    },
+    {
+      "id": "Turnip",
+      "name": "Turnip",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["You can no longer be Frail."],
+      "tags": ["Debuff_Immunity", "Defense"],
+      "agent_hints": "Ensures Block output is never reduced. High value against bosses that apply Frail (e.g., Slime Boss, Corrupt Heart).",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "DEBUFF_IMMUNITY_FRAIL": 5.0
+        }
+      }
+    },
+    {
+      "id": "Unceasing_Top",
+      "name": "Unceasing Top",
+      "tier": "Rare",
+      "pool": "Any",
+      "trigger": "Hand_Empty",
+      "provides_text": ["Whenever you have no cards in hand during your turn, draw a card."],
+      "tags": ["Card_Draw", "Infinite_Synergy", "Low_Cost_Synergy"],
+      "agent_hints": "Can enable infinite turns with 0-cost cards. AI must prioritize playing all cards in hand to trigger the draw. Anti-synergy with Curses/Statuses.",
+      "synergy": {
+        "requires": {
+          "ZERO_COST_CARD": 5.0,
+          "LOW_COST_CARD": 3.0
+        },
+        "provides": {
+          "CARD_DRAW": 5.0,
+          "INFINITE_POTENTIAL": 4.0
+        }
+      }
+    },
+
+    // ==========================================
+    // [5] Shop Relics (상점 전용 유물)
+    // ==========================================
+    {
+      "id": "Clockwork_Souvenir",
+      "name": "Clockwork Souvenir",
+      "tier": "Shop",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat with 1 Artifact."],
+      "tags": ["Debuff_Immunity", "Turn_1_Setup"],
+      "agent_hints": "Blocks the first enemy debuff OR prevents a self-inflicted debuff from cards like Biased Cognition or Wraith Form.",
+      "synergy": {
+        "requires": {
+          "SELF_DEBUFF": 3.0
+        },
+        "provides": {
+          "ARTIFACT": 1.0,
+          "DEBUFF_IMMUNITY": 2.0
+        }
+      }
+    },
+    {
+      "id": "Medical_Kit",
+      "name": "Medical Kit",
+      "tier": "Shop",
+      "pool": "Any",
+      "trigger": "Play_Status",
+      "provides_text": ["Unplayable Status cards can now be played. Exhaust them."],
+      "tags": ["Status_Synergy", "Exhaust_Synergy"],
+      "agent_hints": "Allows exhausting Dazed, Wounds, etc. High priority against Status-heavy enemies (Nemesis, Corrupt Heart). Triggers Exhaust synergies.",
+      "synergy": {
+        "requires": {
+          "STATUS_CARD": 3.0
+        },
+        "provides": {
+          "EXHAUST_EVENT": 2.0,
+          "DECK_THINNING": 2.0
+        }
+      }
+    },
+    {
+      "id": "Orange_Pellets",
+      "name": "Orange Pellets",
+      "tier": "Shop",
+      "pool": "Any",
+      "trigger": "Play_Combination",
+      "provides_text": ["Whenever you play a Power, Attack, and Skill in the same turn, remove all of your Debuffs."],
+      "tags": ["Debuff_Immunity", "Combo_Synergy"],
+      "agent_hints": "One of the strongest items in the game. AI must plan hand sequences to play Attack+Skill+Power in the same turn to clear self-debuffs (e.g., Fasting, Biased Cognition).",
+      "synergy": {
+        "requires": {
+          "LOW_COST_CARD": 3.0,
+          "SELF_DEBUFF": 4.0
+        },
+        "provides": {
+          "DEBUFF_CLEAR": 5.0
+        }
+      }
+    },
+    {
+      "id": "Strange_Spoon",
+      "name": "Strange Spoon",
+      "tier": "Shop",
+      "pool": "Any",
+      "trigger": "Exhaust_Card",
+      "provides_text": ["Cards which Exhaust when played have a 50% chance to Discard instead."],
+      "tags": ["Exhaust_Synergy", "Card_Recursion"],
+      "agent_hints": "Allows replaying powerful exhaust cards (e.g., Apparition, Catalyst). Do NOT buy if relying on Exhaust to thin the deck for an infinite combo.",
+      "synergy": {
+        "requires": {
+          "EXHAUST_CARD": 3.0
+        },
+        "provides": {
+          "CARD_RECURSION": 4.0
+        }
+      }
+    },
+
+    // ==========================================
+    // [6] Boss Relics (보스 유물: 압도적 메리트와 패널티)
+    // ==========================================
+    {
+      "id": "Busted_Crown",
+      "name": "Busted Crown",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. On Card Reward screens, you have 2 fewer cards to choose from."],
+      "tags": ["Energy_Generation", "Deck_Generation_Penalty"],
+      "agent_hints": "Provides Energy but cripples deck building. AI should ONLY pick this if the core deck synergy is already fully assembled and requires no further key cards.",
+      "synergy": {
+        "requires": {
+          "DECK_CONSISTENCY": -5.0 // 페널티로 인해 덱 일관성을 깎아먹음
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Coffee_Dripper",
+      "name": "Coffee Dripper",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer Rest at Rest Sites."],
+      "tags": ["Energy_Generation", "Sustain_Penalty"],
+      "agent_hints": "Disables healing at Campfires. AI MUST have alternative sustain (Meat on the Bone, Reaper, passive healing) or overwhelming defense before routing with this.",
+      "synergy": {
+        "requires": {
+          "SUSTAIN": 5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Cursed_Key",
+      "name": "Cursed Key",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Open_Non_Boss_Chest",
+      "provides_text": ["Gain 1 Energy at the start of each turn. Whenever you open a non-boss chest, obtain a Curse."],
+      "tags": ["Energy_Generation", "Curse_Synergy"],
+      "agent_hints": "AI must evaluate: Skip chests to avoid curses, or take the curse and route to a Shop/use Omamori to remove it.",
+      "synergy": {
+        "requires": {
+          "CURSE_NEGATION": 3.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Ectoplasm",
+      "name": "Ectoplasm",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer gain Gold."],
+      "tags": ["Energy_Generation", "Economy_Penalty"],
+      "agent_hints": "Completely kills shop scaling. AI should drastically lower the priority of Shop nodes in the pathing algorithm after acquiring.",
+      "synergy": {
+        "requires": {
+          "ECONOMY": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Fusion_Hammer",
+      "name": "Fusion Hammer",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer Smith at Rest Sites."],
+      "tags": ["Energy_Generation", "Upgrade_Penalty"],
+      "agent_hints": "Disables upgrading at Campfires. Excellent if AI already has Apotheosis, Toxic Egg, or a fully upgraded core deck. Pairs well with Shovel/Peace Pipe.",
+      "synergy": {
+        "requires": {
+          "UPGRADE_SYNERGY": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Philosophers_Stone",
+      "name": "Philosopher's Stone",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["Gain 1 Energy at the start of each turn. ALL enemies start with 1 Strength."],
+      "tags": ["Energy_Generation", "Defense_Check"],
+      "agent_hints": "Gives enemies +1 Strength. AI must increase the weight of Defensive Modules, especially against multi-hit enemies (e.g., Byrds, Book of Stabbing).",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Runic_Dome",
+      "name": "Runic Dome",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer see enemy Intents."],
+      "tags": ["Energy_Generation", "Information_Penalty"],
+      "agent_hints": "Hides enemy intents. AI must rely entirely on the determinism in its logic to predict attacks. If a pattern is highly random, AI must over-block.",
+      "synergy": {
+        "requires": {
+          "DEFENSIVE_CONSISTENCY": 4.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Runic_Pyramid",
+      "name": "Runic Pyramid",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "End_Turn",
+      "provides_text": ["At the end of your turn, you no longer discard your hand."],
+      "tags": ["Hand_Manipulation", "Combo_Synergy"],
+      "agent_hints": "Game-changing relic. AI should HOLD situational cards (board clears, massive blocks) until the exact optimal turn. Anti-synergy with Snecko Eye and Wounds.",
+      "synergy": {
+        "requires": {
+          "LOW_COST_CARD": 2.0
+        },
+        "provides": {
+          "RETAIN": 5.0,
+          "COMBO_POTENTIAL": 5.0
+        }
+      }
+    },
+    {
+      "id": "Snecko_Eye",
+      "name": "Snecko Eye",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["Draw 2 additional cards. Card costs are randomized."],
+      "tags": ["Card_Draw", "Energy_Cheat"],
+      "agent_hints": "Card costs are randomized (0-3). AI must prioritize drafting high-cost cards (Meteor Strike, Demon Form) and completely ignore 0-cost cards.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 8.0,
+          "ZERO_COST_CARD": -5.0
+        },
+        "provides": {
+          "CARD_DRAW": 2.0
+        }
+      }
+    },
+    {
+      "id": "Sozu",
+      "name": "Sozu",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer obtain potions."],
+      "tags": ["Energy_Generation", "Potion_Penalty"],
+      "agent_hints": "Cannot obtain potions. AI must remove potion reliance from boss-fight survival calculations.",
+      "synergy": {
+        "requires": {
+          "POTION_SYNERGY": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Velvet_Choker",
+      "name": "Velvet Choker",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Play_Card(6)",
+      "provides_text": ["Gain 1 Energy at the start of each turn. You cannot play more than 6 cards per turn."],
+      "tags": ["Energy_Generation", "Card_Play_Limit"],
+      "agent_hints": "Hard limit of 6 cards per turn. AI MUST disable 'Infinite Combo' evaluations and avoid drafting 0-cost cards (Shivs, Flurry of Blows).",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_CARD": 4.0,
+          "ZERO_COST_CARD": -5.0
+        },
+        "provides": {
+          "ENERGY": 1.0
+        }
+      }
+    },
+    {
+      "id": "Calling_Bell",
+      "name": "Calling Bell",
+      "tier": "Boss",
+      "pool": "Any",
+      "trigger": "Pickup",
+      "provides_text": ["Upon pickup, obtain a unique Curse and 3 relics."],
+      "tags": ["Scaling", "Curse_Synergy"],
+      "agent_hints": "Massive instant power spike at the cost of an unremovable curse. Excellent with Du-Vu Doll or Blue Candle.",
+      "synergy": {
+        "requires": {
+          "CURSE_SYNERGY": 2.0
+        },
+        "provides": {
+          "RELIC_GENERATION": 3.0
+        }
+      }
+    },
+
+    {
+      "id": "Enchiridion",
+      "name": "Enchiridion",
+      "tier": "Event",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["At the start of each combat, add a random Power card to your hand. It costs 0 until the end of turn."],
+      "tags": ["Power_Synergy", "Turn_1_Setup"],
+      "agent_hints": "Guarantees a free Power on Turn 1. AI should always evaluate playing this Power immediately unless it actively harms the current strategy.",
+      "synergy": {
+        "requires": {},
+        "provides": {
+          "POWER_SYNERGY": 2.0,
+          "TURN_1_SETUP": 2.0
+        }
+      }
+    },
+    {
+      "id": "Mutagenic_Strength",
+      "name": "Mutagenic Strength",
+      "tier": "Event",
+      "pool": "Any",
+      "trigger": "Start_Combat",
+      "provides_text": ["Start each combat with 3 Strength. Lose 3 Strength at the end of your first turn."],
+      "tags": ["Turn_1_Setup", "Burst_Damage"],
+      "agent_hints": "Provides +3 Strength only for Turn 1. AI must heavily bias Max Damage Solvers to use all attacks on Turn 1 to maximize this buff.",
+      "synergy": {
+        "requires": {
+          "TURN_1_DAMAGE": 4.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 4.0
+        }
+      }
+    },
+    {
+      "id": "Necronomicon",
+      "name": "Necronomicon",
+      "tier": "Event",
+      "pool": "Any",
+      "trigger": "Play_First_Attack(Cost_>=_2)",
+      "provides_text": ["The first Attack played each turn that costs 2 or more is played twice. Upon pickup, obtain a special Curse."],
+      "tags": ["Burst_Damage", "High_Cost_Synergy"],
+      "agent_hints": "Doubles the first 2+ cost attack played each turn. AI must structure its hand sequence to ALWAYS play the heaviest attack first to trigger this effect.",
+      "synergy": {
+        "requires": {
+          "HIGH_COST_ATTACK": 5.0
+        },
+        "provides": {
+          "BURST_DAMAGE": 5.0
+        }
+      }
+    },
+    {
+      "id": "Mark_of_the_Bloom",
+      "name": "Mark of the Bloom",
+      "tier": "Event",
+      "pool": "Any",
+      "trigger": "Passive",
+      "provides_text": ["You can no longer heal."],
+      "tags": ["Upgrade", "Sustain_Penalty"],
+      "agent_hints": "Prevents ALL healing (Campfires, Potions, Relics). AI must shift to a 100% flawless defense strategy, as chip damage is now permanent.",
+      "synergy": {
+        "requires": {
+          "BLOCK_GENERATION": 5.0,
+          "SUSTAIN": -999.0
+        },
+        "provides": {
+          "UPGRADE_ALL": 5.0
+        }
+      }
     }
+
   ]
 }
