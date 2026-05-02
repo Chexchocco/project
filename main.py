@@ -33,7 +33,7 @@ def battle_module(state, avail):
     hand = combat.get("hand", [])
     player_block = player.get("block", 0)
     
-    #log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
+    log.info(f"⚔️ [전투] 체력: {hp} / 남은 에너지: {energy}")
     
     action_taken = False
     
@@ -50,8 +50,8 @@ def battle_module(state, avail):
                 break
         
         next_card_idx = module.lethal_expert(hand, energy, target_monster)
-        #if next_card_idx != -1:
-            #log.info(f"[마무리] 최소 비용으로 적 처치: {next_card_idx+1}번째 카드")        
+        if next_card_idx != -1:
+            log.info(f"[마무리] 최소 비용으로 적 처치: {next_card_idx+1}번째 카드")        
 
         
         if next_card_idx == -1 :    
@@ -160,7 +160,7 @@ def main():
                         continue
                   # [상황 B] 카드 보상 화면
                 elif screen_type == "COMBAT_REWARD":
-                    #log.info("🎁 전투 보상 챙기기")
+                    log.info("🎁 전투 보상 챙기기")
                     rewards = state.get("screen_state", {}).get("rewards", [])
                     potions = state.get("potions", [])
                     has_empty_potion_slot = any(p.get("id") == "Potion Slot" for p in potions)
@@ -347,41 +347,24 @@ def main():
                     # 열기만하면 이제 알아서 넘어가긴함 지금은... 그래서 추후에는 열고 나서 바로 여기 뒤에다가 
                     #붙여가지고 제어필요
                 elif screen_type == "HAND_SELECT":
-                        log.info("✋ 전투 중 패 선택(HAND_SELECT) 화면 진입")
-                        screen_state = state.get("screen_state", {})
-                        
-                        selected_cards = screen_state.get("selected", [])
-                        max_cards = screen_state.get("max_cards", 1)
-                        current_action = state.get("game_state", {}).get("current_action", "")
-                        
-                        # 🚨 1. 비상 방어선: 게임이 choose를 차단했는가? (카드를 다 골라서 패가 비었을 때 등)
-                        if "choose" not in avail:
-                            if "confirm" in avail:
-                                log.info("✅ 더 이상 고를 카드가 없습니다 (또는 선택 완료). Confirm 실행!")
-                                print("confirm", flush=True)
-                            else:
-                                log.info("⏳ 애니메이션 또는 서버 틱 대기 중...")
-                            continue
-                            
-                        # 🎲 2. 도박꾼의 칩(GamblingChipAction) 임시 하드코딩
-                        # LLM 로직이 붙기 전까지는 뻘짓 방지를 위해 아무것도 안 버리고 바로 스킵!
-                        if current_action == "GamblingChipAction":
-                            if "confirm" in avail:
-                                log.info("🎲 [도박꾼의 칩] 발동. 카드를 교체하지 않고 스킵합니다.")
-                                print("confirm", flush=True)
-                            continue
-
-                        # 3. 일반적인 패 선택 로직 (무장, 전장의 함성 등)
-                        if len(selected_cards) >= max_cards:
-                            log.info("✅ 패 선택 목표치 달성! Confirm을 누릅니다.")
-                            print("confirm", flush=True)
-                            continue
-                            
-                        # 4. 카드 선택
-                        # 추후 여기서 상태이상 카드나 타격을 우선적으로 고르도록 업그레이드!
-                        log.info(f"👉 패에서 카드를 선택합니다. (현재 {len(selected_cards)}/{max_cards}장)")
-                        print("choose 0", flush=True)
+                    log.info("전투 중 패 선택(HAND_SELECT) 화면 진입")
+                    screen_state = state.get("screen_state", {})
+                    
+                    selected_cards = screen_state.get("selected", [])
+                    max_cards = screen_state.get("max_cards", 1)
+                    
+                    if len(selected_cards) >= max_cards:
+                        log.info("✅ 패 선택 완료! Confirm을 누릅니다.")
+                        print("confirm", flush=True)
                         continue
+                        
+                    # 2. 카드를 아직 덜 골랐을 때 고르는 로직
+                    # (일단은 게임이 안 멈추고 계속 굴러가게 만드는 것이 목표이므로 무조건 0번을 고릅니다)
+                    # 추후 '전장의 함성'이면 똥카드(상태이상/타격)를 고르고, '무장'이면 좋은 카드를 고르게 업그레이드 가능!
+                    
+                    log.info("👉 패에서 0번 카드를 선택합니다.")
+                    print("choose 0", flush=True)
+                    continue
                 elif screen_type == "SHOP_ROOM":
                     if not WAITING_FOR_SHOP :
                         log.info("🛒 상점 주인에게 말을 겁니다.")
