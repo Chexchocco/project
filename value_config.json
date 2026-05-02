@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "STS AI Agent Strategy Weights - Ironclad Base",
+    "tuning_step": 0.01   
+  },
+
+  "base_demand": {
+    
+    "RAW_DAMAGE": 1.2,        
+    "BLOCK_GENERATION": 1.2,  
+    "AOE_DAMAGE": 0.3,
+    
+    "CARD_DRAW": 0.5,        
+    "ENERGY_GENERATION": 0.2,
+    "SCALING_DAMAGE": 0.4,
+    "SCALING_DEFENSE": 0.2,
+    
+    "VULNERABLE": 0.3,
+    "WEAK": 0.4,
+    
+ 
+    "EXHAUST_EVENT": 0.1,     
+    "DISCARD_SYNERGY": 0.1,
+    "STRIKE_CARD": 0.1,
+    "ZERO_COST_CARD": 0.1,
+    "HIGH_COST_CARD": 0.1,
+    
+    "CURSE_CARD": -2.0,
+    "STATUS_CARD": -1.0
+  },
+
+  "act_strategies": {
+    "Act_1": {
+      "act_base_modifiers": {
+        "description": "1막 전반에 걸쳐 기본적으로 적용되는 곱연산 가중치",
+        "RAW_DAMAGE": 1.5,  
+        "BLOCK_GENERATION": 0.8, 
+        "SCALING_DAMAGE": 0.5    
+      },
+      "bosses": {
+        "Slime_Boss": {
+          "llm_prompt": "[CRITICAL] Your act boss is Slime Boss. High AOE damage and massive Turn 3 burst damage are absolute priorities. Do not pick slow scaling cards.",
+          "boss_modifiers": {
+            "AOE_DAMAGE": 2.5, 
+            "BURST_DAMAGE": 1.5,
+            "WEAK": 1.2
+          }
+        },
+        "The_Guardian": {
+          "llm_prompt": "[CRITICAL] Your act boss is The Guardian. You need highly efficient Block cards and predictable damage to control its thorns mode.",
+          "boss_modifiers": {
+            "BLOCK_GENERATION": 1.5,
+            "WEAK": 1.5,
+            "MULTI_HIT": 0.1       
+          }
+        },
+        "Hexaghost": {
+          "llm_prompt": "[CRITICAL] Your act boss is Hexaghost. You need fast scaling or rapid burst before the Inferno attack.",
+          "boss_modifiers": {
+            "SCALING_DAMAGE": 2.0,  
+            "RAW_DAMAGE": 1.2
+          }
+        }
+      }
+    },
+    
+    "Act_2": {
+      "act_base_modifiers": {
+        "description": "2막 전반에 걸쳐 적용되는 곱연산 가중치",
+        "AOE_DAMAGE": 1.5,       
+        "CARD_DRAW": 1.2,
+        "BLOCK_GENERATION": 1.2
+      },
+      "bosses": {
+        "Bronze_Automaton": {
+          "llm_prompt": "[CRITICAL] Your act boss is Bronze Automaton. You need a way to survive Hyperbeam and scale your damage quickly.",
+          "boss_modifiers": {
+            "SCALING_DEFENSE": 2.0,
+            "SCALING_DAMAGE": 1.5,
+            "WEAK": 1.5
+          }
+        },
+        "Collector": {
+          "llm_prompt": "[CRITICAL] Your act boss is The Collector. Consistent AOE to kill minions and high block are required.",
+          "boss_modifiers": {
+            "AOE_DAMAGE": 2.0,
+            "BLOCK_GENERATION": 1.5
+          }
+        },
+        "Champ": {
+          "llm_prompt": "[CRITICAL] Your act boss is The Champ. You must have extreme scaling and burst damage to kill him after he cleanses debuffs at 50% HP.",
+          "boss_modifiers": {
+            "SCALING_DAMAGE": 3.0,  
+            "BURST_DAMAGE": 1.5
+          }
+        }
+      }
+    }
+  }
+}
