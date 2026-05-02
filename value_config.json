@@ -14,7 +14,7 @@
     "CARD_DRAW": 0.5,        
     "ENERGY_GENERATION": 0.2,
     "SCALING_DAMAGE": 0.4,
-    "SCALING_DEFENSE": 0.2,
+    "SCALING_DEFENSE": 0.3,
     
     "VULNERABLE": 0.3,
     "WEAK": 0.4,
