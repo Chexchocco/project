@@ -331,7 +331,7 @@ def main():
                     
                 elif screen_type == "CHEST":
 
-                    chest_open = state.get("screen_state", "").get("chest_open", [])
+                    chest_open = state.get("screen_state", {}).get("chest_open", False)
                     if(chest_open == True):
                         print(f"proceed", flush =True)
                         continue
