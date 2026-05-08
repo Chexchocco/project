@@ -1,6 +1,7 @@
 import time
 import logging
 from db import db_loader
+from collections import Counter
 
 log = logging.getLogger("STS_AI")
 
@@ -246,3 +247,21 @@ def handle_hand_select(state, avail):
     log.info("👉 패에서 0번 카드를 선택합니다.")
     print("choose 0", flush=True)
     return
+
+
+def get_draw_pile_summary(state): #STATE 입력 받아서 현재 뽑을 더미에 있는 덱을 LLM이 읽기 좋은 형태로 바꿔서 요약시키기
+    combat = state["combat_state"]
+    draw_pile = combat.get("draw_pile", [])
+    
+    card_counts = Counter(card["name"] for card in draw_pile)
+    
+    type_counts = Counter(card["type"] for card in draw_pile)
+    
+    # 3. LLM이 이해하기 쉬운 요약본 생성
+    summary = {
+        "total_remaining": len(draw_pile),
+        "card_list": dict(card_counts),  
+        "types": dict(type_counts)       
+    }
+    
+    return summary
