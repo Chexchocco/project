@@ -245,6 +245,10 @@ def pick_route(state, sv: StateVector) -> int:
 
 def handle_map(state):
     log.info("🗺️ [이동] 맵 탐색 에이전트 가동")
+    if state.get("screen_state", {}).get("boss_available"):
+        log.info("👑 보스 입장")
+        print("choose 0", flush=True)
+        return
     sv = build_state_vector(state)
     log.info(
         f"📊 state: mode={sv.mode} hp={sv.hp_current}/{sv.hp_max} gold={sv.gold} "
