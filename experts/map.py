@@ -226,7 +226,7 @@ def _compute_path_values(nodes, children_of, sv: StateVector) -> dict:
 # CommunicationMod의 next_nodes를 기반으로 DP 점수를 비교하고, 배열 인덱스를 반환한다.
 def pick_route(state, sv: StateVector) -> int:
     nodes, children_of = parse_map(state)
-    next_nodes = state.get("screen_state", {}).get("next_nodes")
+    next_nodes = state.get("screen_state", {}).get("next_nodes") or []
     path_value = _compute_path_values(nodes, children_of, sv)
 
     scored = []
