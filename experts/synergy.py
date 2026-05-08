@@ -39,7 +39,7 @@ def score_deck(deck):
     unupgraded_value = 0
 
     for entry in deck:
-        info = get_card_info(entry) if isinstance(entry, dict) else None
+        info = get_card_info(entry)
         if not info:
             continue
 
