@@ -2,26 +2,21 @@ import logging
 
 log = logging.getLogger("STS_AI")
 
-# Module-level state preserved from main.py
 WAITING_FOR_SHOP = False
 SHOP_DONE = False
 
 
-def reset_per_room():
-    """Called by map_expert when entering a new room to reset stateful flags."""
-    global WAITING_FOR_SHOP, SHOP_DONE
-    WAITING_FOR_SHOP = False
-    SHOP_DONE = False
-
-
+# 상점 주인을 만난 화면을 컨트롤하는 함수. 플래그를 통해 물건을 구매할 때와 구매 후 떠날 때를 구분한다. 
 def handle_shop_room(state, avail):
-    global WAITING_FOR_SHOP
-    if not WAITING_FOR_SHOP :
+    global WAITING_FOR_SHOP, SHOP_DONE
+    if not WAITING_FOR_SHOP:
         log.info("🛒 상점 주인에게 말을 겁니다.")
         print("choose shop", flush=True)
         WAITING_FOR_SHOP = True
         return
-    if SHOP_DONE :
+    if SHOP_DONE:
+        WAITING_FOR_SHOP = False
+        SHOP_DONE = False
         print("proceed", flush=True)
         return
 
@@ -38,7 +33,7 @@ def handle_shop_screen(state, avail):
 
     # [임시 로직] 돈이 되는 것 중 첫 번째 카드를 사고 바로 나가기
     can_buy = False
-    for i, card in enumerate(shop_cards):
+    for card in shop_cards:
         if gold >= card.get("price", 999):
             log.info(f"💳 {card.get('name')} 카드를 구매합니다.")
             print(f"choose {card.get('name')}", flush=True)
