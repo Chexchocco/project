@@ -85,7 +85,7 @@ def main():
             elif screen_type == "GRID":
                 reward_expert.handle_grid_selection(state, avail)
             elif screen_type == "MAP":
-                map_expert.handle_map(state, avail)
+                map_expert.handle_map(state)
             elif screen_type == "REST":
                 rest_expert.handle_rest(state, avail)
             elif screen_type == "EVENT":
