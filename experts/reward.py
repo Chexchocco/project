@@ -9,7 +9,6 @@ from collections import Counter
 
 log = logging.getLogger("STS_AI")
 
-# Module-level state preserved from main.py
 CARD_SKIP = False
 
 
@@ -24,12 +23,6 @@ def summarize_card_list(raw_card_list):
             counts[card_dict.get("name", "Unknown")] += 1
 
     return dict(counts)
-
-def reset_per_room():
-    """Called by map_expert when entering a new room to reset stateful flags."""
-    global CARD_SKIP
-    CARD_SKIP = False
-
 
 def choose_card_reward(state):
     """
@@ -112,6 +105,8 @@ def choose_card_reward(state):
 
 
 def handle_combat_reward(state, avail):
+    global CARD_SKIP
+    CARD_SKIP = False  # 새 전투 보상 진입 — 이전 스킵 상태 리셋
     log.info("🎁 전투 보상 챙기기")
     rewards = state.get("screen_state", {}).get("rewards", [])
     potions = state.get("potions", [])
