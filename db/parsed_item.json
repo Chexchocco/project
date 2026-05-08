@@ -413,7 +413,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {
-                "strength": 2
+                "strength_temp": 2
             },
             "base_value": 0.0,
             "synergy": {
@@ -436,7 +436,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {
-                "strength": 4
+                "strength_temp": 4
             },
             "base_value": 0.0,
             "synergy": {

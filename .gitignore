@@ -12,4 +12,3 @@ myvenv/
 db/__pycache__
 llm/__pycache__
 config.py
-CLAUDE.md
