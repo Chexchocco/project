@@ -352,7 +352,7 @@ def main():
                         
                         selected_cards = screen_state.get("selected", [])
                         max_cards = screen_state.get("max_cards", 1)
-                        current_action = state.get("game_state", {}).get("current_action", "")
+                        current_action = state.get("current_action", "")
                         
                         # 🚨 1. 비상 방어선: 게임이 choose를 차단했는가? (카드를 다 골라서 패가 비었을 때 등)
                         if "choose" not in avail:
