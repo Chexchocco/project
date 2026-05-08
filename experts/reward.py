@@ -80,7 +80,7 @@ def choose_card_reward(state):
             {'role': 'system', 'content': 'You are a master Slay the Spire deck-builder.'},
             {'role': 'user', 'content': prompt}
         ],
-        options={'temperature': 0.0, 'num_predict': 256}
+        options={'temperature': 0.0, 'num_predict': 512}
     )
 
     content = response['message']['content']
