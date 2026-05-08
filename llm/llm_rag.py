@@ -185,7 +185,7 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
     """
     
     try:
-        response = ollama.chat(model='my_sts_qwen', messages=[{'role': 'user', 'content': prompt}])
+        response = ollama.chat(model=MODEL_NAME, messages=[{'role': 'user', 'content': prompt}])
         result_text = response['message']['content'].strip()
         
         json_match = re.search(r'\{.*\}', result_text, re.DOTALL)
