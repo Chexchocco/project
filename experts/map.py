@@ -17,6 +17,7 @@ import logging
 from dataclasses import dataclass
 
 from experts import synergy as synergy_expert
+from db.db_loader import get_card_info
 
 log = logging.getLogger("STS_AI")
 
@@ -45,6 +46,11 @@ ACT_COMPLETION_BONUS = 100  # Every reachable path must end at the boss.
 CRITICAL_HP_RATIO = 0.3
 GOLD_PRESSURE_THRESHOLD = 300
 PRE_BOSS_DISTANCE = 2
+
+# Deck stats 기반 임계값 (score_deck_summary의 stats를 해석할 때 쓰임)
+MIN_DECK_SIZE = 12                # 덱 크기가 이 미만이면 카드 부족
+ATK_EFFICIENCY_THRESHOLD = 6.0    # 에너지당 데미지가 이 미만이면 공격력 부족
+DEF_EFFICIENCY_THRESHOLD = 5.0    # 에너지당 방어력이 이 미만이면 방어력 부족
 
 
 # ─── State vector ───────────────────────────────────────────────────────────
@@ -85,16 +91,43 @@ def build_state_vector(state) -> StateVector:
     hp_ratio = hp_current / hp_max if hp_max else 0.0
 
     deck = state.get("deck", []) or []
-    try:
-        profile = synergy_expert.score_deck(deck)
-    except NotImplementedError:
-        profile = {
-            "size": len(deck),
-            "curses": 0,
-            "statuses": 0,
-            "needs_card": len(deck) < 12,
-            "needs_upgrade": False,
-        }
+
+    # synergy_expert.score_deck_summary는 enriched deck(get_card_info로 DB 정보가 채워진 카드 리스트)을 받는다.
+    # DB에 없는 카드는 None이 되므로 걸러낸다.
+    enriched_deck = [info for info in (get_card_info(c) for c in deck) if info]
+
+    # curse/status는 score_deck_summary가 추적하지 않으므로 type 필드로 직접 센다.
+    curses = sum(1 for c in enriched_deck if c.get("type") in synergy_expert.CURSE_TYPES)
+    statuses = sum(1 for c in enriched_deck if c.get("type") in synergy_expert.STATUS_TYPES)
+
+    if enriched_deck:
+        _, stats = synergy_expert.score_deck_summary(enriched_deck)
+    else:
+        stats = {"total_cards": 0, "atk_efficiency": 0.0, "def_efficiency": 0.0}
+
+    deck_size = stats["total_cards"]
+    # 업그레이드 가능 카드(이름에 '+'가 없는 비-curse/status)가 남아 있으면 needs_upgrade
+    upgradable = sum(
+        1 for c in enriched_deck
+        if c.get("type") not in synergy_expert.CURSE_TYPES
+        and c.get("type") not in synergy_expert.STATUS_TYPES
+        and not str(c.get("name", "")).endswith("+")
+    )
+
+    # stats 기반으로 needs_card 판정: 덱이 작거나 공격/방어 효율이 임계값 미만이면 카드 보충 필요
+    needs_card = (
+        deck_size < MIN_DECK_SIZE
+        or stats["atk_efficiency"] < ATK_EFFICIENCY_THRESHOLD
+        or stats["def_efficiency"] < DEF_EFFICIENCY_THRESHOLD
+    )
+
+    profile = {
+        "size": deck_size,
+        "curses": curses,
+        "statuses": statuses,
+        "needs_card": needs_card,
+        "needs_upgrade": upgradable > 0,
+    }
 
     floor = state.get("floor", 0) or 0
     act_num = state.get("act", state.get("act_num", 1)) or 1

@@ -5,7 +5,7 @@ import time
 import logging
 
 from db import db_loader
-from config import DB_PATH, LOG_PATH
+from config import PARSED_ITEM_PATH, LOG_PATH
 from io_bridge import communication
 
 from experts import combat as combat_expert
@@ -32,7 +32,7 @@ log.addHandler(console_handler)
 
 def main():
     communication.announce_ready()
-    db_loader.load_database(DB_PATH)
+    db_loader.load_database(PARSED_ITEM_PATH)
 
     while True:
         try:
