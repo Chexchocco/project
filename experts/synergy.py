@@ -1,20 +1,8 @@
-"""
-Synergy expert.
-
-Per CLAUDE.md, the synergy expert is "used in all other experts". Given the current
-deck and game state, it scores cards/relics for synergy with the current build —
-e.g., the reward expert calls this to score the three card-reward options.
-
-`score_card` is still a stub. `score_deck` returns a minimal profile that the
-map expert consumes for routing decisions (deck-bloat / needs-card / needs-upgrade
-flags). Full synergy-aware scoring is future work.
-"""
 
 from db.db_loader import get_card_info
 import config
 import json
 import os
-import 
 import logging
 log = logging.getLogger("STS_AI")
 VALUE_PATH = os.path.join(config.DB_PATH, "value_config.json")
@@ -26,167 +14,138 @@ CURSE_TYPES = {"Curse"}
 STATUS_TYPES = {"Status"}
 
 
-def score_card(card_info, synergy_report_data, relic_names=None):
-    """
-    synergy_report_data: { "VULNERABLE": {"ratio": 0.2}, "BLOCK": {"ratio": 1.5}, ... }
-    relic_names: 유물 이름 리스트 (특수 시너지 체크용)
-    """
+def score_card(card_info, current_deck_summary, relic_names=None):
     card = get_card_info(card_info)
+    
+    # 1. 유물 전처리 (Pre-process: 스네코 등)
+    # card = apply_relic_pre_process(card, relic_names)
+
     base_score = card.get("base_value", 5.0)
     
-    # 1. 시너지 리포트(Ratio)를 이용한 일반 보정 (핵심 로직)
-    # 리포트만으로도 80% 이상의 가치 판단이 가능함
-    provides = card.get("synergy", {}).get("provides", {})
-    for tag, val in provides.items():
-        ratio = synergy_report_data.get(tag, {}).get("ratio", 1.0)
-        # 결핍도에 따른 가중치 부여 (STARVING 시 가치 폭등)
-        base_score += val * (1.0 / (ratio + 0.1)) 
+    # 2. 물리적 결핍 보정 (Gap Analysis)
+    physical_bonus = 0
+    targets = act_strategy.get("physical_thresholds", {})
+    stats = current_deck_summary.get("stats", {})
+    
+    for metric, config in targets.items():
+        curr = stats.get(metric, 0)
+        target = config['target']
+        if metric != "avg_cost" and curr < target:
+            # 부족한 만큼 가산점 (Gap * Weight)
+            gap = target - curr
+            physical_bonus += gap * config.get('weight', 1.0)
 
-    # 2. 특수 유물/상황 보정 (수치로 안 잡히는 '궁합' 처리)
-    if relic_names:
-        # 종이 개구리가 있다면 취약 카드의 가치를 한 번 더 뻥튀기
-        if "Paper Phrog" in relic_names and "VULNERABLE" in provides:
-            base_score *= 1.5
-            #이게 필요한가 싶긴한데 일단 넣고 나중에 빼겟음
-    return base_score
+    # 3. 시너지 밀도 보정
+    synergy_bonus = 0
+    provides = card.get("synergy", {}).get("provides", {})
+    density = current_deck_summary.get("density_vector", {})
+    
+    for tag, val in provides.items():
+        # 결핍도(Ratio) 역수 보정
+        current_val = density.get(tag, 0.0)
+        target_val = act_strategy.get("synergy_weights", {}).get(tag, 0.1)
+        ratio = current_val / target_val if target_val > 0 else 1.0
+        synergy_bonus += val * (1.0 / (ratio + 0.1))
+
+    # 4. 유물 후처리 (Post-process: 종이 개구리 등)
+    final_score = base_score + physical_bonus + synergy_bonus
+    # final_score = apply_relic_post_process(final_score, card, relic_names)
+    
+    return final_score
+
+def aggregate_deck_tags(enriched_deck):
+    raw_counts = {}
+    
+    for card in enriched_deck:
+        # 1. JSON에 적힌 provides 태그 수집
+        provides = card.get('synergy', {}).get('provides', {})
+        for tag, val in provides.items():
+            raw_counts[tag] = raw_counts.get(tag, 0.0) + val
+            
+        # 2. 줏대 로직: 기본 필드 자동 추출 (노가다 방지)
+        if card.get('block', 0) > 0:
+            raw_counts['BLOCK'] = raw_counts.get('BLOCK', 0.0) + card['block']
+        if card.get('draw', 0) > 0:
+            raw_counts['DRAW'] = raw_counts.get('DRAW', 0.0) + card['draw']
+        if card.get('damage', 0) > 0:
+            # 깡딜 점수 합산
+            raw_counts['RAW_DAMAGE'] = raw_counts.get('RAW_DAMAGE', 0.0) + card['damage']
+            
+    return raw_counts
+
+
+def calculate_density_vector(raw_counts, deck_size):
+    density_vector = {}
+    
+    # 카드 1장당 기여도로 변환 (덱이 두꺼워지면 개별 카드의 밀도는 낮아짐)
+    for tag, total_val in raw_counts.items():
+        # 단순히 개수로 나눌지, 가중치를 둘지는 조정 가능
+        density_vector[tag] = round(total_val / max(1, deck_size), 3)
+        
+    return density_vector
 
 def score_deck_summary(enriched_deck):
     #덱 평가용 
-    #report는 LLM이 보기 좋은 구조로 주는거고
-    #stats 는 정략적으로 나타낸 카드 별 공격 비용 
-    deck_size = max(1, len(enriched_deck))
-    stats = {
-        "total_cards": deck_size,
-        "attack_cost": 0, "total_damage": 0, "attack_count": 0,
-        "block_cost": 0,  "total_block": 0,  "block_count": 0,
-        "draw_count": 0,  "total_draw": 0,
-        
-        # --- 추가될 지표 ---
-        "avg_dmg_per_card": 0.0,   # 카드 1장당 평균 데미지
-        "expected_turn_dmg": 0.0,  # 1턴(5장) 기대 데미지
-        "avg_blk_per_card": 0.0,   # 카드 1장당 평균 방어력
-        "expected_turn_blk": 0.0,  # 1턴(5장) 기대 방어력
-        "atk_efficiency": 0.0,     # 에너지 대비 공격 효율
-        "def_efficiency": 0.0      # 에너지 대비 방어 효율
-    }
-    
+    deck_size = len(enriched_deck)
+    if deck_size == 0: return {}
+
+    total_dmg = 0
+    total_blk = 0
+    total_cost = 0
+    total_draw = 0
+    raw_synergy = {}
+
     for card in enriched_deck:
-        cost_str = str(card.get("cost", "0"))
-        # 코스트 처리 (0코는 0.5로 보정하여 효율 계산 시 ZeroDivision 방지 및 가치 반영)
-        cost = max(0.5, int(cost_str)) if cost_str.isdigit() else (2.0 if cost_str == "X" else 0.0)
+        total_dmg += card.get('damage', 0)
+        total_blk += card.get('block', 0)
+        total_draw += card.get('draw', 0)
         
-        # 다단히트 고려한 실제 데미지 계산
-        dmg = card.get("damage", 0) * card.get("hits", 1)
-        blk = card.get("block", 0)
-        draw = card.get("draw", 0)
-        
-        if dmg > 0:
-            stats["total_damage"] += dmg
-            stats["attack_cost"] += cost
-            stats["attack_count"] += 1
-        if blk > 0:
-            stats["total_block"] += blk
-            stats["block_cost"] += cost
-            stats["block_count"] += 1
-        if draw > 0:
-            stats["total_draw"] += draw
-            stats["draw_count"] += 1
+        # Cost 처리: 숫자가 아니면(X 등) 2로 가정
+        c = card.get('cost', '0')
+        total_cost += int(c) if str(c).isdigit() else (2 if c == 'X' else 0)
 
-    # 지표 계산
-    stats["atk_efficiency"] = stats["total_damage"] / max(1.0, stats["attack_cost"])
-    stats["def_efficiency"] = stats["total_block"] / max(1.0, stats["block_cost"])
+        # 시너지 태그 수집
+        provides = card.get('synergy', {}).get('provides', {})
+        for tag, val in provides.items():
+            raw_synergy[tag] = raw_synergy.get(tag, 0.0) + val
+
+    return {
+        "stats": {
+            "avg_dmg": round(total_dmg / deck_size, 2),
+            "avg_blk": round(total_blk / deck_size, 2),
+            "avg_cost": round(total_cost / deck_size, 2),
+            "draw_ratio": round(total_draw / deck_size, 2),
+            "dmg_per_energy": round(total_dmg / max(1, total_cost), 2),
+            "blk_per_energy": round(total_blk / max(1, total_cost), 2)
+        },
+        "raw_synergy": raw_synergy,
+        "deck_size": deck_size
+    }
+
+
+
+
+
+def score_deck(enriched_deck, state, enriched_relics=None):
+    ##종합본
+    summary = score_deck_summary(enriched_deck)
+    if not summary: return {}
+
+    # 유물을 포함한 밀도 벡터 계산
+    density_vector = {tag: val / summary['deck_size'] for tag, val in summary['raw_synergy'].items()}
     
-    # 💡 1장당 평균 기대치 계산
-    stats["avg_dmg_per_card"] = stats["total_damage"] / deck_size
-    stats["avg_blk_per_card"] = stats["total_block"] / deck_size
-    
-    # 💡 한 턴(기본 5장 드로우) 기대치 포장
-    stats["expected_turn_dmg"] = stats["avg_dmg_per_card"] * 5.0
-    stats["expected_turn_blk"] = stats["avg_blk_per_card"] * 5.0
+    for relic in enriched_relics:
+        provides = relic.get("synergy", {}).get("provides", {})
+        for tag, bonus in provides.items():
+            # 유물은 덱 사이즈를 늘리지 않으므로 합산 시 가중치가 큼
+            density_vector[tag] = density_vector.get(tag, 0.0) + bonus
 
-    # 드로우 효율 및 기대 카드 수
-    avg_draw_per_card = stats["total_draw"] / deck_size
-    expected_draws = 5.0 + (avg_draw_per_card * 5.0)
+    # 전략 로드 (Act/Boss Context)
+    act_key = f"Act_{state.get('act', 1)}"
+    # 여기서 value_config의 전략을 merge하는 로직 추가 필요
 
-    # LLM용 리포트 구성 (포장된 데이터 사용)
-    atk_density = stats["attack_count"] / deck_size
-    def_density = stats["block_count"] / deck_size
-
-    report = "[Deck Core Stats]\n"
-    report += f"- Attack Efficiency: {stats['atk_efficiency']:.1f} DMG/Energy (Density: {atk_density*100:.0f}%)\n"
-    report += f"- Expected Turn DMG: {stats['expected_turn_dmg']:.1f} (Avg per card: {stats['avg_dmg_per_card']:.1f})\n"
-    report += f"- Block Efficiency: {stats['def_efficiency']:.1f} BLK/Energy (Density: {def_density*100:.0f}%)\n"
-    report += f"- Expected Turn BLK: {stats['expected_turn_blk']:.1f}\n"
-    report += f"- Expected Cards Seen Per Turn: {expected_draws:.1f} cards\n"
-    
-    return report, stats
-
-
-
-
-
-def score_deck_total(enriched_deck, state, enriched_relics=None):
-    
-    if enriched_relics is None: enriched_relics = []
-    deck_size = max(1, len(enriched_deck))
-    current_act = f"Act_{state.get('act', 1)}"
-    boss_name = state.get("boss", "Unknown")
-
-    # 1. 시너지 공급량 계산 (Provides)
-    supply_sum = {}
-    for item in enriched_deck + [r for r in enriched_relics if r.get("trigger") != "Pickup"]:
-        for tag, val in item.get("synergy", {}).get("provides", {}).items():
-            supply_sum[tag] = supply_sum.get(tag, 0.0) + val
-    
-    current_density = {tag: val / deck_size for tag, val in supply_sum.items()}
-
-    # 2. 막/보스 상황에 따른 목표 밀도(Target) 설정
-    target_density = STRATEGY_CONFIG.get("base_demand", {}).copy()
-    
-    # Act/Boss 가중치 적용 (가중치가 높을수록 해당 요소가 점수에서 차지하는 비중이 커짐)
-    act_mods = STRATEGY_CONFIG.get("act_strategies", {}).get(current_act, {}).get("act_base_modifiers", {})
-    boss_config = STRATEGY_CONFIG.get("act_strategies", {}).get(current_act, {}).get("bosses", {}).get(boss_name, {})
-    boss_mods = boss_config.get("boss_modifiers", {})
-
-    for tag, weight in {**act_mods, **boss_mods}.items():
-        if tag in target_density:
-            target_density[tag] *= weight
-
-    # 3. 💡 점수 계산: 요구 조건 충족도 (Score by Fulfillment)
-    # 각 태그별로 (현재 밀도 / 목표 밀도)의 평균을 내어 점수화합니다.
-    total_score = 0
-    evaluated_tags = 0
-
-    for tag, target_val in target_density.items():
-        if tag == "description" or target_val == 0: continue
-        
-        cur_val = current_density.get(tag, 0.0)
-        
-        # 음수 요구치(TOXIC/CURSE) 처리: 덱이 소화 가능(Exhaust 등)하면 페널티 감소
-        if target_val < 0:
-            # 덱에 소멸(Exhaust)이나 진화(Evolve) 같은 처리 수단이 있다면 독성 점수를 완화
-            mitigation = current_density.get("EXHAUST_EVENT", 0) + current_density.get("STATUS_SYNERGY", 0)
-            penalty_score = max(0, (cur_val * abs(target_val)) - mitigation)
-            total_score -= penalty_score * 10 # 독성 수치만큼 감점
-        else:
-            # 일반 시너지: 목표치 대비 달성률 (최대 1.2배까지만 가산점 인정)
-            fulfillment = min(1.2, cur_val / target_val) if target_val > 0 else 1.0
-            total_score += fulfillment * 100
-            evaluated_tags += 1
-
-    final_score = max(0, min(100, total_score / max(1, evaluated_tags)))
-
-    # 4. 리포트 생성
-    report = f"=== [Act {state.get('act')} Decision Support] ===\n"
-    report += f"Current Deck Readiness: {final_score:.1f}/100\n"
-    
-    warnings = []
-    for tag, target_val in target_density.items():
-        if target_val <= 0: continue
-        ratio = current_density.get(tag, 0.0) / target_val
-        if ratio < 0.5: warnings.append(f"- [STARVING] {tag}")
-        elif ratio > 1.8: warnings.append(f"- [OVERSATURATED] {tag}")
-
-    report += "\n".join(warnings) if warnings else "- Deck synergy is well-balanced for the current phase."
-
-    return report, final_score, boss_config.get("llm_prompt", "")
+    return {
+        "stats": summary['stats'],
+        "density_vector": density_vector,
+        "deck_size": summary['deck_size']
+    }

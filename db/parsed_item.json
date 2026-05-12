@@ -17,10 +17,10 @@
             "effects": {
                 "vulnerable": 2
             },
-            "base_value": 8.0,
+            "base_value": 7.2,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE": 2.0}
             }
         },
         {
@@ -40,10 +40,10 @@
             "effects": {
                 "vulnerable": 3
             },
-            "base_value": 10.0,
+            "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE": 3.0}
             }
         },
         {
@@ -61,7 +61,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 6.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -82,7 +82,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -149,10 +149,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 6.0,
+            "base_value": 10.0,
+            "scaling_potential": -2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"CARD_GENERATION": 1.0}
             }
         },
         {
@@ -170,10 +171,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 12.0,
+            "scaling_potential": -2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"CARD_GENERATION": 1.0}
             }
         },
         {
@@ -191,10 +193,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"UPGRADE" : 1.0}
             }
         },
         {
@@ -212,10 +214,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 18.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"UPGRADE_ALL_HAND" : 1.0}
             }
         },
         {
@@ -236,10 +238,10 @@
             "base_value": 0.0,
             "synergy": {
                 "requires": {
-                    "BLOCK_GENERATION": 1.5
+                    "BLOCK": 3.0,
+                    "BARRICADE_ENGINE": 1.5
                 },
                 "provides": {
-                    "BLOCK_ARCHETYPE": 1.0
                 }
             }
         },
@@ -258,13 +260,13 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
             "synergy": {
                 "requires": {
-                    "BLOCK_GENERATION": 1.5
+                    "BLOCK_GENERATION": 5.0,
+                    "BARRICADE_ENGINE": 3.0
                 },
                 "provides": {
-                    "BLOCK_ARCHETYPE": 1.0
                 }
             }
         },
@@ -283,9 +285,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 14.0,
+            "base_value": 9.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST": 0.5, "EXHAUST_NOT_ATTACK":1.0},
                 "provides": {}
             }
         },
@@ -304,9 +306,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 18.0,
+            "base_value": 11.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST": 0.5, "EXHAUST_NOT_ATTACK":1.5},
                 "provides": {}
             }
         },
@@ -325,7 +327,7 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 12.0,
+            "base_value": 10.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -346,7 +348,7 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 16.5,
+            "base_value": 13,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -369,10 +371,10 @@
             "effects": {
                 "weak": 2
             },
-            "base_value": 12.0,
+            "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"WEAK": 2.0}
             }
         },
         {
@@ -392,7 +394,7 @@
             "effects": {
                 "weak": 3
             },
-            "base_value": 14.0,
+            "base_value": 14.4,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -415,10 +417,11 @@
             "effects": {
                 "strength_temp": 2
             },
-            "base_value": 0.0,
+            "base_value": 4.8,
+            "scaling_potential" : 1.5,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"MULTI_HIT":1.5, "DRAW": 0.5},
+                "provides": {"STRENGTH": 0.5}
             }
         },
         {
@@ -438,10 +441,11 @@
             "effects": {
                 "strength_temp": 4
             },
-            "base_value": 0.0,
+            "base_value": 7.2,
+            "scaling_potential" : 1.5,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"MULTI_HIT":2.0, "DRAW": 0.5},
+                "provides": {"STRENGTH": 1.0}
             }
         },
         {
@@ -459,11 +463,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -482,11 +486,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -508,7 +512,7 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"TOP_DECK":1.0}
             }
         },
         {
@@ -529,7 +533,7 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"TOP_DECK":1.0}
             }
         },
         {
@@ -547,9 +551,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 14.0,
+            "base_value": 4.0,
+            "scaling_potential":3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STRENGTH":3.0},
                 "provides": {}
             }
         },
@@ -568,9 +573,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 14.0,
+            "base_value": 4.0,
+            "scaling_potential":5.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STRENGTH":5.0},
                 "provides": {}
             }
         },
@@ -631,10 +637,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 6.0,
+            "base_value": 16,
+            "scaling_potential" : 3.0,
             "synergy": {
                 "requires": {
-                    "STRIKE_CARD": 2.5
+                    "STRIKE_CARD": 2.0
                 },
                 "provides": {
                     "STRIKE_CARD": 1.0
@@ -656,10 +663,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 6.0,
+            "base_value": 17,
+            "scaling_potential" : 4.0,
             "synergy": {
                 "requires": {
-                    "STRIKE_CARD": 2.5
+                    "STRIKE_CARD": 3.0
                 },
                 "provides": {
                     "STRIKE_CARD": 1.0
@@ -769,10 +777,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 8.1,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"MULTI_HIT" : 2.0}
             }
         },
         {
@@ -790,10 +798,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"MULTI_HIT" : 3.0}
             }
         },
         {
@@ -813,10 +821,10 @@
             "effects": {
                 "vulnerable": 1
             },
-            "base_value": 6.0,
+            "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE": 1.0}
             }
         },
         {
@@ -836,10 +844,10 @@
             "effects": {
                 "vulnerable": 1
             },
-            "base_value": 10.5,
+            "base_value": 11,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE": 1.0}
             }
         },
         {
@@ -857,11 +865,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 6.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -884,7 +892,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -903,11 +911,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 10.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "STRIKE_CARD": 1.0
+                    "STRIKE_CARD": 1.0,
+                    "MULTI_HIT" : 1.0
                 }
             }
         },
@@ -926,11 +935,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 14,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "STRIKE_CARD": 1.0
+                    "STRIKE_CARD": 1.0,
+                    "MULTI_HIT" : 1.0
                 }
             }
         },
@@ -951,9 +961,9 @@
             "effects": {},
             "base_value": 3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK" : 1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -974,9 +984,9 @@
             "effects": {},
             "base_value": 6.0,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK" : 1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -995,7 +1005,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 12.0,
+            "base_value": 8.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -1019,7 +1030,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 17.0,
+            "base_value": 13.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -1085,9 +1097,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 18.0,
+            "base_value": 8.0,
             "synergy": {
-                "requires": {},
+                "requires": {"SELF_HARM" : 0.5},
                 "provides": {}
             }
         },
@@ -1106,9 +1118,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 22.0,
+            "base_value": 9.2,
             "synergy": {
-                "requires": {},
+                "requires": {"SELF_HARM" : 0.5},
                 "provides": {}
             }
         },
@@ -1127,10 +1139,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 0.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM":1.0, "ENERGY":0.5}
             }
         },
         {
@@ -1148,10 +1160,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 2.4,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM":1.0, "ENERGY":1.0}
             }
         },
         {
@@ -1169,11 +1181,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 6.0,
+            "base_value": 5.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -1192,11 +1204,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 9.0,
+            "base_value": 8.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 1.0
                 }
             }
         },
@@ -1215,7 +1227,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 20.0,
+            "base_value": 14.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -1236,7 +1248,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 28.0,
+            "base_value": 16.8,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -1257,10 +1269,10 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 7.5,
+            "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM" : 2.0}
             }
         },
         {
@@ -1278,10 +1290,10 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 10.5,
+            "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM" : 2.0}
             }
         },
         {
@@ -1299,13 +1311,15 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 0.0,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {
-                    "EXHAUST_EVENT": 2.0
+                    "EXHAUST": 3.0,
+                    "EXHAUST_SELF": 1.0,
+                    "CORRUPTION_ENGINE" : 10.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
                 }
             }
         },
@@ -1324,13 +1338,15 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 0.0,
+            "scaling_potential":5.0,
             "synergy": {
                 "requires": {
-                    "EXHAUST_EVENT": 2.0
+                    "EXHAUST": 4.0,
+                    "EXHAUST_SELF": 2.0,
+                    "CORRUPTION_ENGINE" : 10.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
                 }
             }
         },
@@ -1349,11 +1365,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "STRENGTH_LOSS": 2.0
                 }
             }
         },
@@ -1372,11 +1388,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 14.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "STRENGTH_LOSS": 3.0,
+                    "EXHAUST_SELF" : 1.0
                 }
             }
         },
@@ -1395,9 +1412,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 7.2,
             "synergy": {
-                "requires": {},
+                "requires": {"VULNERABLE":1.0},
                 "provides": {}
             }
         },
@@ -1416,9 +1433,9 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 11.0,
+            "base_value": 9.9,
             "synergy": {
-                "requires": {},
+                "requires": {"VULNERABLE":1.0},
                 "provides": {}
             }
         },
@@ -1438,9 +1455,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential":2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"CARD_GENERATION":2.0, "CARD_COPY":2.0}
             }
         },
         {
@@ -1459,9 +1477,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"CARD_GENERATION":2.0, "CARD_COPY":2.0}
             }
         },
         {
@@ -1480,10 +1499,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {
-                    "BLOCK_ARCHETYPE": 1.0,
-                    "BLOCK_GENERATION": 1.0
+                    "BARRICADE_ENGINE": 15.0
                 },
                 "provides": {}
             }
@@ -1503,11 +1522,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 3.0,
+            "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {
-                    "BLOCK_ARCHETYPE": 1.0,
-                    "BLOCK_GENERATION": 1.0
+                    "BARRICADE_ENGINE": 20.0
                 },
                 "provides": {}
             }
@@ -1574,12 +1593,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {
-                    "EXHAUST_EVENT": 1.5
+                    "EXHAUST": 5.0,
+                    "EXHAUST_SELF": 2.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
                 }
             }
         },
@@ -1599,13 +1619,15 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {
-                    "EXHAUST_EVENT": 1.5
+                    "EXHAUST": 5.0,
+                    "EXHAUST_SELF": 2.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
                 }
+            }
             }
         },
         {
@@ -1623,7 +1645,8 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 9.0,
+            "base_value": 4.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
                     "STATUS_CARD": 2.0
@@ -1646,7 +1669,8 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 15.0,
+            "base_value": 6.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
                     "STATUS_CARD": 2.0
@@ -1669,10 +1693,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 16.0,
+            "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"REFLEXION":1.0}
             }
         },
         {
@@ -1690,10 +1714,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 22.0,
+            "base_value": 16.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"REFLEXION":1.5}
             }
         },
         {
@@ -1711,10 +1735,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 10.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"EXHAUST":0.5}
             }
         },
         {
@@ -1732,10 +1756,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 13.0,
+            "base_value": 11.7,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"EXHAUST":0.5}
             }
         },
         {
@@ -1753,10 +1777,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 14.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM":1.0}
             }
         },
         {
@@ -1774,10 +1798,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 18.0,
+            "base_value": 15.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM":1.0}
             }
         },
         {
@@ -1795,11 +1819,13 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "CARD_GENERATION" : 1.0
+                
                 }
             }
         },
@@ -1818,11 +1844,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 11.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "CARD_GENERATION" : 1.0
                 }
             }
         },
@@ -1843,10 +1870,11 @@
             "effects": {
                 "strength": 2
             },
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential":2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH":2.0, "MULTI_HIT":0.5}
             }
         },
         {
@@ -1866,10 +1894,11 @@
             "effects": {
                 "strength": 3
             },
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH":3.0, "MULTI_HIT":0.5}
             }
         },
         {
@@ -1889,11 +1918,12 @@
             "effects": {
                 "weak": 1
             },
-            "base_value": 0.0,
+            "base_value": 6.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "WEAK" : 1.0
                 }
             }
         },
@@ -1914,11 +1944,12 @@
             "effects": {
                 "weak": 2
             },
-            "base_value": 0.0,
+            "base_value": 9.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "WEAK" : 2.0
                 }
             }
         },
@@ -1937,9 +1968,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 6.0,
+            "scaling_potential": 2.0,
             "synergy": {
-                "requires": {},
+                "requires": {"BARRICADE_ENGINE" : 1.0},
                 "provides": {}
             }
         },
@@ -1958,9 +1990,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 4.0,
+            "base_value": 8.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"BARRICADE_ENGINE" : 1.0},
                 "provides": {}
             }
         },
@@ -1979,7 +2012,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 15.0,
+            "base_value": 14.0,
+            "scaling_potential" :-1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2002,7 +2036,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 20.0,
+            "base_value": 18.8,
+            "scaling_potential" :-1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2025,11 +2060,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 4.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STRENGTH": 4.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "MULTI_HIT": 3.0
                 }
             }
         },
@@ -2048,11 +2084,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 10.0,
+            "base_value": 5.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STRENGTH": 5.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "MULTI_HIT": 4.0
                 }
             }
         },
@@ -2071,7 +2108,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 3.0,
+            "base_value": 4.8,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2092,7 +2129,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 8.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2114,8 +2151,9 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 8.0,
+            "scaling_potential":1.5,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK":1.0},
                 "provides": {}
             }
         },
@@ -2135,8 +2173,9 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 8.0,
+            "scaling_potential":2.0,
             "synergy": {
-                "requires": {},
+                "requires": {"TOP_DECK":1.0},
                 "provides": {}
             }
         },
@@ -2155,7 +2194,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 6.0,
+            "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2178,7 +2218,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 10.0,
+            "base_value": 9.0,
+            "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2204,9 +2245,10 @@
                 "strength": 1
             },
             "base_value": 0.0,
+            "scaling_potential":4.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"SELF_HARM":3.0},
+                "provides": {"STRENGTH":1.0}
             }
         },
         {
@@ -2226,10 +2268,11 @@
             "effects": {
                 "strength": 1
             },
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential":4.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"SELF_HARM":3.0},
+                "provides": {"STRENGTH":1.0}
             }
         },
         {
@@ -2247,9 +2290,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 12.0,
+            "base_value": 7.2,
+            "scaling_potential":3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"UPGRADE":0.5,"UPGRADE_ALL_HAND":1.0,"UPGRADE_ALL_DECK":1.0},
                 "provides": {}
             }
         },
@@ -2268,9 +2312,10 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 16.0,
+            "base_value": 10.8,
+            "scaling_potential":3.0,
             "synergy": {
-                "requires": {},
+                "requires": {"UPGRADE":0.5,"UPGRADE_ALL_HAND":1.0,"UPGRADE_ALL_DECK":1.0},
                 "provides": {}
             }
         },
@@ -2289,11 +2334,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 7.0,
+            "scaling_potential" : 2.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STATUS_CARD":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 2.0, "EXHAUST_NON_ATTACK": 2.0
                 }
             }
         },
@@ -2312,11 +2358,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 9.8,
+            "scaling_potential" : 2.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STATUS_CARD":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST": 2.0, "EXHAUST_NON_ATTACK": 2.0
                 }
             }
         },
@@ -2335,11 +2382,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "ENERGY" : 2.0,
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -2358,11 +2406,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "ENERGY" : 2.0,
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -2381,11 +2430,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 6.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST":1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "ENERGY": 1.0
                 }
             }
         },
@@ -2404,11 +2453,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 9.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST":1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "ENERGY": 1.0
                 }
             }
         },
@@ -2427,11 +2476,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 16.0,
+            "base_value": 9.8,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_NOT_ATTACK": 1.0
                 }
             }
         },
@@ -2450,11 +2499,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 22.0,
+            "base_value": 12.8,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_NOT_ATTACK": 1.0
                 }
             }
         },
@@ -2475,11 +2524,13 @@
             "effects": {
                 "weak": 3
             },
-            "base_value": 0.0,
+            "base_value": 12.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "VULNERABLE":3.0,
+                    "WEAK":3.0,
+                    "EXHAUST_SELF":1.0
                 }
             }
         },
@@ -2500,11 +2551,13 @@
             "effects": {
                 "weak": 5
             },
-            "base_value": 0.0,
+            "base_value": 16.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "VULNERABLE":5.0,
+                    "WEAK":5.0,
+                    "EXHAUST_SELF":1.0
                 }
             }
         },
@@ -2525,10 +2578,11 @@
             "effects": {
                 "strength": 3
             },
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential":2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH": 3.0}
             }
         },
         {
@@ -2548,10 +2602,11 @@
             "effects": {
                 "strength": 4
             },
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH": 4.0}
             }
         },
         {
@@ -2572,10 +2627,10 @@
                 "vulnerable": 1,
                 "weak": 1
             },
-            "base_value": 13.0,
+            "base_value": 11.7,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE":1.0,"WEAK":1.0}
             }
         },
         {
@@ -2596,10 +2651,10 @@
                 "vulnerable": 2,
                 "weak": 2
             },
-            "base_value": 13.0,
+            "base_value": 15.3,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"VULNERABLE":2.0,"WEAK":2.0}
             }
         },
         {
@@ -2619,8 +2674,8 @@
             "effects": {},
             "base_value": 7.5,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
+                "provides": {"MULTI_HIT" : 2.0}
             }
         },
         {
@@ -2640,8 +2695,8 @@
             "effects": {},
             "base_value": 12.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
+                "provides": {"MULTI_HIT" : 2.0}
             }
         },
         {
@@ -2660,9 +2715,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential" : 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"BARRICADE_ENGINE":1.0}
             }
         },
         {
@@ -2680,10 +2736,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential" : 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"BARRICADE_ENGINE":1.0}
             }
         },
         {
@@ -2701,10 +2758,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 1.0,
+            "scaling_potential" : 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"ENERGY":2.0}
             }
         },
         {
@@ -2722,10 +2780,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 5.0,
+            "scaling_potential" : 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"ENERGY":2.0}
             }
         },
         {
@@ -2743,7 +2802,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 32.0,
+            "base_value": 20.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2764,7 +2823,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 42.0,
+            "base_value": 25.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2786,9 +2845,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
+            "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM": 2.0}
             }
         },
         {
@@ -2805,11 +2865,13 @@
             "draw": 1,
             "is_x_cost": false,
             "is_aoe": false,
+            "is_innate": true,
             "effects": {},
             "base_value": 3.0,
+            "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"SELF_HARM": 2.0}
             }
         },
         {
@@ -2828,12 +2890,15 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential" : 7.0,
             "synergy": {
                 "requires": {
-                    "SKILL_CARD": 1.0
+                    "SKILL_CARD": 3.0,
+                    "CARD_GENERATION" : 1.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 3.0
+                    "CORRUPTION_ENGINE" : 1.0,
+                    "EXHAUST": 10.0
                 }
             }
         },
@@ -2852,13 +2917,16 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential" : 8.0,
             "synergy": {
                 "requires": {
-                    "SKILL_CARD": 1.0
+                    "SKILL_CARD": 3.0,
+                    "CARD_GENERATION" : 1.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 3.0
+                    "CORRUPTION_ENGINE" : 1.0,
+                    "EXHAUST": 10.0
                 }
             }
         },
@@ -2880,9 +2948,10 @@
                 "strength": 2
             },
             "base_value": 0.0,
+            "scaling_potential" : 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH" : 6.0}
             }
         },
         {
@@ -2903,9 +2972,10 @@
                 "strength": 3
             },
             "base_value": 0.0,
+            "scaling_potential" : 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STRENGTH" : 9.0}
             }
         },
         {
@@ -2923,7 +2993,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 2.0,
+            "scaling_potential" :2.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2944,7 +3015,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
+            "scaling_potential" : 3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -2967,9 +3039,9 @@
             "effects": {},
             "base_value": 0.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST":1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "CARD_COPY": 1.0
                 }
             }
         },
@@ -2988,11 +3060,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
             "synergy": {
-                "requires": {},
+                "requires": {"EXHAUST":1.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "CARD_COPY": 1.0
                 }
             }
         },
@@ -3015,7 +3087,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "PERMANENT_GROWTH": 1.0,
+                    "EXHAUST_SELF" :1.0
                 }
             }
         },
@@ -3038,7 +3111,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "PERMANENT_GROWTH": 1.2,
+                    "EXHAUST_SELF" :1.0
                 }
             }
         },
@@ -3057,13 +3131,15 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 16.2,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {
-                    "HAND_SIZE": 1.0
+                    "DRAW": 1.0,
+                    "MULTI_HIT":3.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 3.0
+                    "EXHAUST": 3.0
                 }
             }
         },
@@ -3082,13 +3158,15 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 10.0,
+            "base_value": 23.0,
+            "scaling_potential":4.0,
             "synergy": {
                 "requires": {
-                    "HAND_SIZE": 1.0
+                    "DRAW": 1.0,
+                    "MULTI_HIT":3.0
                 },
                 "provides": {
-                    "EXHAUST_EVENT": 3.0
+                    "EXHAUST": 3.0
                 }
             }
         },
@@ -3107,10 +3185,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 31.5,
+            "base_value": 22.0,
+            "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STATUS_CARD":1.0}
             }
         },
         {
@@ -3128,10 +3207,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 42.0,
+            "base_value": 30.0,
+            "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"STATUS_CARD":1.0}
             }
         },
         {
@@ -3149,11 +3229,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 30.0,
+            "base_value": 21.0,
             "synergy": {
-                "requires": {},
+                "requires": {"BARRICADE_ENGINE":1.0, "CORRUPTION_ENGINE":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -3172,11 +3252,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 40.0,
+            "base_value": 28.0,
             "synergy": {
-                "requires": {},
+                "requires": {"BARRICADE_ENGINE":1.0, "CORRUPTION_ENGINE":0.5},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -3195,7 +3275,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 5.0,
+            "base_value": 2.0,
+            "scaling_potential":2.5,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3216,7 +3297,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 3.0,
+            "scaling_potential":3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3238,10 +3320,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential":4.0,
             "synergy": {
-                "requires": {},
+                "requires": {"STRENGTH":3.0},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -3261,9 +3344,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential":8.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": {"STRENGTH":3.0},
+                "provides": {
+                }
             }
         },
         {
@@ -3281,11 +3366,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 9.0,
+            "base_value": 15.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "SELF_HARM" :1.0
                 }
             }
         },
@@ -3304,11 +3390,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 15.0,
+            "base_value": 20.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "SELF_HARM" :1.0
                 }
             }
         },
@@ -3331,7 +3418,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "RECOVERY": 1.0
                 }
             }
         },
@@ -3354,7 +3441,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "RECOVERY": 1.0
                 }
             }
         },
@@ -13089,13 +13176,13 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 15.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
-            }
+                "provides": { "EXHAUST_SELF": 1.0 }
+        }
+
         },
         {
             "name": "Apparition+",
@@ -13112,13 +13199,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 15.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
-            }
+                "provides": { "EXHAUST_SELF": 1.0 }
+        }
         },
         {
             "name": "Become Almighty",
@@ -13134,14 +13220,13 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": {
-                "strength": 3
-            },
+            "effects": { "strength": 3 },
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
-            }
+            "requires": {},
+            "provides": { "STRENGTH": 3.0 }
+        }
         },
         {
             "name": "Become Almighty+",
@@ -13161,12 +13246,13 @@
                 "strength": 4
             },
             "base_value": 0.0,
+            "scaling_potential": 3.5,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "STRENGTH": 4.0 }
             }
         },
-        {
+            {
             "name": "Beta",
             "color": "Colorless",
             "rarity": "Special",
@@ -13182,11 +13268,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13205,11 +13290,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13227,7 +13311,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 7.0,
+            "base_value": 11.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13248,7 +13333,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 8.0,
+            "base_value": 13.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13270,9 +13356,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 18.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "MULTI_HIT": 1.0 }
             }
         },
         {
@@ -13291,9 +13378,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 30.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "MULTI_HIT": 1.0 }
             }
         },
         {
@@ -13312,9 +13400,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "GOLD": 25.0 }
             }
         },
         {
@@ -13333,9 +13422,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "GOLD": 30.0 }
             }
         },
         {
@@ -13354,11 +13444,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13377,11 +13466,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13398,13 +13486,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": {
-                "strength": 2
-            },
+            "effects": { "strength": 2 },
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "STRENGTH": 2.0, "SELF_HARM": 1.0 }
             }
         },
         {
@@ -13421,13 +13508,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": {
-                "strength": 3
-            },
+            "effects": { "strength": 3 },
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "STRENGTH": 3.0, "SELF_HARM": 1.0 }
             }
         },
         {
@@ -13445,7 +13531,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 12.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13466,7 +13553,8 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 16.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13487,12 +13575,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 2.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "ENERGY": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13510,12 +13597,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "ENERGY": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13533,10 +13619,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 75.0,
+            "base_value": 0.0,
+            "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "AOE": 1.0 }
             }
         },
         {
@@ -13554,10 +13641,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 90.0,
+            "base_value": 0.0,
+            "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "AOE": 1.0 }
             }
         },
         {
@@ -13576,11 +13664,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 15.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "PERMANENT_GROWTH": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13599,11 +13686,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 15.0,
+            "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "PERMANENT_GROWTH": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13622,11 +13708,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 12.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13645,11 +13730,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 16.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13668,11 +13752,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13691,11 +13774,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13714,11 +13796,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 12.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13737,11 +13818,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 16.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13760,11 +13840,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 20.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13783,11 +13862,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 30.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13806,6 +13884,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13827,6 +13906,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13848,11 +13928,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13871,9 +13950,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "ENERGY": -1.0 }
             }
         },
         {
@@ -13892,6 +13972,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -13913,11 +13994,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13936,11 +14016,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -13957,13 +14036,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": {
-                "weak": 2
-            },
-            "base_value": 0.0,
+            "effects": { "weak": 2 },
+            "base_value": 4.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "WEAK": 2.0 }
             }
         },
         {
@@ -13980,13 +14058,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
-            "effects": {
-                "weak": 2
-            },
-            "base_value": 0.0,
+            "effects": { "weak": 2 },
+            "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "WEAK": 2.0 }
             }
         },
         {
@@ -14004,12 +14081,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 9.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "STRENGTH_LOSS": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14027,12 +14103,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 15.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "STRENGTH_LOSS": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14051,6 +14126,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14072,6 +14148,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14092,12 +14169,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14115,10 +14191,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "CARD_GENERATION": 1.0 }
             }
         },
         {
@@ -14135,13 +14212,13 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
+            "is_innate": true,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "AOE": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14158,13 +14235,13 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
+            "is_innate": true,
             "effects": {},
             "base_value": 12.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "AOE": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14183,9 +14260,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "ENERGY": 2.0 }
             }
         },
         {
@@ -14204,9 +14282,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "ENERGY": 2.0 }
             }
         },
         {
@@ -14225,6 +14304,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 5.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14246,6 +14326,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 7.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14267,6 +14348,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14288,6 +14370,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14309,6 +14392,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14330,6 +14414,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14351,6 +14436,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 5.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14372,6 +14458,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 8.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14393,6 +14480,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14414,6 +14502,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14434,12 +14523,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14457,12 +14545,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 8.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14481,11 +14568,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14504,11 +14590,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14525,10 +14610,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
+            "is_innate": true,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
+            "scaling_potential": 2.0,
             "synergy": {
-                "requires": {},
+                "requires": { "DECK_SIZE": 5.0 },
                 "provides": {}
             }
         },
@@ -14546,10 +14633,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
+            "is_innate": true,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 15.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {},
+                "requires": { "DECK_SIZE": 5.0 },
                 "provides": {}
             }
         },
@@ -14568,12 +14657,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 5.0,
+            "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "ARTIFACT": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14591,12 +14679,11 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
+            "scaling_potential": 1.5,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "ARTIFACT": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14615,11 +14702,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 30.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14638,11 +14724,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 40.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14661,11 +14746,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELECT": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14684,11 +14768,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELECT": 5.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14707,6 +14790,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14728,6 +14812,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -14747,13 +14832,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": {
-                "vulnerable": 2
-            },
-            "base_value": 0.0,
+            "effects": { "vulnerable": 2 },
+            "base_value": 4.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "VULNERABLE": 2.0 }
             }
         },
         {
@@ -14770,13 +14854,12 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
-            "effects": {
-                "vulnerable": 2
-            },
-            "base_value": 0.0,
+            "effects": { "vulnerable": 2 },
+            "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "VULNERABLE": 2.0 }
             }
         },
         {
@@ -14795,11 +14878,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "UPGRADE_ALL": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14818,11 +14900,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "UPGRADE_ALL": 1.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14841,11 +14922,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14864,11 +14944,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 5.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14887,9 +14966,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 20.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "GOLD": 20.0 }
             }
         },
         {
@@ -14908,9 +14988,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 25.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "GOLD": 25.0 }
             }
         },
         {
@@ -14929,9 +15010,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "CARD_GENERATION": 1.0 }
             }
         },
         {
@@ -14950,9 +15032,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "CARD_GENERATION": 1.0 }
             }
         },
         {
@@ -14971,11 +15054,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -14994,11 +15076,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 12.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15017,9 +15098,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "CARD_PLAY": 1.0 }
             }
         },
         {
@@ -15038,9 +15120,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "CARD_PLAY": 1.0 }
             }
         },
         {
@@ -15059,11 +15142,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15082,11 +15164,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 5.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15104,10 +15185,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 15.0,
+            "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": { "DRAW": 5.0 },
+                "provides": { "AOE": 2.0 }
             }
         },
         {
@@ -15125,10 +15207,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 21.0,
+            "base_value": 0.0,
+            "scaling_potential": 5.0,
             "synergy": {
-                "requires": {},
-                "provides": {}
+                "requires": { "DRAW": 5.0 },
+                "provides": { "AOE": 2.0 }
             }
         },
         {
@@ -15147,8 +15230,9 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {},
+                "requires": { "WEAK": 2.0, "VULNERABLE": 2.0 },
                 "provides": {}
             }
         },
@@ -15168,8 +15252,9 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 4.0,
             "synergy": {
-                "requires": {},
+                "requires": { "WEAK": 2.0, "VULNERABLE": 2.0 },
                 "provides": {}
             }
         },
@@ -15189,11 +15274,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15212,6 +15296,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -15233,11 +15318,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15256,6 +15340,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -15276,10 +15361,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 60.0,
+            "base_value": 40.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "AOE": 1.0 }
             }
         },
         {
@@ -15297,10 +15383,11 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 75.0,
+            "base_value": 50.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": { "AOE": 1.0 }
             }
         },
         {
@@ -15319,11 +15406,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15342,6 +15428,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
+            "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -15363,11 +15450,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 2.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15386,11 +15472,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15409,11 +15494,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15432,11 +15516,10 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {
-                    "EXHAUST_EVENT": 1.0
-                }
+                "provides": { "EXHAUST_SELF": 1.0 }
             }
         },
         {
@@ -15734,2164 +15817,6 @@
                 "requires": {},
                 "provides": {}
             }
-        }
-    ],
-    "relics": [
-        {
-            "name": "Burning Blood",
-            "tier": "Starter",
-            "pool": "Red",
-            "description": "At the end of combat, heal 6 HP.",
-            "flavorText": "Your body's own blood burns with an undying rage.",
-            "mod": ""
-        },
-        {
-            "name": "Cracked Core",
-            "tier": "Starter",
-            "pool": "Blue",
-            "description": "At the start of each combat, Channel 1 Lightning.",
-            "flavorText": "The mysterious life force which powers the Automatons within the Spire. It appears to be cracked.",
-            "mod": ""
-        },
-        {
-            "name": "Pure Water",
-            "tier": "Starter",
-            "pool": "Purple",
-            "description": "At the start of each combat, add a Miracle into your hand.",
-            "flavorText": "Filtered through fine sand and free of impurities.",
-            "mod": ""
-        },
-        {
-            "name": "Ring of the Snake",
-            "tier": "Starter",
-            "pool": "Green",
-            "description": "At the start of each combat, draw 2 additional cards.",
-            "flavorText": "Made from a fossilized snake. Represents great skill as a huntress.",
-            "mod": ""
-        },
-        {
-            "name": "Akabeko",
-            "tier": "Common",
-            "pool": "",
-            "description": "Your first Attack each combat deals 8 additional damage.",
-            "flavorText": "\"Muuu~\"",
-            "mod": ""
-        },
-        {
-            "name": "Anchor",
-            "tier": "Common",
-            "pool": "",
-            "description": "Start each combat with 10 Block.",
-            "flavorText": "Holding this miniature trinket, you feel heavier and more stable.",
-            "mod": ""
-        },
-        {
-            "name": "Ancient Tea Set",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you enter a Rest Site, start the next combat with [E] [E] .",
-            "flavorText": "The key to a refreshing night's rest.",
-            "mod": ""
-        },
-        {
-            "name": "Art of War",
-            "tier": "Common",
-            "pool": "",
-            "description": "If you do not play any Attacks during your turn, gain an additional [E] next turn.",
-            "flavorText": "This ancient manuscript contains wisdom from a past age.",
-            "mod": ""
-        },
-        {
-            "name": "Bag of Marbles",
-            "tier": "Common",
-            "pool": "",
-            "description": "At the start of each combat, apply 1 Vulnerable to ALL enemies.",
-            "flavorText": "A once popular toy in the City. Useful for throwing enemies off balance.",
-            "mod": ""
-        },
-        {
-            "name": "Bag of Preparation",
-            "tier": "Common",
-            "pool": "",
-            "description": "At the start of each combat, draw 2 additional cards.",
-            "flavorText": "Oversized adventurer's pack. Has many pockets and straps.",
-            "mod": ""
-        },
-        {
-            "name": "Blood Vial",
-            "tier": "Common",
-            "pool": "",
-            "description": "At the start of each combat, heal 2 HP.",
-            "flavorText": "A vial containing the blood of a pure and elder vampire.",
-            "mod": ""
-        },
-        {
-            "name": "Bronze Scales",
-            "tier": "Common",
-            "pool": "",
-            "description": "Start each combat with 3 Thorns.",
-            "flavorText": "The sharp scales of the Guardian. Rearranges itself to protect its user.",
-            "mod": ""
-        },
-        {
-            "name": "Centennial Puzzle",
-            "tier": "Common",
-            "pool": "",
-            "description": "The first time you lose HP each combat, draw 3 cards.",
-            "flavorText": "Upon solving the puzzle, you feel a powerful warmth in your chest.",
-            "mod": ""
-        },
-        {
-            "name": "Ceramic Fish",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you add a card to your deck, gain 9 Gold.",
-            "flavorText": "Meticulously painted, these fish were revered to bring great fortune.",
-            "mod": ""
-        },
-        {
-            "name": "Damaru",
-            "tier": "Common",
-            "pool": "Purple",
-            "description": "At the start of your turn, gain 1 Mantra.",
-            "flavorText": "The sound of the small drum keeps your mind awake, revealing a path forward.",
-            "mod": ""
-        },
-        {
-            "name": "Data Disk",
-            "tier": "Common",
-            "pool": "Blue",
-            "description": "Start each combat with 1 Focus.",
-            "flavorText": "This disk contains precious data on birds and snakes.",
-            "mod": ""
-        },
-        {
-            "name": "Dream Catcher",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you Rest, you may add a card into your deck.",
-            "flavorText": "The northern tribes would often use dream catchers at night, believing they led to self improvement.",
-            "mod": ""
-        },
-        {
-            "name": "Happy Flower",
-            "tier": "Common",
-            "pool": "",
-            "description": "Every 3 turns, gain [E] .",
-            "flavorText": "This unceasingly joyous plant is a popular novelty item among nobles.",
-            "mod": ""
-        },
-        {
-            "name": "Juzu Bracelet",
-            "tier": "Common",
-            "pool": "",
-            "description": "Normal enemy combats are no longer encountered in ? rooms.",
-            "flavorText": "A ward against the unknown.",
-            "mod": ""
-        },
-        {
-            "name": "Lantern",
-            "tier": "Common",
-            "pool": "",
-            "description": "Start each combat with an additional [E] .",
-            "flavorText": "An eerie lantern which illuminates only for the wielder.",
-            "mod": ""
-        },
-        {
-            "name": "Maw Bank",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you climb a floor, gain 12 Gold. No longer works when you spend any Gold at a shop.",
-            "flavorText": "Surprisingly popular, despite maw attacks being a regular occurrence.",
-            "mod": ""
-        },
-        {
-            "name": "Meal Ticket",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you enter a shop, heal 15 HP.",
-            "flavorText": "\"Complimentary meatballs with every visit!\"",
-            "mod": ""
-        },
-        {
-            "name": "Nunchaku",
-            "tier": "Common",
-            "pool": "",
-            "description": "Every time you play 10 Attacks, gain [E] .",
-            "flavorText": "A good training tool. Improves the posture and agility of the wielder.",
-            "mod": ""
-        },
-        {
-            "name": "Oddly Smooth Stone",
-            "tier": "Common",
-            "pool": "",
-            "description": "Start each combat with 1 Dexterity.",
-            "flavorText": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
-            "mod": ""
-        },
-        {
-            "name": "Omamori",
-            "tier": "Common",
-            "pool": "",
-            "description": "Negate the next 2 Curses you obtain.",
-            "flavorText": "A common charm for staving off vile spirits. This one seems to possess a spark of divine energy.",
-            "mod": ""
-        },
-        {
-            "name": "Orichalcum",
-            "tier": "Common",
-            "pool": "",
-            "description": "If you end your turn without Block, gain 6 Block.",
-            "flavorText": "A green tinted metal of an unknown origin. Seemingly indestructible.",
-            "mod": ""
-        },
-        {
-            "name": "Pen Nib",
-            "tier": "Common",
-            "pool": "",
-            "description": "Every 10th Attack you play deals double damage.",
-            "flavorText": "Holding the nib, you can see everyone ever slain by a previous owner of the pen. A violent history.",
-            "mod": ""
-        },
-        {
-            "name": "Potion Belt",
-            "tier": "Common",
-            "pool": "",
-            "description": "Upon pickup, gain 2 Potion slots.",
-            "flavorText": "I can hold more Potions using this belt!",
-            "mod": ""
-        },
-        {
-            "name": "Preserved Insect",
-            "tier": "Common",
-            "pool": "",
-            "description": "Enemies in Elite combats have 25% less HP.",
-            "flavorText": "The insect seems to create a shrinking aura that targets particularly large enemies.",
-            "mod": ""
-        },
-        {
-            "name": "Red Skull",
-            "tier": "Common",
-            "pool": "Red",
-            "description": "While your HP is at or below 50%, you have 3 additional Strength.",
-            "flavorText": "A small skull covered in ornamental paint.",
-            "mod": ""
-        },
-        {
-            "name": "Regal Pillow",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you Rest, heal an additional 15 HP.",
-            "flavorText": "Now you can get a proper night's rest.",
-            "mod": ""
-        },
-        {
-            "name": "Smiling Mask",
-            "tier": "Common",
-            "pool": "",
-            "description": "The Merchant's card removal service now always costs 50 Gold.",
-            "flavorText": "Mask worn by the Merchant. He must have spares...",
-            "mod": ""
-        },
-        {
-            "name": "Snecko Skull",
-            "tier": "Common",
-            "pool": "Green",
-            "description": "Whenever you apply Poison, apply an additional 1 Poison.",
-            "flavorText": "A snecko skull in pristine condition. Mysteriously clean and smooth, dirt and grime fall off inexplicably.",
-            "mod": ""
-        },
-        {
-            "name": "Strawberry",
-            "tier": "Common",
-            "pool": "",
-            "description": "Upon pickup, raise your Max HP by 7.",
-            "flavorText": "\"Delicious! Haven't seen any of these since the blight.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "The Boot",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you would deal 4 or less unblocked attack damage, increase it to 5.",
-            "flavorText": "When wound up, the boot grows larger in size.",
-            "mod": ""
-        },
-        {
-            "name": "Tiny Chest",
-            "tier": "Common",
-            "pool": "",
-            "description": "Every 4th ? room is a Treasure room.",
-            "flavorText": "\"A fine prototype.\" - The Architect",
-            "mod": ""
-        },
-        {
-            "name": "Toy Ornithopter",
-            "tier": "Common",
-            "pool": "",
-            "description": "Whenever you use a potion, heal 5 HP.",
-            "flavorText": "\"This little toy is the perfect companion for the lone adventurer!\"",
-            "mod": ""
-        },
-        {
-            "name": "Vajra",
-            "tier": "Common",
-            "pool": "",
-            "description": "Start each combat with 1 Strength.",
-            "flavorText": "An ornamental relic given to warriors displaying glory in battle.",
-            "mod": ""
-        },
-        {
-            "name": "War Paint",
-            "tier": "Common",
-            "pool": "",
-            "description": "Upon pickup, Upgrade 2 random Skills.",
-            "flavorText": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
-            "mod": ""
-        },
-        {
-            "name": "Whetstone",
-            "tier": "Common",
-            "pool": "",
-            "description": "Upon pickup, Upgrade 2 random Attacks.",
-            "flavorText": "\"Flesh never beats steel.\" - Kublai the Great",
-            "mod": ""
-        },
-        {
-            "name": "Blue Candle",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Unplayable Curse cards can now be played.\nWhenever you play a Curse, lose 1 HP and Exhaust it.",
-            "flavorText": "The flame ignites when shrouded in darkness.",
-            "mod": ""
-        },
-        {
-            "name": "Bottled Flame",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Upon pickup, choose an Attack. Start each combat with this card in your hand.",
-            "flavorText": "Inside the bottle resides a flame that eternally burns.",
-            "mod": ""
-        },
-        {
-            "name": "Bottled Lightning",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Upon pickup, choose a Skill. Start each combat with this card in your hand.",
-            "flavorText": "Peering into the swirling maelstrom, you see a part of yourself staring back.",
-            "mod": ""
-        },
-        {
-            "name": "Bottled Tornado",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Upon pickup, choose a Power card. Start each combat with this card in your hand.",
-            "flavorText": "The bottle gently hums and whirs.",
-            "mod": ""
-        },
-        {
-            "name": "Darkstone Periapt",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you obtain a Curse, increase your Max HP by 6.",
-            "flavorText": "The stone draws power from dark energy, converting it into vitality for the wearer.",
-            "mod": ""
-        },
-        {
-            "name": "Duality",
-            "tier": "Uncommon",
-            "pool": "Purple",
-            "description": "Whenever you play an Attack, gain 1 temporary Dexterity.",
-            "flavorText": "\"And the sun was extinguished forever, as if curtains fell before it.\" - Zoroth",
-            "mod": ""
-        },
-        {
-            "name": "Eternal Feather",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "For every 5 cards in your deck, heal 3 HP whenever you enter a Rest Site.",
-            "flavorText": "This feather appears to be completely indestructible. What bird does this possibly come from?",
-            "mod": ""
-        },
-        {
-            "name": "Frozen Egg",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you add a Power card into your deck, Upgrade it.",
-            "flavorText": "The egg lies inert and frozen, never to hatch.",
-            "mod": ""
-        },
-        {
-            "name": "Gold-Plated Cables",
-            "tier": "Uncommon",
-            "pool": "Blue",
-            "description": "Your rightmost Orb triggers its passive an additional time.",
-            "flavorText": "\"Interesting! Even automatons are affected by placebo.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Gremlin Horn",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever an enemy dies, gain [E] and draw 1 card.",
-            "flavorText": "\"Gremlin Nobs are capable of growing until the day they die. Remarkable.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Horn Cleat",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "At the start of your 2nd turn, gain 14 Block.",
-            "flavorText": "Pleasant to hold in the hand. What was it for?",
-            "mod": ""
-        },
-        {
-            "name": "Ink Bottle",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you play 10 cards, draw 1 card.",
-            "flavorText": "Once exhausted, appears to refill itself in a different color.",
-            "mod": ""
-        },
-        {
-            "name": "Kunai",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Every time you play 3 Attacks in a single turn, gain 1 Dexterity.",
-            "flavorText": "A blade favored by assassins for its lethality at range.",
-            "mod": ""
-        },
-        {
-            "name": "Letter Opener",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Every time you play 3 Skills in a single turn, deal 5 damage to ALL enemies.",
-            "flavorText": "Unnaturally sharp.",
-            "mod": ""
-        },
-        {
-            "name": "Matryoshka",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "The next 2 non-Boss chests you open contain 2 Relics.",
-            "flavorText": "A stackable set of painted dolls. The paint depicts an unknown bird with white eyes and blue feathers.",
-            "mod": ""
-        },
-        {
-            "name": "Meat on the Bone",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "If your HP is at or below 50% at the end of combat, heal 12 HP.",
-            "flavorText": "The meat keeps replenishing, never seeming to fully run out.",
-            "mod": ""
-        },
-        {
-            "name": "Mercury Hourglass",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "At the start of your turn, deal 3 damage to ALL enemies.",
-            "flavorText": "An enchanted hourglass that endlessly drips.",
-            "mod": ""
-        },
-        {
-            "name": "Molten Egg",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you add an Attack into your deck, Upgrade it.",
-            "flavorText": "The egg of a Phoenix. It glows red hot with a simmering lava.",
-            "mod": ""
-        },
-        {
-            "name": "Mummified Hand",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you play a Power card, a random card in your hand costs 0 that turn.",
-            "flavorText": "Frequently twitches, especially when your pulse is high.",
-            "mod": ""
-        },
-        {
-            "name": "Ninja Scroll",
-            "tier": "Uncommon",
-            "pool": "Green",
-            "description": "At the start of each combat, add 3 Shivs into your hand.",
-            "flavorText": "Contains the secrets of assassination.",
-            "mod": ""
-        },
-        {
-            "name": "Ornamental Fan",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Every time you play 3 Attacks in a single turn, gain 4 Block.",
-            "flavorText": "The fan seems to extend and harden as blood is spilled.",
-            "mod": ""
-        },
-        {
-            "name": "Pantograph",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "At the start of Boss combats, heal 25 HP.",
-            "flavorText": "\"Solid foundations are not accidental. Tools for planning are a must.\" - The Architect",
-            "mod": ""
-        },
-        {
-            "name": "Paper Krane",
-            "tier": "Uncommon",
-            "pool": "Green",
-            "description": "Enemies with Weak deal 40% less damage rather than 25%.",
-            "flavorText": "An origami of a creature from a past age.",
-            "mod": ""
-        },
-        {
-            "name": "Paper Phrog",
-            "tier": "Uncommon",
-            "pool": "Red",
-            "description": "Enemies with Vulnerable take 75% more damage rather than 50%.",
-            "flavorText": "The paper continually folds and unfolds itself into the shape of a small creature.",
-            "mod": ""
-        },
-        {
-            "name": "Pear",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Upon pickup, raise your Max HP by 10.",
-            "flavorText": "A common fruit before the Spireblight.",
-            "mod": ""
-        },
-        {
-            "name": "Question Card",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Future card rewards have 1 additional card to choose from.",
-            "flavorText": "\"Those with more choices minimize the downside to chaos.\" - Kublai the Great",
-            "mod": ""
-        },
-        {
-            "name": "Self-Forming Clay",
-            "tier": "Uncommon",
-            "pool": "Red",
-            "description": "Whenever you lose HP, gain 3 Block next turn.",
-            "flavorText": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Shuriken",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Every time you play 3 Attacks in a single turn, gain 1 Strength.",
-            "flavorText": "Lightweight throwing weapons. Recommend going for the eyes.",
-            "mod": ""
-        },
-        {
-            "name": "Singing Bowl",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "When adding cards into your deck, you may raise your Max HP by 2 instead.",
-            "flavorText": "This well-used artifact rings out with a beautiful melody when struck.",
-            "mod": ""
-        },
-        {
-            "name": "Strike Dummy",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Cards containing \"Strike\" deal 3 additional damage.",
-            "flavorText": "It's beat up.",
-            "mod": ""
-        },
-        {
-            "name": "Sundial",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Every 3 times you shuffle your draw pile, gain [E] [E] .",
-            "flavorText": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
-            "mod": ""
-        },
-        {
-            "name": "Symbiotic Virus",
-            "tier": "Uncommon",
-            "pool": "Blue",
-            "description": "At the start of each combat, Channel 1 Dark.",
-            "flavorText": "A little bit of bad can do a lot of good...",
-            "mod": ""
-        },
-        {
-            "name": "Teardrop Locket",
-            "tier": "Uncommon",
-            "pool": "Purple",
-            "description": "Start each combat in Calm.",
-            "flavorText": "Its owner blind, its contents unseen.",
-            "mod": ""
-        },
-        {
-            "name": "The Courier",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "The Merchant restocks cards, relics, and potions. All prices are reduced by 20%.",
-            "flavorText": "The Merchant's personal pet!",
-            "mod": ""
-        },
-        {
-            "name": "Toxic Egg",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Whenever you add a Skill into your deck, Upgrade it.",
-            "flavorText": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "White Beast Statue",
-            "tier": "Uncommon",
-            "pool": "",
-            "description": "Potions always appear in combat rewards.",
-            "flavorText": "A small white statue of a creature you have never seen before.",
-            "mod": ""
-        },
-        {
-            "name": "Bird-Faced Urn",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you play a Power card, heal 2 HP.",
-            "flavorText": "This urn shows the crow god Mazaleth looking mischievous.",
-            "mod": ""
-        },
-        {
-            "name": "Calipers",
-            "tier": "Rare",
-            "pool": "",
-            "description": "At the start of your turn, lose 15 Block rather than all of your Block.",
-            "flavorText": "\"Mechanical precision leads to greatness\" - The Architect",
-            "mod": ""
-        },
-        {
-            "name": "Captain's Wheel",
-            "tier": "Rare",
-            "pool": "",
-            "description": "At the start of your 3rd turn, gain 18 Block.",
-            "flavorText": "Wooden trinket carved with delicate precision. A name is carved into it but the language is foreign.",
-            "mod": ""
-        },
-        {
-            "name": "Champion Belt",
-            "tier": "Rare",
-            "pool": "Red",
-            "description": "Whenever you apply Vulnerable, apply 1 Weak.",
-            "flavorText": "Only the greatest may wear this belt.",
-            "mod": ""
-        },
-        {
-            "name": "Charon's Ashes",
-            "tier": "Rare",
-            "pool": "Red",
-            "description": "Whenever you Exhaust a card, deal 3 damage to ALL enemies.",
-            "flavorText": "Charon was said to be the god of rebirth, eternally dying and reviving in a burst of flame.",
-            "mod": ""
-        },
-        {
-            "name": "Cloak Clasp",
-            "tier": "Rare",
-            "pool": "Purple",
-            "description": "At the end of your turn, gain 1 Block for each card in your hand.",
-            "flavorText": "A simple but sturdy design.",
-            "mod": ""
-        },
-        {
-            "name": "Dead Branch",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you Exhaust a card, add a random card into your hand.",
-            "flavorText": "The branch of a tree from a forgotten era.",
-            "mod": ""
-        },
-        {
-            "name": "Du-Vu Doll",
-            "tier": "Rare",
-            "pool": "",
-            "description": "For each Curse in your deck, start each combat with 1 Strength.",
-            "flavorText": "A doll devised to gain strength from malicious energy.",
-            "mod": ""
-        },
-        {
-            "name": "Emotion Chip",
-            "tier": "Rare",
-            "pool": "Blue",
-            "description": "If you lost HP during the previous turn, trigger the passive ability of all Orbs at the start of your turn.",
-            "flavorText": "...<3...?",
-            "mod": ""
-        },
-        {
-            "name": "Fossilized Helix",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Prevent the first time you would lose HP each combat.",
-            "flavorText": "Seemingly indestructible, you wonder what kind of creature this belonged to.",
-            "mod": ""
-        },
-        {
-            "name": "Gambling Chip",
-            "tier": "Rare",
-            "pool": "",
-            "description": "At the start of each combat, discard any number of cards, then draw that many cards.",
-            "flavorText": "You can see a small inscription on one side. It reads: \"Bear's Lucky Chip!\"",
-            "mod": ""
-        },
-        {
-            "name": "Ginger",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You can no longer become Weakened.",
-            "flavorText": "A potent tool in many tonics.",
-            "mod": ""
-        },
-        {
-            "name": "Girya",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You can now gain Strength at Rest Sites (up to 3 times).",
-            "flavorText": "This Girya is unfathomably heavy. You could train with this to get significantly stronger.",
-            "mod": ""
-        },
-        {
-            "name": "Golden Eye",
-            "tier": "Rare",
-            "pool": "Purple",
-            "description": "Whenever you Scry, Scry 2 additional cards.",
-            "flavorText": "See into the minds of those nearby, predicting their future moves.",
-            "mod": ""
-        },
-        {
-            "name": "Ice Cream",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Energy is now conserved between turns.",
-            "flavorText": "\"Delicious!\"",
-            "mod": ""
-        },
-        {
-            "name": "Incense Burner",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Every 6 turns, gain 1 Intangible.",
-            "flavorText": "The smoke imbues its owner with the spirit of the burned.",
-            "mod": ""
-        },
-        {
-            "name": "Lizard Tail",
-            "tier": "Rare",
-            "pool": "",
-            "description": "When you would die, heal to 50% of your Max HP instead (works once).",
-            "flavorText": "A fake tail to trick enemies during combat.",
-            "mod": ""
-        },
-        {
-            "name": "Magic Flower",
-            "tier": "Rare",
-            "pool": "Red",
-            "description": "Healing is 50% more effective during combat.",
-            "flavorText": "A flower long thought extinct, somehow preserved in perfect condition.",
-            "mod": ""
-        },
-        {
-            "name": "Mango",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Upon pickup, raise your Max HP by 14.",
-            "flavorText": "The most coveted forgotten fruit. Impeccably preserved with no signs of Spireblight.",
-            "mod": ""
-        },
-        {
-            "name": "Old Coin",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Upon pickup, gain 300 Gold.",
-            "flavorText": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
-            "mod": ""
-        },
-        {
-            "name": "Peace Pipe",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You can now remove cards from your deck at Rest Sites.",
-            "flavorText": "Clears the mind and cleanses the soul.",
-            "mod": ""
-        },
-        {
-            "name": "Pocketwatch",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you play 3 or less cards during your turn, draw 3 additional cards at the start of your next turn.",
-            "flavorText": "The hands seem stuck on the 3 o'clock position.",
-            "mod": ""
-        },
-        {
-            "name": "Prayer Wheel",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Normal enemies drop an additional card reward.",
-            "flavorText": "The wheel continues to spin, never stopping.",
-            "mod": ""
-        },
-        {
-            "name": "Shovel",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You can now Dig for relics at Rest Sites.",
-            "flavorText": "The Spire houses all number of relics from past civilizations and powerful adventurers lost to time. Time to go dig them up!",
-            "mod": ""
-        },
-        {
-            "name": "Stone Calendar",
-            "tier": "Rare",
-            "pool": "",
-            "description": "At the end of turn 7, deal 52 damage to ALL enemies.",
-            "flavorText": "The passage of time is imperceptible in the Spire.",
-            "mod": ""
-        },
-        {
-            "name": "The Specimen",
-            "tier": "Rare",
-            "pool": "Green",
-            "description": "Whenever an enemy dies, transfer any Poison it has to a random enemy.",
-            "flavorText": "\"Fascinating! I found a mutated creature demonstrating astounding toxic properties. Storing a sample for later examination.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Thread and Needle",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Start each combat with 4 Plated Armor.",
-            "flavorText": "Wrapping the magical thread around your body, you feel harder to the touch.",
-            "mod": ""
-        },
-        {
-            "name": "Tingsha",
-            "tier": "Rare",
-            "pool": "Green",
-            "description": "Whenever you discard a card during your turn, deal 3 damage to a random enemy.",
-            "flavorText": "The sound this instrument generates seems to be capable of reverberating to painful levels of volume.",
-            "mod": ""
-        },
-        {
-            "name": "Torii",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you would receive 5 or less unblocked attack damage, reduce it to 1.",
-            "flavorText": "Holding the small Torii, you feel a sense of calm and safety drift through your mind.",
-            "mod": ""
-        },
-        {
-            "name": "Tough Bandages",
-            "tier": "Rare",
-            "pool": "Green",
-            "description": "Whenever you discard a card during your turn, gain 3 Block.",
-            "flavorText": "Loss gives strength.",
-            "mod": ""
-        },
-        {
-            "name": "Tungsten Rod",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you would lose HP, lose 1 less.",
-            "flavorText": "It's very very heavy.",
-            "mod": ""
-        },
-        {
-            "name": "Turnip",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You can no longer become Frail.",
-            "flavorText": "Best with Ginger.",
-            "mod": ""
-        },
-        {
-            "name": "Unceasing Top",
-            "tier": "Rare",
-            "pool": "",
-            "description": "Whenever you have no cards in hand during your turn, draw a card.",
-            "flavorText": "The top continues to spin effortlessly as if you were in a dream.",
-            "mod": ""
-        },
-        {
-            "name": "Wing Boots",
-            "tier": "Rare",
-            "pool": "",
-            "description": "You may ignore paths when choosing the next room to travel to 3 times.",
-            "flavorText": "Stylish.",
-            "mod": ""
-        },
-        {
-            "name": "Bloody Idol",
-            "tier": "Special",
-            "pool": "",
-            "description": "Whenever you gain Gold, heal 5 HP.",
-            "flavorText": "The idol now weeps a constant stream of blood.",
-            "mod": ""
-        },
-        {
-            "name": "Cultist Headpiece",
-            "tier": "Special",
-            "pool": "",
-            "description": "You feel more talkative.",
-            "flavorText": "Part of the Flock!",
-            "mod": ""
-        },
-        {
-            "name": "Enchiridion",
-            "tier": "Special",
-            "pool": "",
-            "description": "At the start of each combat, add a random Power card into your hand. It costs 0 for that turn.",
-            "flavorText": "The legendary journal of an ancient lich.",
-            "mod": ""
-        },
-        {
-            "name": "Face Of Cleric",
-            "tier": "Special",
-            "pool": "",
-            "description": "At the end of combat, raise your Max HP by 1.",
-            "flavorText": "Everyone loves Cleric.",
-            "mod": ""
-        },
-        {
-            "name": "Golden Idol",
-            "tier": "Special",
-            "pool": "",
-            "description": "Enemies drop 25% more Gold.",
-            "flavorText": "Made of solid gold, you feel richer just holding it.",
-            "mod": ""
-        },
-        {
-            "name": "Gremlin Visage",
-            "tier": "Special",
-            "pool": "",
-            "description": "Start each combat with 1 Weak.",
-            "flavorText": "Time to run.",
-            "mod": ""
-        },
-        {
-            "name": "Mark of the Bloom",
-            "tier": "Special",
-            "pool": "",
-            "description": "You can no longer heal.",
-            "flavorText": "In the Beyond, thoughts and reality are one.",
-            "mod": ""
-        },
-        {
-            "name": "Mutagenic Strength",
-            "tier": "Special",
-            "pool": "",
-            "description": "Start each combat with 3 Strength. At the end of your first turn, lose 3 Strength.",
-            "flavorText": "\"The results seem fleeting, triggering when the subject is in danger.\" - Unknown",
-            "mod": ""
-        },
-        {
-            "name": "N'loth's Gift",
-            "tier": "Special",
-            "pool": "",
-            "description": "Triple the chance of finding Rare cards from combat rewards.",
-            "flavorText": "The strange gift from N'loth. Whenever you try and unwrap it, another wrapped box of the same size lies within.",
-            "mod": ""
-        },
-        {
-            "name": "N'loth's Hungry Face",
-            "tier": "Special",
-            "pool": "",
-            "description": "The next non-Boss chest you open is empty.",
-            "flavorText": "You feel hungry.",
-            "mod": ""
-        },
-        {
-            "name": "Necronomicon",
-            "tier": "Special",
-            "pool": "",
-            "description": "The first Attack played each turn that costs 2 or more is played twice. Upon pickup, obtain a special Curse.",
-            "flavorText": "Only a fool would try and harness this evil power. At night your dreams are haunted by images of the book devouring your mind.",
-            "mod": ""
-        },
-        {
-            "name": "Neow's Lament",
-            "tier": "Special",
-            "pool": "",
-            "description": "Enemies in your first 3 combats will have 1 HP.",
-            "flavorText": "The blessing of lamentation bestowed by Neow.",
-            "mod": ""
-        },
-        {
-            "name": "Nilry's Codex",
-            "tier": "Special",
-            "pool": "",
-            "description": "At the end of your turn, you may shuffle 1 of 3 random cards into your draw pile.",
-            "flavorText": "Crafted by the infamous game master himself. Said to expand one's mind.",
-            "mod": ""
-        },
-        {
-            "name": "Odd Mushroom",
-            "tier": "Special",
-            "pool": "",
-            "description": "When Vulnerable, take 25% more attack damage rather than 50%.",
-            "flavorText": "\"After consuming trichella parastius I felt larger and less... susceptible.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Red Mask",
-            "tier": "Special",
-            "pool": "",
-            "description": "At the start of each combat, apply 1 Weak to ALL enemies.",
-            "flavorText": "This very stylish looking mask belongs to the leader of the Red Mask Bandits. Technically that makes you the leader now?",
-            "mod": ""
-        },
-        {
-            "name": "Spirit Poop",
-            "tier": "Special",
-            "pool": "",
-            "description": "It's unpleasant.",
-            "flavorText": "The charred remains of your offering to the spirits.",
-            "mod": ""
-        },
-        {
-            "name": "Ssserpent Head",
-            "tier": "Special",
-            "pool": "",
-            "description": "Whenever you enter a ? room, gain 50 Gold.",
-            "flavorText": "The most fulfilling of lives is that in which you can buy anything!",
-            "mod": ""
-        },
-        {
-            "name": "Warped Tongs",
-            "tier": "Special",
-            "pool": "",
-            "description": "At the start of your turn, Upgrade a random card in your hand for the rest of combat.",
-            "flavorText": "The cursed tongs emit a strong desire to return to where they were stolen from.",
-            "mod": ""
-        },
-        {
-            "name": "Astrolabe",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Upon pickup, Transform 3 cards, then Upgrade them.",
-            "flavorText": "A tool to glean invaluable knowledge from the stars.",
-            "mod": ""
-        },
-        {
-            "name": "Black Blood",
-            "tier": "Boss",
-            "pool": "Red",
-            "description": "Replaces Burning Blood. At the end of combat, heal 12 HP.",
-            "flavorText": "The rage grows darker.",
-            "mod": ""
-        },
-        {
-            "name": "Black Star",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Elites drop an additional relic when defeated.",
-            "flavorText": "Originally discovered in the town of the serpent, beside a solitary candle.",
-            "mod": ""
-        },
-        {
-            "name": "Busted Crown",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. Future card rewards have 2 less cards to choose from.",
-            "flavorText": "The Champ's crown... or a pale imitation?",
-            "mod": ""
-        },
-        {
-            "name": "Calling Bell",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Upon pickup, obtain a unique Curse and 3 relics.",
-            "flavorText": "This dark iron bell rang 3 times when you found it, but now stays silent.",
-            "mod": ""
-        },
-        {
-            "name": "Coffee Dripper",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You can no longer Rest at Rest Sites.",
-            "flavorText": "\"Yes, another cup please. Back to work. Back to work!\" - The Architect",
-            "mod": ""
-        },
-        {
-            "name": "Cursed Key",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. Whenever you open a non-Boss chest, obtain a Curse.",
-            "flavorText": "You can feel the malicious energy emanating from the key. Power comes at a price.",
-            "mod": ""
-        },
-        {
-            "name": "Ectoplasm",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You can no longer gain Gold.",
-            "flavorText": "This blob of slime and energy seems to pulse with life.",
-            "mod": ""
-        },
-        {
-            "name": "Empty Cage",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Upon pickup, remove 2 cards from your deck.",
-            "flavorText": "\"How unusual to cage that which you worship.\" - Ranwid",
-            "mod": ""
-        },
-        {
-            "name": "Frozen Core",
-            "tier": "Boss",
-            "pool": "Blue",
-            "description": "Replaces Cracked Core. If you end your turn with any empty Orb slots, Channel 1 Frost.",
-            "flavorText": "The crack in your core has been filled with a pulsating cold energy.",
-            "mod": ""
-        },
-        {
-            "name": "Fusion Hammer",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You can no longer Smith at Rest Sites.",
-            "flavorText": "Once wielded, the owner can never let go.",
-            "mod": ""
-        },
-        {
-            "name": "Holy Water",
-            "tier": "Boss",
-            "pool": "Purple",
-            "description": "Replaces Pure Water. At the start of each combat, add 3 Miracles into your hand.",
-            "flavorText": "Collected from a time before the Spire.",
-            "mod": ""
-        },
-        {
-            "name": "Hovering Kite",
-            "tier": "Boss",
-            "pool": "Green",
-            "description": "The first time you discard a card each turn, gain [E] .",
-            "flavorText": "The Kite floats around you in battle, propelled by a mysterious force.",
-            "mod": ""
-        },
-        {
-            "name": "Inserter",
-            "tier": "Boss",
-            "pool": "Blue",
-            "description": "Every 2 turns, gain 1 Orb slot.",
-            "flavorText": "Push. Pull. Stack. Repeat.",
-            "mod": ""
-        },
-        {
-            "name": "Mark of Pain",
-            "tier": "Boss",
-            "pool": "Red",
-            "description": "Gain [R] at the start of your turn. At the start of combat, shuffle 2 Wounds into your draw pile.",
-            "flavorText": "This brand was used by the northern tribes to signify warriors who had mastered pain in battle.",
-            "mod": ""
-        },
-        {
-            "name": "Nuclear Battery",
-            "tier": "Boss",
-            "pool": "Blue",
-            "description": "At the start of each combat, Channel 1 Plasma.",
-            "flavorText": "Ooooh...",
-            "mod": ""
-        },
-        {
-            "name": "Pandora's Box",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Upon pickup, Transform all Strike and Defend cards.",
-            "flavorText": "You have a bad feeling about opening this.",
-            "mod": ""
-        },
-        {
-            "name": "Philosopher's Stone",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. ALL enemies start combat with 1 Strength.",
-            "flavorText": "Raw energy emanates from the stone, empowering all nearby.",
-            "mod": ""
-        },
-        {
-            "name": "Ring of the Serpent",
-            "tier": "Boss",
-            "pool": "Green",
-            "description": "Replaces Ring of the Snake. At the start of your turn, draw 1 additional card.",
-            "flavorText": "Your ring has morphed and changed forms.",
-            "mod": ""
-        },
-        {
-            "name": "Runic Cube",
-            "tier": "Boss",
-            "pool": "Red",
-            "description": "Whenever you lose HP, draw 1 card.",
-            "flavorText": "The runes are indecipherable.",
-            "mod": ""
-        },
-        {
-            "name": "Runic Dome",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You can no longer see enemy intents.",
-            "flavorText": "The runes are indecipherable.",
-            "mod": ""
-        },
-        {
-            "name": "Runic Pyramid",
-            "tier": "Boss",
-            "pool": "",
-            "description": "At the end of your turn, you no longer discard your hand.",
-            "flavorText": "The runes are indecipherable.",
-            "mod": ""
-        },
-        {
-            "name": "Sacred Bark",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Double the effectiveness of potions.",
-            "flavorText": "A bark rumored to originate from the World tree.",
-            "mod": ""
-        },
-        {
-            "name": "Slaver's Collar",
-            "tier": "Boss",
-            "pool": "",
-            "description": "During Boss and Elite combats, gain [E] at the start of your turn.",
-            "flavorText": "Rusty miserable chains.",
-            "mod": ""
-        },
-        {
-            "name": "Snecko Eye",
-            "tier": "Boss",
-            "pool": "",
-            "description": "At the start of your turn, draw 2 additional cards. Start each combat Confused.",
-            "flavorText": "An eye of a fallen snecko. Much larger than you imagined.",
-            "mod": ""
-        },
-        {
-            "name": "Sozu",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You can no longer obtain potions.",
-            "flavorText": "You notice that magical liquids seem to lose their properties when near this relic.",
-            "mod": ""
-        },
-        {
-            "name": "Tiny House",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Upon pickup, obtain 1 potion.\nGain 50 Gold.\nRaise your Max HP by 5.\nObtain 1 card.\nUpgrade 1 random card.",
-            "flavorText": "\"A near perfect implementation of miniaturization. My finest work to date, but still not adequate.\" - The Architect",
-            "mod": ""
-        },
-        {
-            "name": "Velvet Choker",
-            "tier": "Boss",
-            "pool": "",
-            "description": "Gain [E] at the start of your turn. You cannot play more than 6 cards per turn.",
-            "flavorText": "\"Immense power, but too limited.\" - Kublai the Great",
-            "mod": ""
-        },
-        {
-            "name": "Violet Lotus",
-            "tier": "Boss",
-            "pool": "Purple",
-            "description": "Whenever you exit Calm, gain an additional [E] .",
-            "flavorText": "The old texts describe that the surface of \"mana pools\" were littered with these flowers.",
-            "mod": ""
-        },
-        {
-            "name": "Wrist Blade",
-            "tier": "Boss",
-            "pool": "Green",
-            "description": "Attacks that cost 0 deal 4 additional damage.",
-            "flavorText": "Handy for assassinations.",
-            "mod": ""
-        },
-        {
-            "name": "Brimstone",
-            "tier": "Shop",
-            "pool": "Red",
-            "description": "At the start of your turn, gain 2 Strength and ALL enemies gain 1 Strength.",
-            "flavorText": "Emanates an infernal heat.",
-            "mod": ""
-        },
-        {
-            "name": "Cauldron",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Upon pickup, brews 5 random potions.",
-            "flavorText": "The Merchant is actually a rather skilled potion brewer. Buy 4 get 1 free.",
-            "mod": ""
-        },
-        {
-            "name": "Chemical X",
-            "tier": "Shop",
-            "pool": "",
-            "description": "The effects of your cost X cards are increased by 2.",
-            "flavorText": "WARNING: Do not combine with sugar, spice, and everything nice.",
-            "mod": ""
-        },
-        {
-            "name": "Clockwork Souvenir",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Start each combat with 1 Artifact.",
-            "flavorText": "\"So many intricate gears.\"",
-            "mod": ""
-        },
-        {
-            "name": "Dolly's Mirror",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Upon pickup, obtain an additional copy of a card in your deck.",
-            "flavorText": "\"I look funny in this.\"",
-            "mod": ""
-        },
-        {
-            "name": "Frozen Eye",
-            "tier": "Shop",
-            "pool": "",
-            "description": "When viewing your Draw Pile, the cards are now shown in order.",
-            "flavorText": "Staring into the eye, you see a glimpse of your future.",
-            "mod": ""
-        },
-        {
-            "name": "Hand Drill",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Whenever you break an enemy's Block, apply 2 Vulnerable.",
-            "flavorText": "\"Spirals are dangerous.\"",
-            "mod": ""
-        },
-        {
-            "name": "Lee's Waffle",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Upon pickup, raise your Max HP by 7 and heal all of your HP.",
-            "flavorText": "\"Tastiest treat you will find in all the Spire! Baked today just for you.\"",
-            "mod": ""
-        },
-        {
-            "name": "Medical Kit",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Unplayable Status cards can now be played. Whenever you play a Status card, Exhaust it.",
-            "flavorText": "\"Has everything you need! Anti-itch, anti-burn, anti-venom, and more!\"",
-            "mod": ""
-        },
-        {
-            "name": "Melange",
-            "tier": "Shop",
-            "pool": "Purple",
-            "description": "Whenever you shuffle your draw pile, Scry 3.",
-            "flavorText": "Mysterious sands from an unknown origin. Smells of cinnamon.",
-            "mod": ""
-        },
-        {
-            "name": "Membership Card",
-            "tier": "Shop",
-            "pool": "",
-            "description": "50% discount on all products!",
-            "flavorText": "\"Bonus membership offer for my most valuable customers!\"",
-            "mod": ""
-        },
-        {
-            "name": "Orange Pellets",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Whenever you play a Power, Attack, and Skill in the same turn, remove all of your debuffs.",
-            "flavorText": "\"Made from various fungi found throughout the Spire, they will stave off any affliction.\"",
-            "mod": ""
-        },
-        {
-            "name": "Orrery",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Upon pickup, choose and add 5 cards to your deck.",
-            "flavorText": "\"Once you understand the universe...\" - Zoroth",
-            "mod": ""
-        },
-        {
-            "name": "Prismatic Shard",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Combat reward screens now contain Colorless cards and cards from other colors.",
-            "flavorText": "Looking through the shard, you are able to see entirely new perspectives.",
-            "mod": ""
-        },
-        {
-            "name": "Runic Capacitor",
-            "tier": "Shop",
-            "pool": "Blue",
-            "description": "Start each combat with 3 additional Orb slots.",
-            "flavorText": "More is better.",
-            "mod": ""
-        },
-        {
-            "name": "Sling of Courage",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Start each Elite combat with 2 Strength.",
-            "flavorText": "\"A handy tool for dealing with particularly tough opponents.\"",
-            "mod": ""
-        },
-        {
-            "name": "Strange Spoon",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Cards which Exhaust when played will instead discard 50% of the time.",
-            "flavorText": "Staring at the spoon, it appears to bend and twist around before your eyes.",
-            "mod": ""
-        },
-        {
-            "name": "The Abacus",
-            "tier": "Shop",
-            "pool": "",
-            "description": "Whenever you shuffle your draw pile, gain 6 Block.",
-            "flavorText": "\"One...Two...Three...\"",
-            "mod": ""
-        },
-        {
-            "name": "Toolbox",
-            "tier": "Shop",
-            "pool": "",
-            "description": "At the start of each combat, choose 1 of 3 random Colorless cards and add the chosen card into your hand.",
-            "flavorText": "A tool for every job.",
-            "mod": ""
-        },
-        {
-            "name": "Twisted Funnel",
-            "tier": "Shop",
-            "pool": "Green",
-            "description": "At the start of each combat, apply 4 Poison to ALL enemies.",
-            "flavorText": "\"I wouldn't drink out of it.\"",
-            "mod": ""
-        }
-    ],
-    "potions": [
-        {
-            "name": "Attack Potion",
-            "rarity": "Common",
-            "description": "Choose 1 of 3 random Attack cards to add to your hand, it costs 0 this turn.",
-            "mod": ""
-        },
-        {
-            "name": "Blessing of the Forge",
-            "rarity": "Common",
-            "description": "Upgrade all cards in your hand for the rest of combat.",
-            "mod": ""
-        },
-        {
-            "name": "Block Potion",
-            "rarity": "Common",
-            "description": "Gain 12 Block.",
-            "mod": ""
-        },
-        {
-            "name": "Blood Potion",
-            "rarity": "Common",
-            "description": "Heal for 20% of your Max HP.",
-            "mod": ""
-        },
-        {
-            "name": "Bottled Miracle",
-            "rarity": "Common",
-            "description": "Add 2 Miracles to your hand.",
-            "mod": ""
-        },
-        {
-            "name": "Colorless Potion",
-            "rarity": "Common",
-            "description": "Choose 1 of 3 random Colorless cards to add to your hand, it costs 0 this turn.",
-            "mod": ""
-        },
-        {
-            "name": "Dexterity Potion",
-            "rarity": "Common",
-            "description": "Gain 2 Dexterity.",
-            "mod": ""
-        },
-        {
-            "name": "Energy Potion",
-            "rarity": "Common",
-            "description": "Gain 2 Energy.",
-            "mod": ""
-        },
-        {
-            "name": "Explosive Potion",
-            "rarity": "Common",
-            "description": "Deal 10 damage to ALL enemies.",
-            "mod": ""
-        },
-        {
-            "name": "Fear Potion",
-            "rarity": "Common",
-            "description": "Apply 3 Vulnerable.",
-            "mod": ""
-        },
-        {
-            "name": "Fire Potion",
-            "rarity": "Common",
-            "description": "Deal 20 damage.",
-            "mod": ""
-        },
-        {
-            "name": "Flex Potion",
-            "rarity": "Common",
-            "description": "Gain 5 Strength. At the end of your turn, lose 5 Strength.",
-            "mod": ""
-        },
-        {
-            "name": "Focus Potion",
-            "rarity": "Common",
-            "description": "Gain 2 Focus.",
-            "mod": ""
-        },
-        {
-            "name": "Poison Potion",
-            "rarity": "Common",
-            "description": "Apply 6 Poison.",
-            "mod": ""
-        },
-        {
-            "name": "Power Potion",
-            "rarity": "Common",
-            "description": "Choose 1 of 3 random Power cards to add to your hand, it costs 0 this turn.",
-            "mod": ""
-        },
-        {
-            "name": "Skill Potion",
-            "rarity": "Common",
-            "description": "Choose 1 of 3 random Skill cards to add to your hand, it costs 0 this turn.",
-            "mod": ""
-        },
-        {
-            "name": "Speed Potion",
-            "rarity": "Common",
-            "description": "Gain 5 Dexterity. At the end of your turn, lose 5 Dexterity.",
-            "mod": ""
-        },
-        {
-            "name": "Strength Potion",
-            "rarity": "Common",
-            "description": "Gain 2 Strength.",
-            "mod": ""
-        },
-        {
-            "name": "Swift Potion",
-            "rarity": "Common",
-            "description": "Draw 3 cards.",
-            "mod": ""
-        },
-        {
-            "name": "Weak Potion",
-            "rarity": "Common",
-            "description": "Apply 3 Weak.",
-            "mod": ""
-        },
-        {
-            "name": "Ancient Potion",
-            "rarity": "Uncommon",
-            "description": "Gain 1 Artifact.",
-            "mod": ""
-        },
-        {
-            "name": "Cunning Potion",
-            "rarity": "Uncommon",
-            "description": "Add 3 Shiv+ to your hand.",
-            "mod": ""
-        },
-        {
-            "name": "Distilled Chaos",
-            "rarity": "Uncommon",
-            "description": "Play the top 3 cards of your draw pile.",
-            "mod": ""
-        },
-        {
-            "name": "Duplication Potion",
-            "rarity": "Uncommon",
-            "description": "This turn, your next card is played twice.",
-            "mod": ""
-        },
-        {
-            "name": "Elixir",
-            "rarity": "Uncommon",
-            "description": "Exhaust any number of cards in your hand.",
-            "mod": ""
-        },
-        {
-            "name": "Essence of Steel",
-            "rarity": "Uncommon",
-            "description": "Gain 4 Plated Armor.",
-            "mod": ""
-        },
-        {
-            "name": "Gambler's Brew",
-            "rarity": "Uncommon",
-            "description": "Discard any number of cards then draw that many.",
-            "mod": ""
-        },
-        {
-            "name": "Liquid Bronze",
-            "rarity": "Uncommon",
-            "description": "Gain 3 Thorns.",
-            "mod": ""
-        },
-        {
-            "name": "Liquid Memories",
-            "rarity": "Uncommon",
-            "description": "Choose a card in your discard pile and return it to your hand. It costs 0 this turn.",
-            "mod": ""
-        },
-        {
-            "name": "Potion Of Capacity",
-            "rarity": "Uncommon",
-            "description": "Gain 2 Orb slots.",
-            "mod": ""
-        },
-        {
-            "name": "Regen Potion",
-            "rarity": "Uncommon",
-            "description": "Gain 5 Regen.",
-            "mod": ""
-        },
-        {
-            "name": "Stance Potion",
-            "rarity": "Uncommon",
-            "description": "Enter Calm or Wrath.",
-            "mod": ""
-        },
-        {
-            "name": "Ambrosia",
-            "rarity": "Rare",
-            "description": "Enter Divinity Stance.",
-            "mod": ""
-        },
-        {
-            "name": "Cultist Potion",
-            "rarity": "Rare",
-            "description": "Gain 1 Ritual.",
-            "mod": ""
-        },
-        {
-            "name": "Entropic Brew",
-            "rarity": "Rare",
-            "description": "Fill all your empty potion slots with random potions.",
-            "mod": ""
-        },
-        {
-            "name": "Essence Of Darkness",
-            "rarity": "Rare",
-            "description": "Channel 1 Dark for each orb slot.",
-            "mod": ""
-        },
-        {
-            "name": "Fairy in a Bottle",
-            "rarity": "Rare",
-            "description": "When you would die, heal to 30% of your Max HP instead and discard this potion.",
-            "mod": ""
-        },
-        {
-            "name": "Fruit Juice",
-            "rarity": "Rare",
-            "description": "Gain 5 Max HP.",
-            "mod": ""
-        },
-        {
-            "name": "Ghost in a Jar",
-            "rarity": "Rare",
-            "description": "Gain 1 Intangible.",
-            "mod": ""
-        },
-        {
-            "name": "Heart of Iron",
-            "rarity": "Rare",
-            "description": "Gain 6 Metallicize.",
-            "mod": ""
-        },
-        {
-            "name": "Smoke Bomb",
-            "rarity": "Rare",
-            "description": "Escape from a non-boss combat. Receive no rewards.",
-            "mod": ""
-        },
-        {
-            "name": "Snecko Oil",
-            "rarity": "Rare",
-            "description": "Draw 5 cards. Randomize the cost of cards in your hand.",
-            "mod": ""
-        }
-    ],
-    "creatures": [
-        {
-            "name": "the Defect",
-            "type": "Player",
-            "minHP": "75",
-            "maxHP": "75",
-            "mod": ""
-        },
-        {
-            "name": "the Ironclad",
-            "type": "Player",
-            "minHP": "80",
-            "maxHP": "80",
-            "mod": ""
-        },
-        {
-            "name": "the Silent",
-            "type": "Player",
-            "minHP": "70",
-            "maxHP": "70",
-            "mod": ""
-        },
-        {
-            "name": "the Watcher",
-            "type": "Player",
-            "minHP": "72",
-            "maxHP": "72",
-            "mod": ""
-        },
-        {
-            "name": "Acid Slime (L)",
-            "type": "Normal",
-            "minHP": "65",
-            "maxHP": "65",
-            "mod": ""
-        },
-        {
-            "name": "Acid Slime (M)",
-            "type": "Normal",
-            "minHP": "30",
-            "maxHP": "30",
-            "mod": ""
-        },
-        {
-            "name": "Acid Slime (S)",
-            "type": "Normal",
-            "minHP": "9",
-            "maxHP": "9",
-            "mod": ""
-        },
-        {
-            "name": "Apology Slime",
-            "type": "Normal",
-            "minHP": "11",
-            "maxHP": "11",
-            "mod": ""
-        },
-        {
-            "name": "Awakened One",
-            "type": "Boss",
-            "minHP": "300",
-            "maxHP": "300",
-            "mod": ""
-        },
-        {
-            "name": "Bear",
-            "type": "Normal",
-            "minHP": "40",
-            "maxHP": "40",
-            "mod": ""
-        },
-        {
-            "name": "Book of Stabbing",
-            "type": "Elite",
-            "minHP": "162",
-            "maxHP": "162",
-            "mod": ""
-        },
-        {
-            "name": "Bronze Automaton",
-            "type": "Boss",
-            "minHP": "300",
-            "maxHP": "300",
-            "mod": ""
-        },
-        {
-            "name": "Byrd",
-            "type": "Normal",
-            "minHP": "27",
-            "maxHP": "27",
-            "mod": ""
-        },
-        {
-            "name": "Byrd (Grounded)",
-            "type": "Normal",
-            "minHP": "28",
-            "maxHP": "28",
-            "mod": ""
-        },
-        {
-            "name": "Centurion",
-            "type": "Normal",
-            "minHP": "77",
-            "maxHP": "77",
-            "mod": ""
-        },
-        {
-            "name": "Chosen",
-            "type": "Normal",
-            "minHP": "95",
-            "maxHP": "95",
-            "mod": ""
-        },
-        {
-            "name": "Corrupt Heart",
-            "type": "Boss",
-            "minHP": "750",
-            "maxHP": "750",
-            "mod": ""
-        },
-        {
-            "name": "Cultist",
-            "type": "Normal",
-            "minHP": "51",
-            "maxHP": "51",
-            "mod": ""
-        },
-        {
-            "name": "Dagger",
-            "type": "Normal",
-            "minHP": "25",
-            "maxHP": "25",
-            "mod": ""
-        },
-        {
-            "name": "Darkling",
-            "type": "Normal",
-            "minHP": "48",
-            "maxHP": "48",
-            "mod": ""
-        },
-        {
-            "name": "Deca",
-            "type": "Boss",
-            "minHP": "250",
-            "maxHP": "250",
-            "mod": ""
-        },
-        {
-            "name": "Donu",
-            "type": "Boss",
-            "minHP": "250",
-            "maxHP": "250",
-            "mod": ""
-        },
-        {
-            "name": "Exploder",
-            "type": "Normal",
-            "minHP": "30",
-            "maxHP": "30",
-            "mod": ""
-        },
-        {
-            "name": "Fat Gremlin",
-            "type": "Normal",
-            "minHP": "16",
-            "maxHP": "16",
-            "mod": ""
-        },
-        {
-            "name": "Fungi Beast",
-            "type": "Normal",
-            "minHP": "26",
-            "maxHP": "26",
-            "mod": ""
-        },
-        {
-            "name": "Giant Head",
-            "type": "Elite",
-            "minHP": "500",
-            "maxHP": "500",
-            "mod": ""
-        },
-        {
-            "name": "Gremlin Leader",
-            "type": "Elite",
-            "minHP": "147",
-            "maxHP": "147",
-            "mod": ""
-        },
-        {
-            "name": "Gremlin Nob",
-            "type": "Elite",
-            "minHP": "83",
-            "maxHP": "83",
-            "mod": ""
-        },
-        {
-            "name": "Gremlin Wizard",
-            "type": "Normal",
-            "minHP": "21",
-            "maxHP": "21",
-            "mod": ""
-        },
-        {
-            "name": "Hexaghost",
-            "type": "Boss",
-            "minHP": "250",
-            "maxHP": "250",
-            "mod": ""
-        },
-        {
-            "name": "Jaw Worm",
-            "type": "Normal",
-            "minHP": "43",
-            "maxHP": "43",
-            "mod": ""
-        },
-        {
-            "name": "Lagavulin",
-            "type": "Elite",
-            "minHP": "109",
-            "maxHP": "109",
-            "mod": ""
-        },
-        {
-            "name": "Lagavulin (Awake)",
-            "type": "Elite",
-            "minHP": "110",
-            "maxHP": "110",
-            "mod": ""
-        },
-        {
-            "name": "Looter",
-            "type": "Normal",
-            "minHP": "46",
-            "maxHP": "46",
-            "mod": ""
-        },
-        {
-            "name": "Louse",
-            "type": "Normal",
-            "minHP": "13",
-            "maxHP": "13",
-            "mod": ""
-        },
-        {
-            "name": "Louse",
-            "type": "Normal",
-            "minHP": "11",
-            "maxHP": "11",
-            "mod": ""
-        },
-        {
-            "name": "Mugger",
-            "type": "Normal",
-            "minHP": "48",
-            "maxHP": "48",
-            "mod": ""
-        },
-        {
-            "name": "Mystic",
-            "type": "Normal",
-            "minHP": "50",
-            "maxHP": "50",
-            "mod": ""
-        },
-        {
-            "name": "Nemesis",
-            "type": "Elite",
-            "minHP": "185",
-            "maxHP": "185",
-            "mod": ""
-        },
-        {
-            "name": "Orb Walker",
-            "type": "Normal",
-            "minHP": "93",
-            "maxHP": "93",
-            "mod": ""
-        },
-        {
-            "name": "Pointy",
-            "type": "Normal",
-            "minHP": "30",
-            "maxHP": "30",
-            "mod": ""
-        },
-        {
-            "name": "Reptomancer",
-            "type": "Elite",
-            "minHP": "188",
-            "maxHP": "188",
-            "mod": ""
-        },
-        {
-            "name": "Repulsor",
-            "type": "Normal",
-            "minHP": "33",
-            "maxHP": "33",
-            "mod": ""
-        },
-        {
-            "name": "Romeo",
-            "type": "Normal",
-            "minHP": "39",
-            "maxHP": "39",
-            "mod": ""
-        },
-        {
-            "name": "Sentry",
-            "type": "Elite",
-            "minHP": "39",
-            "maxHP": "39",
-            "mod": ""
-        },
-        {
-            "name": "Shelled Parasite",
-            "type": "Normal",
-            "minHP": "70",
-            "maxHP": "70",
-            "mod": ""
-        },
-        {
-            "name": "Shield Gremlin",
-            "type": "Normal",
-            "minHP": "12",
-            "maxHP": "12",
-            "mod": ""
-        },
-        {
-            "name": "Slaver",
-            "type": "Normal",
-            "minHP": "47",
-            "maxHP": "47",
-            "mod": ""
-        },
-        {
-            "name": "Slaver",
-            "type": "Normal",
-            "minHP": "50",
-            "maxHP": "50",
-            "mod": ""
-        },
-        {
-            "name": "Slime Boss",
-            "type": "Boss",
-            "minHP": "140",
-            "maxHP": "140",
-            "mod": ""
-        },
-        {
-            "name": "Snake Plant",
-            "type": "Normal",
-            "minHP": "75",
-            "maxHP": "75",
-            "mod": ""
-        },
-        {
-            "name": "Sneaky Gremlin",
-            "type": "Normal",
-            "minHP": "12",
-            "maxHP": "12",
-            "mod": ""
-        },
-        {
-            "name": "Snecko",
-            "type": "Normal",
-            "minHP": "119",
-            "maxHP": "119",
-            "mod": ""
-        },
-        {
-            "name": "Spheric Guardian",
-            "type": "Normal",
-            "minHP": "20",
-            "maxHP": "20",
-            "mod": ""
-        },
-        {
-            "name": "Spike Slime (M)",
-            "type": "Normal",
-            "minHP": "30",
-            "maxHP": "30",
-            "mod": ""
-        },
-        {
-            "name": "Spike Slime (S)",
-            "type": "Normal",
-            "minHP": "13",
-            "maxHP": "13",
-            "mod": ""
-        },
-        {
-            "name": "Spiker",
-            "type": "Normal",
-            "minHP": "48",
-            "maxHP": "48",
-            "mod": ""
-        },
-        {
-            "name": "Spire Growth",
-            "type": "Normal",
-            "minHP": "170",
-            "maxHP": "170",
-            "mod": ""
-        },
-        {
-            "name": "Spire Shield",
-            "type": "Elite",
-            "minHP": "110",
-            "maxHP": "110",
-            "mod": ""
-        },
-        {
-            "name": "Spire Spear",
-            "type": "Elite",
-            "minHP": "160",
-            "maxHP": "160",
-            "mod": ""
-        },
-        {
-            "name": "Taskmaster",
-            "type": "Elite",
-            "minHP": "55",
-            "maxHP": "55",
-            "mod": ""
-        },
-        {
-            "name": "The Champ",
-            "type": "Boss",
-            "minHP": "420",
-            "maxHP": "420",
-            "mod": ""
-        },
-        {
-            "name": "The Collector",
-            "type": "Boss",
-            "minHP": "282",
-            "maxHP": "282",
-            "mod": ""
-        },
-        {
-            "name": "The Guardian",
-            "type": "Boss",
-            "minHP": "240",
-            "maxHP": "240",
-            "mod": ""
-        },
-        {
-            "name": "The Maw",
-            "type": "Normal",
-            "minHP": "300",
-            "maxHP": "300",
-            "mod": ""
-        },
-        {
-            "name": "Time Eater",
-            "type": "Boss",
-            "minHP": "456",
-            "maxHP": "456",
-            "mod": ""
-        },
-        {
-            "name": "Transient",
-            "type": "Normal",
-            "minHP": "999",
-            "maxHP": "999",
-            "mod": ""
-        },
-        {
-            "name": "Writhing Mass",
-            "type": "Normal",
-            "minHP": "160",
-            "maxHP": "160",
-            "mod": ""
         }
     ],
     "keywords": [

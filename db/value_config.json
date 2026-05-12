@@ -7,27 +7,49 @@
 
   "base_demand": {
     
-    "RAW_DAMAGE": 1.2,        
-    "BLOCK_GENERATION": 1.2,  
-    "AOE_DAMAGE": 0.3,
-    
-    "CARD_DRAW": 0.5,        
-    "ENERGY_GENERATION": 0.2,
-    "SCALING_DAMAGE": 0.4,
-    "SCALING_DEFENSE": 0.3,
-    
-    "VULNERABLE": 0.3,
-    "WEAK": 0.4,
-    
- 
-    "EXHAUST_EVENT": 0.1,     
-    "DISCARD_SYNERGY": 0.1,
-    "STRIKE_CARD": 0.1,
-    "ZERO_COST_CARD": 0.1,
-    "HIGH_COST_CARD": 0.1,
-    
-    "CURSE_CARD": -2.0,
-    "STATUS_CARD": -1.0
+    "physical_thresholds": {
+      "avg_damage": { "target": 6.0, "weight": 1.2 },
+      "avg_block": { "target": 4.5, "weight": 1.0 },
+      "avg_cost": { "target": 1.1, "weight": 1.0, "is_inverse": true },
+      "draw_ratio": { "target": 0.2, "weight": 1.5 },
+      "dmg_per_energy": { "target": 9.0, "weight": 1.1 },
+      "blk_per_energy": { "target": 7.5, "weight": 1.0 }
+    },
+    "synergy_weights": {
+      "MULTI_HIT": 0.0,
+      "AOE": 0.3,
+      
+      "VULNERABLE": 0.2,
+      "WEAK": 0.2,
+      "STRENGTH_LOSS": 0.1,
+
+      "STRENGTH": 0.1,
+      "PERMANENT_GROWTH": 0.1,
+
+      "STRIKE_CARD": 0.0,
+      "EXHAUST": 0.1,
+      "EXHAUST_SELF": 0.0,
+      "EXHAUST_NOT_ATTACK": 0.1,
+      
+      "REFLEXION": 0.1,
+      "STATUS": 0.1,
+      "REFLESELF_HARMXION": 0.1,
+
+      "ENERGY": 0.1,
+      "DRAW": 0.4,
+      "TOP_DECK": 0.05,
+      "CARD_GENERATION": 0.1,
+      "CARD_COPY": 0.05,
+
+      "UPGRADE": 0.1,
+      "UPGRADE_ALL_HAND": 0.2,
+      "UPGRADE_ALL_DECK": 0.3,      
+
+      "BARRICADE_ENGINE": 0.0, 
+      "CORRUPTION_ENGINE": 0.0,      
+      "SKILL_CARD" : 0.0,
+      "RECOVERY" : 0.05
+    }
   },
 
   "act_strategies": {

@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "description": "Simplified Noun-Based Tag Pool for Ironclad, 일단 인간 참고용"
+  },
+  "tags": {
+    "MULTI_HIT": { "category": "Combat", "description": "다단 히트 (예: 연타)" },
+    
+    "BLOCK": { "category": "Defense", "description": "방어도 (예: 수비)" },
+    
+    "VULNERABLE": { "category": "Debuff", "description": "취약 상태" },
+    "WEAK": { "category": "Debuff", "description": "약화 상태" },
+    "STRENGTH_LOSS": { "category": "Debuff", "description": "상대 힘 줄이기" },
+    
+    
+    "STRENGTH": { "category": "Scaling", "description": "힘 버프" },
+    "PERMANENT_GROWTH": { "category": "Scaling", "description": "포식같이 성장" },
+    
+    "STRIKE_CARD": { "category": "Scaling", "description": "완타 표현" },
+    
+    
+    "EXHAUST": { "category": "Mechanic", "description": "카드 소멸" },
+    "EXHAUST_SELF": { "category": "Mechanic", "description": "자기 소멸이긴한데 나눠야되나;" },
+    "EXHAUST_NOT_ATTACK": { "category": "Mechanic", "description": "공격제외 카드 소멸" },
+    
+    "REFLEXION": { "category": "Mechanic", "description": "반사딜" },
+   
+    "STATUS": { "category": "Mechanic", "description": "상태이상 카드" },
+    "SELF_HARM": { "category": "Mechanic", "description": "자해" },
+    
+    "ENERGY": { "category": "Utility", "description": "에너지 획득" },
+    "DRAW": { "category": "Utility", "description": "카드 드로우" },
+    "TOP_DECK": { "category": "Utility", "description": "덱 맨 위 조작" },
+    "CARD_GENERATION": { "category": "Utility", "description": "카드 생성" },
+    "CARD_COPY": { "category": "Utility", "description": "원하는 카드 복제" },
+    
+    
+    "UPGRADE": { "category": "Utility", "description": "손 패 하나 업글" },
+    "UPGRADE_ALL_HAND": { "category": "Utility", "description": "손 패 전부 업글" }, 
+    "UPGRADE_ALL_DECK": { "category": "Utility", "description": "카드 전부 업글" }, 
+
+    "BARRICADE_ENGINE": { "category": "Archetype", "description": "방어도 보존 시너지 축 (예: 바리케이드, 캘리퍼스)" },
+    "CORRUPTION_ENGINE": { "category": "Archetype", "description": "스킬 난사 및 소멸 시너지 축 (예: 타락, 가지)" },
+    
+    "SKILL_CARD": { "category": "ETC", "description": "스킬 카드 자체가 필요" },
+    "RECOVERY": { "category": "ETC", "description": "회복" }
+  }
+}
