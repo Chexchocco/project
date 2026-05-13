@@ -14,7 +14,6 @@ from db.db_loader import get_card_info
 import config
 import json
 import os
-import 
 import logging
 log = logging.getLogger("STS_AI")
 VALUE_PATH = os.path.join(config.DB_PATH, "value_config.json")
