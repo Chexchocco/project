@@ -17,14 +17,17 @@
     },
     "synergy_weights": {
       "MULTI_HIT": 0.0,
-      "AOE": 0.3,
+      "AOE_DAMAGE": 0.3,
       
       "VULNERABLE": 0.2,
       "WEAK": 0.2,
       "STRENGTH_LOSS": 0.1,
 
       "STRENGTH": 0.1,
-      "PERMANENT_GROWTH": 0.1,
+      "CONDITIONAL_STRENGTH" : 0.0,
+      "DEXTERITY": 0.1,
+      "CONDITIONAL_DEXTERITY": 0.0,
+      "PERMANENT_GROWTH": 0.5,
 
       "STRIKE_CARD": 0.0,
       "EXHAUST": 0.1,
@@ -32,58 +35,58 @@
       "EXHAUST_NOT_ATTACK": 0.1,
       
       "REFLEXION": 0.1,
-      "STATUS": 0.1,
+      "STATUS_CARD": -0.3,
+      "CURSE_CARD" : -1.0,
       "REFLESELF_HARMXION": 0.1,
 
       "ENERGY": 0.1,
+      "CONDITIONAL_ENERGY" : 0.0,
       "DRAW": 0.4,
+      "CONDITIONAL_DRAW" : 0.2,
       "TOP_DECK": 0.05,
-      "CARD_GENERATION": 0.1,
+      "CARD_GENERATION": 0.05,
       "CARD_COPY": 0.05,
 
       "UPGRADE": 0.1,
       "UPGRADE_ALL_HAND": 0.2,
       "UPGRADE_ALL_DECK": 0.3,      
 
-      "BARRICADE_ENGINE": 0.0, 
-      "CORRUPTION_ENGINE": 0.0,      
+      "BARRICADE_ENGINE": 0.1, 
+      "CORRUPTION_ENGINE": 0.1,      
       "SKILL_CARD" : 0.0,
-      "RECOVERY" : 0.05
+      "RECOVERY" : 0.0,
+      "ECONOMY":  0.0
     }
   },
 
   "act_strategies": {
     "Act_1": {
-      "act_base_modifiers": {
-        "description": "1막 전반에 걸쳐 기본적으로 적용되는 곱연산 가중치",
-        "RAW_DAMAGE": 1.5,  
-        "BLOCK_GENERATION": 0.8, 
-        "SCALING_DAMAGE": 0.5    
-      },
-      "bosses": {
-        "Slime_Boss": {
-          "llm_prompt": "[CRITICAL] Your act boss is Slime Boss. High AOE damage and massive Turn 3 burst damage are absolute priorities. Do not pick slow scaling cards.",
-          "boss_modifiers": {
-            "AOE_DAMAGE": 2.5, 
-            "BURST_DAMAGE": 1.5,
-            "WEAK": 1.2
-          }
+      "act_demand_modifier": {
+        "physical_lower_bounds": {
+        "avg_damage": 5.0,
+        "avg_block": 4.0
         },
-        "The_Guardian": {
-          "llm_prompt": "[CRITICAL] Your act boss is The Guardian. You need highly efficient Block cards and predictable damage to control its thorns mode.",
-          "boss_modifiers": {
-            "BLOCK_GENERATION": 1.5,
-            "WEAK": 1.5,
-            "MULTI_HIT": 0.1       
-          }
+        "deck_power_targets": {
+          "target_avg_score": 15.0 
         },
-        "Hexaghost": {
-          "llm_prompt": "[CRITICAL] Your act boss is Hexaghost. You need fast scaling or rapid burst before the Inferno attack.",
-          "boss_modifiers": {
-            "SCALING_DAMAGE": 2.0,  
-            "RAW_DAMAGE": 1.2
-          }
+        "bosses": {
+          "Slime_Boss": {
+            "llm_prompt": "[CRITICAL] Your act boss is Slime Boss. High AOE damage and massive Turn 3 burst damage are absolute priorities. Do not pick slow scaling cards.",
+            "boss_modifiers": {
+            }
+          },
+          "The_Guardian": {
+            "llm_prompt": "[CRITICAL] Your act boss is The Guardian. You need highly efficient Block cards and predictable damage to control its thorns mode.",
+            "boss_modifiers": {
+            }
+          },
+          "Hexaghost": {
+            "llm_prompt": "[CRITICAL] Your act boss is Hexaghost. You need fast scaling or rapid burst before the Inferno attack.",
+            "boss_modifiers": {
+            }
         }
+
+      }
       }
     },
     

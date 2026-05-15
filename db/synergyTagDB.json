@@ -13,7 +13,12 @@
     "STRENGTH_LOSS": { "category": "Debuff", "description": "상대 힘 줄이기" },
     
     
-    "STRENGTH": { "category": "Scaling", "description": "힘 버프" },
+    "STRENGTH": { "category": "Scaling", "children": ["STRENGTH_T1"], "description": "힘 버프" },
+    "CONDITIONAL_STRENGTH": { "category": "Scaling", "description": "힘 버프" },
+    
+    "DEXTERITY": { "category": "Scaling", "description": "민첩 버프" },
+    "CONDITIONAL_DEXTERITY": { "category": "Scaling", "description": "민첩 버프" },
+    
     "PERMANENT_GROWTH": { "category": "Scaling", "description": "포식같이 성장" },
     
     "STRIKE_CARD": { "category": "Scaling", "description": "완타 표현" },
@@ -25,11 +30,18 @@
     
     "REFLEXION": { "category": "Mechanic", "description": "반사딜" },
    
-    "STATUS": { "category": "Mechanic", "description": "상태이상 카드" },
+    "STATUS_CARD": { "category": "Mechanic", "description": "상태이상 카드" },
+    "STATUS_SYNERGY": { "category": "Mechanic", "description": "상태이상 카드 활용" },
+    "CURSE_CARD": { "category": "Mechanic", "description": "저주 카드" },
     "SELF_HARM": { "category": "Mechanic", "description": "자해" },
     
-    "ENERGY": { "category": "Utility", "description": "에너지 획득" },
-    "DRAW": { "category": "Utility", "description": "카드 드로우" },
+    "ENERGY_GEN": {
+      "children" : ["CONDITIONAL_ENERGY", "ENERGY"],
+      "category": "Utility", "description": "에너지 획득" },
+
+    "DRAW_GEN": { 
+      "children": ["DRAW", "CONDITIONAL_DRAW"],
+      "category": "Utility", "description": "카드 드로우" },
     "TOP_DECK": { "category": "Utility", "description": "덱 맨 위 조작" },
     "CARD_GENERATION": { "category": "Utility", "description": "카드 생성" },
     "CARD_COPY": { "category": "Utility", "description": "원하는 카드 복제" },
@@ -39,10 +51,23 @@
     "UPGRADE_ALL_HAND": { "category": "Utility", "description": "손 패 전부 업글" }, 
     "UPGRADE_ALL_DECK": { "category": "Utility", "description": "카드 전부 업글" }, 
 
-    "BARRICADE_ENGINE": { "category": "Archetype", "description": "방어도 보존 시너지 축 (예: 바리케이드, 캘리퍼스)" },
-    "CORRUPTION_ENGINE": { "category": "Archetype", "description": "스킬 난사 및 소멸 시너지 축 (예: 타락, 가지)" },
+    "BARRICADE_ENGINE": { "category": "Archetype", "bound" : 5.0, "description": "방어도 보존 시너지 축 (예: 바리케이드, 캘리퍼스)" },
+    "CORRUPTION_ENGINE": { "category": "Archetype", "bound" : 1.0,"description": "스킬 난사 및 소멸 시너지 축 (예: 타락, 가지)" },
     
     "SKILL_CARD": { "category": "ETC", "description": "스킬 카드 자체가 필요" },
-    "RECOVERY": { "category": "ETC", "description": "회복" }
+    "RECOVERY": { "category": "ETC", "description": "회복" },
+    "ECONOMY": { "category": "ETC", "description": "돈" },
+      
+
+
+  "STABILITY": {
+      "children": ["STABILITY_T1", "STABILITY_T2", "STABILITY_T3", "STABILITY_PERM"],
+      "description": "전반적인 방어 안정성인데 1turn 2turn 등으로 나눠 표현, 총합적으로도 처리할 수 있겠끔 그룹화"
+    },
+
+     "MAP": { "category": "MAP", "description": "루트 설정용 유물 표현용" }
+    
+
+    
   }
 }

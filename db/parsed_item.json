@@ -330,7 +330,7 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"AOE_DAMAGE" : 0.8}
             }
         },
         {
@@ -351,7 +351,7 @@
             "base_value": 13,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {"AOE_DAMAGE" : 1.1}
             }
         },
         {
@@ -420,7 +420,7 @@
             "base_value": 4.8,
             "scaling_potential" : 1.5,
             "synergy": {
-                "requires": {"MULTI_HIT":1.5, "DRAW": 0.5},
+                "requires": {"MULTI_HIT":1.5, "DRAW_TOTAL": 0.5},
                 "provides": {"STRENGTH": 0.5}
             }
         },
@@ -824,7 +824,7 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 1.0}
+                "provides": {"VULNERABLE": 1.0, "AOE_DAMAGE" : 0.4}
             }
         },
         {
@@ -847,7 +847,7 @@
             "base_value": 11,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 1.0}
+                "provides": {"VULNERABLE": 1.0, "AOE_DAMAGE" : 0.7}
             }
         },
         {
@@ -1272,7 +1272,7 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM" : 2.0}
+                "provides": {"SELF_HARM" : 2.0, "AOE_DAMAGE" : 0.7}
             }
         },
         {
@@ -1293,7 +1293,7 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM" : 2.0}
+                "provides": {"SELF_HARM" : 2.0, "AOE_DAMAGE" : 0.9}
             }
         },
         {
@@ -1458,7 +1458,7 @@
             "scaling_potential":2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION":2.0, "CARD_COPY":2.0}
+                "provides": {"CARD_GENERATION":1.0, "CARD_COPY":1.0}
             }
         },
         {
@@ -1480,7 +1480,7 @@
             "scaling_potential":3.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION":2.0, "CARD_COPY":2.0}
+                "provides": {"CARD_GENERATION":1.0, "CARD_COPY":1.0}
             }
         },
         {
@@ -1502,7 +1502,7 @@
             "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {
-                    "BARRICADE_ENGINE": 15.0
+                    "BARRICADE_ENGINE": 5.0
                 },
                 "provides": {}
             }
@@ -1526,7 +1526,7 @@
             "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {
-                    "BARRICADE_ENGINE": 20.0
+                    "BARRICADE_ENGINE": 8.0
                 },
                 "provides": {}
             }
@@ -1549,9 +1549,8 @@
             "base_value": 3.0,
             "synergy": {
                 "requires": {
-                    "STATUS_CARD": 1.5
                 },
-                "provides": {}
+                "provides": {"STATUS_SYNERGY": 0.5 , "CONDITIONAL_DRAW" : 1.0}
             }
         },
         {
@@ -1572,9 +1571,8 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {
-                    "STATUS_CARD": 1.5
                 },
-                "provides": {}
+                "provides": {"STATUS_SYNERGY": 0.5 , "CONDITIONAL_DRAW" : 2.0}
             }
         },
         {
@@ -1629,7 +1627,7 @@
                 }
             }
             }
-        },
+        ,
         {
             "name": "Fire Breathing",
             "color": "Red",
@@ -1649,9 +1647,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
-                    "STATUS_CARD": 2.0
                 },
-                "provides": {}
+                "provides": {"AOE_DAMAGE" : 0.3, 
+                    "STATUS_SYNERGY":0.5}
             }
         },
         {
@@ -1673,9 +1671,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
-                    "STATUS_CARD": 2.0
                 },
-                "provides": {}
+                "provides": {"AOE_DAMAGE" : 0.4, 
+                    "STATUS_SYNERGY":0.5}
             }
         },
         {
@@ -2337,9 +2335,9 @@
             "base_value": 7.0,
             "scaling_potential" : 2.0,
             "synergy": {
-                "requires": {"STATUS_CARD":0.5},
+                "requires": {},
                 "provides": {
-                    "EXHAUST": 2.0, "EXHAUST_NON_ATTACK": 2.0
+                    "EXHAUST": 1.0, "EXHAUST_NON_ATTACK": 1.0
                 }
             }
         },
@@ -2361,9 +2359,9 @@
             "base_value": 9.8,
             "scaling_potential" : 2.0,
             "synergy": {
-                "requires": {"STATUS_CARD":0.5},
+                "requires": {},
                 "provides": {
-                    "EXHAUST": 2.0, "EXHAUST_NON_ATTACK": 2.0
+                    "EXHAUST": 1.0, "EXHAUST_NON_ATTACK": 1.0
                 }
             }
         },
@@ -2675,7 +2673,7 @@
             "base_value": 7.5,
             "synergy": {
                 "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
-                "provides": {"MULTI_HIT" : 2.0}
+                "provides": {"MULTI_HIT" : 2.0, "AOE_DAMAGE" : 0.8}
             }
         },
         {
@@ -2696,7 +2694,7 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
-                "provides": {"MULTI_HIT" : 2.0}
+                "provides": {"MULTI_HIT" : 2.0, "AOE_DAMAGE" : 1.2}
             }
         },
         {
@@ -2718,7 +2716,7 @@
             "scaling_potential" : 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"BARRICADE_ENGINE":1.0}
+                "provides": {"BARRICADE_ENGINE":5.0}
             }
         },
         {
@@ -3189,7 +3187,7 @@
             "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STATUS_CARD":1.0}
+                "provides": {"STATUS_CARD":1.0, "AOE_DAMAGE" : 2.1}
             }
         },
         {
@@ -3211,7 +3209,7 @@
             "scaling_potential":-1.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STATUS_CARD":1.0}
+                "provides": {"STATUS_CARD":1.0, "AOE_DAMAGE" : 2.8}
             }
         },
         {
@@ -3418,7 +3416,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "RECOVERY": 1.0
+                    "RECOVERY": 1.0,
+                    "AOE_DAMAGE" : 0.4
                 }
             }
         },
@@ -3441,7 +3440,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "RECOVERY": 1.0
+                    "RECOVERY": 1.0,
+                    "AOE_DAMAGE" : 0.5
                 }
             }
         },

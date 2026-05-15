@@ -10,6 +10,8 @@ import logging
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
 from llm.llm_rag import choose_card_reward, evaluate_event
 
+from experts.synergy import SynergyManager, score_deck, score_card, RelicModifier
+
 log = logging.getLogger("STS_AI")
 log.setLevel(logging.INFO)
 file_handler = logging.FileHandler(LOG_PATH, mode='a', encoding='utf-8')
@@ -21,6 +23,11 @@ console_handler.setFormatter(formatter)
 
 log.addHandler(file_handler)
 log.addHandler(console_handler)
+
+
+
+
+
 
 WAITING_FOR_SHOP = False
 SHOP_DONE = False
