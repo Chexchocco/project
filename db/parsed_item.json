@@ -641,10 +641,10 @@
             "scaling_potential" : 3.0,
             "synergy": {
                 "requires": {
-                    "STRIKE_CARD": 2.0
+                    "STRIKE_CARD": 1.0
                 },
                 "provides": {
-                    "STRIKE_CARD": 1.0
+                    "STRIKE_SYNERGY": 1.0
                 }
             }
         },
@@ -667,10 +667,10 @@
             "scaling_potential" : 4.0,
             "synergy": {
                 "requires": {
-                    "STRIKE_CARD": 3.0
+                    "STRIKE_CARD": 1.0
                 },
                 "provides": {
-                    "STRIKE_CARD": 1.0
+                    "STRIKE_SYNERGY": 1.5
                 }
             }
         },

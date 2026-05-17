@@ -9,7 +9,7 @@ log = logging.getLogger("STS_AI")
 from config import MODEL_NAME
 from functools import lru_cache
 from config import LOCAL_PATH
-from experts.synergy import SynergyManager, score_card, score_deck, score_deck_summary
+from experts.synergy import SynergyManager, score_card, score_deck, score_deck_summary, build_future_sight_strategy, calculate_deck_avg_score
 import os
 
 tag_db_path = os.path.join(LOCAL_PATH, "DB", "synergyTagDB.json")
@@ -90,7 +90,7 @@ def choose_card_reward(state, enriched_relics=None):
     # 💡 현재 위치 파악 (Act 1, 2, 3)
     act = state.get("act", 1)
     floor = state.get("floor", 1)
-
+    boss_name = state.get("boss", "")
     # 1. 파이썬 평가 모듈 데이터 구성
     deck_tup = tuple(c.get('name') for c in current_deck_raw if isinstance(c, dict))
     relic_ids = [r.get('id') for r in enriched_relics if r.get('id')]
@@ -99,6 +99,16 @@ def choose_card_reward(state, enriched_relics=None):
     deck_report = _get_cached_deck_report(deck_tup, relic_tup)
     act_strategy = value_config.get(f"Act_{act}", {}).get("act_base_modifiers", {})
     
+    base_act_strategy = build_future_sight_strategy(value_config, act, boss_name, 0.0)
+
+    # 2단계: 현재 내 덱의 찐 파워(avg_score) 측정
+    deck_score = calculate_deck_avg_score(current_deck_raw, deck_report, base_act_strategy, SYNERGY_ENGINE)
+
+    # 3단계: 내 덱 파워를 기반으로 미래 가중치가 섞인 '최종 픽용 전략' 생성!
+    final_pick_strategy = build_future_sight_strategy(value_config, act, boss_name, deck_score)
+    # =========================================================================
+
+
 
     enriched_deck = [get_card_info(c) for c in current_deck_raw if get_card_info(c)]
     deck_summary = summarize_card_list(current_deck_raw)
@@ -106,29 +116,30 @@ def choose_card_reward(state, enriched_relics=None):
     stats = deck_report.get('stats', {})
     density = deck_report.get('density_vector', {})
     meaningful_synergies = {k: round(v, 2) for k, v in density.items() if v > 0}
+    
     # 2. 보상 카드 포맷팅 (agent_hints 포함)
-    core_report = f"[Deck Core Stats]\nAvg Cost: {stats.get('avg_cost', 0)}\nDraw Ratio: {stats.get('draw_ratio', 0)}"
+    # 💡 LLM도 현재 덱의 파워를 알 수 있게 텍스트에 추가!
+    core_report = f"[Deck Core Stats]\nAvg Cost: {stats.get('avg_cost', 0)}\nDraw Ratio: {stats.get('draw_ratio', 0)}\nCurrent Deck Power Score: {deck_score:.2f}"
 
     reward_db_text = "[Offered Cards Info]\n"
     for i, card_dict in enumerate(offered_cards):
         info = get_card_info(card_dict)
         if info:
-            score = score_card(info, deck_report, act_strategy, relic_ids, SYNERGY_ENGINE)
-
+            # 💡 예전 act_strategy 대신 final_pick_strategy를 엔진에 넘겨줍니다!
+            score = score_card(info, deck_report, final_pick_strategy, relic_ids, SYNERGY_ENGINE,is_deck_eval=False)
 
             desc = info.get('description', '').replace('\n', ' ')
             provides = info.get("synergy", {}).get("provides", {})
             requires = info.get("synergy", {}).get("requires", {})
             hint = info.get("agent_hints", "")
             
-            reward_db_text += f"- Index [{i}]: {info['name']} (Cost: {info.get('cost')})\n"
+            reward_db_text += f"- Index [{i}]: {info.get('name', 'Unknown')} (Cost: {info.get('cost')})\n"
             reward_db_text += f"  * Description: {desc} | Engine Score: {score}\n"
             if provides: reward_db_text += f"  * PROVIDES: {provides}\n"
             if requires: reward_db_text += f"  * REQUIRES: {requires}\n"
-    # 3. 💡 막(Act)에 따른 다이나믹 전략 가이드라인 생성
-    
+            if hint: reward_db_text += f"  * Hint: {hint}\n"
 
-    # 4. LLM 프롬프트 조립
+    # 4. LLM 프롬프트 조립 (JSON 4단 분리 적용)
     prompt = f"""
 {core_report}
 
@@ -145,18 +156,19 @@ Total Cards: {len(current_deck_raw)}
 You are a top-tier Slay the Spire AI player. Choose ONE card to add, or "skip".
 
 [Strategy Guidelines]
-- Never pick [OVERSATURATED] synergies.
-- Read the 'Hint' of each card. If a card is known as a strong standalone card, value it highly.
+- [CRITICAL] The 'Engine Score' ALREADY calculates all long-term scaling, macro-strategy, and card drawbacks. TRUST THE ENGINE. 
+- DO NOT skip a high-scoring card (>15.0) just because its Description has a negative effect (e.g., Exhaust, Cannot draw more cards). The Engine has already accounted for it.
+- In Act 1, choosing 'skip' is almost always a BAD idea unless all offered cards score below 10.0.
+- Carefully read the PROVIDES and REQUIRES for the EXACT card you are evaluating. DO NOT mix up the tags of different cards.
 
-[⚠️ CRITICAL AI RULE: Engine vs Tactical Reality]
-- act_strategyThe 'Engine Score' provided for each card calculates pure mathematical synergy and long-term value.
-- However, the Engine is BLIND to your immediate survival needs (e.g., current HP, upcoming Elite fights, need for immediate Block/AoE).
-- DO NOT BLINDLY TRUST the highest Engine Score. You MUST override the Engine if a lower-scoring card is tactically necessary to survive the current Act.
-- If the Engine Scores are similar, use the Card Description and Hints to make a nuanced human-like decision.
-- If you choose a lower-scoring card for tactical reasons, explicitly acknowledge that its score is lower. DO NOT hallucinate or misrepresent the mathematical scores to justify your choice.
-Output EXACTLY in this JSON format strictly:
+[⚠️ CRITICAL AI RULE]
+- You suffer from "Tunnel Vision" where you only look at one card and ignore the others. To fix this, you MUST list ALL offered cards in the 'all_cards_analysis' field before deciding.
+- Base your understanding of the card STRICTLY on the provided 'Description' and 'PROVIDES/REQUIRES' tags.
+- Output EXACTLY in this JSON format strictly:
 {{
-    "reasoning": "Discuss the Engine Score vs Tactical Needs. Justify why you chose this card or skipped.",
+    "all_cards_analysis": "List the names and Engine Scores of ALL offered cards. (e.g., '0: CardA (15.0), 1: CardB (2.0), 2: CardC (-5.0)')",
+    "highest_score_card": "Explicitly write the index, name, and score of the card with the mathematically HIGHEST Engine Score.",
+    "reasoning": "Explain why you are choosing your card. You MUST choose the card you listed in 'highest_score_card' UNLESS you desperately need a lower-scoring card for immediate survival.",
     "choice": "Index number (0, 1, 2...), or 'skip'"
 }}
 """

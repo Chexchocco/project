@@ -2,13 +2,14 @@ from db.db_loader import get_card_info
 import json
 import os
 import logging
+import copy
 
 log = logging.getLogger("STS_AI")
 from config import LOCAL_PATH, DB_PATH, LOG_PATH
 
 card_log = logging.getLogger("CARD_PICKER")
 
-def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_mgr=None):
+def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_mgr=None, is_deck_eval=False):
     if relic_names is None:
         relic_names = []
         
@@ -36,7 +37,7 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
 
     for tag, val in provides.items():
         # 상태이상 생성 같은 페널티 기믹은 아예 따로 뺍니다 (밑에서 설명)
-        if tag in ["STATUS_CARD", "CURSE_CARD"]: continue
+        if tag in ["STATUS_CARD", "CURSE_CARD", "STRIKE_CARD"]: continue
 
         # 현재 덱에 이 태그가 몇 장(Count)이나 있는가?
         current_count = density.get(tag, 0.0) * deck_size 
@@ -46,7 +47,7 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
 
         # [새로운 선형 감가상각 공식] 
         # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다. 목표를 채웠으면 0점!
-        gap = max(0.0, target_count - current_count) 
+        gap = target_count - current_count
         
         bonus = val * gap * 5.0 # (5.0은 점수 체급을 맞추기 위한 기본 가중치)
         synergy_bonus += bonus
@@ -77,12 +78,20 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
                 synergy_bonus += bonus
             else:
                 synergy_bonus -= 5.0
-    synergy_bonus = min(15.0, synergy_bonus)
 
+    if "STRIKE_CARD" in provides:
+        # 내 덱에 완타(STRIKE_SYNERGY)가 몇 장이나 있는가?
+        perfect_strike_count = density.get("STRIKE_SYNERGY", 0.0) * deck_size
+        
+        if perfect_strike_count > 0:
+            bonus = min(15.0, perfect_strike_count * perfect_strike_count)
+            synergy_bonus += bonus
+    
+    synergy_bonus = min(15.0, synergy_bonus)
         # [핵심] 1차 계산된 점수
     raw_score = base_score + physical_bonus + synergy_bonus
-
-    card_log.info(f"{card.get('name',{})}카드 평가 항목 : base : {base_score} + physical_bonus : {physical_bonus} + synergy_bonus + {synergy_bonus} = Total : {base_score+physical_bonus+synergy_bonus}\n")
+    if not is_deck_eval:
+        card_log.info(f"{card.get('name',{})}카드 평가 항목 : base : {base_score} + physical_bonus : {physical_bonus} + synergy_bonus + {synergy_bonus} = Total : {base_score+physical_bonus+synergy_bonus}\n")
 
     # [핵심] RelicModifier를 통한 기믹 유물 후처리 (스네코, 미라손 등 반영)
     final_score = RelicModifier.apply_post_process(
@@ -174,8 +183,8 @@ def calculate_deck_avg_score(deck_raw, deck_report, act_strategy, synergy_mgr):
         info = get_card_info(card_dict)
         if info:
             # 기존에 만든 score_card 함수를 재활용하여 덱 내 카드의 현재 가치를 측정!
-            eval_result = score_card(info, deck_report, act_strategy, synergy_mgr=synergy_mgr)
-            total_score += eval_result["score"]
+            eval_result = score_card(info, deck_report, act_strategy, synergy_mgr=synergy_mgr, is_deck_eval=True)
+            total_score += round(eval_result,2)
             
     # 덱 사이즈로 나누어 '카드 1장당 평균 파워(avg_score)'를 구함
     return total_score / len(deck_raw)
@@ -212,6 +221,88 @@ def calculate_readiness(deck_report, strategy):
 
 
 
+
+def apply_modifiers_to_strategy(strategy, modifiers, weight_multiplier=1.0):
+    """strategy 딕셔너리에 modifiers 수치를 weight_multiplier 배율만큼 곱해서 합산합니다."""
+    # 1. Physical Thresholds (물리 스탯)
+    phys_mods = modifiers.get("physical_thresholds_modifier", {})
+    for k, v in phys_mods.items():
+        if k == "description": continue
+        if k in strategy.get("physical_thresholds", {}):
+            strategy["physical_thresholds"][k]["target"] += (v * weight_multiplier)
+            
+    # 2. Synergy Weights (시너지 태그)
+    syn_mods = modifiers.get("synergy_weights", {})
+    for tag, v in syn_mods.items():
+        if tag in strategy.get("synergy_weights", {}):
+            strategy["synergy_weights"][tag] += (v * weight_multiplier)
+        else:
+            strategy["synergy_weights"][tag] = (v * weight_multiplier)
+
+def get_act_average_modifiers(value_config, act_num):
+    """특정 막(Act)의 모든 보스 모디파이어를 '평균' 내어 반환합니다."""
+    act_key = f"Act_{act_num}"
+    bosses = value_config.get("act_strategies", {}).get(act_key, {}).get("act_demand_modifier", {}).get("bosses", {})
+    
+    if not bosses:
+        return {"physical_thresholds_modifier": {}, "synergy_weights": {}}
+
+    avg_phys, avg_syn = {}, {}
+    boss_count = len(bosses)
+
+    for boss_data in bosses.values():
+        mods = boss_data.get("boss_modifiers", {})
+        for k, v in mods.get("physical_thresholds_modifier", {}).items():
+            if k == "description": continue
+            avg_phys[k] = avg_phys.get(k, 0.0) + v
+        for k, v in mods.get("synergy_weights", {}).items():
+            avg_syn[k] = avg_syn.get(k, 0.0) + v
+
+    # 평균치 계산
+    for k in avg_phys: avg_phys[k] = round(avg_phys[k] / boss_count, 4)
+    for k in avg_syn: avg_syn[k] = round(avg_syn[k] / boss_count, 4)
+
+    return {"physical_thresholds_modifier": avg_phys, "synergy_weights": avg_syn}
+
+def build_future_sight_strategy(value_config, current_act_num, boss_name, deck_avg_score):
+    """현재 보스 + (현재 점수/목표 점수) * 다음 막 평균 + ... 공식의 최종 전략을 생성합니다."""
+    # 1. Base Demand (쌩얼) 가져오기
+    strategy = copy.deepcopy(value_config.get("base_demand", {}))
+    
+    act_key = f"Act_{current_act_num}"
+    act_data = value_config.get("act_strategies", {}).get(act_key, {}).get("act_demand_modifier", {})
+    
+    target_score_1 = act_data.get("deck_power_targets", {}).get("target_avg_score", 15.0)
+    
+    # 2. 현재 보스 모디파이어는 100% (1.0 배율) 반영
+    current_mods = act_data.get("bosses", {}).get(boss_name, {}).get("boss_modifiers", {})
+    apply_modifiers_to_strategy(strategy, current_mods, weight_multiplier=1.0)
+
+    # 3. [미래 선반영 로직]
+    ratio_1 = max(0.0, deck_avg_score / target_score_1) if target_score_1 > 0 else 0.0
+    
+    # 1막, 2막, 3막일 때만 미래를 봄
+    if current_act_num < 4:
+        next_act = current_act_num + 1
+        next_avg_mods = get_act_average_modifiers(value_config, next_act)
+        
+        # 💡 너무 오버스펙이라고 미래 가중치가 폭주하는 걸 막기 위해 최대 1.5배로 캡핑
+        safe_ratio_1 = min(1.5, ratio_1)
+        apply_modifiers_to_strategy(strategy, next_avg_mods, weight_multiplier=safe_ratio_1)
+        
+        # 다다음 막 (Next Next Act) 반영
+        if current_act_num < 3:
+            next_act_data = value_config.get("act_strategies", {}).get(f"Act_{next_act}", {}).get("act_demand_modifier", {})
+            target_score_2 = next_act_data.get("deck_power_targets", {}).get("target_avg_score", 20.0)
+            
+            ratio_2 = max(0.0, deck_avg_score / target_score_2) if target_score_2 > 0 else 0.0
+            safe_ratio_2 = min(1.0, ratio_2) # 다다음 막은 불확실하므로 최대 1.0까지만 캡핑
+            
+            nn_act = current_act_num + 2
+            nn_avg_mods = get_act_average_modifiers(value_config, nn_act)
+            apply_modifiers_to_strategy(strategy, nn_avg_mods, weight_multiplier=safe_ratio_2)
+
+    return strategy
 
 
     

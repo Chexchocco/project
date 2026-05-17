@@ -22,7 +22,7 @@
     "PERMANENT_GROWTH": { "category": "Scaling", "description": "포식같이 성장" },
     
     "STRIKE_CARD": { "category": "Scaling", "description": "완타 표현" },
-    
+    "STRIKE_SYNERGY": { "category": "Scaling", "description": "완타 표현" },
     
     "EXHAUST": { "category": "Mechanic", "description": "카드 소멸" },
     "EXHAUST_SELF": { "category": "Mechanic", "description": "자기 소멸이긴한데 나눠야되나;" },

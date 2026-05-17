@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "description": "STS AI Agent Strategy Weights - Ironclad Base",
-    "tuning_step": 0.01   
+    "tuning_step": 0.001   
   },
 
   "base_demand": {
@@ -17,31 +17,32 @@
     },
     "synergy_weights": {
       "MULTI_HIT": 0.0,
-      "AOE_DAMAGE": 0.3,
+      "AOE_DAMAGE": 0.02,
       
       "VULNERABLE": 0.2,
       "WEAK": 0.2,
-      "STRENGTH_LOSS": 0.1,
+      "STRENGTH_LOSS": 0.02,
 
-      "STRENGTH": 0.1,
+      "STRENGTH": 0.05,
       "CONDITIONAL_STRENGTH" : 0.0,
-      "DEXTERITY": 0.1,
+      "DEXTERITY": 0.05,
       "CONDITIONAL_DEXTERITY": 0.0,
       "PERMANENT_GROWTH": 0.5,
 
       "STRIKE_CARD": 0.0,
-      "EXHAUST": 0.1,
+      "EXHAUST": 0.03,
       "EXHAUST_SELF": 0.0,
-      "EXHAUST_NOT_ATTACK": 0.1,
+      "EXHAUST_NOT_ATTACK": 0.03,
       
       "REFLEXION": 0.1,
       "STATUS_CARD": -0.3,
+      "STATUS_SYNERGY" :0.02,
       "CURSE_CARD" : -1.0,
-      "REFLESELF_HARMXION": 0.1,
+      "SELF_HARM": 0.0,
 
       "ENERGY": 0.1,
       "CONDITIONAL_ENERGY" : 0.0,
-      "DRAW": 0.4,
+      "DRAW": 0.1,
       "CONDITIONAL_DRAW" : 0.2,
       "TOP_DECK": 0.05,
       "CARD_GENERATION": 0.05,
@@ -51,8 +52,8 @@
       "UPGRADE_ALL_HAND": 0.2,
       "UPGRADE_ALL_DECK": 0.3,      
 
-      "BARRICADE_ENGINE": 0.1, 
-      "CORRUPTION_ENGINE": 0.1,      
+      "BARRICADE_ENGINE": 0.03, 
+      "CORRUPTION_ENGINE": 0.03,      
       "SKILL_CARD" : 0.0,
       "RECOVERY" : 0.0,
       "ECONOMY":  0.0
@@ -62,10 +63,6 @@
   "act_strategies": {
     "Act_1": {
       "act_demand_modifier": {
-        "physical_lower_bounds": {
-        "avg_damage": 5.0,
-        "avg_block": 4.0
-        },
         "deck_power_targets": {
           "target_avg_score": 15.0 
         },
@@ -73,16 +70,174 @@
           "Slime_Boss": {
             "llm_prompt": "[CRITICAL] Your act boss is Slime Boss. High AOE damage and massive Turn 3 burst damage are absolute priorities. Do not pick slow scaling cards.",
             "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :1.5,
+                "avg_block" :0.0,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :3.0,
+                "blk_per_energy" :0.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": 0.0,
+                "AOE_DAMAGE": 0.02,
+                
+                "VULNERABLE": 0.0,
+                "WEAK": 0.0,
+                "STRENGTH_LOSS": 0.0,
+
+                "STRENGTH": 0.00,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.00,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": 0.0,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.01,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.01,
+                
+                "REFLEXION": 0.0,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":0.02,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
             }
           },
           "The_Guardian": {
             "llm_prompt": "[CRITICAL] Your act boss is The Guardian. You need highly efficient Block cards and predictable damage to control its thorns mode.",
             "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :1.5,
+                "avg_block" :0.5,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :3.0,
+                "blk_per_energy" :1.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": -0.01,
+                "AOE_DAMAGE": -0.005,
+                
+                "VULNERABLE": 0.01,
+                "WEAK": 0.01,
+                "STRENGTH_LOSS": 0.02,
+
+                "STRENGTH": 0.00,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.00,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": 0.0,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.0,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.0,
+                
+                "REFLEXION": 0.0,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":-0.01,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
+
             }
           },
           "Hexaghost": {
             "llm_prompt": "[CRITICAL] Your act boss is Hexaghost. You need fast scaling or rapid burst before the Inferno attack.",
             "boss_modifiers": {
+
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :1.0,
+                "avg_block" :0.5,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :2.0,
+                "blk_per_energy" :0.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": 0.0,
+                "AOE_DAMAGE": 0.0,
+                
+                "VULNERABLE": 0.01,
+                "WEAK": 0.02,
+                "STRENGTH_LOSS": 0.02,
+
+                "STRENGTH": 0.01,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.01,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": 0.0,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.01,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.01,
+                
+                "REFLEXION": 0.02,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":0.03,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
             }
         }
 
@@ -92,35 +247,270 @@
     
     "Act_2": {
       "act_base_modifiers": {
-        "description": "2막 전반에 걸쳐 적용되는 곱연산 가중치",
-        "AOE_DAMAGE": 1.5,       
-        "CARD_DRAW": 1.2,
-        "BLOCK_GENERATION": 1.2
-      },
-      "bosses": {
-        "Bronze_Automaton": {
-          "llm_prompt": "[CRITICAL] Your act boss is Bronze Automaton. You need a way to survive Hyperbeam and scale your damage quickly.",
-          "boss_modifiers": {
-            "SCALING_DEFENSE": 2.0,
-            "SCALING_DAMAGE": 1.5,
-            "WEAK": 1.5
-          }
+        "deck_power_targets": {
+          "target_avg_score": 20.0 
         },
-        "Collector": {
-          "llm_prompt": "[CRITICAL] Your act boss is The Collector. Consistent AOE to kill minions and high block are required.",
-          "boss_modifiers": {
-            "AOE_DAMAGE": 2.0,
-            "BLOCK_GENERATION": 1.5
-          }
+        "bosses": {
+          "Bronze_Automaton": {
+            "llm_prompt": "[CRITICAL] Your act boss is Bronze Automaton. You need a way to survive Hyperbeam and scale your damage quickly.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :2.0,
+                "avg_block" :2.5,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :4.0,
+                "blk_per_energy" :5.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": 0.0,
+                "AOE_DAMAGE": 0.02,
+                
+                "VULNERABLE": 0.0,
+                "WEAK": 0.0,
+                "STRENGTH_LOSS": 0.0,
+
+                "STRENGTH": 0.00,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.00,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": -0.01,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.0,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.0,
+                
+                "REFLEXION": 0.0,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":0.0,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
+            }
+          },
+          "Collector": {
+            "llm_prompt": "[CRITICAL] Your act boss is The Collector. Consistent AOE to kill minions and high block are required.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :2.5,
+                "avg_block" :2.0,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :5.0,
+                "blk_per_energy" :4.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": 0.0,
+                "AOE_DAMAGE": 0.02,
+                
+                "VULNERABLE": 0.01,
+                "WEAK": 0.01,
+                "STRENGTH_LOSS": 0.0,
+
+                "STRENGTH": 0.00,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.00,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": -0.01,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.0,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.0,
+                
+                "REFLEXION": 0.0,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":0.0,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
+            }
+          },
+          "Champ": {
+            "llm_prompt": "[CRITICAL] Your act boss is The Champ. You must have extreme scaling and burst damage to kill him after he cleanses debuffs at 50% HP.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "description" : "기본 physical threshhold 에 더하는 양",
+                "avg_damage" :1.0,
+                "avg_block" :3.0,
+                "avg_cost" :0.0,
+                "draw_ratio" :0.0,
+                "dmg_per_energy" :2.0,
+                "blk_per_energy" :5.0
+           
+              },"synergy_weights": {
+                "MULTI_HIT": 0.0,
+                "AOE_DAMAGE": -0.01,
+                
+                "VULNERABLE": 0.0,
+                "WEAK": 0.01,
+                "STRENGTH_LOSS": 0.0,
+
+                "STRENGTH": 0.00,
+                "CONDITIONAL_STRENGTH" : 0.0,
+                "DEXTERITY": 0.00,
+                "CONDITIONAL_DEXTERITY": 0.0,
+                "PERMANENT_GROWTH": 0.0,
+
+                "STRIKE_CARD": 0.0,
+                "EXHAUST": 0.01,
+                "EXHAUST_SELF": 0.0,
+                "EXHAUST_NOT_ATTACK": 0.01,
+                
+                "REFLEXION": 0.0,
+                "STATUS_CARD": 0.0,
+                "STATUS_SYNERGY":0.0,
+                "CURSE_CARD" : 0.0,
+                "SELF_HARM": 0.0,
+
+                "ENERGY": 0.0,
+                "CONDITIONAL_ENERGY" : 0.0,
+                "DRAW": 0.0,
+                "CONDITIONAL_DRAW" : 0.0,
+                "TOP_DECK": 0.0,
+                "CARD_GENERATION": 0.0,
+                "CARD_COPY": 0.0,
+
+                "UPGRADE": 0.0,
+                "UPGRADE_ALL_HAND": 0.0,
+                "UPGRADE_ALL_DECK": 0.0,      
+
+                "BARRICADE_ENGINE": 0.0, 
+                "CORRUPTION_ENGINE": 0.0,      
+                "SKILL_CARD" : 0.0,
+                "RECOVERY" : 0.0,
+                "ECONOMY":  0.0
+              }
+            }
+        }
+
+      }   
+      }
+      
+    },
+    "Act_3": {
+      "act_demand_modifier": {
+        "physical_lower_bounds": {
+          "avg_damage": 12.0,
+          "avg_block": 10.0
         },
-        "Champ": {
-          "llm_prompt": "[CRITICAL] Your act boss is The Champ. You must have extreme scaling and burst damage to kill him after he cleanses debuffs at 50% HP.",
-          "boss_modifiers": {
-            "SCALING_DAMAGE": 3.0,  
-            "BURST_DAMAGE": 1.5
+        "deck_power_targets": {
+          "target_avg_score": 25.0 
+        },
+        "bosses": {
+          "Time_Eater": {
+            "llm_prompt": "[CRITICAL] Your act boss is Time Eater. You can only play 12 cards per turn. DO NOT pick low-impact zero-cost cards or infinite loops. You need high-cost, high-impact cards and strong scaling.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "dmg_per_energy": 2.0,    
+                "blk_per_energy": 2.0
+              },
+              "synergy_weights": {
+                "DRAW": 0.05,             
+                "SCALING": 0.05,
+                "MULTI_HIT": -0.02        
+              }
+            }
+          },
+          "Awakened_One": {
+            "llm_prompt": "[CRITICAL] Your act boss is Awakened One. It gains Strength when you play Power cards. Prioritize raw physical scaling, Exhaust synergies, and strong block over playing multiple Powers.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "avg_block": 4.0          
+              },
+              "synergy_weights": {
+                "SCALING_DEFENSE": 0.05,  
+                "WEAK": 0.03,             
+                "EXHAUST": 0.03
+              }
+            }
+          },
+          "Donu_and_Deca": {
+            "llm_prompt": "[CRITICAL] Your act boss is Donu and Deca. They scale Strength rapidly and add Dazed to your deck. Fast burst damage to kill Donu quickly or strong AOE is required.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "avg_damage": 3.0
+              },
+              "synergy_weights": {
+                "AOE_DAMAGE": 0.04,       
+                "STRENGTH": 0.05,         
+                "VULNERABLE": 0.03
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "Act_4": {
+      "act_demand_modifier": {
+        "physical_lower_bounds": {
+          "avg_damage": 15.0,
+          "avg_block": 15.0
+        },
+        "deck_power_targets": {
+          "target_avg_score": 35.0 
+        },
+        "bosses": {
+          "The_Heart": {
+            "llm_prompt": "[CRITICAL] This is the FINAL BOSS: The Corrupt Heart. You MUST have 'Weak' to survive its x15 multi-attack. You need 'Draw' and 'Exhaust' to clear the 5 statuses it puts in your deck. 'Reflexion' (Thorns/Flame Barrier) is god-tier here.",
+            "boss_modifiers": {
+              "physical_thresholds_modifier": {
+                "avg_block": 5.0
+              },
+              "synergy_weights": {
+                "WEAK": 0.03,
+                "STRENGTH_LOSS" : 0.02,             
+                "REFLEXION": 0.05,        
+                "DRAW": 0.05,             
+                "STATUS_SYNERGY": 0.03,   
+                "EXHAUST": 0.04           
+              }
+            }
           }
         }
       }
     }
+
+
   }
 }
