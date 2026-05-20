@@ -75,6 +75,8 @@ def main():
                 log.info(f"⚠️ router fallback → {tool_name} (reason: {e})")
 
             toolformer.dispatch(tool_name, state, avail)
+            if tool_name == "wait":
+                time.sleep(1.5)
 
         except Exception:
             log.info("\n🚨 파이썬 스크립트에 치명적 에러 발생!")
