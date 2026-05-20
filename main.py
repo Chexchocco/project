@@ -79,6 +79,7 @@ def main():
         except Exception:
             log.info("\n🚨 파이썬 스크립트에 치명적 에러 발생!")
             log.info(traceback.format_exc())
+            time.sleep(2.0)
 
 
 if __name__ == "__main__":
