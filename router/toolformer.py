@@ -134,11 +134,10 @@ def _state_digest(state, avail):
 
 
 def _build_prompt(state, avail):
-    catalog_lines = [
+    catalog_block = "\n".join([
         f"- {t['name']}: {t['description']} Use when: {t['when_to_use']}"
         for t in TOOLS
-    ]
-    catalog_block = "\n".join(catalog_lines)
+    ])
     digest = _state_digest(state, avail)
 
     return f"""[Available Tools]
