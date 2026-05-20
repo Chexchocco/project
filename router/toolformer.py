@@ -1,6 +1,7 @@
 import re
 import logging
 
+import httpx
 import ollama
 
 from config import MODEL_NAME
@@ -167,14 +168,17 @@ _SYSTEM_PROMPT = (
 def route(state, avail):
     prompt = _build_prompt(state, avail)
 
-    response = ollama.chat(
-        model=MODEL_NAME,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        options={"temperature": 0.0, "num_predict": 64},
-    )
+    try:
+        response = ollama.chat(
+            model=MODEL_NAME,
+            messages=[
+                {"role": "system", "content": _SYSTEM_PROMPT},
+                {"role": "user", "content": prompt},
+            ],
+            options={"temperature": 0.0, "num_predict": 64},
+        )
+    except (ollama.ResponseError, httpx.HTTPError, ConnectionError) as e:
+        raise RouterError(f"LLM call failed: {e}") from e
     content = response["message"]["content"]
     log.info(f"🧭 router LLM output:\n{content.strip()}")
 
