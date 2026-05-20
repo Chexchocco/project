@@ -118,7 +118,6 @@ def choose_card_reward(state):
 
 def handle_combat_reward(state, avail):
     global CARD_SKIP
-    CARD_SKIP = False  # 새 전투 보상 진입 — 이전 스킵 상태 리셋
     log.info("🎁 전투 보상 챙기기")
     rewards = state.get("screen_state", {}).get("rewards", [])
     potions = state.get("potions", [])
@@ -148,10 +147,18 @@ def handle_combat_reward(state, avail):
     if picked_something:
         return
 
+    # 더 챙길 보상이 없음 (또는 카드는 skip하기로 결정함) → 화면을 떠난다.
+    # 화면을 실제로 떠날 때만 CARD_SKIP을 리셋해야 다음 전투 보상에서 정상 동작한다.
     if "proceed" in avail:
         log.info("다 골랐으니 진행1")
+        CARD_SKIP = False
         print("proceed", flush=True)
         return
+
+    # proceed가 아직 안 뜸(애니메이션/틱 대기) → 다음 틱을 기다린다.
+    log.info("⏳ 보상 처리 대기 중 (proceed 미활성). wait.")
+    print("wait 30", flush=True)
+    return
 
 
 def handle_card_reward(state, avail):
