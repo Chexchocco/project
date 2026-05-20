@@ -9,27 +9,32 @@ def handle_rest(state, avail):
     player_hp = state.get("current_hp", 0)
     max_hp = state.get("max_hp", 80)
 
-    if "choose" not in avail :
-       log.info("휴식 나가기")
-       print(f"proceed", flush=True)
-       return
-        # 선택 다 한 상황이라 고를 게 없으면 넘기기
-    # 휴리스틱: 체력이 70% 이하면 무조건 휴식
-    # 일단 단순하게 구현;;
-    # 사실 옵션이 3개 다보니 llm 한테 물어봐도 되고
-    # 아니면
-    if player_hp < (max_hp * 0.7):
-        print(f"choose rest", flush=True)
+    if "choose" not in avail:
+        log.info("휴식 나가기")
+        print("proceed", flush=True)
         return
 
-    else: #여기다 이제 need smith 판단 함수 넣든가말든가 혹은 이 전체적으로 llm에 넣거나
-        print(f"choose smith", flush=True)
-        return
-    #else :
-    #    print(f"choose recall", flush=True)
-    #    continue
+    # 실제로 고를 수 있는 모닥불 옵션 (유물에 따라 smith 등이 빠질 수 있음)
+    rest_options = state.get("screen_state", {}).get("rest_options", [])
+    log.info(f"가능한 모닥불 옵션: {rest_options}")
 
-    #일단 멈춤 방지로 넣어둠
-    print(f"choose rest", flush=True)
-    return
-    #
+    def pick(option):
+        if option in rest_options:
+            log.info(f"👉 choose {option}")
+            print(f"choose {option}", flush=True)
+            return True
+        return False
+
+    # 우선순위: 체력 낮으면 rest, 아니면 smith → rest → 남은 거 아무거나
+    if player_hp < (max_hp * 0.7) and pick("rest"):
+        return
+    if pick("smith"):
+        return
+    if pick("rest"):
+        return
+    if rest_options:
+        pick(rest_options[0])
+        return
+
+    log.info("🚨 모닥불에 선택 가능한 옵션이 없습니다. proceed.")
+    print("proceed", flush=True)

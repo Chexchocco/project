@@ -88,25 +88,36 @@ def choose_card_reward(state):
 
     # 5. 파싱
     match = re.search(r"Selected Option:\s*(.+)", content, re.IGNORECASE)
-    if match:
-        selected_option = match.group(1).strip()
-
-        # 유효성 검사
-        if selected_option.lower() == "skip":
-            return "skip"
-
-        return selected_option
-
-        log.info(f"🚨 LLM이 선택지에 없는 카드({selected_option})를 골랐습니다. 안전을 위해 Skip 처리합니다.")
+    if not match:
+        log.info("🚨 파싱 실패 ('Selected Option:' 없음). 안전을 위해 Skip 처리합니다.")
         return "skip"
-    else:
-        log.info("🚨 파싱 실패. 안전을 위해 Skip 처리합니다.")
+
+    selected_option = match.group(1).strip()
+
+    # 정확히 "skip"만 적혀 있으면 (따옴표/마침표 제거 후) → skip
+    cleaned = selected_option.lower().strip(' "\'.,!?[]()')
+    if cleaned in ("skip", "skip card", "no card", "none"):
         return "skip"
+
+    # 먼저 정수 인덱스를 시도한다 — "0", "[0]", "Index 0", "0번 카드", "0 (don't skip)" 다 0으로
+    idx_match = re.search(r"\d+", selected_option)
+    if idx_match:
+        idx = int(idx_match.group(0))
+        if 0 <= idx < len(offered_cards):
+            return str(idx)
+        log.info(f"🚨 LLM이 범위를 벗어난 인덱스({idx})를 골랐습니다 (보상 {len(offered_cards)}장). Skip 처리합니다.")
+        return "skip"
+
+    # 정수가 없는데 응답 어디에든 'skip'이 있으면 skip로 해석
+    if "skip" in cleaned:
+        return "skip"
+
+    log.info(f"🚨 LLM 응답에서 인덱스를 찾지 못했습니다 ('{selected_option}'). 안전을 위해 Skip 처리합니다.")
+    return "skip"
 
 
 def handle_combat_reward(state, avail):
     global CARD_SKIP
-    CARD_SKIP = False  # 새 전투 보상 진입 — 이전 스킵 상태 리셋
     log.info("🎁 전투 보상 챙기기")
     rewards = state.get("screen_state", {}).get("rewards", [])
     potions = state.get("potions", [])
@@ -136,24 +147,68 @@ def handle_combat_reward(state, avail):
     if picked_something:
         return
 
+    # 더 챙길 보상이 없음 (또는 카드는 skip하기로 결정함) → 화면을 떠난다.
+    # 화면을 실제로 떠날 때만 CARD_SKIP을 리셋해야 다음 전투 보상에서 정상 동작한다.
     if "proceed" in avail:
         log.info("다 골랐으니 진행1")
+        CARD_SKIP = False
         print("proceed", flush=True)
         return
+
+    # proceed가 아직 안 뜸(애니메이션/틱 대기) → 다음 틱을 기다린다.
+    log.info("⏳ 보상 처리 대기 중 (proceed 미활성). wait.")
+    print("wait 30", flush=True)
+    return
 
 
 def handle_card_reward(state, avail):
     global CARD_SKIP
+    offered_cards = state.get("screen_state", {}).get("cards", [])
+
+    # 카드가 0장으로 표시되는 비정상 상태 → 화면 빠져나가기
+    if not offered_cards:
+        log.info("🚨 CARD_REWARD인데 cards가 비어 있음. proceed/skip으로 탈출 시도.")
+        if "proceed" in avail:
+            print("proceed", flush=True)
+        elif "skip" in avail:
+            print("skip", flush=True)
+        else:
+            print("wait 30", flush=True)
+        return
+
     choice = choose_card_reward(state)
-    if(choice == "skip"):
-        log.info(f"skip 선택")
-        print(f"skip", flush = True)
-        CARD_SKIP= True
+
+    if choice == "skip":
+        log.info("skip 선택")
+        CARD_SKIP = True
+        # 보스 카드 보상 등에서 skip이 막혀 있을 수 있다 → 가능한 명령으로 폴백
+        if "skip" in avail:
+            print("skip", flush=True)
+        elif "proceed" in avail:
+            log.info("skip 불가 → proceed로 폴백")
+            print("proceed", flush=True)
+        else:
+            log.info(f"skip/proceed 모두 불가. 첫 카드(0번)로 폴백. avail={avail}")
+            print("choose 0", flush=True)
         return
-    else :
-        log.info(f"{choice}번 카드 선택")
-        print(f"choose {choice}", flush=True)
+
+    # 정수 인덱스 — 범위 한 번 더 확인
+    try:
+        idx = int(choice)
+    except (TypeError, ValueError):
+        log.info(f"🚨 잘못된 인덱스 형식 '{choice}'. skip 폴백.")
+        if "skip" in avail:
+            print("skip", flush=True)
+        else:
+            print("choose 0", flush=True)
         return
+
+    if not (0 <= idx < len(offered_cards)):
+        log.info(f"🚨 인덱스 {idx}가 범위 밖 (cards={len(offered_cards)}). 0번 카드로 폴백.")
+        idx = 0
+
+    log.info(f"{idx}번 카드 선택")
+    print(f"choose {idx}", flush=True)
 
 
 def handle_grid_selection(state, avail):
