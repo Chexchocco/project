@@ -13,3 +13,4 @@ db/__pycache__
 llm/__pycache__
 config.py
 card_picks.txt
+CLAUDE.md
