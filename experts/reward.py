@@ -15,8 +15,8 @@ log = logging.getLogger("STS_AI")
 CARD_SKIP = False
 
 from config import LOCAL_PATH
-tag_db_path = os.path.join(LOCAL_PATH, "DB", "synergyTagDB.json")
-value_config_path = os.path.join(LOCAL_PATH, "DB", "value_config.json")
+tag_db_path = os.path.join(LOCAL_PATH, "db", "synergyTagDB.json")
+value_config_path = os.path.join(LOCAL_PATH, "db", "value_config.json")
 
 with open(tag_db_path, "r", encoding="utf-8") as f:
     synergy_tag_db = json.load(f)
