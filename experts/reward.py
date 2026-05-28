@@ -15,8 +15,8 @@ log = logging.getLogger("STS_AI")
 CARD_SKIP = False
 
 from config import LOCAL_PATH
-tag_db_path = os.path.join(LOCAL_PATH, "DB", "synergyTagDB.json")
-value_config_path = os.path.join(LOCAL_PATH, "DB", "value_config.json")
+tag_db_path = os.path.join(LOCAL_PATH, "db", "synergyTagDB.json")
+value_config_path = os.path.join(LOCAL_PATH, "db", "value_config.json")
 
 with open(tag_db_path, "r", encoding="utf-8") as f:
     synergy_tag_db = json.load(f)
@@ -90,7 +90,7 @@ def choose_card_reward(state, enriched_relics=None):
         
     offered_cards = state.get("screen_state", {}).get("cards", [])
     current_deck_raw = state.get("deck", [])
-    
+        
     # 💡 현재 위치 파악 (Act 1, 2, 3)
     act = state.get("act", 1)
     floor = state.get("floor", 1)
@@ -101,7 +101,6 @@ def choose_card_reward(state, enriched_relics=None):
     relic_tup = tuple(relic_ids)
 
     deck_report = _get_cached_deck_report(deck_tup, relic_tup)
-    act_strategy = value_config.get(f"Act_{act}", {}).get("act_base_modifiers", {})
     
     base_act_strategy = build_future_sight_strategy(value_config, act, boss_name, 0.0)
 
