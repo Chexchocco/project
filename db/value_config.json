@@ -246,7 +246,7 @@
     },
     
     "Act_2": {
-      "act_base_modifiers": {
+      "act_demand_modifier": {
         "deck_power_targets": {
           "target_avg_score": 20.0 
         },

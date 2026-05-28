@@ -164,8 +164,7 @@ def handle_event(state, avail):
             options_text = state.get("screen_state", {}).get("options", [])
 
             current_deck_raw = state.get("deck", [])
-            enriched_deck = [get_card_info(c) for c in current_deck_raw if get_card_info(c)]
-
+            enriched_deck = [info for c in current_deck_raw if (info := get_card_info(c))]
             # 2. synergy.py의 함수를 이용해 덱의 핵심 스탯을 뽑아냅니다.
             summary_data = score_deck_summary(enriched_deck)
             stats = summary_data.get("stats", {})

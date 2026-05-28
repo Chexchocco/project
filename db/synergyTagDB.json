@@ -35,13 +35,12 @@
     "CURSE_CARD": { "category": "Mechanic", "description": "저주 카드" },
     "SELF_HARM": { "category": "Mechanic", "description": "자해" },
     
-    "ENERGY_GEN": {
-      "children" : ["CONDITIONAL_ENERGY", "ENERGY"],
-      "category": "Utility", "description": "에너지 획득" },
+    "Draw": {"category": "Utility", "description": "카드 드로우" },
+    "CONDITIONAL_DRAW": {"category": "Utility", "description": "조건부 카드 드로우" },
 
-    "DRAW_GEN": { 
-      "children": ["DRAW", "CONDITIONAL_DRAW"],
-      "category": "Utility", "description": "카드 드로우" },
+    "ENERGY": {"category": "Utility", "description": "에너지" },
+    "CONDITIONAL_ENERGY": {"category": "Utility", "description": "조건부 에너지" },
+    
     "TOP_DECK": { "category": "Utility", "description": "덱 맨 위 조작" },
     "CARD_GENERATION": { "category": "Utility", "description": "카드 생성" },
     "CARD_COPY": { "category": "Utility", "description": "원하는 카드 복제" },

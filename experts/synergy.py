@@ -43,15 +43,14 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         current_count = density.get(tag, 0.0) * deck_size 
         
         # 이 태그는 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져오되, 기본값은 1~2장)
-        target_count = act_strategy.get("synergy_weights", {}).get(tag, 1.5) 
-
-        # [새로운 선형 감가상각 공식] 
-        # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다. 목표를 채웠으면 0점!
+        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.15) 
+        target_count = target_ratio * deck_size
+        
+        # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다. 
         gap = target_count - current_count
         
-        bonus = val * gap * 5.0 # (5.0은 점수 체급을 맞추기 위한 기본 가중치)
+        bonus = val * gap * 5.0
         synergy_bonus += bonus
-
 
     # ---------------------------------------------------------
     # 2. REQUIRES (조건/콤보 발동
@@ -108,7 +107,7 @@ def score_deck(enriched_deck, enriched_relics, potion, game_state, synergy_manag
     if not summary: return {}
 
     raw_density = summary['raw_synergy']
-    relic_names = [r.get('id', r.get('name')) for r in enriched_relics]
+    relic_names = [r.get('id', r.get('name', '')).replace(' ', '_') for r in enriched_relics]
     
     # 유물의 순수 제공 태그들을 raw_density에 먼저 합산
     for relic in enriched_relics:
@@ -329,7 +328,7 @@ class SynergyManager:
         combo_rate = min(1.2, max(0.2, draw_ratio / max(0.5, avg_cost)))
 
         # --- [Step 1] 개별 유물 특수 전처리 (전수 조사 반영) ---
-
+            # relic names 갖고올 때 _ 붙이도록 수정함
         # [ENERGY 관련]
         # 1. 해시계: 덱 사이즈 기반
         if "Sundial" in relic_names:
@@ -412,14 +411,7 @@ class SynergyManager:
 
 
 
-        for tag in ["STRENGTH", "DEXTERITY", "ENERGY", "DRAW"]:
-            cond_key = f"CONDITIONAL_{tag}"
-            # 실질 기댓값 = (남은 일반 조건부 수치 * 콤보 확률)
-            cond_val = flat_vector.get(cond_key, 0.0) * combo_rate
-            
-            # _TOTAL 키에 순수값 + 조건부 기댓값 합산
-            flat_vector[f"{tag}_TOTAL"] = flat_vector.get(tag, 0.0) + cond_val
-
+       
         for tag in ["STRENGTH", "DEXTERITY", "ENERGY", "DRAW"]:
             cond_key = f"CONDITIONAL_{tag}"
             if cond_key in flat_vector:
