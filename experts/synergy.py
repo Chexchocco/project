@@ -103,6 +103,7 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
 # 2. 유물 통합 및 밀도 계산 (구 calculate_density_vector 기능 통합)
 # 2. 유물 통합 및 밀도 계산 (SynergyManager 연동)
 def score_deck(enriched_deck, enriched_relics, potion, game_state, synergy_manager=None):
+
     summary = score_deck_summary(enriched_deck)
     if not summary: return {}
 
@@ -125,6 +126,7 @@ def score_deck(enriched_deck, enriched_relics, potion, game_state, synergy_manag
         "stats": summary['stats'],
         "density_vector": density_vector
     }
+
 # 1. 덱의 물리 지표 및 태그 원재료 수집
 def score_deck_summary(enriched_deck):
     deck_size = len(enriched_deck)
@@ -143,7 +145,11 @@ def score_deck_summary(enriched_deck):
 
     for card in enriched_deck:
         # 카드 기본 스탯 합산
-        total_dmg += card.get('damage', 0)
+        # 다단 히트 카드(Twin Strike, Pummel 등)는 damage × hits로 실제 데미지 환산
+        # hits='X'(X코 다타 카드, Whirlwind 등)는 평균 2회로 가정 (cost_val과 일관)
+        hits = card.get('hits', 1)
+        hit_multiplier = hits if isinstance(hits, int) else 2
+        total_dmg += card.get('damage', 0) * hit_multiplier
         total_blk += card.get('block', 0)
         total_draw += card.get('draw', 0)
         
@@ -217,9 +223,6 @@ def calculate_readiness(deck_report, strategy):
         evaluated_items += 1
 
     return round(total_score / max(1, evaluated_items), 1)
-
-
-
 
 def apply_modifiers_to_strategy(strategy, modifiers, weight_multiplier=1.0):
     """strategy 딕셔너리에 modifiers 수치를 weight_multiplier 배율만큼 곱해서 합산합니다."""
