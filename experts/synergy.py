@@ -110,7 +110,6 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
 
     return round(final_score, 2)
 
-
 # 2. 유물 통합 및 밀도 계산 (구 calculate_density_vector 기능 통합)
 # 2. 유물 통합 및 밀도 계산 (SynergyManager 연동)
 def score_deck(enriched_deck, enriched_relics, potion, game_state, synergy_manager=None):
@@ -229,7 +228,19 @@ def calculate_readiness(deck_report, strategy):
     syn_targets = strategy.get("synergy_weights", {})
     for tag, target_val in syn_targets.items():
         curr_val = density.get(tag, 0.0)
-        fulfillment = min(1.2, curr_val / target_val) * 100 if target_val > 0 else 100
+
+        if target_val > 0:
+            # 양수 target: 많을수록 좋음. 목표 대비 달성률 (최대 120%)
+            fulfillment = min(1.2, curr_val / target_val) * 100
+        elif target_val < 0:
+            # 음수 target (STATUS_CARD, CURSE_CARD 등 페널티 태그): 적을수록 좋음
+            # curr_val이 0이면 100% (페널티 없음), 많을수록 점수 깎임
+            penalty = abs(target_val) * curr_val * 100
+            fulfillment = max(0, 100 - penalty)
+        else:
+            # 0: 무관심 태그
+            fulfillment = 100
+
         total_score += fulfillment
         evaluated_items += 1
 
@@ -316,10 +327,6 @@ def build_future_sight_strategy(value_config, current_act_num, boss_name, deck_a
             apply_modifiers_to_strategy(strategy, nn_avg_mods, weight_multiplier=safe_ratio_2)
 
     return strategy
-
-
-    
-
 class SynergyManager:
     def __init__(self, value_config_json, tag_db_json):
         # 1. 족보(계층) 데이터 로드 (synergyTagDB.json에서 가져옴)
@@ -452,12 +459,6 @@ class SynergyManager:
             flat_vector[key] = round(flat_vector[key] / deck_size, 3)
 
         return flat_vector
-    
-
-
-
-
-
 class RelicModifier:
     @staticmethod
     def apply_post_process(base_score, card, relic_names, deck_stats):
