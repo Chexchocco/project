@@ -48,9 +48,10 @@ GOLD_PRESSURE_THRESHOLD = 300
 PRE_BOSS_DISTANCE = 2
 
 # Deck stats 기반 임계값 (score_deck_summary의 stats를 해석할 때 쓰임)
+# 실제 덱 분포 기준으로 튜닝: 스타터(atk≈3.5, def≈1.8) → 강한덱(atk≈6, def≈0.9)
 MIN_DECK_SIZE = 12                # 덱 크기가 이 미만이면 카드 부족
-ATK_EFFICIENCY_THRESHOLD = 6.0    # 에너지당 데미지가 이 미만이면 공격력 부족
-DEF_EFFICIENCY_THRESHOLD = 5.0    # 에너지당 방어력이 이 미만이면 방어력 부족
+ATK_EFFICIENCY_THRESHOLD = 4.5    # 에너지당 데미지가 이 미만이면 공격력 부족
+DEF_EFFICIENCY_THRESHOLD = 1.5    # 에너지당 방어력이 이 미만이면 방어력 부족
 
 
 # ─── State vector ───────────────────────────────────────────────────────────
@@ -122,10 +123,11 @@ def build_state_vector(state) -> StateVector:
         and not str(c.get("name", "")).endswith("+")
     )
 
+    # 덱이 작거나, 공격/방어 둘 다 부족할 때만 needs_card.
+    # OR이 아닌 AND로 묶어야 강한 공격덱(방어 낮음)이 잘못 needs_card 판정 안 됨.
     needs_card = (
         deck_size < MIN_DECK_SIZE
-        or atk_eff < ATK_EFFICIENCY_THRESHOLD
-        or def_eff < DEF_EFFICIENCY_THRESHOLD
+        or (atk_eff < ATK_EFFICIENCY_THRESHOLD and def_eff < DEF_EFFICIENCY_THRESHOLD)
     )
 
     profile = {
