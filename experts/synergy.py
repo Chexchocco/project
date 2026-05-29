@@ -40,16 +40,19 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         if tag in ["STATUS_CARD", "CURSE_CARD", "STRIKE_CARD"]: continue
 
         # 현재 덱에 이 태그가 몇 장(Count)이나 있는가?
-        current_count = density.get(tag, 0.0) * deck_size 
-        
+        current_count = density.get(tag, 0.0) * deck_size
+
         # 이 태그는 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져오되, 기본값은 1~2장)
-        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.15) 
+        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.15)
         target_count = target_ratio * deck_size
-        
-        # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다. 
+
+        # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다.
         gap = target_count - current_count
-        
+
         bonus = val * gap * 5.0
+        # 태그별 캡 (±10): 단일 태그가 점수를 독점하지 못하게 제한
+        # → 다중 태그 카드가 누적으로 더 높은 점수를 받을 수 있게 변별력 확보
+        bonus = max(-10.0, min(10.0, bonus))
         synergy_bonus += bonus
 
     # ---------------------------------------------------------
@@ -91,7 +94,10 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
     if "CURSE_CARD" in provides:
         synergy_bonus -= 10.0
     
-    synergy_bonus = min(15.0, synergy_bonus)
+    # 최종 양방향 clamp: 다중 태그 카드가 누적 점수를 받을 여유를 주되 폭주는 방지
+    # 양수 +30: 태그 3개 강한 시너지 카드까지 변별 가능
+    # 음수 -20: CURSE(-10) + STATUS(-5) + requires 페널티 누적 시 흡수
+    synergy_bonus = max(-20.0, min(30.0, synergy_bonus))
         # [핵심] 1차 계산된 점수
     raw_score = base_score + physical_bonus + synergy_bonus
     if not is_deck_eval:
