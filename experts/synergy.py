@@ -17,15 +17,33 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
     base_score = card.get("base_value", 5.0)
     deck_size = deck_report.get("deck_size", 10)
     # --- 물리적 결핍 보정 ---
+    # [중요] 카드가 해당 metric에 실제로 기여할 때만 가점 부여
+    # (예: 데미지 부족한 덱이라도 Defend는 데미지 기여 0이므로 avg_damage 보너스 없음)
     physical_bonus = 0
     targets = act_strategy.get("physical_thresholds", {})
     stats = deck_report.get("stats", {})
-    
+
+    # 평가 중인 카드가 각 metric에 얼마나 기여하는지 산출
+    hits = card.get('hits', 1)
+    hit_mult = hits if isinstance(hits, int) else 2
+    card_dmg = card.get('damage', 0) * hit_mult
+    card_blk = card.get('block', 0)
+    card_draw = card.get('draw', 0)
+    card_contrib = {
+        'avg_damage': card_dmg,
+        'avg_block': card_blk,
+        'draw_ratio': card_draw,
+        'dmg_per_energy': card_dmg,
+        'blk_per_energy': card_blk,
+    }
+
     for metric, config in targets.items():
         curr = stats.get(metric, 0)
         target = config['target']
         if not config.get('is_inverse') and curr < target:
-            physical_bonus += (target - curr) * config.get('weight', 1.0)
+            # 카드가 이 metric에 기여하지 않으면 가점 없음
+            if card_contrib.get(metric, 0) > 0:
+                physical_bonus += (target - curr) * config.get('weight', 1.0)
 
     # --- 시너지 밀도 보정 ---
     synergy_bonus = 0
