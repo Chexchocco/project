@@ -35,7 +35,7 @@
     "CURSE_CARD": { "category": "Mechanic", "description": "저주 카드" },
     "SELF_HARM": { "category": "Mechanic", "description": "자해" },
     
-    "Draw": {"category": "Utility", "description": "카드 드로우" },
+    "DRAW": {"category": "Utility", "description": "카드 드로우" },
     "CONDITIONAL_DRAW": {"category": "Utility", "description": "조건부 카드 드로우" },
 
     "ENERGY": {"category": "Utility", "description": "에너지" },
