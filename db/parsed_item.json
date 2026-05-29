@@ -2337,7 +2337,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0, "EXHAUST_NON_ATTACK": 1.0
+                    "EXHAUST": 1.0, "EXHAUST_NOT_ATTACK": 1.0
                 }
             }
         },
@@ -2356,12 +2356,12 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 9.8,
+            "base_value": 9.8,``
             "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0, "EXHAUST_NON_ATTACK": 1.0
+                    "EXHAUST": 1.0, "EXHAUST_NOT_ATTACK": 1.0
                 }
             }
         },
