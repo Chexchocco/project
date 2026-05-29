@@ -2356,7 +2356,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 9.8,``
+            "base_value": 9.8,
             "scaling_potential" : 2.0,
             "synergy": {
                 "requires": {},

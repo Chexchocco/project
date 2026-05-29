@@ -501,8 +501,10 @@ class RelicModifier:
                 score *= 1.3
 
         # 나뭇가지: 소멸(Exhaust) 카드는 그냥 사기가 됨
-        if "Dead_Branch" in relic_names and "EXHAUST" in card.get('synergy', {}).get('provides', {}):
-            score *= 1.5
+        if "Dead_Branch" in relic_names:
+            provides = card.get('synergy', {}).get('provides', {})
+            if any(k for k in provides if 'EXHAUST' in k):
+                score *= 1.5
             
             
         # 화학물질 X: X코스트 카드의 신
