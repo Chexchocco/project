@@ -33,17 +33,34 @@ RELIC_INFO_BY_ID = {r['id']: r for r in _relic_db_raw.get('relics', [])}
 SYNERGY_ENGINE = SynergyManager(value_config, synergy_tag_db)
 
 
+def _normalize_relic_id(raw_id):
+    """
+    게임에서 오는 relic id는 표기가 섞여 있다:
+      - "Burning_Blood" (snake_case)
+      - "CeramicFish"   (CamelCase, separator 없음)
+      - "Burning Blood" (공백 있는 name fallback)
+    relicDB는 모두 snake_case 형식이므로 통일해서 매칭한다.
+    """
+    s = raw_id.replace(' ', '_')
+    # CamelCase 경계에 _ 삽입 (이미 _가 있거나 문자열 시작은 건드리지 않음)
+    return re.sub(r'(?<!^)(?<!_)([A-Z])', r'_\1', s)
+
+
 def enrich_relics(raw_relics):
     """
     state['relics'] (id/name만 들어있는 raw 데이터)를 relicDB와 매칭해
     synergy 정보(provides/requires)를 붙인 enriched 형태로 변환.
     score_deck, score_card가 유물의 synergy를 활용하려면 이 형태가 필요.
+    DB에 없는 유물(이벤트성 임시 효과 등)은 silent skip.
     """
     enriched = []
     for r in raw_relics:
-        # id 우선, 없으면 name. 공백을 언더스코어로 정규화 (relicDB id 형식과 맞춤)
-        relic_id = (r.get('id') or r.get('name', '')).replace(' ', '_')
-        info = RELIC_INFO_BY_ID[relic_id]
+        raw_id = r.get('id') or r.get('name', '')
+        relic_id = _normalize_relic_id(raw_id)
+        info = RELIC_INFO_BY_ID.get(relic_id)
+        if info is None:
+            log.warning(f"⚠️ relic '{raw_id}' not in DB, skipping")
+            continue
         enriched.append({**r, 'id': relic_id, 'synergy': info.get('synergy', {})})
     return enriched
 
