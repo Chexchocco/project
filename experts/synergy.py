@@ -454,11 +454,12 @@ class RelicModifier:
         
         # 카드의 기본 정보 추출
         card_type = card.get('type', 'Skill')
-        raw_cost = card.get('cost', 1)
-        
-        # 코스트를 숫자로 안전하게 변환 (X 코스트 등 예외 처리)
+        raw_cost = card.get('cost', 0)
+
+        # 코스트를 숫자로 안전하게 변환 (score_deck_summary와 일관 처리)
+        # X코는 평균적으로 2코 정도 효과로 보아 cost_val=2, is_x_cost 플래그로 별도 식별
         is_x_cost = (str(raw_cost).upper() == 'X')
-        cost_val = 0 if is_x_cost else int(raw_cost) if str(raw_cost).isdigit() else 1
+        cost_val = int(raw_cost) if str(raw_cost).isdigit() else (2 if is_x_cost else 0)
 
         # ---------------------------------------------------------
         # 1. 스네코의 눈 (Snecko Eye): 슬더스 생태계 파괴자
