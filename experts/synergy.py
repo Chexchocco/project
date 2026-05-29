@@ -501,7 +501,7 @@ class RelicModifier:
                 score *= 1.3
 
         # 나뭇가지: 소멸(Exhaust) 카드는 그냥 사기가 됨
-        if "Dead_Branch" in relic_names and "Exhaust" in card.get('effects', []):
+        if "Dead_Branch" in relic_names and "EXHAUST" in card.get('synergy', {}).get('provides', {}):
             score *= 1.5
             
             
