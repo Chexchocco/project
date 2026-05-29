@@ -138,6 +138,17 @@ def choose_card_reward(state, enriched_relics=None):
     final_pick_strategy = build_future_sight_strategy(value_config, act, boss_name, deck_score)
     # =========================================================================
 
+    # 보스별 LLM 힌트 추출 (value_config에 정의된 자연어 지침)
+    # boss_modifiers는 strategy(점수)에만 반영되므로, LLM에게 직접 전달할 자연어 힌트도 필요
+    boss_llm_prompt = (
+        value_config.get("act_strategies", {})
+        .get(f"Act_{act}", {})
+        .get("act_demand_modifier", {})
+        .get("bosses", {})
+        .get(boss_name, {})
+        .get("llm_prompt", "")
+    )
+
 
 
     enriched_deck = [get_card_info(c) for c in current_deck_raw if get_card_info(c)]
@@ -150,6 +161,9 @@ def choose_card_reward(state, enriched_relics=None):
     # 2. 보상 카드 포맷팅 (agent_hints 포함)
     # 💡 LLM도 현재 덱의 파워를 알 수 있게 텍스트에 추가!
     core_report = f"[Deck Core Stats]\nAvg Cost: {stats.get('avg_cost', 0)}\nDraw Ratio: {stats.get('draw_ratio', 0)}\nCurrent Deck Power Score: {deck_score:.2f}"
+
+    # 보스 힌트 섹션 (보스가 확정된 경우에만 포함)
+    boss_section = f"\n[Boss Strategy]\n{boss_llm_prompt}\n" if boss_llm_prompt else ""
 
     reward_db_text = "[Offered Cards Info]\n"
     for i, card_dict in enumerate(offered_cards):
@@ -172,7 +186,7 @@ def choose_card_reward(state, enriched_relics=None):
     # 4. LLM 프롬프트 조립 (JSON 4단 분리 적용)
     prompt = f"""
 {core_report}
-
+{boss_section}
 [Current Deck Synergies]
 {meaningful_synergies}
 
