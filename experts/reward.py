@@ -17,6 +17,7 @@ CARD_SKIP = False
 from config import LOCAL_PATH
 tag_db_path = os.path.join(LOCAL_PATH, "db", "synergyTagDB.json")
 value_config_path = os.path.join(LOCAL_PATH, "db", "value_config.json")
+relic_db_path = os.path.join(LOCAL_PATH, "db", "relicDB.json")
 
 with open(tag_db_path, "r", encoding="utf-8") as f:
     synergy_tag_db = json.load(f)
@@ -24,7 +25,27 @@ with open(tag_db_path, "r", encoding="utf-8") as f:
 with open(value_config_path, "r", encoding="utf-8") as f:
     value_config = json.load(f)
 
+# relicDB를 id 기반 lookup 형태로 로드 (enrich_relics에서 synergy 정보 매칭용)
+with open(relic_db_path, "r", encoding="utf-8") as f:
+    _relic_db_raw = json.load(f)
+RELIC_INFO_BY_ID = {r['id']: r for r in _relic_db_raw.get('relics', [])}
+
 SYNERGY_ENGINE = SynergyManager(value_config, synergy_tag_db)
+
+
+def enrich_relics(raw_relics):
+    """
+    state['relics'] (id/name만 들어있는 raw 데이터)를 relicDB와 매칭해
+    synergy 정보(provides/requires)를 붙인 enriched 형태로 변환.
+    score_deck, score_card가 유물의 synergy를 활용하려면 이 형태가 필요.
+    """
+    enriched = []
+    for r in raw_relics:
+        # id 우선, 없으면 name. 공백을 언더스코어로 정규화 (relicDB id 형식과 맞춤)
+        relic_id = (r.get('id') or r.get('name', '')).replace(' ', '_')
+        info = RELIC_INFO_BY_ID[relic_id]
+        enriched.append({**r, 'id': relic_id, 'synergy': info.get('synergy', {})})
+    return enriched
 
 # 💡 카드 선택 해설 전용 로거 생성
 # ----------------------------------------------------
@@ -296,7 +317,9 @@ def handle_card_reward(state, avail):
             print("wait 30", flush=True)
         return
 
-    choice = choose_card_reward(state)
+    # 유물 정보를 enrich해서 전달 (synergy 정보를 score_card가 활용할 수 있게)
+    enriched_relics = enrich_relics(state.get("relics", []))
+    choice = choose_card_reward(state, enriched_relics)
 
     if choice == "skip":
         log.info("skip 선택")
