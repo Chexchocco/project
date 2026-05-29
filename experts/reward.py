@@ -70,11 +70,13 @@ def _get_cached_deck_report(deck_tuple, relics_tuple):
     """
     동일한 덱/유물 상태에서 중복 계산을 막기 위해 결과를 캐싱합니다.
     인자로 리스트 대신 튜플을 받아야 캐싱이 작동합니다.
+    deck_tuple: ((name, upgrades), ...) 형태. 강화 여부까지 캐시 키에 포함해야
+    Strike와 Strike+가 다른 결과로 캐싱됨.
     """
     # 튜플을 다시 딕셔너리 형태의 리스트로 복원하여 엔진에 전달
-    current_deck = [get_card_info({"name": name}) for name in deck_tuple]
+    current_deck = [get_card_info({"name": name, "upgrades": upgrades}) for name, upgrades in deck_tuple]
     current_deck = [c for c in current_deck if c is not None] # 안전 장치
-    
+
     current_relics = [{"id": r_id} for r_id in relics_tuple]
     return score_deck(current_deck, current_relics, [], {}, SYNERGY_ENGINE)
 
@@ -117,7 +119,11 @@ def choose_card_reward(state, enriched_relics=None):
     floor = state.get("floor", 1)
     boss_name = state.get("boss", "")
     # 1. 파이썬 평가 모듈 데이터 구성
-    deck_tup = tuple(c.get('name') for c in current_deck_raw if isinstance(c, dict))
+    # 강화 여부(upgrades)까지 캐시 키에 포함해야 Strike와 Strike+가 다르게 평가됨
+    deck_tup = tuple(
+        (c.get('name'), c.get('upgrades', 0))
+        for c in current_deck_raw if isinstance(c, dict)
+    )
     relic_ids = [r.get('id') for r in enriched_relics if r.get('id')]
     relic_tup = tuple(relic_ids)
 
