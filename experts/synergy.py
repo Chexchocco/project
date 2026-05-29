@@ -310,9 +310,6 @@ class SynergyManager:
     def __init__(self, value_config_json, tag_db_json):
         # 1. 족보(계층) 데이터 로드 (synergyTagDB.json에서 가져옴)
         self.tag_definitions = tag_db_json.get("tags", {})
-        
-        # 2. 가중치 데이터 로드 (value_config.json에서 가져옴)
-        self.weights = value_config_json.get("base_demand", {}).get("synergy_weights", {})
 
 
     def flatten_and_calculate_density(self, raw_density, deck_stats, relic_names):
