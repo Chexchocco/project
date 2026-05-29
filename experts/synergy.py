@@ -85,6 +85,11 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         if perfect_strike_count > 0:
             bonus = min(15.0, perfect_strike_count * perfect_strike_count)
             synergy_bonus += bonus
+
+    # 저주(Curse) 카드: 활용 시너지가 없고 손패만 차지하므로 강한 페널티
+    # value_config의 "CURSE_CARD": -1.0이 score_card의 일반 루프에서 continue로 무시되므로 별도 분기에서 명시적 페널티 부여
+    if "CURSE_CARD" in provides:
+        synergy_bonus -= 10.0
     
     synergy_bonus = min(15.0, synergy_bonus)
         # [핵심] 1차 계산된 점수
