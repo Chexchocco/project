@@ -526,7 +526,7 @@ class RelicModifier:
                 
         # 챔피언 벨트: 취약(Vulnerable) 부여 카드가 약화까지 걸게 됨
         if "Champion_Belt" in relic_names:
-            if card.get('applies_debuff') == 'Vulnerable':
+            if card.get('effects', {}).get('vulnerable', 0) > 0 :
                 score *= 1.3
 
         return score
