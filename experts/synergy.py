@@ -24,6 +24,8 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
     stats = deck_report.get("stats", {})
 
     # 평가 중인 카드가 각 metric에 얼마나 기여하는지 산출
+    # avg_X와 X_per_energy는 같은 효과의 두 표현 → 중복 가점 방지 위해 avg_*에만 매핑
+    # (per_energy metric은 stats에 남아있지만 card_contrib에서 제외)
     hits = card.get('hits', 1)
     hit_mult = hits if isinstance(hits, int) else 2
     card_dmg = card.get('damage', 0) * hit_mult
@@ -33,8 +35,6 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         'avg_damage': card_dmg,
         'avg_block': card_blk,
         'draw_ratio': card_draw,
-        'dmg_per_energy': card_dmg,
-        'blk_per_energy': card_blk,
     }
 
     for metric, config in targets.items():
@@ -65,7 +65,10 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         target_count = target_ratio * deck_size
 
         # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다.
-        gap = target_count - current_count
+        # 음수 가중치(STATUS_CARD 등)는 위 continue로 이미 별도 분기에서 처리되므로,
+        # 일반 루프의 gap은 음수면 0으로 클리핑 (초과 충족 시 페널티 없음).
+        # → 이미 충족된 덱에 같은 카드 추가 시 잘못된 -페널티 방지
+        gap = max(0, target_count - current_count)
 
         bonus = val * gap * 5.0
         # 태그별 캡 (±10): 단일 태그가 점수를 독점하지 못하게 제한
