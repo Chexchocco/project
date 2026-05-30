@@ -48,9 +48,10 @@ GOLD_PRESSURE_THRESHOLD = 300
 PRE_BOSS_DISTANCE = 2
 
 # Deck stats 기반 임계값 (score_deck_summary의 stats를 해석할 때 쓰임)
+# 실제 덱 분포 기준으로 튜닝: 스타터(atk≈3.5, def≈1.8) → 강한덱(atk≈6, def≈0.9)
 MIN_DECK_SIZE = 12                # 덱 크기가 이 미만이면 카드 부족
-ATK_EFFICIENCY_THRESHOLD = 6.0    # 에너지당 데미지가 이 미만이면 공격력 부족
-DEF_EFFICIENCY_THRESHOLD = 5.0    # 에너지당 방어력이 이 미만이면 방어력 부족
+ATK_EFFICIENCY_THRESHOLD = 4.5    # 에너지당 데미지가 이 미만이면 공격력 부족
+DEF_EFFICIENCY_THRESHOLD = 1.5    # 에너지당 방어력이 이 미만이면 방어력 부족
 
 
 # ─── State vector ───────────────────────────────────────────────────────────
@@ -97,28 +98,36 @@ def build_state_vector(state) -> StateVector:
     enriched_deck = [info for info in (get_card_info(c) for c in deck) if info]
 
     # curse/status는 score_deck_summary가 추적하지 않으므로 type 필드로 직접 센다.
-    curses = sum(1 for c in enriched_deck if c.get("type") in synergy_expert.CURSE_TYPES)
-    statuses = sum(1 for c in enriched_deck if c.get("type") in synergy_expert.STATUS_TYPES)
-
+    curses = sum(1 for c in enriched_deck if c.get("type") == "Curse")
+    statuses = sum(1 for c in enriched_deck if c.get("type") == "Status")
     if enriched_deck:
-        _, stats = synergy_expert.score_deck_summary(enriched_deck)
+        # 1. 딕셔너리 통째로 받아서 안전하게 Key로 꺼내기
+        summary_data = synergy_expert.score_deck_summary(enriched_deck)
+        stats = summary_data.get("stats", {})
+        deck_size = summary_data.get("deck_size", 0)
+        
+        # 2. 친구의 가짜 변수 대신, 용진 님의 진짜 엔진 변수로 매핑
+        atk_eff = stats.get("dmg_per_energy", 0.0)
+        def_eff = stats.get("blk_per_energy", 0.0)
     else:
-        stats = {"total_cards": 0, "atk_efficiency": 0.0, "def_efficiency": 0.0}
+        deck_size = 0
+        stats = {}
+        atk_eff = 0.0
+        def_eff = 0.0
 
-    deck_size = stats["total_cards"]
-    # 업그레이드 가능 카드(이름에 '+'가 없는 비-curse/status)가 남아 있으면 needs_upgrade
+    # 3. 없는 변수(CURSE_TYPES, STATUS_TYPES) 참조를 하드코딩 비교로 수정
     upgradable = sum(
         1 for c in enriched_deck
-        if c.get("type") not in synergy_expert.CURSE_TYPES
-        and c.get("type") not in synergy_expert.STATUS_TYPES
+        if c.get("type") != "Curse"
+        and c.get("type") != "Status"
         and not str(c.get("name", "")).endswith("+")
     )
 
-    # stats 기반으로 needs_card 판정: 덱이 작거나 공격/방어 효율이 임계값 미만이면 카드 보충 필요
+    # 덱이 작거나, 공격/방어 둘 다 부족할 때만 needs_card.
+    # OR이 아닌 AND로 묶어야 강한 공격덱(방어 낮음)이 잘못 needs_card 판정 안 됨.
     needs_card = (
         deck_size < MIN_DECK_SIZE
-        or stats["atk_efficiency"] < ATK_EFFICIENCY_THRESHOLD
-        or stats["def_efficiency"] < DEF_EFFICIENCY_THRESHOLD
+        or (atk_eff < ATK_EFFICIENCY_THRESHOLD and def_eff < DEF_EFFICIENCY_THRESHOLD)
     )
 
     profile = {

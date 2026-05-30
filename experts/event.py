@@ -1,8 +1,11 @@
 import json
 import re
 import logging
+from collections import Counter
 
 import ollama
+from experts.synergy import score_deck_summary
+from db.db_loader import get_card_info
 
 log = logging.getLogger("STS_AI")
 
@@ -160,9 +163,24 @@ def handle_event(state, avail):
             log.info(f"❓ LLM 이벤트 전문가 호출: {event_name}")
             options_text = state.get("screen_state", {}).get("options", [])
 
+            current_deck_raw = state.get("deck", [])
+            enriched_deck = [info for c in current_deck_raw if (info := get_card_info(c))]
+            # 2. synergy.py의 함수를 이용해 덱의 핵심 스탯을 뽑아냅니다.
+            summary_data = score_deck_summary(enriched_deck)
+            stats = summary_data.get("stats", {})
+            deck_size = summary_data.get("deck_size", 0)
 
-            # 덱 프로필 (나중에 만드실 함수, 지금은 임시 문자열)
-            deck_profile = "Balanced deck with 20 cards."
+            # 3. 파이썬 Counter를 이용해 어떤 카드가 몇 장 있는지 요약합니다. (예: {'Strike': 5, 'Defend': 4})
+            card_counts = dict(Counter(c.get("name", "Unknown") for c in enriched_deck))
+
+            # 4. LLM이 읽기 좋게 문자열로 예쁘게 포장합니다.
+            deck_profile = (
+                f"Deck Size: {deck_size} cards\n"
+                f"Stats: Avg Cost {stats.get('avg_cost', 0)}, "
+                f"Dmg/Energy {stats.get('dmg_per_energy', 0)}, "
+                f"Blk/Energy {stats.get('blk_per_energy', 0)}\n"
+                f"Card List: {card_counts}"
+            )
 
             choice_idx = evaluate_event(event_name, options_text, player_hp, max_hp, gold, deck_profile)
             print(f"choose {choice_idx}", flush=True)

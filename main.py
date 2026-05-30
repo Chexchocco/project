@@ -4,6 +4,8 @@ import traceback
 import time
 import logging
 
+from experts.synergy import SynergyManager, score_deck, score_card, RelicModifier
+
 from db import db_loader
 from config import PARSED_ITEM_PATH, LOG_PATH
 from io_bridge import communication
