@@ -307,10 +307,7 @@
             "effects": {},
             "base_value": 9.0,
             "synergy": {
-                "requires": {
-                    "EXHAUST": 0.5,
-                    "EXHAUST_NOT_ATTACK": 1.0
-                },
+                "requires": {},
                 "provides": {}
             }
         },
@@ -331,10 +328,7 @@
             "effects": {},
             "base_value": 11.0,
             "synergy": {
-                "requires": {
-                    "EXHAUST": 0.5,
-                    "EXHAUST_NOT_ATTACK": 1.5
-                },
+                "requires": {},
                 "provides": {}
             }
         },
