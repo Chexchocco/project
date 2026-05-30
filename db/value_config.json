@@ -17,7 +17,7 @@
     },
     "synergy_weights": {
       "MULTI_HIT": 0.0,
-      "AOE_DAMAGE": 0.02,
+      "AOE_DAMAGE": 0.08,
       
       "VULNERABLE": 0.2,
       "WEAK": 0.2,
@@ -55,7 +55,7 @@
       "BARRICADE_ENGINE": 0.03, 
       "CORRUPTION_ENGINE": 0.03,      
       "SKILL_CARD" : 0.0,
-      "RECOVERY" : 0.0,
+      "RECOVERY" : 0.12,
       "ECONOMY":  0.0
     }
   },
