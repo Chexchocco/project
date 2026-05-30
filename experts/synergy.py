@@ -86,8 +86,9 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
             bonus = min(15.0, req_val * current_count * 5.0)
             synergy_bonus += bonus
         else:
-            # 재료가 0장이면 가차없이 페널티 (요구 조건 미달)
-            synergy_bonus -= (req_val * 1.0)
+            # 재료가 0장이면 페널티 (요구 조건 미달).
+            # 다만 잘못 매핑된 requires로 부당한 페널티가 누적되는 걸 막기 위해 25%만 적용.
+            synergy_bonus -= (req_val * 0.25)
 
     # ---------------------------------------------------------
     # 3. 예외 처리 (상태이상, 페널티 등)
