@@ -523,13 +523,33 @@ class RelicModifier:
                 score *= 1.5 - (cost_val * 0.1)
                 
         # ---------------------------------------------------------
-        # 4. 타수/저코스트 보상 (쿠나이, 부채, 펜촉 등)
+        # 4-A. 턴당 3장 공격 트리거 (쿠나이/슈리켄/부채)
+        #     같은 트리거를 공유하므로 동시 보유 시 효과 누적.
+        #     저코 공격일수록 한 턴에 더 많이 칠 수 있어 발동률 ↑.
         # ---------------------------------------------------------
-        hit_relics = {"Kunai", "Shuriken", "Ornamental_Fan", "Pen_Nib"}
-        if any(r in relic_names for r in hit_relics) and card_type == 'Attack':
-            # 0코스트 공격이면 가점
-            if cost_val == 0 :
-                score *= 1.3
+        combo_attack_relics = {"Kunai", "Shuriken", "Ornamental_Fan"}
+        combo_count = sum(1 for r in combo_attack_relics if r in relic_names)
+        if combo_count > 0 and card_type == 'Attack':
+            if cost_val == 0:
+                score *= (1.0 + 0.15 * combo_count)  # 0코 공격: 보유당 +15%
+            elif cost_val == 1:
+                score *= (1.0 + 0.05 * combo_count)  # 1코 공격: 보유당 +5%
+            elif is_x_cost:
+                score *= (1.0 + 0.10 * combo_count)  # X코: 다타라 트리거 채우기 좋음
+
+        # ---------------------------------------------------------
+        # 4-B. 펜촉 (Pen Nib): 10번째 공격 카드 데미지 ×2
+        #     단발 고타점 공격에서 가장 강함 (한 hit에만 ×2 적용).
+        #     다타/X코 카드는 한 hit에만 ×2 적용되어 효율 떨어짐.
+        # ---------------------------------------------------------
+        if "Pen_Nib" in relic_names and card_type == 'Attack':
+            hits = card.get('hits', 1)
+            damage = card.get('damage', 0)
+            if isinstance(hits, int) and hits == 1:
+                if damage >= 8:
+                    score *= 1.3  # 강타형 (Bash, Heavy Blade, Bludgeon 등)
+                else:
+                    score *= 1.1  # 일반 단타
 
         # 나뭇가지: 소멸(Exhaust) 카드는 그냥 사기가 됨
         if "Dead_Branch" in relic_names:
