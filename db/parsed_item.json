@@ -20,7 +20,9 @@
             "base_value": 7.2,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 2.0}
+                "provides": {
+                    "VULNERABLE": 2.0
+                }
             }
         },
         {
@@ -43,7 +45,9 @@
             "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 3.0}
+                "provides": {
+                    "VULNERABLE": 3.0
+                }
             }
         },
         {
@@ -64,7 +68,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -85,7 +91,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -153,7 +161,9 @@
             "scaling_potential": -2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION": 1.0}
+                "provides": {
+                    "CARD_GENERATION": 1.0
+                }
             }
         },
         {
@@ -175,7 +185,9 @@
             "scaling_potential": -2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION": 1.0}
+                "provides": {
+                    "CARD_GENERATION": 1.0
+                }
             }
         },
         {
@@ -196,7 +208,10 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"UPGRADE" : 1.0}
+                "provides": {
+                    "UPGRADE": 1.0,
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -217,7 +232,10 @@
             "base_value": 18.0,
             "synergy": {
                 "requires": {},
-                "provides": {"UPGRADE_ALL_HAND" : 1.0}
+                "provides": {
+                    "UPGRADE_ALL_HAND": 1.0,
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -235,13 +253,14 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 5.0,
             "synergy": {
                 "requires": {
-                    "BLOCK": 3.0,
-                    "BARRICADE_ENGINE": 1.5
+                    "BARRICADE_ENGINE": 0.5,
+                    "BLOCK_GENERATION": 3.0
                 },
                 "provides": {
+                    "BLOCK_ARCHETYPE": 1.0
                 }
             }
         },
@@ -260,13 +279,14 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 4.0,
+            "base_value": 7.0,
             "synergy": {
                 "requires": {
                     "BLOCK_GENERATION": 5.0,
-                    "BARRICADE_ENGINE": 3.0
+                    "BARRICADE_ENGINE": 1.0
                 },
                 "provides": {
+                    "BLOCK_ARCHETYPE": 1.0
                 }
             }
         },
@@ -287,7 +307,10 @@
             "effects": {},
             "base_value": 9.0,
             "synergy": {
-                "requires": {"EXHAUST": 0.5, "EXHAUST_NOT_ATTACK":1.0},
+                "requires": {
+                    "EXHAUST": 0.5,
+                    "EXHAUST_NOT_ATTACK": 1.0
+                },
                 "provides": {}
             }
         },
@@ -308,7 +331,10 @@
             "effects": {},
             "base_value": 11.0,
             "synergy": {
-                "requires": {"EXHAUST": 0.5, "EXHAUST_NOT_ATTACK":1.5},
+                "requires": {
+                    "EXHAUST": 0.5,
+                    "EXHAUST_NOT_ATTACK": 1.5
+                },
                 "provides": {}
             }
         },
@@ -330,7 +356,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {"AOE_DAMAGE" : 0.8}
+                "provides": {
+                    "AOE_DAMAGE": 0.8
+                }
             }
         },
         {
@@ -351,7 +379,9 @@
             "base_value": 13,
             "synergy": {
                 "requires": {},
-                "provides": {"AOE_DAMAGE" : 1.1}
+                "provides": {
+                    "AOE_DAMAGE": 1.1
+                }
             }
         },
         {
@@ -374,7 +404,9 @@
             "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {"WEAK": 2.0}
+                "provides": {
+                    "WEAK": 2.0
+                }
             }
         },
         {
@@ -418,10 +450,15 @@
                 "strength_temp": 2
             },
             "base_value": 4.8,
-            "scaling_potential" : 1.5,
+            "scaling_potential": 1.5,
             "synergy": {
-                "requires": {"MULTI_HIT":1.5, "DRAW_TOTAL": 0.5},
-                "provides": {"STRENGTH": 0.5}
+                "requires": {
+                    "MULTI_HIT": 1.5,
+                    "DRAW_TOTAL": 0.5
+                },
+                "provides": {
+                    "STRENGTH": 0.5
+                }
             }
         },
         {
@@ -442,10 +479,15 @@
                 "strength_temp": 4
             },
             "base_value": 7.2,
-            "scaling_potential" : 1.5,
+            "scaling_potential": 1.5,
             "synergy": {
-                "requires": {"MULTI_HIT":2.0, "DRAW": 0.5},
-                "provides": {"STRENGTH": 1.0}
+                "requires": {
+                    "MULTI_HIT": 2.0,
+                    "DRAW": 0.5
+                },
+                "provides": {
+                    "STRENGTH": 1.0
+                }
             }
         },
         {
@@ -465,7 +507,9 @@
             "effects": {},
             "base_value": 3.0,
             "synergy": {
-                "requires": {"TOP_DECK":0.5},
+                "requires": {
+                    "TOP_DECK": 0.5
+                },
                 "provides": {
                     "EXHAUST": 1.0
                 }
@@ -488,7 +532,9 @@
             "effects": {},
             "base_value": 6.0,
             "synergy": {
-                "requires": {"TOP_DECK":0.5},
+                "requires": {
+                    "TOP_DECK": 0.5
+                },
                 "provides": {
                     "EXHAUST": 1.0
                 }
@@ -512,7 +558,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"TOP_DECK":1.0}
+                "provides": {
+                    "TOP_DECK": 1.0
+                }
             }
         },
         {
@@ -533,7 +581,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {"TOP_DECK":1.0}
+                "provides": {
+                    "TOP_DECK": 1.0
+                }
             }
         },
         {
@@ -552,9 +602,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {"STRENGTH":3.0},
+                "requires": {
+                    "STRENGTH": 3.0
+                },
                 "provides": {}
             }
         },
@@ -574,9 +626,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
-            "scaling_potential":5.0,
+            "scaling_potential": 5.0,
             "synergy": {
-                "requires": {"STRENGTH":5.0},
+                "requires": {
+                    "STRENGTH": 5.0
+                },
                 "provides": {}
             }
         },
@@ -598,7 +652,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -619,7 +675,9 @@
             "base_value": 14.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -638,7 +696,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 16,
-            "scaling_potential" : 3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {
                     "STRIKE_CARD": 1.0
@@ -664,7 +722,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 17,
-            "scaling_potential" : 4.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {
                     "STRIKE_CARD": 1.0
@@ -738,7 +796,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -759,7 +819,9 @@
             "base_value": 14.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.2
+                }
             }
         },
         {
@@ -780,7 +842,9 @@
             "base_value": 8.1,
             "synergy": {
                 "requires": {},
-                "provides": {"MULTI_HIT" : 2.0}
+                "provides": {
+                    "MULTI_HIT": 2.0
+                }
             }
         },
         {
@@ -801,7 +865,9 @@
             "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {"MULTI_HIT" : 3.0}
+                "provides": {
+                    "MULTI_HIT": 3.0
+                }
             }
         },
         {
@@ -824,7 +890,10 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 1.0, "AOE_DAMAGE" : 0.4}
+                "provides": {
+                    "VULNERABLE": 1.0,
+                    "AOE_DAMAGE": 0.4
+                }
             }
         },
         {
@@ -847,7 +916,10 @@
             "base_value": 11,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE": 1.0, "AOE_DAMAGE" : 0.7}
+                "provides": {
+                    "VULNERABLE": 1.0,
+                    "AOE_DAMAGE": 0.7
+                }
             }
         },
         {
@@ -869,7 +941,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0
+                    "EXHAUST": 1.0,
+                    "BLOCK_GENERATION": 1.4
                 }
             }
         },
@@ -892,7 +965,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0
+                    "EXHAUST": 1.0,
+                    "BLOCK_GENERATION": 1.8
                 }
             }
         },
@@ -916,7 +990,7 @@
                 "requires": {},
                 "provides": {
                     "STRIKE_CARD": 1.0,
-                    "MULTI_HIT" : 1.0
+                    "MULTI_HIT": 1.0
                 }
             }
         },
@@ -940,7 +1014,7 @@
                 "requires": {},
                 "provides": {
                     "STRIKE_CARD": 1.0,
-                    "MULTI_HIT" : 1.0
+                    "MULTI_HIT": 1.0
                 }
             }
         },
@@ -961,7 +1035,9 @@
             "effects": {},
             "base_value": 3.0,
             "synergy": {
-                "requires": {"TOP_DECK" : 1.0},
+                "requires": {
+                    "TOP_DECK": 1.0
+                },
                 "provides": {
                     "EXHAUST_SELF": 1.0
                 }
@@ -984,7 +1060,9 @@
             "effects": {},
             "base_value": 6.0,
             "synergy": {
-                "requires": {"TOP_DECK" : 1.0},
+                "requires": {
+                    "TOP_DECK": 1.0
+                },
                 "provides": {
                     "EXHAUST_SELF": 1.0
                 }
@@ -1099,7 +1177,9 @@
             "effects": {},
             "base_value": 8.0,
             "synergy": {
-                "requires": {"SELF_HARM" : 0.5},
+                "requires": {
+                    "SELF_HARM": 0.5
+                },
                 "provides": {}
             }
         },
@@ -1120,7 +1200,9 @@
             "effects": {},
             "base_value": 9.2,
             "synergy": {
-                "requires": {"SELF_HARM" : 0.5},
+                "requires": {
+                    "SELF_HARM": 0.5
+                },
                 "provides": {}
             }
         },
@@ -1142,7 +1224,10 @@
             "base_value": 0.8,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM":1.0, "ENERGY":0.5}
+                "provides": {
+                    "SELF_HARM": 1.0,
+                    "ENERGY": 0.5
+                }
             }
         },
         {
@@ -1163,7 +1248,10 @@
             "base_value": 2.4,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM":1.0, "ENERGY":1.0}
+                "provides": {
+                    "SELF_HARM": 1.0,
+                    "ENERGY": 1.0
+                }
             }
         },
         {
@@ -1272,7 +1360,10 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM" : 2.0, "AOE_DAMAGE" : 0.7}
+                "provides": {
+                    "SELF_HARM": 2.0,
+                    "AOE_DAMAGE": 0.7
+                }
             }
         },
         {
@@ -1293,7 +1384,10 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM" : 2.0, "AOE_DAMAGE" : 0.9}
+                "provides": {
+                    "SELF_HARM": 2.0,
+                    "AOE_DAMAGE": 0.9
+                }
             }
         },
         {
@@ -1312,15 +1406,14 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {
                     "EXHAUST": 3.0,
                     "EXHAUST_SELF": 1.0,
-                    "CORRUPTION_ENGINE" : 10.0
+                    "CORRUPTION_ENGINE": 10.0
                 },
-                "provides": {
-                }
+                "provides": {}
             }
         },
         {
@@ -1339,15 +1432,14 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":5.0,
+            "scaling_potential": 5.0,
             "synergy": {
                 "requires": {
                     "EXHAUST": 4.0,
                     "EXHAUST_SELF": 2.0,
-                    "CORRUPTION_ENGINE" : 10.0
+                    "CORRUPTION_ENGINE": 10.0
                 },
-                "provides": {
-                }
+                "provides": {}
             }
         },
         {
@@ -1393,7 +1485,7 @@
                 "requires": {},
                 "provides": {
                     "STRENGTH_LOSS": 3.0,
-                    "EXHAUST_SELF" : 1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -1414,7 +1506,9 @@
             "effects": {},
             "base_value": 7.2,
             "synergy": {
-                "requires": {"VULNERABLE":1.0},
+                "requires": {
+                    "VULNERABLE": 1.0
+                },
                 "provides": {}
             }
         },
@@ -1435,7 +1529,9 @@
             "effects": {},
             "base_value": 9.9,
             "synergy": {
-                "requires": {"VULNERABLE":1.0},
+                "requires": {
+                    "VULNERABLE": 1.0
+                },
                 "provides": {}
             }
         },
@@ -1455,10 +1551,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION":1.0, "CARD_COPY":1.0}
+                "provides": {
+                    "CARD_GENERATION": 1.0,
+                    "CARD_COPY": 1.0
+                }
             }
         },
         {
@@ -1477,10 +1576,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {"CARD_GENERATION":1.0, "CARD_COPY":1.0}
+                "provides": {
+                    "CARD_GENERATION": 1.0,
+                    "CARD_COPY": 1.0
+                }
             }
         },
         {
@@ -1499,7 +1601,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
                     "BARRICADE_ENGINE": 5.0
@@ -1523,7 +1625,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {
                     "BARRICADE_ENGINE": 8.0
@@ -1548,9 +1650,11 @@
             "effects": {},
             "base_value": 3.0,
             "synergy": {
-                "requires": {
-                },
-                "provides": {"STATUS_SYNERGY": 0.5 , "CONDITIONAL_DRAW" : 1.0}
+                "requires": {},
+                "provides": {
+                    "STATUS_SYNERGY": 0.5,
+                    "CONDITIONAL_DRAW": 1.0
+                }
             }
         },
         {
@@ -1570,9 +1674,11 @@
             "effects": {},
             "base_value": 6.0,
             "synergy": {
-                "requires": {
-                },
-                "provides": {"STATUS_SYNERGY": 0.5 , "CONDITIONAL_DRAW" : 2.0}
+                "requires": {},
+                "provides": {
+                    "STATUS_SYNERGY": 0.5,
+                    "CONDITIONAL_DRAW": 2.0
+                }
             }
         },
         {
@@ -1598,6 +1704,7 @@
                     "EXHAUST_SELF": 2.0
                 },
                 "provides": {
+                    "BLOCK_GENERATION": 0.6
                 }
             }
         },
@@ -1624,10 +1731,10 @@
                     "EXHAUST_SELF": 2.0
                 },
                 "provides": {
+                    "BLOCK_GENERATION": 0.8
                 }
             }
-            }
-        ,
+        },
         {
             "name": "Fire Breathing",
             "color": "Red",
@@ -1646,10 +1753,11 @@
             "base_value": 4.0,
             "scaling_potential": 2.0,
             "synergy": {
-                "requires": {
-                },
-                "provides": {"AOE_DAMAGE" : 0.3, 
-                    "STATUS_SYNERGY":0.5}
+                "requires": {},
+                "provides": {
+                    "AOE_DAMAGE": 0.3,
+                    "STATUS_SYNERGY": 0.5
+                }
             }
         },
         {
@@ -1670,10 +1778,11 @@
             "base_value": 6.0,
             "scaling_potential": 2.0,
             "synergy": {
-                "requires": {
-                },
-                "provides": {"AOE_DAMAGE" : 0.4, 
-                    "STATUS_SYNERGY":0.5}
+                "requires": {},
+                "provides": {
+                    "AOE_DAMAGE": 0.4,
+                    "STATUS_SYNERGY": 0.5
+                }
             }
         },
         {
@@ -1694,7 +1803,10 @@
             "base_value": 10.8,
             "synergy": {
                 "requires": {},
-                "provides": {"REFLEXION":1.0}
+                "provides": {
+                    "REFLEXION": 1.0,
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -1715,7 +1827,10 @@
             "base_value": 16.0,
             "synergy": {
                 "requires": {},
-                "provides": {"REFLEXION":1.5}
+                "provides": {
+                    "REFLEXION": 1.5,
+                    "BLOCK_GENERATION": 3.2
+                }
             }
         },
         {
@@ -1736,7 +1851,10 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"EXHAUST":0.5}
+                "provides": {
+                    "EXHAUST": 0.5,
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -1757,7 +1875,10 @@
             "base_value": 11.7,
             "synergy": {
                 "requires": {},
-                "provides": {"EXHAUST":0.5}
+                "provides": {
+                    "EXHAUST": 0.5,
+                    "BLOCK_GENERATION": 2.6
+                }
             }
         },
         {
@@ -1778,7 +1899,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM":1.0}
+                "provides": {
+                    "SELF_HARM": 1.0
+                }
             }
         },
         {
@@ -1799,7 +1922,9 @@
             "base_value": 15.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM":1.0}
+                "provides": {
+                    "SELF_HARM": 1.0
+                }
             }
         },
         {
@@ -1822,8 +1947,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "CARD_GENERATION" : 1.0
-                
+                    "CARD_GENERATION": 1.0
                 }
             }
         },
@@ -1847,7 +1971,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "CARD_GENERATION" : 1.0
+                    "CARD_GENERATION": 1.0
                 }
             }
         },
@@ -1869,10 +1993,13 @@
                 "strength": 2
             },
             "base_value": 4.0,
-            "scaling_potential":2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH":2.0, "MULTI_HIT":0.5}
+                "provides": {
+                    "STRENGTH": 2.0,
+                    "MULTI_HIT": 0.5
+                }
             }
         },
         {
@@ -1893,10 +2020,13 @@
                 "strength": 3
             },
             "base_value": 4.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH":3.0, "MULTI_HIT":0.5}
+                "provides": {
+                    "STRENGTH": 3.0,
+                    "MULTI_HIT": 0.5
+                }
             }
         },
         {
@@ -1921,7 +2051,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "WEAK" : 1.0
+                    "WEAK": 1.0
                 }
             }
         },
@@ -1947,7 +2077,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "WEAK" : 2.0
+                    "WEAK": 2.0
                 }
             }
         },
@@ -1969,8 +2099,12 @@
             "base_value": 6.0,
             "scaling_potential": 2.0,
             "synergy": {
-                "requires": {"BARRICADE_ENGINE" : 1.0},
-                "provides": {}
+                "requires": {
+                    "BARRICADE_ENGINE": 1.0
+                },
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -1991,8 +2125,12 @@
             "base_value": 8.0,
             "scaling_potential": 3.0,
             "synergy": {
-                "requires": {"BARRICADE_ENGINE" : 1.0},
-                "provides": {}
+                "requires": {
+                    "BARRICADE_ENGINE": 1.0
+                },
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -2011,11 +2149,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 14.0,
-            "scaling_potential" :-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "STATUS_CARD": 2.0
+                    "STATUS_CARD": 2.0,
+                    "BLOCK_GENERATION": 3.0
                 }
             }
         },
@@ -2035,11 +2174,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 18.8,
-            "scaling_potential" :-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "STATUS_CARD": 2.0
+                    "STATUS_CARD": 2.0,
+                    "BLOCK_GENERATION": 4.0
                 }
             }
         },
@@ -2060,7 +2200,9 @@
             "effects": {},
             "base_value": 4.0,
             "synergy": {
-                "requires": {"STRENGTH": 4.0},
+                "requires": {
+                    "STRENGTH": 4.0
+                },
                 "provides": {
                     "EXHAUST_SELF": 1.0,
                     "MULTI_HIT": 3.0
@@ -2084,7 +2226,9 @@
             "effects": {},
             "base_value": 5.0,
             "synergy": {
-                "requires": {"STRENGTH": 5.0},
+                "requires": {
+                    "STRENGTH": 5.0
+                },
                 "provides": {
                     "EXHAUST_SELF": 1.0,
                     "MULTI_HIT": 4.0
@@ -2109,7 +2253,9 @@
             "base_value": 4.8,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -2130,7 +2276,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -2149,9 +2297,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 8.0,
-            "scaling_potential":1.5,
+            "scaling_potential": 1.5,
             "synergy": {
-                "requires": {"TOP_DECK":1.0},
+                "requires": {
+                    "TOP_DECK": 1.0
+                },
                 "provides": {}
             }
         },
@@ -2171,9 +2321,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 8.0,
-            "scaling_potential":2.0,
+            "scaling_potential": 2.0,
             "synergy": {
-                "requires": {"TOP_DECK":1.0},
+                "requires": {
+                    "TOP_DECK": 1.0
+                },
                 "provides": {}
             }
         },
@@ -2193,7 +2345,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
-            "scaling_potential":-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2217,7 +2369,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.0,
-            "scaling_potential":-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -2243,10 +2395,14 @@
                 "strength": 1
             },
             "base_value": 0.0,
-            "scaling_potential":4.0,
+            "scaling_potential": 4.0,
             "synergy": {
-                "requires": {"SELF_HARM":3.0},
-                "provides": {"STRENGTH":1.0}
+                "requires": {
+                    "SELF_HARM": 3.0
+                },
+                "provides": {
+                    "STRENGTH": 1.0
+                }
             }
         },
         {
@@ -2267,10 +2423,14 @@
                 "strength": 1
             },
             "base_value": 4.0,
-            "scaling_potential":4.0,
+            "scaling_potential": 4.0,
             "synergy": {
-                "requires": {"SELF_HARM":3.0},
-                "provides": {"STRENGTH":1.0}
+                "requires": {
+                    "SELF_HARM": 3.0
+                },
+                "provides": {
+                    "STRENGTH": 1.0
+                }
             }
         },
         {
@@ -2289,9 +2449,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 7.2,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {"UPGRADE":0.5,"UPGRADE_ALL_HAND":1.0,"UPGRADE_ALL_DECK":1.0},
+                "requires": {
+                    "UPGRADE": 0.5,
+                    "UPGRADE_ALL_HAND": 1.0,
+                    "UPGRADE_ALL_DECK": 1.0
+                },
                 "provides": {}
             }
         },
@@ -2311,9 +2475,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 10.8,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
-                "requires": {"UPGRADE":0.5,"UPGRADE_ALL_HAND":1.0,"UPGRADE_ALL_DECK":1.0},
+                "requires": {
+                    "UPGRADE": 0.5,
+                    "UPGRADE_ALL_HAND": 1.0,
+                    "UPGRADE_ALL_DECK": 1.0
+                },
                 "provides": {}
             }
         },
@@ -2333,11 +2501,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 7.0,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0, "EXHAUST_NOT_ATTACK": 1.0
+                    "EXHAUST": 1.0,
+                    "EXHAUST_NOT_ATTACK": 1.0,
+                    "BLOCK_GENERATION": 2.0
                 }
             }
         },
@@ -2357,11 +2527,13 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 9.8,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST": 1.0, "EXHAUST_NOT_ATTACK": 1.0
+                    "EXHAUST": 1.0,
+                    "EXHAUST_NOT_ATTACK": 1.0,
+                    "BLOCK_GENERATION": 2.5
                 }
             }
         },
@@ -2384,7 +2556,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "ENERGY" : 2.0,
+                    "ENERGY": 2.0,
                     "EXHAUST_SELF": 1.0
                 }
             }
@@ -2408,7 +2580,7 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "ENERGY" : 2.0,
+                    "ENERGY": 2.0,
                     "EXHAUST_SELF": 1.0
                 }
             }
@@ -2430,9 +2602,12 @@
             "effects": {},
             "base_value": 6.0,
             "synergy": {
-                "requires": {"EXHAUST":1.0},
+                "requires": {
+                    "EXHAUST": 1.0
+                },
                 "provides": {
-                    "ENERGY": 1.0
+                    "ENERGY": 1.0,
+                    "BLOCK_GENERATION": 1.0
                 }
             }
         },
@@ -2453,9 +2628,12 @@
             "effects": {},
             "base_value": 9.0,
             "synergy": {
-                "requires": {"EXHAUST":1.0},
+                "requires": {
+                    "EXHAUST": 1.0
+                },
                 "provides": {
-                    "ENERGY": 1.0
+                    "ENERGY": 1.0,
+                    "BLOCK_GENERATION": 1.6
                 }
             }
         },
@@ -2526,9 +2704,9 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "VULNERABLE":3.0,
-                    "WEAK":3.0,
-                    "EXHAUST_SELF":1.0
+                    "VULNERABLE": 3.0,
+                    "WEAK": 3.0,
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -2553,9 +2731,9 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "VULNERABLE":5.0,
-                    "WEAK":5.0,
-                    "EXHAUST_SELF":1.0
+                    "VULNERABLE": 5.0,
+                    "WEAK": 5.0,
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -2577,10 +2755,12 @@
                 "strength": 3
             },
             "base_value": 4.0,
-            "scaling_potential":2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH": 3.0}
+                "provides": {
+                    "STRENGTH": 3.0
+                }
             }
         },
         {
@@ -2601,10 +2781,12 @@
                 "strength": 4
             },
             "base_value": 4.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH": 4.0}
+                "provides": {
+                    "STRENGTH": 4.0
+                }
             }
         },
         {
@@ -2628,7 +2810,10 @@
             "base_value": 11.7,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE":1.0,"WEAK":1.0}
+                "provides": {
+                    "VULNERABLE": 1.0,
+                    "WEAK": 1.0
+                }
             }
         },
         {
@@ -2652,7 +2837,10 @@
             "base_value": 15.3,
             "synergy": {
                 "requires": {},
-                "provides": {"VULNERABLE":2.0,"WEAK":2.0}
+                "provides": {
+                    "VULNERABLE": 2.0,
+                    "WEAK": 2.0
+                }
             }
         },
         {
@@ -2672,8 +2860,14 @@
             "effects": {},
             "base_value": 7.5,
             "synergy": {
-                "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
-                "provides": {"MULTI_HIT" : 2.0, "AOE_DAMAGE" : 0.8}
+                "requires": {
+                    "ENERGY": 2.0,
+                    "STRENGTH": 2.0
+                },
+                "provides": {
+                    "MULTI_HIT": 2.0,
+                    "AOE_DAMAGE": 0.8
+                }
             }
         },
         {
@@ -2693,8 +2887,14 @@
             "effects": {},
             "base_value": 12.0,
             "synergy": {
-                "requires": {"ENERGY":2.0,"STRENGTH" : 2.0},
-                "provides": {"MULTI_HIT" : 2.0, "AOE_DAMAGE" : 1.2}
+                "requires": {
+                    "ENERGY": 2.0,
+                    "STRENGTH": 2.0
+                },
+                "provides": {
+                    "MULTI_HIT": 2.0,
+                    "AOE_DAMAGE": 1.2
+                }
             }
         },
         {
@@ -2713,10 +2913,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential" : 9.0,
+            "scaling_potential": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"BARRICADE_ENGINE":5.0}
+                "provides": {
+                    "BARRICADE_ENGINE": 5.0
+                }
             }
         },
         {
@@ -2735,10 +2937,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
-            "scaling_potential" : 9.0,
+            "scaling_potential": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {"BARRICADE_ENGINE":1.0}
+                "provides": {
+                    "BARRICADE_ENGINE": 10.0
+                }
             }
         },
         {
@@ -2757,10 +2961,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 1.0,
-            "scaling_potential" : 6.0,
+            "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {"ENERGY":2.0}
+                "provides": {
+                    "ENERGY": 2.0
+                }
             }
         },
         {
@@ -2779,10 +2985,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 5.0,
-            "scaling_potential" : 6.0,
+            "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {"ENERGY":2.0}
+                "provides": {
+                    "ENERGY": 2.0
+                }
             }
         },
         {
@@ -2843,10 +3051,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM": 2.0}
+                "provides": {
+                    "SELF_HARM": 2.0
+                }
             }
         },
         {
@@ -2866,10 +3076,12 @@
             "is_innate": true,
             "effects": {},
             "base_value": 3.0,
-            "scaling_potential" : 2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": {"SELF_HARM": 2.0}
+                "provides": {
+                    "SELF_HARM": 2.0
+                }
             }
         },
         {
@@ -2888,14 +3100,14 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential" : 7.0,
+            "scaling_potential": 7.0,
             "synergy": {
                 "requires": {
                     "SKILL_CARD": 3.0,
-                    "CARD_GENERATION" : 1.0
+                    "CARD_GENERATION": 1.0
                 },
                 "provides": {
-                    "CORRUPTION_ENGINE" : 1.0,
+                    "CORRUPTION_ENGINE": 1.0,
                     "EXHAUST": 10.0
                 }
             }
@@ -2916,14 +3128,14 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 4.0,
-            "scaling_potential" : 8.0,
+            "scaling_potential": 8.0,
             "synergy": {
                 "requires": {
                     "SKILL_CARD": 3.0,
-                    "CARD_GENERATION" : 1.0
+                    "CARD_GENERATION": 1.0
                 },
                 "provides": {
-                    "CORRUPTION_ENGINE" : 1.0,
+                    "CORRUPTION_ENGINE": 1.0,
                     "EXHAUST": 10.0
                 }
             }
@@ -2946,10 +3158,12 @@
                 "strength": 2
             },
             "base_value": 0.0,
-            "scaling_potential" : 7.0,
+            "scaling_potential": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH" : 6.0}
+                "provides": {
+                    "STRENGTH": 6.0
+                }
             }
         },
         {
@@ -2970,10 +3184,12 @@
                 "strength": 3
             },
             "base_value": 0.0,
-            "scaling_potential" : 8.0,
+            "scaling_potential": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STRENGTH" : 9.0}
+                "provides": {
+                    "STRENGTH": 9.0
+                }
             }
         },
         {
@@ -2992,7 +3208,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 2.0,
-            "scaling_potential" :2.0,
+            "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3014,7 +3230,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 6.0,
-            "scaling_potential" : 3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3037,7 +3253,9 @@
             "effects": {},
             "base_value": 0.0,
             "synergy": {
-                "requires": {"EXHAUST":1.0},
+                "requires": {
+                    "EXHAUST": 1.0
+                },
                 "provides": {
                     "CARD_COPY": 1.0
                 }
@@ -3060,7 +3278,9 @@
             "effects": {},
             "base_value": 4.0,
             "synergy": {
-                "requires": {"EXHAUST":1.0},
+                "requires": {
+                    "EXHAUST": 1.0
+                },
                 "provides": {
                     "CARD_COPY": 1.0
                 }
@@ -3086,7 +3306,7 @@
                 "requires": {},
                 "provides": {
                     "PERMANENT_GROWTH": 1.0,
-                    "EXHAUST_SELF" :1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -3110,7 +3330,7 @@
                 "requires": {},
                 "provides": {
                     "PERMANENT_GROWTH": 1.2,
-                    "EXHAUST_SELF" :1.0
+                    "EXHAUST_SELF": 1.0
                 }
             }
         },
@@ -3130,11 +3350,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 16.2,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {
                     "DRAW": 1.0,
-                    "MULTI_HIT":3.0
+                    "MULTI_HIT": 3.0
                 },
                 "provides": {
                     "EXHAUST": 3.0
@@ -3157,11 +3377,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 23.0,
-            "scaling_potential":4.0,
+            "scaling_potential": 4.0,
             "synergy": {
                 "requires": {
                     "DRAW": 1.0,
-                    "MULTI_HIT":3.0
+                    "MULTI_HIT": 3.0
                 },
                 "provides": {
                     "EXHAUST": 3.0
@@ -3184,10 +3404,13 @@
             "is_aoe": true,
             "effects": {},
             "base_value": 22.0,
-            "scaling_potential":-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STATUS_CARD":1.0, "AOE_DAMAGE" : 2.1}
+                "provides": {
+                    "STATUS_CARD": 1.0,
+                    "AOE_DAMAGE": 2.1
+                }
             }
         },
         {
@@ -3206,10 +3429,13 @@
             "is_aoe": true,
             "effects": {},
             "base_value": 30.0,
-            "scaling_potential":-1.0,
+            "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": {"STATUS_CARD":1.0, "AOE_DAMAGE" : 2.8}
+                "provides": {
+                    "STATUS_CARD": 1.0,
+                    "AOE_DAMAGE": 2.8
+                }
             }
         },
         {
@@ -3229,9 +3455,13 @@
             "effects": {},
             "base_value": 21.0,
             "synergy": {
-                "requires": {"BARRICADE_ENGINE":1.0, "CORRUPTION_ENGINE":0.5},
+                "requires": {
+                    "BARRICADE_ENGINE": 1.0,
+                    "CORRUPTION_ENGINE": 0.5
+                },
                 "provides": {
-                    "EXHAUST_SELF": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 6.0
                 }
             }
         },
@@ -3252,9 +3482,13 @@
             "effects": {},
             "base_value": 28.0,
             "synergy": {
-                "requires": {"BARRICADE_ENGINE":1.0, "CORRUPTION_ENGINE":0.5},
+                "requires": {
+                    "BARRICADE_ENGINE": 1.0,
+                    "CORRUPTION_ENGINE": 0.5
+                },
                 "provides": {
-                    "EXHAUST_SELF": 1.0
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 8.0
                 }
             }
         },
@@ -3274,7 +3508,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 2.0,
-            "scaling_potential":2.5,
+            "scaling_potential": 2.5,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3296,7 +3530,7 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 3.0,
-            "scaling_potential":3.0,
+            "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
                 "provides": {}
@@ -3318,9 +3552,11 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":4.0,
+            "scaling_potential": 4.0,
             "synergy": {
-                "requires": {"STRENGTH":3.0},
+                "requires": {
+                    "STRENGTH": 3.0
+                },
                 "provides": {
                     "EXHAUST_SELF": 1.0
                 }
@@ -3342,11 +3578,12 @@
             "is_aoe": false,
             "effects": {},
             "base_value": 0.0,
-            "scaling_potential":8.0,
+            "scaling_potential": 8.0,
             "synergy": {
-                "requires": {"STRENGTH":3.0},
-                "provides": {
-                }
+                "requires": {
+                    "STRENGTH": 3.0
+                },
+                "provides": {}
             }
         },
         {
@@ -3369,7 +3606,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "SELF_HARM" :1.0
+                    "SELF_HARM": 1.0
                 }
             }
         },
@@ -3393,7 +3630,7 @@
                 "requires": {},
                 "provides": {
                     "EXHAUST_SELF": 1.0,
-                    "SELF_HARM" :1.0
+                    "SELF_HARM": 1.0
                 }
             }
         },
@@ -3417,7 +3654,7 @@
                 "requires": {},
                 "provides": {
                     "RECOVERY": 1.0,
-                    "AOE_DAMAGE" : 0.4
+                    "AOE_DAMAGE": 0.4
                 }
             }
         },
@@ -3441,7 +3678,7 @@
                 "requires": {},
                 "provides": {
                     "RECOVERY": 1.0,
-                    "AOE_DAMAGE" : 0.5
+                    "AOE_DAMAGE": 0.5
                 }
             }
         },
@@ -3463,7 +3700,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -3484,7 +3723,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -3597,7 +3838,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -3618,7 +3861,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.2
+                }
             }
         },
         {
@@ -3681,7 +3926,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -3702,7 +3949,9 @@
             "base_value": 14.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -3807,7 +4056,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -3828,7 +4079,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -3979,7 +4232,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -4000,7 +4255,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -4021,7 +4278,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -4042,7 +4301,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -4583,7 +4844,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -4604,7 +4867,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -4937,7 +5202,9 @@
             "base_value": 20.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -4958,7 +5225,9 @@
             "base_value": 26.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.6
+                }
             }
         },
         {
@@ -5071,7 +5340,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -5092,7 +5363,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -5413,7 +5686,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.2
+                }
             }
         },
         {
@@ -5436,7 +5711,9 @@
             "base_value": 14.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.8
+                }
             }
         },
         {
@@ -5977,7 +6254,9 @@
             "base_value": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.2
+                }
             }
         },
         {
@@ -5998,7 +6277,9 @@
             "base_value": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.2
+                }
             }
         },
         {
@@ -6719,7 +7000,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -6740,7 +7023,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -7021,7 +7306,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -7042,7 +7329,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -7278,7 +7567,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 0.6
                 }
             }
         },
@@ -7300,7 +7590,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -7321,7 +7613,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.8
+                }
             }
         },
         {
@@ -7342,7 +7636,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -7489,7 +7785,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -7510,7 +7808,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -7699,7 +7999,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.2
+                }
             }
         },
         {
@@ -7720,7 +8022,9 @@
             "base_value": 15.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 3.0
+                }
             }
         },
         {
@@ -7784,7 +8088,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 2.0
                 }
             }
         },
@@ -7807,7 +8112,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 2.6
                 }
             }
         },
@@ -8223,7 +8529,9 @@
             "base_value": 13.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.6
+                }
             }
         },
         {
@@ -8244,7 +8552,9 @@
             "base_value": 16.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 3.2
+                }
             }
         },
         {
@@ -8307,7 +8617,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -8328,7 +8640,9 @@
             "base_value": 16.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 3.2
+                }
             }
         },
         {
@@ -8392,7 +8706,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 0.2
                 }
             }
         },
@@ -8415,7 +8730,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 0.2
                 }
             }
         },
@@ -8437,7 +8753,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -8458,7 +8776,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -8735,7 +9055,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -8756,7 +9078,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.8
+                }
             }
         },
         {
@@ -9947,7 +10271,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -9968,7 +10294,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -10077,7 +10405,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -10098,7 +10428,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -10337,7 +10669,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -10358,7 +10692,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -10421,7 +10757,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -10442,7 +10780,9 @@
             "base_value": 10.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.0
+                }
             }
         },
         {
@@ -10589,7 +10929,9 @@
             "base_value": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -10610,7 +10952,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -10631,7 +10975,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.4
+                }
             }
         },
         {
@@ -10652,7 +10998,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -10715,7 +11063,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -10736,7 +11086,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -10757,7 +11109,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -10778,7 +11132,9 @@
             "base_value": 16.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 3.2
+                }
             }
         },
         {
@@ -10845,7 +11201,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -10866,7 +11224,9 @@
             "base_value": 9.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.8
+                }
             }
         },
         {
@@ -11105,7 +11465,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -11126,7 +11488,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -11455,7 +11819,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -11476,7 +11842,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -11539,7 +11907,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -11560,7 +11930,9 @@
             "base_value": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -11581,7 +11953,9 @@
             "base_value": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -11602,7 +11976,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -11623,7 +11999,9 @@
             "base_value": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -11644,7 +12022,9 @@
             "base_value": 7.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.4
+                }
             }
         },
         {
@@ -11791,7 +12171,9 @@
             "base_value": 12.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.2
+                }
             }
         },
         {
@@ -11812,7 +12194,9 @@
             "base_value": 15.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.8
+                }
             }
         },
         {
@@ -12001,7 +12385,9 @@
             "base_value": 8.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -12022,7 +12408,9 @@
             "base_value": 11.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 2.2
+                }
             }
         },
         {
@@ -12044,7 +12432,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 0.4
                 }
             }
         },
@@ -12067,7 +12456,8 @@
             "synergy": {
                 "requires": {},
                 "provides": {
-                    "EXHAUST_EVENT": 1.0
+                    "EXHAUST_EVENT": 1.0,
+                    "BLOCK_GENERATION": 0.6
                 }
             }
         },
@@ -13045,7 +13435,9 @@
             "base_value": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.6
+                }
             }
         },
         {
@@ -13066,7 +13458,9 @@
             "base_value": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -13180,9 +13574,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
-        }
-
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
+            }
         },
         {
             "name": "Apparition+",
@@ -13203,8 +13598,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
-        }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
+            }
         },
         {
             "name": "Become Almighty",
@@ -13220,13 +13617,17 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": { "strength": 3 },
+            "effects": {
+                "strength": 3
+            },
             "base_value": 0.0,
             "scaling_potential": 3.0,
             "synergy": {
-            "requires": {},
-            "provides": { "STRENGTH": 3.0 }
-        }
+                "requires": {},
+                "provides": {
+                    "STRENGTH": 3.0
+                }
+            }
         },
         {
             "name": "Become Almighty+",
@@ -13249,10 +13650,12 @@
             "scaling_potential": 3.5,
             "synergy": {
                 "requires": {},
-                "provides": { "STRENGTH": 4.0 }
+                "provides": {
+                    "STRENGTH": 4.0
+                }
             }
         },
-            {
+        {
             "name": "Beta",
             "color": "Colorless",
             "rarity": "Special",
@@ -13271,7 +13674,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13293,7 +13698,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13359,7 +13766,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "MULTI_HIT": 1.0 }
+                "provides": {
+                    "MULTI_HIT": 1.0
+                }
             }
         },
         {
@@ -13381,7 +13790,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "MULTI_HIT": 1.0 }
+                "provides": {
+                    "MULTI_HIT": 1.0
+                }
             }
         },
         {
@@ -13403,7 +13814,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "GOLD": 25.0 }
+                "provides": {
+                    "GOLD": 25.0
+                }
             }
         },
         {
@@ -13425,7 +13838,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "GOLD": 30.0 }
+                "provides": {
+                    "GOLD": 30.0
+                }
             }
         },
         {
@@ -13447,7 +13862,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13469,7 +13886,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13486,12 +13905,17 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": { "strength": 2 },
+            "effects": {
+                "strength": 2
+            },
             "base_value": 0.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "STRENGTH": 2.0, "SELF_HARM": 1.0 }
+                "provides": {
+                    "STRENGTH": 2.0,
+                    "SELF_HARM": 1.0
+                }
             }
         },
         {
@@ -13508,12 +13932,17 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": { "strength": 3 },
+            "effects": {
+                "strength": 3
+            },
             "base_value": 0.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "STRENGTH": 3.0, "SELF_HARM": 1.0 }
+                "provides": {
+                    "STRENGTH": 3.0,
+                    "SELF_HARM": 1.0
+                }
             }
         },
         {
@@ -13579,7 +14008,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ENERGY": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "ENERGY": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13601,7 +14033,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ENERGY": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "ENERGY": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13623,7 +14058,9 @@
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0 }
+                "provides": {
+                    "AOE": 1.0
+                }
             }
         },
         {
@@ -13645,7 +14082,9 @@
             "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0 }
+                "provides": {
+                    "AOE": 1.0
+                }
             }
         },
         {
@@ -13667,7 +14106,10 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "PERMANENT_GROWTH": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "PERMANENT_GROWTH": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13689,7 +14131,10 @@
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": { "PERMANENT_GROWTH": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "PERMANENT_GROWTH": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13711,7 +14156,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 2.4
+                }
             }
         },
         {
@@ -13733,7 +14181,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 3.2
+                }
             }
         },
         {
@@ -13755,7 +14206,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13777,7 +14230,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13799,7 +14254,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13821,7 +14278,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13843,7 +14302,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13865,7 +14326,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13931,7 +14394,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -13953,7 +14418,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ENERGY": -1.0 }
+                "provides": {
+                    "ENERGY": -1.0
+                }
             }
         },
         {
@@ -13997,7 +14464,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14019,7 +14488,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14036,12 +14507,16 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": { "weak": 2 },
+            "effects": {
+                "weak": 2
+            },
             "base_value": 4.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "WEAK": 2.0 }
+                "provides": {
+                    "WEAK": 2.0
+                }
             }
         },
         {
@@ -14058,12 +14533,16 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
-            "effects": { "weak": 2 },
+            "effects": {
+                "weak": 2
+            },
             "base_value": 6.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "WEAK": 2.0 }
+                "provides": {
+                    "WEAK": 2.0
+                }
             }
         },
         {
@@ -14085,7 +14564,10 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "STRENGTH_LOSS": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "STRENGTH_LOSS": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14107,7 +14589,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "STRENGTH_LOSS": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "STRENGTH_LOSS": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14173,7 +14658,10 @@
             "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14195,7 +14683,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 1.0
+                }
             }
         },
         {
@@ -14218,7 +14708,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "AOE": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14241,7 +14734,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "AOE": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14263,7 +14759,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ENERGY": 2.0 }
+                "provides": {
+                    "ENERGY": 2.0
+                }
             }
         },
         {
@@ -14285,7 +14783,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ENERGY": 2.0 }
+                "provides": {
+                    "ENERGY": 2.0
+                }
             }
         },
         {
@@ -14307,7 +14807,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.4
+                }
             }
         },
         {
@@ -14329,7 +14831,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 0.8
+                }
             }
         },
         {
@@ -14439,7 +14943,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.0
+                }
             }
         },
         {
@@ -14461,7 +14967,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": {}
+                "provides": {
+                    "BLOCK_GENERATION": 1.6
+                }
             }
         },
         {
@@ -14527,7 +15035,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14549,7 +15060,10 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14571,7 +15085,9 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14593,7 +15109,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14615,7 +15133,9 @@
             "base_value": 10.0,
             "scaling_potential": 2.0,
             "synergy": {
-                "requires": { "DECK_SIZE": 5.0 },
+                "requires": {
+                    "DECK_SIZE": 5.0
+                },
                 "provides": {}
             }
         },
@@ -14638,7 +15158,9 @@
             "base_value": 15.0,
             "scaling_potential": 3.0,
             "synergy": {
-                "requires": { "DECK_SIZE": 5.0 },
+                "requires": {
+                    "DECK_SIZE": 5.0
+                },
                 "provides": {}
             }
         },
@@ -14661,7 +15183,10 @@
             "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
-                "provides": { "ARTIFACT": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "ARTIFACT": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14683,7 +15208,10 @@
             "scaling_potential": 1.5,
             "synergy": {
                 "requires": {},
-                "provides": { "ARTIFACT": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "ARTIFACT": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14705,7 +15233,10 @@
             "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 6.0
+                }
             }
         },
         {
@@ -14727,7 +15258,10 @@
             "scaling_potential": -1.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0,
+                    "BLOCK_GENERATION": 8.0
+                }
             }
         },
         {
@@ -14749,7 +15283,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELECT": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELECT": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14771,7 +15308,10 @@
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELECT": 5.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELECT": 5.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14832,12 +15372,16 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": false,
-            "effects": { "vulnerable": 2 },
+            "effects": {
+                "vulnerable": 2
+            },
             "base_value": 4.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "VULNERABLE": 2.0 }
+                "provides": {
+                    "VULNERABLE": 2.0
+                }
             }
         },
         {
@@ -14854,12 +15398,16 @@
             "draw": 0,
             "is_x_cost": false,
             "is_aoe": true,
-            "effects": { "vulnerable": 2 },
+            "effects": {
+                "vulnerable": 2
+            },
             "base_value": 6.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "VULNERABLE": 2.0 }
+                "provides": {
+                    "VULNERABLE": 2.0
+                }
             }
         },
         {
@@ -14881,7 +15429,10 @@
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
-                "provides": { "UPGRADE_ALL": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "UPGRADE_ALL": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14903,7 +15454,10 @@
             "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
-                "provides": { "UPGRADE_ALL": 1.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "UPGRADE_ALL": 1.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14925,7 +15479,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14947,7 +15504,10 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 5.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 5.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -14969,7 +15529,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "GOLD": 20.0 }
+                "provides": {
+                    "GOLD": 20.0
+                }
             }
         },
         {
@@ -14991,7 +15553,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "GOLD": 25.0 }
+                "provides": {
+                    "GOLD": 25.0
+                }
             }
         },
         {
@@ -15013,7 +15577,9 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 1.0
+                }
             }
         },
         {
@@ -15035,7 +15601,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 1.0
+                }
             }
         },
         {
@@ -15057,7 +15625,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15079,7 +15649,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15101,7 +15673,9 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_PLAY": 1.0 }
+                "provides": {
+                    "CARD_PLAY": 1.0
+                }
             }
         },
         {
@@ -15123,7 +15697,9 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_PLAY": 1.0 }
+                "provides": {
+                    "CARD_PLAY": 1.0
+                }
             }
         },
         {
@@ -15145,7 +15721,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15167,7 +15746,10 @@
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 5.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 5.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15188,8 +15770,12 @@
             "base_value": 0.0,
             "scaling_potential": 4.0,
             "synergy": {
-                "requires": { "DRAW": 5.0 },
-                "provides": { "AOE": 2.0 }
+                "requires": {
+                    "DRAW": 5.0
+                },
+                "provides": {
+                    "AOE": 2.0
+                }
             }
         },
         {
@@ -15210,8 +15796,12 @@
             "base_value": 0.0,
             "scaling_potential": 5.0,
             "synergy": {
-                "requires": { "DRAW": 5.0 },
-                "provides": { "AOE": 2.0 }
+                "requires": {
+                    "DRAW": 5.0
+                },
+                "provides": {
+                    "AOE": 2.0
+                }
             }
         },
         {
@@ -15232,7 +15822,10 @@
             "base_value": 0.0,
             "scaling_potential": 3.0,
             "synergy": {
-                "requires": { "WEAK": 2.0, "VULNERABLE": 2.0 },
+                "requires": {
+                    "WEAK": 2.0,
+                    "VULNERABLE": 2.0
+                },
                 "provides": {}
             }
         },
@@ -15254,7 +15847,10 @@
             "base_value": 0.0,
             "scaling_potential": 4.0,
             "synergy": {
-                "requires": { "WEAK": 2.0, "VULNERABLE": 2.0 },
+                "requires": {
+                    "WEAK": 2.0,
+                    "VULNERABLE": 2.0
+                },
                 "provides": {}
             }
         },
@@ -15277,7 +15873,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15321,7 +15919,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15365,7 +15965,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0 }
+                "provides": {
+                    "AOE": 1.0
+                }
             }
         },
         {
@@ -15387,7 +15989,9 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "AOE": 1.0 }
+                "provides": {
+                    "AOE": 1.0
+                }
             }
         },
         {
@@ -15409,7 +16013,9 @@
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15453,7 +16059,10 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 2.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 2.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15475,7 +16084,10 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "CARD_GENERATION": 3.0, "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "CARD_GENERATION": 3.0,
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15497,7 +16109,9 @@
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
@@ -15519,7 +16133,9 @@
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
-                "provides": { "EXHAUST_SELF": 1.0 }
+                "provides": {
+                    "EXHAUST_SELF": 1.0
+                }
             }
         },
         {
