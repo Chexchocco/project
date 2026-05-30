@@ -126,7 +126,7 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
 
             log.info(f"🤖 LLM의 생각: {parsed_data.get('reasoning', '이유 없음')}")
 
-            return int(parsed_data.get('choice', 0))
+            return int(parsed_data.get('choice') or 0)
         else:
             log.warning(f"⚠️ JSON 파싱 실패, 원본 텍스트: {result_text}")
             num_match = re.search(r'\d+', result_text)

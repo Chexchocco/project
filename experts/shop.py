@@ -251,8 +251,9 @@ Output EXACTLY in this JSON format:
             return
 
         parsed = json.loads(json_match.group(0))
-        action = str(parsed.get('action', 'leave')).strip().lower()
-        target = int(parsed.get('target_index', 0))
+        # LLM이 null/누락으로 응답할 수 있으므로 None을 안전한 기본값으로 흡수
+        action = str(parsed.get('action') or 'leave').strip().lower()
+        target = int(parsed.get('target_index') or 0)
         log.info(f"🛒 shop 결정: {action} target={target} | {parsed.get('reasoning', '')[:120]}")
 
         if not _execute_action(action, target, shop_cards, shop_relics, shop_potions, purge_available, purge_cost, gold):
