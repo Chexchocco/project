@@ -17,7 +17,7 @@
     },
     "synergy_weights": {
       "MULTI_HIT": 0.0,
-      "AOE_DAMAGE": 0.02,
+      "AOE_DAMAGE": 0.08,
       
       "VULNERABLE": 0.2,
       "WEAK": 0.2,
@@ -52,10 +52,12 @@
       "UPGRADE_ALL_HAND": 0.2,
       "UPGRADE_ALL_DECK": 0.3,      
 
-      "BARRICADE_ENGINE": 0.03, 
-      "CORRUPTION_ENGINE": 0.03,      
+      "BLOCK_GENERATION": 0.15,
+      "BLOCK_ARCHETYPE": 0.05,
+      "BARRICADE_ENGINE": 0.03,
+      "CORRUPTION_ENGINE": 0.03,
       "SKILL_CARD" : 0.0,
-      "RECOVERY" : 0.0,
+      "RECOVERY" : 0.12,
       "ECONOMY":  0.0
     }
   },

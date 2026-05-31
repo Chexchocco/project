@@ -24,6 +24,8 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
     stats = deck_report.get("stats", {})
 
     # 평가 중인 카드가 각 metric에 얼마나 기여하는지 산출
+    # avg_X와 X_per_energy는 같은 효과의 두 표현 → 중복 가점 방지 위해 avg_*에만 매핑
+    # (per_energy metric은 stats에 남아있지만 card_contrib에서 제외)
     hits = card.get('hits', 1)
     hit_mult = hits if isinstance(hits, int) else 2
     card_dmg = card.get('damage', 0) * hit_mult
@@ -33,8 +35,6 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         'avg_damage': card_dmg,
         'avg_block': card_blk,
         'draw_ratio': card_draw,
-        'dmg_per_energy': card_dmg,
-        'blk_per_energy': card_blk,
     }
 
     for metric, config in targets.items():
@@ -60,16 +60,24 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         # 현재 덱에 이 태그가 몇 장(Count)이나 있는가?
         current_count = density.get(tag, 0.0) * deck_size
 
-        # 이 태그는 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져오되, 기본값은 1~2장)
-        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.15)
+        # 이 태그가 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져옴)
+        # 기본값 0.0: value_config에 정의되지 않은 태그는 가점 못 받게 함
+        # → EXHAUST_SELECT 같은 미정의 태그 provides 카드가 항상 +10 받던 버그 해소
+        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.0)
         target_count = target_ratio * deck_size
 
         # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다.
-        gap = target_count - current_count
+        # 음수 가중치(STATUS_CARD 등)는 위 continue로 이미 별도 분기에서 처리되므로,
+        # 일반 루프의 gap은 음수면 0으로 클리핑 (초과 충족 시 페널티 없음).
+        gap = max(0, target_count - current_count)
 
         bonus = val * gap * 5.0
+        # 강력 부여 카드(val >= 4.0)는 충족 여부와 무관하게 최소 가점 보장.
+        # 단, value_config에 정의된 "게임적으로 의미 있는 태그"에만 적용.
+        # EXHAUST_SELECT 5.0 같은 미정의 태그가 부당하게 +10 받는 걸 방지.
+        if val >= 4.0 and tag in act_strategy.get("synergy_weights", {}):
+            bonus = max(bonus, val * 2.0)
         # 태그별 캡 (±10): 단일 태그가 점수를 독점하지 못하게 제한
-        # → 다중 태그 카드가 누적으로 더 높은 점수를 받을 수 있게 변별력 확보
         bonus = max(-10.0, min(10.0, bonus))
         synergy_bonus += bonus
 
@@ -83,8 +91,9 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
             bonus = min(15.0, req_val * current_count * 5.0)
             synergy_bonus += bonus
         else:
-            # 재료가 0장이면 가차없이 페널티 (요구 조건 미달)
-            synergy_bonus -= (req_val * 1.0)
+            # 재료가 0장이면 페널티 (요구 조건 미달).
+            # 다만 잘못 매핑된 requires로 부당한 페널티가 누적되는 걸 막기 위해 25%만 적용.
+            synergy_bonus -= (req_val * 0.25)
 
     # ---------------------------------------------------------
     # 3. 예외 처리 (상태이상, 페널티 등)
@@ -523,13 +532,33 @@ class RelicModifier:
                 score *= 1.5 - (cost_val * 0.1)
                 
         # ---------------------------------------------------------
-        # 4. 타수/저코스트 보상 (쿠나이, 부채, 펜촉 등)
+        # 4-A. 턴당 3장 공격 트리거 (쿠나이/슈리켄/부채)
+        #     같은 트리거를 공유하므로 동시 보유 시 효과 누적.
+        #     저코 공격일수록 한 턴에 더 많이 칠 수 있어 발동률 ↑.
         # ---------------------------------------------------------
-        hit_relics = {"Kunai", "Shuriken", "Ornamental_Fan", "Pen_Nib"}
-        if any(r in relic_names for r in hit_relics) and card_type == 'Attack':
-            # 0코스트 공격이면 가점
-            if cost_val == 0 :
-                score *= 1.3
+        combo_attack_relics = {"Kunai", "Shuriken", "Ornamental_Fan"}
+        combo_count = sum(1 for r in combo_attack_relics if r in relic_names)
+        if combo_count > 0 and card_type == 'Attack':
+            if cost_val == 0:
+                score *= (1.0 + 0.15 * combo_count)  # 0코 공격: 보유당 +15%
+            elif cost_val == 1:
+                score *= (1.0 + 0.05 * combo_count)  # 1코 공격: 보유당 +5%
+            elif is_x_cost:
+                score *= (1.0 + 0.10 * combo_count)  # X코: 다타라 트리거 채우기 좋음
+
+        # ---------------------------------------------------------
+        # 4-B. 펜촉 (Pen Nib): 10번째 공격 카드 데미지 ×2
+        #     단발 고타점 공격에서 가장 강함 (한 hit에만 ×2 적용).
+        #     다타/X코 카드는 한 hit에만 ×2 적용되어 효율 떨어짐.
+        # ---------------------------------------------------------
+        if "Pen_Nib" in relic_names and card_type == 'Attack':
+            hits = card.get('hits', 1)
+            damage = card.get('damage', 0)
+            if isinstance(hits, int) and hits == 1:
+                if damage >= 8:
+                    score *= 1.3  # 강타형 (Bash, Heavy Blade, Bludgeon 등)
+                else:
+                    score *= 1.1  # 일반 단타
 
         # 나뭇가지: 소멸(Exhaust) 카드는 그냥 사기가 됨
         if "Dead_Branch" in relic_names:
