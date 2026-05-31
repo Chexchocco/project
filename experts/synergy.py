@@ -60,8 +60,10 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         # 현재 덱에 이 태그가 몇 장(Count)이나 있는가?
         current_count = density.get(tag, 0.0) * deck_size
 
-        # 이 태그는 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져오되, 기본값은 1~2장)
-        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.15)
+        # 이 태그가 덱에 몇 장(Target) 있어야 하는가? (value_config에서 가져옴)
+        # 기본값 0.0: value_config에 정의되지 않은 태그는 가점 못 받게 함
+        # → EXHAUST_SELECT 같은 미정의 태그 provides 카드가 항상 +10 받던 버그 해소
+        target_ratio = act_strategy.get("synergy_weights", {}).get(tag, 0.0)
         target_count = target_ratio * deck_size
 
         # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다.
@@ -71,9 +73,9 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
 
         bonus = val * gap * 5.0
         # 강력 부여 카드(val >= 4.0)는 충족 여부와 무관하게 최소 가점 보장.
-        # 예: Shockwave+(VULN 5.0), Demon Form(STR 6.0), Impervious(BLK 6.0) 등이
-        # 이미 충족된 덱에서도 카드 자체의 강한 가치를 인정받도록.
-        if val >= 4.0:
+        # 단, value_config에 정의된 "게임적으로 의미 있는 태그"에만 적용.
+        # EXHAUST_SELECT 5.0 같은 미정의 태그가 부당하게 +10 받는 걸 방지.
+        if val >= 4.0 and tag in act_strategy.get("synergy_weights", {}):
             bonus = max(bonus, val * 2.0)
         # 태그별 캡 (±10): 단일 태그가 점수를 독점하지 못하게 제한
         bonus = max(-10.0, min(10.0, bonus))
