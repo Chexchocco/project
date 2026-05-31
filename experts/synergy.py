@@ -67,12 +67,15 @@ def score_card(card_info, deck_report, act_strategy, relic_names=None, synergy_m
         # (목표 장수 - 현재 장수) 만큼만 점수를 곱해줍니다.
         # 음수 가중치(STATUS_CARD 등)는 위 continue로 이미 별도 분기에서 처리되므로,
         # 일반 루프의 gap은 음수면 0으로 클리핑 (초과 충족 시 페널티 없음).
-        # → 이미 충족된 덱에 같은 카드 추가 시 잘못된 -페널티 방지
         gap = max(0, target_count - current_count)
 
         bonus = val * gap * 5.0
+        # 강력 부여 카드(val >= 4.0)는 충족 여부와 무관하게 최소 가점 보장.
+        # 예: Shockwave+(VULN 5.0), Demon Form(STR 6.0), Impervious(BLK 6.0) 등이
+        # 이미 충족된 덱에서도 카드 자체의 강한 가치를 인정받도록.
+        if val >= 4.0:
+            bonus = max(bonus, val * 2.0)
         # 태그별 캡 (±10): 단일 태그가 점수를 독점하지 못하게 제한
-        # → 다중 태그 카드가 누적으로 더 높은 점수를 받을 수 있게 변별력 확보
         bonus = max(-10.0, min(10.0, bonus))
         synergy_bonus += bonus
 
