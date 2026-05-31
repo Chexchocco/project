@@ -13614,7 +13614,7 @@
             "effects": {
                 "strength": 3
             },
-            "base_value": 0.0,
+            "base_value": 13.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -13640,7 +13640,7 @@
             "effects": {
                 "strength": 4
             },
-            "base_value": 0.0,
+            "base_value": 16.0,
             "scaling_potential": 3.5,
             "synergy": {
                 "requires": {},
@@ -13804,7 +13804,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
@@ -13828,7 +13828,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 14.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
@@ -13902,7 +13902,7 @@
             "effects": {
                 "strength": 2
             },
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -13929,7 +13929,7 @@
             "effects": {
                 "strength": 3
             },
-            "base_value": 0.0,
+            "base_value": 12.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -14023,7 +14023,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 4.0,
+            "base_value": 0.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
@@ -14454,7 +14454,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 5.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
@@ -14478,7 +14478,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 0.0,
             "synergy": {
                 "requires": {},
@@ -14749,7 +14749,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 11.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -14773,7 +14773,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 15.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -14889,7 +14889,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
             "scaling_potential": 1.0,
             "synergy": {
                 "requires": {},
@@ -14911,7 +14911,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -15075,7 +15075,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15099,7 +15099,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 13.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -15273,7 +15273,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15298,7 +15298,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
@@ -15419,7 +15419,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 25.0,
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {},
@@ -15444,7 +15444,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 30.0,
             "scaling_potential": 6.0,
             "synergy": {
                 "requires": {},
@@ -15469,7 +15469,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15494,7 +15494,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -15567,7 +15567,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15591,7 +15591,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -15663,7 +15663,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 3.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15687,7 +15687,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 6.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -15711,7 +15711,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15736,7 +15736,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 14.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {},
@@ -15761,7 +15761,7 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 9.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {
@@ -15787,7 +15787,7 @@
             "is_x_cost": false,
             "is_aoe": true,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 14.0,
             "scaling_potential": 5.0,
             "synergy": {
                 "requires": {
@@ -15813,7 +15813,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 2.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {
@@ -15838,7 +15838,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 4.0,
             "scaling_potential": 4.0,
             "synergy": {
                 "requires": {
@@ -15863,7 +15863,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -15887,7 +15887,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -15909,7 +15909,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -15933,7 +15933,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -16049,7 +16049,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 5.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -16074,7 +16074,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 7.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
@@ -16099,7 +16099,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 10.0,
             "scaling_potential": 2.0,
             "synergy": {
                 "requires": {},
@@ -16123,7 +16123,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 0.0,
+            "base_value": 13.0,
             "scaling_potential": 3.0,
             "synergy": {
                 "requires": {},
