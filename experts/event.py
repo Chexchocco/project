@@ -84,6 +84,40 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
             spoiler_info = val
             break
 
+    # [중요] Knowing Skull 특수 처리: 현재 체력을 고려해 2~3번만 선택
+    if "Knowing Skull" in event_name:
+        safe_threshold = 20  # eventDB 힌트에서 명시
+
+        # 선택지에서 비용 추출 (예: "Gold (cost 2 HP)" → 2)
+        costs = []
+        for opt in (options_text if isinstance(options_text, list) else []):
+            match = re.search(r'cost (\d+)', str(opt))
+            if match:
+                costs.append(int(match.group(1)))
+
+        if costs:
+            min_cost = min(costs)
+
+            # 비용 증가 패턴: 1번 min_cost, 2번 min_cost+2, 3번 min_cost+4
+            cost_1st = min_cost
+            cost_2nd = min_cost + 2
+            cost_3rd = min_cost + 4
+
+            # 3번 선택 가능 여부 판단
+            total_for_3 = cost_1st + cost_2nd + cost_3rd
+            if hp - total_for_3 >= safe_threshold:
+                log.info(f"🎯 Knowing Skull: HP {hp} → 3번 선택 가능 (총 {total_for_3} HP 소비)")
+            # 2번 선택 가능 여부 판단
+            elif hp - (cost_1st + cost_2nd) >= safe_threshold:
+                log.info(f"🎯 Knowing Skull: HP {hp} → 2번 선택 가능 (총 {cost_1st + cost_2nd} HP 소비)")
+            else:
+                # 1번도 위험하면 Leave
+                log.info(f"⚠️ Knowing Skull: HP {hp}가 너무 낮아 Leave 선택")
+                for i, option in enumerate(options_text if isinstance(options_text, list) else []):
+                    if "Leave" in str(option) or "leave" in str(option):
+                        return i
+                return len(options_text) - 1 if isinstance(options_text, list) else 0
+
     # 2. 프롬프트 생성
 
     prompt = f"""
@@ -104,6 +138,16 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
     [⚠️ CRITICAL SPOILER/HINT for this event]
     - Mechanics: {spoiler_info.get('spoiler', '')}
     - Strategy: {spoiler_info.get('hint', '')}
+    """
+
+    # Knowing Skull 특수 지침 추가
+    if "Knowing Skull" in event_name:
+        prompt += """
+    [⚠️ KNOWING SKULL SPECIAL RULES]
+    - This event allows multiple selections, but each selection increases the cost for the next one.
+    - Example cost pattern: 1st (2 HP), 2nd (4 HP), 3rd (6 HP)...
+    - You should LEAVE after selecting 2-3 times maximum to avoid dying.
+    - If you must leave soon to stay safe above 20 HP, choose LEAVE.
     """
 
     prompt += """
