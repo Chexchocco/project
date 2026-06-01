@@ -3595,12 +3595,13 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 15.0,
+            "base_value": 18.0,
             "synergy": {
                 "requires": {},
                 "provides": {
+                    "ENERGY": 2.0,
                     "EXHAUST_SELF": 1.0,
-                    "SELF_HARM": 1.0
+                    "SELF_HARM": 0.5
                 }
             }
         },
@@ -3619,12 +3620,13 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 20.0,
+            "base_value": 22.0,
             "synergy": {
                 "requires": {},
                 "provides": {
+                    "ENERGY": 2.0,
                     "EXHAUST_SELF": 1.0,
-                    "SELF_HARM": 1.0
+                    "SELF_HARM": 0.5
                 }
             }
         },
