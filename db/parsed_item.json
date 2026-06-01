@@ -2849,10 +2849,10 @@
             "hits": 1,
             "block": 0,
             "draw": 0,
-            "is_x_cost": false,
+            "is_x_cost": true,
             "is_aoe": true,
             "effects": {},
-            "base_value": 7.5,
+            "base_value": 11.0,
             "synergy": {
                 "requires": {
                     "ENERGY": 2.0,
@@ -2876,10 +2876,10 @@
             "hits": 1,
             "block": 0,
             "draw": 0,
-            "is_x_cost": false,
+            "is_x_cost": true,
             "is_aoe": true,
             "effects": {},
-            "base_value": 12.0,
+            "base_value": 15.0,
             "synergy": {
                 "requires": {
                     "ENERGY": 2.0,
