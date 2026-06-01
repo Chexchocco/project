@@ -643,7 +643,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 10.0,
+            "base_value": 7.0,
             "synergy": {
                 "requires": {},
                 "provides": {
@@ -666,7 +666,7 @@
             "is_x_cost": false,
             "is_aoe": false,
             "effects": {},
-            "base_value": 14.0,
+            "base_value": 10.0,
             "synergy": {
                 "requires": {},
                 "provides": {
