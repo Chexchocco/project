@@ -428,19 +428,80 @@ def handle_grid_selection(state, avail):
     for_purge = screen_state.get("for_purge", False)
     for_transform = screen_state.get("for_transform", False)
 
-    if for_upgrade:
-        log.info(f"🔨 [강화]할 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
-    elif for_purge:
-        log.info(f"🗑️ [제거]할 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
-    elif for_transform:
-        log.info(f"✨ [변화]시킬 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
-    else:
-        log.info(f"❓ 이벤트/다중 선택 카드를 고릅니다. ({target_index + 1}/{num_cards} 번째)")
+    # 이미 고른 인덱스는 제외 (다중 선택 대비)
+    chosen_set = set(selected_cards) if isinstance(selected_cards, list) else set()
 
-    cmd = f"choose {target_index}"
-    log.info(f"👉 명령어 전송: {cmd}")
-    print(cmd, flush=True)
+    if for_upgrade:
+        idx = _best_upgrade_index(state, grid_cards, chosen_set)
+        log.info(f"🔨 [강화] 시너지/효과 최대 카드 선택: idx={idx} ({grid_cards[idx].get('name')})")
+    elif for_purge or for_transform:
+        idx = _worst_card_index(state, grid_cards, chosen_set)
+        verb = "제거" if for_purge else "변화"
+        log.info(f"🗑️ [{verb}] 최저 성능 카드 선택: idx={idx} ({grid_cards[idx].get('name')})")
+    else:
+        idx = target_index   # 이벤트 등 기타 다중 선택은 순서대로
+        log.info(f"❓ 이벤트/다중 선택: idx={idx}")
+
+    print(f"choose {idx}", flush=True)
     return
+
+
+def _grid_eval_context(state):
+    """grid 카드 평가용 deck_report + strategy (reward의 _build_deck_context와 동일 방식)."""
+    deck_raw = state.get("deck", [])
+    enriched_relics = enrich_relics(state.get("relics", []))
+    act = state.get("act", 1)
+    boss_name = state.get("boss", "")
+    enriched_deck = [get_card_info(c) for c in deck_raw if get_card_info(c)]
+    deck_report = score_deck(enriched_deck, enriched_relics, [], {}, SYNERGY_ENGINE)
+    base = build_future_sight_strategy(value_config, act, boss_name, 0.0)
+    deck_score = calculate_deck_avg_score(deck_raw, deck_report, base, SYNERGY_ENGINE)
+    strategy = build_future_sight_strategy(value_config, act, boss_name, deck_score)
+    relic_ids = [r['id'] for r in enriched_relics]
+    return deck_report, strategy, relic_ids
+
+
+def _upgraded_info(card_dict):
+    """grid 카드의 강화판 카드 정보. 이름에 +가 없으면 +를 붙여 조회."""
+    name = card_dict.get('name', '')
+    up_name = name if name.endswith('+') else name + '+'
+    return get_card_info({'name': up_name}) or get_card_info(card_dict)
+
+
+def _best_upgrade_index(state, grid_cards, exclude):
+    """강화 시 score 상승폭(강화판 - 기본판)이 가장 큰 카드의 인덱스.
+    이미 강화된 카드/강화해도 변화 없는 카드는 후보에서 밀린다."""
+    deck_report, strategy, relic_ids = _grid_eval_context(state)
+    best_idx, best_gain = 0, -1e9
+    for i, c in enumerate(grid_cards):
+        if i in exclude:
+            continue
+        base_info = get_card_info(c)
+        up_info = _upgraded_info(c)
+        if not base_info or not up_info:
+            continue
+        base_s = score_card(base_info, deck_report, strategy, relic_ids, SYNERGY_ENGINE, is_deck_eval=True)
+        up_s = score_card(up_info, deck_report, strategy, relic_ids, SYNERGY_ENGINE, is_deck_eval=True)
+        gain = up_s - base_s
+        if gain > best_gain:
+            best_gain, best_idx = gain, i
+    return best_idx
+
+
+def _worst_card_index(state, grid_cards, exclude):
+    """현재 덱 기준 score가 가장 낮은(=가장 성능 안 좋은) 카드의 인덱스."""
+    deck_report, strategy, relic_ids = _grid_eval_context(state)
+    worst_idx, worst_s = 0, 1e9
+    for i, c in enumerate(grid_cards):
+        if i in exclude:
+            continue
+        info = get_card_info(c)
+        if not info:
+            continue
+        s = score_card(info, deck_report, strategy, relic_ids, SYNERGY_ENGINE, is_deck_eval=True)
+        if s < worst_s:
+            worst_s, worst_idx = s, i
+    return worst_idx
 
 
 def handle_chest(state, avail):
