@@ -1,0 +1,275 @@
+{"timestamp": "2026-06-03T13:27:16.643152", "floor": 0, "type": "CardReward", "options": ["Twin Strike", "Headbutt", "Warcry"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T13:27:44.138006", "floor": 1, "type": "CardReward", "options": ["Warcry", "Shrug It Off", "Rupture"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T13:28:29.307553", "floor": 4, "type": "CardReward", "options": ["Flex", "Iron Wave", "Twin Strike"], "picked": "Iron Wave", "reasoning": ""}
+{"timestamp": "2026-06-03T13:29:04.436083", "floor": 5, "type": "CardReward", "options": ["Blood for Blood", "Perfected Strike", "Thunderclap"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T13:29:38.627908", "floor": 7, "type": "CardReward", "options": ["Whirlwind", "Offering", "Bloodletting"], "picked": "Offering", "reasoning": ""}
+{"timestamp": "2026-06-03T13:30:24.021496", "floor": 11, "type": "CardReward", "options": ["Uppercut", "Body Slam", "Anger"], "picked": "Uppercut", "reasoning": ""}
+{"timestamp": "2026-06-03T13:30:58.508465", "floor": 12, "type": "CardReward", "options": ["True Grit", "Headbutt", "Combust"], "picked": "Combust", "reasoning": ""}
+{"timestamp": "2026-06-03T13:32:11.035652", "floor": 13, "type": "CardReward", "options": ["True Grit", "Havoc", "Flex"], "picked": "True Grit", "reasoning": ""}
+{"timestamp": "2026-06-03T13:32:16.299453", "floor": 14, "type": "Shop_buy_card", "options": ["Feed"], "picked": "Feed", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T13:32:18.896266", "floor": 14, "type": "Shop_buy_card", "options": ["Armaments"], "picked": "Armaments", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T13:51:54.135575", "floor": 1, "type": "CardReward", "options": ["Anger", "True Grit", "Shrug It Off"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T13:52:23.944319", "floor": 2, "type": "CardReward", "options": ["Heavy Blade", "Armaments", "Wild Strike"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T13:52:56.486472", "floor": 4, "type": "CardReward", "options": ["Second Wind", "Reckless Charge", "Perfected Strike"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T14:07:36.987860", "floor": 1, "type": "CardReward", "options": ["Second Wind", "Sever Soul", "Flame Barrier"], "picked": "Flame Barrier", "reasoning": ""}
+{"timestamp": "2026-06-03T14:07:57.515186", "floor": 2, "type": "CardReward", "options": ["Armaments", "True Grit", "Havoc"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T14:08:28.378143", "floor": 4, "type": "CardReward", "options": ["Clothesline", "Armaments", "Searing Blow"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T14:09:14.784370", "floor": 5, "type": "CardReward", "options": ["Reckless Charge", "Armaments", "Pommel Strike"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T14:09:49.492635", "floor": 7, "type": "CardReward", "options": ["Clash", "Clothesline", "Sever Soul"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T14:10:09.328144", "floor": 11, "type": "Shop_buy_card", "options": ["Perfected Strike"], "picked": "Perfected Strike", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T14:10:43.680539", "floor": 12, "type": "CardReward", "options": ["Pommel Strike", "Rupture", "Wild Strike"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T14:11:16.879360", "floor": 13, "type": "CardReward", "options": ["Combust", "Corruption", "Anger"], "picked": "Corruption", "reasoning": ""}
+{"timestamp": "2026-06-03T14:11:38.299756", "floor": 14, "type": "CardReward", "options": ["Dark Embrace", "Rampage", "Shrug It Off"], "picked": "Dark Embrace", "reasoning": ""}
+{"timestamp": "2026-06-03T14:13:21.346680", "floor": 16, "type": "CardReward", "options": ["Immolate", "Fiend Fire", "Bludgeon"], "picked": "Immolate", "reasoning": ""}
+{"timestamp": "2026-06-03T14:14:17.956154", "floor": 18, "type": "CardReward", "options": ["Iron Wave", "Second Wind", "Clash"], "picked": "Second Wind+", "reasoning": ""}
+{"timestamp": "2026-06-03T14:14:57.507634", "floor": 21, "type": "Shop_buy_card", "options": ["Dual Wield"], "picked": "Dual Wield", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T14:15:00.176800", "floor": 21, "type": "Shop_buy_card", "options": ["Carnage"], "picked": "Carnage", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T14:15:33.852963", "floor": 22, "type": "CardReward", "options": ["Flex", "Uppercut", "Searing Blow"], "picked": "Uppercut+", "reasoning": ""}
+{"timestamp": "2026-06-03T14:16:07.204699", "floor": 24, "type": "CardReward", "options": ["Sentinel", "Thunderclap", "Inflame"], "picked": "Sentinel", "reasoning": ""}
+{"timestamp": "2026-06-03T14:19:09.805839", "floor": 1, "type": "CardReward", "options": ["Thunderclap", "Power Through", "Armaments"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T14:19:29.385716", "floor": 2, "type": "CardReward", "options": ["Perfected Strike", "Impervious", "Metallicize"], "picked": "Impervious", "reasoning": ""}
+{"timestamp": "2026-06-03T14:19:34.522169", "floor": 3, "type": "Shop_buy_card", "options": ["Perfected Strike"], "picked": "Perfected Strike", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T14:20:00.819737", "floor": 4, "type": "CardReward", "options": ["Wild Strike", "Hemokinesis", "Intimidate"], "picked": "Intimidate", "reasoning": ""}
+{"timestamp": "2026-06-03T14:21:03.285156", "floor": 6, "type": "CardReward", "options": ["Armaments", "Fire Breathing", "Heavy Blade"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T14:21:55.473444", "floor": 10, "type": "CardReward", "options": ["Pommel Strike", "Twin Strike", "Disarm"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T14:22:00.974333", "floor": 11, "type": "Shop_buy_card", "options": ["Perfected Strike"], "picked": "Perfected Strike", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T15:32:23.220853", "floor": 0, "type": "CardReward", "options": ["Anger", "Wild Strike", "Shrug It Off"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T15:32:48.354039", "floor": 1, "type": "CardReward", "options": ["Bloodletting", "Clash", "Sword Boomerang"], "picked": "Clash", "reasoning": ""}
+{"timestamp": "2026-06-03T15:33:07.046260", "floor": 2, "type": "CardReward", "options": ["Shrug It Off", "Cleave", "Armaments"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T15:33:33.664475", "floor": 3, "type": "CardReward", "options": ["Headbutt", "Rampage", "Clash"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T15:34:36.045275", "floor": 4, "type": "CardReward", "options": ["Rampage", "Searing Blow", "True Grit"], "picked": "Rampage", "reasoning": ""}
+{"timestamp": "2026-06-03T15:35:24.417212", "floor": 5, "type": "CardReward", "options": ["Exhume", "Thunderclap", "Pommel Strike"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T15:35:52.959615", "floor": 7, "type": "CardReward", "options": ["Anger", "Havoc", "Bloodletting"], "picked": "Anger", "reasoning": ""}
+{"timestamp": "2026-06-03T15:36:56.319581", "floor": 11, "type": "CardReward", "options": ["Heavy Blade", "Sword Boomerang", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T15:37:27.061772", "floor": 12, "type": "CardReward", "options": ["Heavy Blade", "Searing Blow", "Iron Wave"], "picked": "Searing Blow", "reasoning": ""}
+{"timestamp": "2026-06-03T15:38:13.047249", "floor": 13, "type": "CardReward", "options": ["Searing Blow", "Clothesline", "Cleave"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T15:38:56.072074", "floor": 14, "type": "CardReward", "options": ["Clothesline", "Rampage", "Power Through"], "picked": "Skip", "reasoning": ""}
+{"timestamp": "2026-06-03T15:39:47.940710", "floor": 16, "type": "CardReward", "options": ["Berserk", "Rupture", "Combust"], "picked": "Combust", "reasoning": ""}
+{"timestamp": "2026-06-03T15:41:11.211395", "floor": 1, "type": "CardReward", "options": ["Pummel", "Reckless Charge", "Flame Barrier"], "picked": "Flame Barrier", "reasoning": ""}
+{"timestamp": "2026-06-03T15:41:38.251769", "floor": 2, "type": "CardReward", "options": ["True Grit", "Whirlwind", "Twin Strike"], "picked": "Whirlwind", "reasoning": ""}
+{"timestamp": "2026-06-03T15:42:26.500803", "floor": 4, "type": "CardReward", "options": ["Disarm", "Sword Boomerang", "Shrug It Off"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T15:42:32.337749", "floor": 5, "type": "Shop_buy_card", "options": ["Flex"], "picked": "Flex", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T15:44:04.510076", "floor": 1, "type": "CardReward", "options": ["Clothesline", "Rupture", "Cleave"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T15:44:30.276285", "floor": 2, "type": "CardReward", "options": ["Shrug It Off", "Searing Blow", "Evolve"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T15:44:57.366882", "floor": 3, "type": "CardReward", "options": ["Armaments", "Cleave", "Feel No Pain"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T15:45:29.965080", "floor": 4, "type": "CardReward", "options": ["Anger", "Sword Boomerang", "Cleave"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T15:46:10.554485", "floor": 6, "type": "CardReward", "options": ["Whirlwind", "Body Slam", "Perfected Strike"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T15:47:28.145029", "floor": 8, "type": "CardReward", "options": ["Uppercut", "Headbutt", "Demon Form"], "picked": "Uppercut", "reasoning": ""}
+{"timestamp": "2026-06-03T15:48:35.310408", "floor": 12, "type": "CardReward", "options": ["Hemokinesis", "Headbutt", "Heavy Blade"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T15:49:38.571273", "floor": 13, "type": "CardReward", "options": ["Bloodletting", "Exhume", "Iron Wave"], "picked": "Iron Wave", "reasoning": ""}
+{"timestamp": "2026-06-03T15:50:11.779889", "floor": 14, "type": "CardReward", "options": ["Wild Strike", "Heavy Blade", "Headbutt"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T15:51:59.211371", "floor": 16, "type": "CardReward", "options": ["Brutality", "Double Tap", "Barricade"], "picked": "Barricade", "reasoning": ""}
+{"timestamp": "2026-06-03T15:52:30.236018", "floor": 18, "type": "CardReward", "options": ["Clothesline", "Armaments", "Battle Trance"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T15:53:58.835855", "floor": 20, "type": "CardReward", "options": ["Armaments", "Heavy Blade", "Clash"], "picked": "Heavy Blade", "reasoning": ""}
+{"timestamp": "2026-06-03T15:54:04.693518", "floor": 21, "type": "Shop_buy_card", "options": ["Fiend Fire"], "picked": "Fiend Fire", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T15:54:07.395330", "floor": 21, "type": "Shop_buy_card", "options": ["Pommel Strike"], "picked": "Pommel Strike", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T15:54:10.479701", "floor": 21, "type": "Shop_buy_relic", "options": ["Mango"], "picked": "Mango", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T15:55:05.167121", "floor": 22, "type": "CardReward", "options": ["Entrench", "Disarm", "Reaper"], "picked": "Entrench", "reasoning": ""}
+{"timestamp": "2026-06-03T15:57:50.032071", "floor": 24, "type": "CardReward", "options": ["Anger", "Rupture", "Heavy Blade"], "picked": "Heavy Blade", "reasoning": ""}
+{"timestamp": "2026-06-03T15:58:54.602121", "floor": 28, "type": "CardReward", "options": ["Dark Embrace", "Pummel", "Flex"], "picked": "Dark Embrace", "reasoning": ""}
+{"timestamp": "2026-06-03T15:59:33.400298", "floor": 31, "type": "CardReward", "options": ["Berserk", "Inflame", "Feel No Pain"], "picked": "Feel No Pain", "reasoning": ""}
+{"timestamp": "2026-06-03T16:00:03.005583", "floor": 31, "type": "CardReward", "options": ["Sword Boomerang", "Clothesline", "Seeing Red"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T16:02:38.074375", "floor": 1, "type": "CardReward", "options": ["Armaments", "Battle Trance", "Clothesline"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T16:03:21.290232", "floor": 4, "type": "CardReward", "options": ["Uppercut", "Flex", "Inflame"], "picked": "Uppercut", "reasoning": ""}
+{"timestamp": "2026-06-03T16:05:53.545178", "floor": 1, "type": "CardReward", "options": ["Rampage", "Disarm", "Clothesline"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T16:06:29.312973", "floor": 3, "type": "CardReward", "options": ["Dropkick", "Pommel Strike", "Anger"], "picked": "Dropkick", "reasoning": ""}
+{"timestamp": "2026-06-03T16:07:32.530174", "floor": 6, "type": "CardReward", "options": ["Thunderclap", "Metallicize", "Rupture"], "picked": "Thunderclap", "reasoning": ""}
+{"timestamp": "2026-06-03T16:07:56.829010", "floor": 7, "type": "CardReward", "options": ["Havoc", "Blood for Blood", "Sword Boomerang"], "picked": "Sword Boomerang", "reasoning": ""}
+{"timestamp": "2026-06-03T16:08:24.984185", "floor": 8, "type": "CardReward", "options": ["Heavy Blade", "Bloodletting", "Bludgeon"], "picked": "Bludgeon", "reasoning": ""}
+{"timestamp": "2026-06-03T16:08:58.239398", "floor": 10, "type": "CardReward", "options": ["Cleave", "Bloodletting", "Iron Wave"], "picked": "Iron Wave", "reasoning": ""}
+{"timestamp": "2026-06-03T16:09:39.172046", "floor": 12, "type": "CardReward", "options": ["Rupture", "Body Slam", "Clothesline"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T16:09:43.079464", "floor": 13, "type": "Shop_buy_card", "options": ["Flex"], "picked": "Flex", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:09:45.035679", "floor": 13, "type": "Shop_buy_card", "options": ["Enlightenment"], "picked": "Enlightenment", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:11:06.089870", "floor": 16, "type": "CardReward", "options": ["Discovery", "Transmutation", "Good Instincts"], "picked": "Transmutation", "reasoning": ""}
+{"timestamp": "2026-06-03T16:11:53.073424", "floor": 1, "type": "CardReward", "options": ["Blood for Blood", "Heavy Blade", "Rupture"], "picked": "Blood for Blood", "reasoning": ""}
+{"timestamp": "2026-06-03T16:12:32.745737", "floor": 4, "type": "CardReward", "options": ["Clash", "Pommel Strike", "Pummel"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T16:12:55.999154", "floor": 5, "type": "CardReward", "options": ["Sword Boomerang", "Shockwave", "Dark Embrace"], "picked": "Shockwave", "reasoning": ""}
+{"timestamp": "2026-06-03T16:14:15.837166", "floor": 6, "type": "CardReward", "options": ["Barricade", "Shrug It Off", "Twin Strike"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T16:15:20.922261", "floor": 8, "type": "CardReward", "options": ["Fire Breathing", "Sword Boomerang", "Metallicize", "Bludgeon"], "picked": "Bludgeon", "reasoning": ""}
+{"timestamp": "2026-06-03T16:16:01.349353", "floor": 11, "type": "CardReward", "options": ["Heavy Blade", "Carnage", "Perfected Strike", "Flex"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T16:16:41.841285", "floor": 13, "type": "CardReward", "options": ["Anger", "Warcry", "Body Slam", "Thunderclap"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T16:17:36.344854", "floor": 1, "type": "CardReward", "options": ["Sword Boomerang", "Blood for Blood", "Flex"], "picked": "Sword Boomerang", "reasoning": ""}
+{"timestamp": "2026-06-03T16:18:13.303596", "floor": 4, "type": "CardReward", "options": ["Armaments", "Thunderclap", "Headbutt"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T16:18:36.365670", "floor": 5, "type": "CardReward", "options": ["Carnage", "Fire Breathing", "Warcry"], "picked": "Carnage", "reasoning": ""}
+{"timestamp": "2026-06-03T16:19:32.720062", "floor": 7, "type": "CardReward", "options": ["Pommel Strike", "Headbutt", "Impervious"], "picked": "Impervious", "reasoning": ""}
+{"timestamp": "2026-06-03T16:19:52.428533", "floor": 12, "type": "Shop_buy_card", "options": ["Enlightenment"], "picked": "Enlightenment", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:19:54.615933", "floor": 12, "type": "Shop_buy_card", "options": ["Second Wind"], "picked": "Second Wind", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:19:56.664509", "floor": 12, "type": "Shop_buy_card", "options": ["Feel No Pain"], "picked": "Feel No Pain", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:20:27.530728", "floor": 13, "type": "CardReward", "options": ["Battle Trance", "Thunderclap", "Headbutt"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T16:22:01.259247", "floor": 16, "type": "CardReward", "options": ["Impervious", "Fiend Fire", "Juggernaut"], "picked": "Fiend Fire", "reasoning": ""}
+{"timestamp": "2026-06-03T16:22:44.722574", "floor": 18, "type": "CardReward", "options": ["Headbutt", "Clothesline", "Warcry"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T16:24:18.135161", "floor": 22, "type": "CardReward", "options": ["Wild Strike", "Flex", "Heavy Blade"], "picked": "Flex+", "reasoning": ""}
+{"timestamp": "2026-06-03T16:25:26.573197", "floor": 0, "type": "CardReward", "options": ["Clothesline", "Twin Strike", "Anger"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T16:25:50.079785", "floor": 1, "type": "CardReward", "options": ["Twin Strike", "Pommel Strike", "Iron Wave"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T16:26:21.383646", "floor": 3, "type": "CardReward", "options": ["Anger", "Havoc", "Entrench"], "picked": "Anger", "reasoning": ""}
+{"timestamp": "2026-06-03T16:26:25.674658", "floor": 4, "type": "Shop_buy_card", "options": ["Armaments"], "picked": "Armaments", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T16:26:44.120444", "floor": 5, "type": "CardReward", "options": ["Clash", "Metallicize", "Sever Soul"], "picked": "Sever Soul", "reasoning": ""}
+{"timestamp": "2026-06-03T16:27:30.652082", "floor": 6, "type": "CardReward", "options": ["Havoc", "Shockwave", "Evolve"], "picked": "Shockwave", "reasoning": ""}
+{"timestamp": "2026-06-03T16:29:58.936293", "floor": 16, "type": "CardReward", "options": ["Brutality", "Berserk", "Impervious"], "picked": "Impervious", "reasoning": ""}
+{"timestamp": "2026-06-03T16:30:30.806512", "floor": 18, "type": "CardReward", "options": ["Sentinel", "Searing Blow", "Combust"], "picked": "Sentinel", "reasoning": ""}
+{"timestamp": "2026-06-03T17:19:16.746860", "floor": 1, "type": "CardReward", "options": ["Clash", "Dark Embrace", "Cleave"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T17:19:20.892985", "floor": 2, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:19:24.265838", "floor": 2, "type": "Shop_buy_card", "options": ["Shrug It Off"], "picked": "Shrug It Off", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T17:19:48.798988", "floor": 3, "type": "CardReward", "options": ["Warcry", "Perfected Strike", "Shrug It Off"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:20:20.626549", "floor": 5, "type": "CardReward", "options": ["Infernal Blade", "Wild Strike", "Pummel"], "picked": "Infernal Blade", "reasoning": ""}
+{"timestamp": "2026-06-03T17:21:39.382222", "floor": 6, "type": "CardReward", "options": ["Sword Boomerang", "Pummel", "Shockwave"], "picked": "Shockwave", "reasoning": ""}
+{"timestamp": "2026-06-03T17:22:24.859512", "floor": 7, "type": "CardReward", "options": ["Spot Weakness", "Inflame", "Thunderclap"], "picked": "Inflame", "reasoning": ""}
+{"timestamp": "2026-06-03T17:23:01.505912", "floor": 10, "type": "CardReward", "options": ["Pommel Strike", "Anger", "Clash"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:23:43.128040", "floor": 11, "type": "CardReward", "options": ["Intimidate", "Battle Trance", "Thunderclap"], "picked": "Thunderclap", "reasoning": ""}
+{"timestamp": "2026-06-03T17:23:51.876634", "floor": 13, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:24:20.676469", "floor": 14, "type": "CardReward", "options": ["Sever Soul", "Body Slam", "Anger"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T17:25:56.288153", "floor": 16, "type": "CardReward", "options": ["Fiend Fire", "Exhume", "Corruption"], "picked": "Fiend Fire", "reasoning": ""}
+{"timestamp": "2026-06-03T17:26:39.943826", "floor": 18, "type": "CardReward", "options": ["Anger", "Fire Breathing", "Warcry"], "picked": "Anger", "reasoning": ""}
+{"timestamp": "2026-06-03T17:26:54.205303", "floor": 20, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:27:50.049571", "floor": 24, "type": "CardReward", "options": ["Sword Boomerang", "Thunderclap", "True Grit"], "picked": "Thunderclap+", "reasoning": ""}
+{"timestamp": "2026-06-03T17:28:28.043514", "floor": 28, "type": "CardReward", "options": ["Rupture", "Perfected Strike", "Evolve"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:29:21.049997", "floor": 31, "type": "CardReward", "options": ["Thunderclap", "Shrug It Off", "Sentinel"], "picked": "Sentinel+", "reasoning": ""}
+{"timestamp": "2026-06-03T17:31:02.351330", "floor": 0, "type": "CardReward", "options": ["Sword Boomerang", "Dropkick", "Flex"], "picked": "Dropkick", "reasoning": ""}
+{"timestamp": "2026-06-03T17:31:23.774879", "floor": 1, "type": "CardReward", "options": ["Infernal Blade", "Armaments", "Clothesline"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T17:31:48.692597", "floor": 2, "type": "CardReward", "options": ["Seeing Red", "Perfected Strike", "Flex"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:31:52.818802", "floor": 3, "type": "Shop_buy_card", "options": ["Panic Button"], "picked": "Panic Button", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T17:31:55.018513", "floor": 3, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:32:19.675267", "floor": 4, "type": "CardReward", "options": ["Rupture", "Blood for Blood", "Dark Embrace"], "picked": "Dark Embrace", "reasoning": ""}
+{"timestamp": "2026-06-03T17:32:50.821087", "floor": 5, "type": "CardReward", "options": ["Wild Strike", "Sever Soul", "Flex"], "picked": "Sever Soul", "reasoning": ""}
+{"timestamp": "2026-06-03T17:33:30.254688", "floor": 6, "type": "CardReward", "options": ["Metallicize", "Ghostly Armor", "Evolve"], "picked": "Ghostly Armor", "reasoning": ""}
+{"timestamp": "2026-06-03T17:34:02.977567", "floor": 7, "type": "CardReward", "options": ["Blood for Blood", "Pommel Strike", "Clash"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:34:54.431248", "floor": 11, "type": "CardReward", "options": ["Fire Breathing", "Armaments", "Warcry"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T17:35:22.453553", "floor": 13, "type": "CardReward", "options": ["Blood for Blood", "Second Wind", "Wild Strike"], "picked": "Second Wind", "reasoning": ""}
+{"timestamp": "2026-06-03T17:36:41.689194", "floor": 16, "type": "CardReward", "options": ["Chrysalis", "Secret Weapon", "Finesse"], "picked": "Chrysalis", "reasoning": ""}
+{"timestamp": "2026-06-03T17:37:50.774798", "floor": 1, "type": "CardReward", "options": ["Carnage", "Heavy Blade", "Havoc"], "picked": "Carnage", "reasoning": ""}
+{"timestamp": "2026-06-03T17:38:04.279790", "floor": 3, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:38:07.538448", "floor": 3, "type": "Shop_buy_card", "options": ["Shockwave"], "picked": "Shockwave", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T17:38:39.574931", "floor": 5, "type": "CardReward", "options": ["Body Slam", "Reckless Charge", "Pommel Strike"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T17:40:06.820104", "floor": 7, "type": "CardReward", "options": ["Cleave", "Body Slam", "Perfected Strike"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T17:40:28.973504", "floor": 8, "type": "CardReward", "options": ["Burning Pact", "Flex", "Headbutt", "Corruption"], "picked": "Corruption", "reasoning": ""}
+{"timestamp": "2026-06-03T17:40:57.965031", "floor": 11, "type": "CardReward", "options": ["Whirlwind", "Ghostly Armor", "Iron Wave", "Anger"], "picked": "Whirlwind", "reasoning": ""}
+{"timestamp": "2026-06-03T17:41:11.744654", "floor": 13, "type": "Shop_buy_relic", "options": ["Frozen Eye"], "picked": "Frozen Eye", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T17:41:13.849417", "floor": 13, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T17:42:01.494983", "floor": 14, "type": "CardReward", "options": ["Clothesline", "Flame Barrier", "Pummel", "Battle Trance"], "picked": "Flame Barrier", "reasoning": ""}
+{"timestamp": "2026-06-03T17:42:28.285679", "floor": 16, "type": "CardReward", "options": ["Searing Blow", "Blood for Blood", "Iron Wave"], "picked": "Iron Wave", "reasoning": ""}
+{"timestamp": "2026-06-03T17:43:37.239792", "floor": 16, "type": "CardReward", "options": ["Berserk", "Corruption", "Impervious", "Immolate"], "picked": "Impervious", "reasoning": ""}
+{"timestamp": "2026-06-03T17:44:25.747214", "floor": 18, "type": "CardReward", "options": ["Heavy Blade", "Sever Soul", "Sword Boomerang", "Armaments"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T19:34:25.253722", "floor": 0, "type": "CardReward", "options": ["Bludgeon", "Fiend Fire", "Reaper"], "picked": "Fiend Fire", "reasoning": ""}
+{"timestamp": "2026-06-03T19:34:47.246353", "floor": 1, "type": "CardReward", "options": ["Flex", "Seeing Red", "Headbutt"], "picked": "Seeing Red", "reasoning": ""}
+{"timestamp": "2026-06-03T19:35:12.838820", "floor": 2, "type": "CardReward", "options": ["Heavy Blade", "Body Slam", "Clash"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:35:17.102881", "floor": 3, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T19:35:49.554709", "floor": 5, "type": "CardReward", "options": ["Infernal Blade", "Shrug It Off", "True Grit"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T19:36:19.001186", "floor": 7, "type": "CardReward", "options": ["Twin Strike", "Pommel Strike", "Perfected Strike"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T19:36:48.647070", "floor": 10, "type": "CardReward", "options": ["True Grit", "Armaments", "Ghostly Armor"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T19:37:45.533260", "floor": 12, "type": "CardReward", "options": ["Second Wind", "Body Slam", "Thunderclap"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:38:15.204714", "floor": 13, "type": "CardReward", "options": ["Warcry", "True Grit", "Dual Wield"], "picked": "Dual Wield", "reasoning": ""}
+{"timestamp": "2026-06-03T19:39:19.655576", "floor": 16, "type": "CardReward", "options": ["Wild Strike", "Whirlwind", "Pummel"], "picked": "Whirlwind", "reasoning": ""}
+{"timestamp": "2026-06-03T19:40:24.690243", "floor": 1, "type": "CardReward", "options": ["Heavy Blade", "Pommel Strike", "Warcry"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T19:40:42.462534", "floor": 2, "type": "CardReward", "options": ["Clothesline", "Cleave", "Ghostly Armor"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T19:41:04.665862", "floor": 3, "type": "CardReward", "options": ["Uppercut", "Iron Wave", "Wild Strike"], "picked": "Uppercut", "reasoning": ""}
+{"timestamp": "2026-06-03T19:41:30.371824", "floor": 5, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T19:41:33.711105", "floor": 5, "type": "Shop_buy_card", "options": ["Combust"], "picked": "Combust", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T19:42:16.120169", "floor": 7, "type": "CardReward", "options": ["Body Slam", "Wild Strike", "Havoc"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:43:11.050550", "floor": 8, "type": "CardReward", "options": ["Second Wind", "Impervious", "Bloodletting"], "picked": "Impervious", "reasoning": ""}
+{"timestamp": "2026-06-03T19:43:27.540726", "floor": 8, "type": "CardReward", "options": ["Anger", "Power Through", "Burning Pact"], "picked": "Power Through", "reasoning": ""}
+{"timestamp": "2026-06-03T19:44:03.432890", "floor": 10, "type": "CardReward", "options": ["Uppercut", "Flame Barrier", "Body Slam"], "picked": "Flame Barrier", "reasoning": ""}
+{"timestamp": "2026-06-03T19:44:10.667940", "floor": 12, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T19:44:14.131524", "floor": 12, "type": "Shop_buy_card", "options": ["Clash"], "picked": "Clash", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T19:44:56.587665", "floor": 13, "type": "CardReward", "options": ["Wild Strike", "Sword Boomerang", "Headbutt"], "picked": "Headbutt", "reasoning": ""}
+{"timestamp": "2026-06-03T19:46:20.873562", "floor": 16, "type": "CardReward", "options": ["Offering", "Immolate", "Corruption"], "picked": "Immolate", "reasoning": ""}
+{"timestamp": "2026-06-03T19:47:22.819210", "floor": 18, "type": "CardReward", "options": ["Dropkick", "True Grit", "Iron Wave"], "picked": "Dropkick", "reasoning": ""}
+{"timestamp": "2026-06-03T19:48:28.205849", "floor": 22, "type": "CardReward", "options": ["Hemokinesis", "Anger", "Rage"], "picked": "Hemokinesis", "reasoning": ""}
+{"timestamp": "2026-06-03T19:49:29.554038", "floor": 25, "type": "CardReward", "options": ["Fire Breathing", "Shockwave", "Armaments"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T19:50:23.714554", "floor": 28, "type": "CardReward", "options": ["Anger", "Rage", "Sword Boomerang"], "picked": "Sword Boomerang+", "reasoning": ""}
+{"timestamp": "2026-06-03T19:51:21.292132", "floor": 0, "type": "CardReward", "options": ["Madness", "Dark Shackles", "Panacea"], "picked": "Dark Shackles", "reasoning": ""}
+{"timestamp": "2026-06-03T19:51:42.538595", "floor": 1, "type": "CardReward", "options": ["Wild Strike", "Heavy Blade", "Clash"], "picked": "Clash", "reasoning": ""}
+{"timestamp": "2026-06-03T19:52:17.419207", "floor": 3, "type": "CardReward", "options": ["Twin Strike", "Shrug It Off", "Body Slam", "Combust"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:52:41.554296", "floor": 4, "type": "CardReward", "options": ["Body Slam", "Headbutt", "Heavy Blade", "Flex"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:53:20.410606", "floor": 5, "type": "CardReward", "options": ["Heavy Blade", "Flex", "Sword Boomerang", "Barricade"], "picked": "Sword Boomerang", "reasoning": ""}
+{"timestamp": "2026-06-03T19:54:55.108277", "floor": 1, "type": "CardReward", "options": ["Cleave", "Spot Weakness", "Feel No Pain"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T19:54:59.218909", "floor": 2, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T19:55:02.432057", "floor": 2, "type": "Shop_buy_card", "options": ["Intimidate"], "picked": "Intimidate", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T19:55:12.678256", "floor": 3, "type": "CardReward", "options": ["Iron Wave", "Perfected Strike", "Carnage"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T19:55:23.653973", "floor": 4, "type": "CardReward", "options": ["Body Slam", "Rampage", "Warcry"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:55:59.917465", "floor": 6, "type": "CardReward", "options": ["Searing Blow", "Dropkick", "Carnage"], "picked": "Dropkick", "reasoning": ""}
+{"timestamp": "2026-06-03T19:56:32.010327", "floor": 8, "type": "CardReward", "options": ["Perfected Strike", "Ghostly Armor", "Uppercut"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T19:57:13.992904", "floor": 11, "type": "CardReward", "options": ["Thunderclap", "Wild Strike", "Havoc"], "picked": "Wild Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T19:57:18.422747", "floor": 12, "type": "Shop_buy_card", "options": ["Panic Button"], "picked": "Panic Button", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T19:57:20.610839", "floor": 12, "type": "Shop_buy_card", "options": ["Clothesline"], "picked": "Clothesline", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T19:58:01.757447", "floor": 13, "type": "CardReward", "options": ["Heavy Blade", "Armaments", "Feel No Pain"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T19:58:20.563201", "floor": 14, "type": "CardReward", "options": ["True Grit", "Hemokinesis", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T19:59:36.388688", "floor": 16, "type": "CardReward", "options": ["Exhume", "Fiend Fire", "Brutality"], "picked": "Fiend Fire", "reasoning": ""}
+{"timestamp": "2026-06-03T20:00:08.011752", "floor": 18, "type": "CardReward", "options": ["Flex", "Dropkick", "Rage"], "picked": "Dropkick+", "reasoning": ""}
+{"timestamp": "2026-06-03T20:00:54.541801", "floor": 20, "type": "CardReward", "options": ["Pummel", "Infernal Blade", "Shockwave"], "picked": "Shockwave+", "reasoning": ""}
+{"timestamp": "2026-06-03T20:01:28.636516", "floor": 22, "type": "CardReward", "options": ["Armaments", "Sword Boomerang", "Body Slam"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T20:02:20.017768", "floor": 24, "type": "CardReward", "options": ["Metallicize", "Wild Strike", "Heavy Blade"], "picked": "Wild Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T20:03:05.272574", "floor": 25, "type": "CardReward", "options": ["Fire Breathing", "True Grit", "Sever Soul"], "picked": "Sever Soul", "reasoning": ""}
+{"timestamp": "2026-06-03T20:03:48.646615", "floor": 28, "type": "CardReward", "options": ["Ghostly Armor", "Limit Break", "Clash"], "picked": "Ghostly Armor", "reasoning": ""}
+{"timestamp": "2026-06-03T20:04:56.166314", "floor": 30, "type": "CardReward", "options": ["Body Slam", "Warcry", "Heavy Blade"], "picked": "Body Slam+", "reasoning": ""}
+{"timestamp": "2026-06-03T20:05:56.166920", "floor": 33, "type": "CardReward", "options": ["Juggernaut", "Fire Breathing", "Evolve"], "picked": "Evolve", "reasoning": ""}
+{"timestamp": "2026-06-03T20:06:49.821750", "floor": 1, "type": "CardReward", "options": ["Headbutt", "Power Through", "Iron Wave"], "picked": "Iron Wave", "reasoning": ""}
+{"timestamp": "2026-06-03T20:07:50.405828", "floor": 4, "type": "CardReward", "options": ["Inflame", "Cleave", "Anger"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T20:07:54.365744", "floor": 5, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:07:57.497727", "floor": 5, "type": "Shop_buy_card", "options": ["Armaments"], "picked": "Armaments", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:09:03.938533", "floor": 7, "type": "CardReward", "options": ["Heavy Blade", "Sword Boomerang", "Dual Wield"], "picked": "Dual Wield", "reasoning": ""}
+{"timestamp": "2026-06-03T20:09:34.054799", "floor": 10, "type": "CardReward", "options": ["Headbutt", "Blood for Blood", "Dropkick"], "picked": "Dropkick", "reasoning": ""}
+{"timestamp": "2026-06-03T20:10:20.533395", "floor": 11, "type": "CardReward", "options": ["Offering", "Disarm", "Rage"], "picked": "Offering", "reasoning": ""}
+{"timestamp": "2026-06-03T20:10:34.657813", "floor": 11, "type": "CardReward", "options": ["Rage", "Bloodletting", "Cleave"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T20:11:00.883460", "floor": 12, "type": "CardReward", "options": ["Shrug It Off", "Juggernaut", "Dual Wield"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T20:11:28.386714", "floor": 13, "type": "CardReward", "options": ["Ghostly Armor", "Reckless Charge", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T20:12:02.520601", "floor": 14, "type": "CardReward", "options": ["Body Slam", "Flex", "Anger"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T20:14:55.907609", "floor": 1, "type": "CardReward", "options": ["Inflame", "Pommel Strike", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T20:15:00.000444", "floor": 2, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:15:03.340992", "floor": 2, "type": "Shop_buy_card", "options": ["Shrug It Off"], "picked": "Shrug It Off", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:15:29.568178", "floor": 3, "type": "CardReward", "options": ["Hemokinesis", "Anger", "Pommel Strike"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T20:16:01.282488", "floor": 5, "type": "CardReward", "options": ["Hemokinesis", "Metallicize", "Shrug It Off"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T20:16:51.391128", "floor": 10, "type": "CardReward", "options": ["Flex", "Combust", "Thunderclap"], "picked": "Combust", "reasoning": ""}
+{"timestamp": "2026-06-03T20:17:25.972095", "floor": 12, "type": "CardReward", "options": ["Spot Weakness", "Clothesline", "Barricade"], "picked": "Clothesline", "reasoning": ""}
+{"timestamp": "2026-06-03T20:17:56.218914", "floor": 13, "type": "CardReward", "options": ["Sword Boomerang", "Rampage", "Warcry"], "picked": "Sword Boomerang", "reasoning": ""}
+{"timestamp": "2026-06-03T20:19:38.999821", "floor": 16, "type": "CardReward", "options": ["Corruption", "Brutality", "Double Tap"], "picked": "Corruption", "reasoning": ""}
+{"timestamp": "2026-06-03T20:20:34.840204", "floor": 18, "type": "CardReward", "options": ["Rage", "Wild Strike", "Heavy Blade"], "picked": "Wild Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T20:20:37.674494", "floor": 19, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:20:40.961286", "floor": 19, "type": "Shop_buy_card", "options": ["Flex"], "picked": "Flex", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:20:43.128443", "floor": 19, "type": "Shop_buy_card", "options": ["Shrug It Off"], "picked": "Shrug It Off", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:22:12.425983", "floor": 24, "type": "CardReward", "options": ["Perfected Strike", "Second Wind", "Shrug It Off"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T20:22:56.658520", "floor": 25, "type": "CardReward", "options": ["Cleave", "Sever Soul", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T20:23:09.303638", "floor": 25, "type": "CardReward", "options": ["Thunderclap", "Shrug It Off", "Anger"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T20:23:16.933520", "floor": 27, "type": "Shop_buy_card", "options": ["Anger"], "picked": "Anger", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:23:19.085800", "floor": 27, "type": "Shop_buy_card", "options": ["Armaments"], "picked": "Armaments", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:25:06.363648", "floor": 29, "type": "CardReward", "options": ["Wild Strike", "Second Wind", "Blood for Blood"], "picked": "Blood for Blood", "reasoning": ""}
+{"timestamp": "2026-06-03T20:26:08.533820", "floor": 0, "type": "CardReward", "options": ["Forethought", "Dramatic Entrance", "Discovery"], "picked": "Dramatic Entrance", "reasoning": ""}
+{"timestamp": "2026-06-03T20:26:33.929977", "floor": 1, "type": "CardReward", "options": ["Clash", "Pommel Strike", "Headbutt"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T20:26:37.792453", "floor": 2, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:26:41.133029", "floor": 2, "type": "Shop_buy_card", "options": ["Carnage"], "picked": "Carnage", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:27:13.091956", "floor": 5, "type": "CardReward", "options": ["Warcry", "Shrug It Off", "Disarm"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T20:27:41.128124", "floor": 7, "type": "CardReward", "options": ["Warcry", "Armaments", "Fiend Fire"], "picked": "Fiend Fire", "reasoning": ""}
+{"timestamp": "2026-06-03T20:28:33.637911", "floor": 8, "type": "CardReward", "options": ["Disarm", "Iron Wave", "Cleave"], "picked": "Cleave", "reasoning": ""}
+{"timestamp": "2026-06-03T20:28:50.107587", "floor": 10, "type": "CardReward", "options": ["Pommel Strike", "Seeing Red", "Feel No Pain"], "picked": "Feel No Pain", "reasoning": ""}
+{"timestamp": "2026-06-03T20:28:54.429131", "floor": 11, "type": "Shop_buy_card", "options": ["Uppercut"], "picked": "Uppercut", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:29:32.209522", "floor": 13, "type": "CardReward", "options": ["Brutality", "Spot Weakness", "Warcry"], "picked": "Spot Weakness", "reasoning": ""}
+{"timestamp": "2026-06-03T20:32:00.610367", "floor": 16, "type": "CardReward", "options": ["Juggernaut", "Double Tap", "Barricade"], "picked": "Barricade", "reasoning": ""}
+{"timestamp": "2026-06-03T20:32:57.015997", "floor": 18, "type": "CardReward", "options": ["Sword Boomerang", "Seeing Red", "Flex"], "picked": "Seeing Red", "reasoning": ""}
+{"timestamp": "2026-06-03T20:33:11.057083", "floor": 20, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:33:14.290291", "floor": 20, "type": "Shop_buy_relic", "options": ["Frozen Eye"], "picked": "Frozen Eye", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:33:16.321490", "floor": 20, "type": "Shop_buy_card", "options": ["Armaments"], "picked": "Armaments", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T20:33:45.777244", "floor": 21, "type": "CardReward", "options": ["Havoc", "Armaments", "Wild Strike"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T20:34:23.970904", "floor": 22, "type": "CardReward", "options": ["Sword Boomerang", "Anger", "Carnage"], "picked": "Carnage", "reasoning": ""}
+{"timestamp": "2026-06-03T20:34:58.025586", "floor": 24, "type": "CardReward", "options": ["Panache", "Discovery", "Secret Weapon"], "picked": "Discovery", "reasoning": ""}
+{"timestamp": "2026-06-03T20:35:19.992006", "floor": 24, "type": "CardReward", "options": ["Pommel Strike", "Bloodletting", "Pummel"], "picked": "Pummel", "reasoning": ""}
+{"timestamp": "2026-06-03T20:36:11.738179", "floor": 28, "type": "CardReward", "options": ["Inflame", "Sever Soul", "Wild Strike", "Armaments"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T20:36:50.985881", "floor": 29, "type": "CardReward", "options": ["Intimidate", "Limit Break", "Dual Wield", "Hemokinesis"], "picked": "Limit Break", "reasoning": ""}
+{"timestamp": "2026-06-03T20:38:00.264909", "floor": 30, "type": "CardReward", "options": ["Combust", "Perfected Strike", "Clash", "Spot Weakness"], "picked": "Perfected Strike+", "reasoning": ""}
+{"timestamp": "2026-06-03T20:39:50.385032", "floor": 1, "type": "CardReward", "options": ["Warcry", "Sword Boomerang", "Shrug It Off"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T20:40:23.850722", "floor": 3, "type": "CardReward", "options": ["Sever Soul", "Twin Strike", "Thunderclap"], "picked": "Sever Soul", "reasoning": ""}
+{"timestamp": "2026-06-03T20:40:27.799337", "floor": 4, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T20:40:30.906290", "floor": 4, "type": "Shop_buy_card", "options": ["True Grit"], "picked": "True Grit", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T21:30:34.337628", "floor": 1, "type": "CardReward", "options": ["Armaments", "Anger", "Heavy Blade"], "picked": "Armaments", "reasoning": ""}
+{"timestamp": "2026-06-03T21:30:38.450452", "floor": 2, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T21:30:50.481038", "floor": 3, "type": "CardReward", "options": ["Burning Pact", "Shrug It Off", "Anger"], "picked": "Shrug It Off", "reasoning": ""}
+{"timestamp": "2026-06-03T21:30:54.603882", "floor": 4, "type": "Shop_buy_card", "options": ["Perfected Strike"], "picked": "Perfected Strike", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T21:31:07.828900", "floor": 5, "type": "CardReward", "options": ["Sword Boomerang", "True Grit", "Whirlwind"], "picked": "Whirlwind", "reasoning": ""}
+{"timestamp": "2026-06-03T21:59:22.333124", "floor": 1, "type": "CardReward", "options": ["Thunderclap", "Pommel Strike", "True Grit"], "picked": "Pommel Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T21:59:44.912686", "floor": 2, "type": "CardReward", "options": ["Bloodletting", "Whirlwind", "Pommel Strike"], "picked": "Whirlwind", "reasoning": ""}
+{"timestamp": "2026-06-03T21:59:49.330553", "floor": 3, "type": "Shop_purge", "options": ["Purge"], "picked": "Purge", "reasoning": "상점에서 카드 제거"}
+{"timestamp": "2026-06-03T21:59:52.642921", "floor": 3, "type": "Shop_buy_relic", "options": ["Ancient Tea Set"], "picked": "Ancient Tea Set", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T22:00:17.783397", "floor": 4, "type": "CardReward", "options": ["Perfected Strike", "Power Through", "Twin Strike"], "picked": "Perfected Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T22:00:44.702929", "floor": 6, "type": "CardReward", "options": ["Heavy Blade", "Twin Strike", "Cleave"], "picked": "Twin Strike", "reasoning": ""}
+{"timestamp": "2026-06-03T22:01:23.830269", "floor": 7, "type": "CardReward", "options": ["Demon Form", "Infernal Blade", "Body Slam"], "picked": "Body Slam", "reasoning": ""}
+{"timestamp": "2026-06-03T22:02:05.619257", "floor": 10, "type": "CardReward", "options": ["Flex", "Second Wind", "True Grit", "Ghostly Armor"], "picked": "Flex", "reasoning": ""}
+{"timestamp": "2026-06-03T22:02:09.605233", "floor": 11, "type": "Shop_buy_card", "options": ["Shockwave"], "picked": "Shockwave", "reasoning": "상점에서 아이템 구매"}
+{"timestamp": "2026-06-03T22:03:15.068233", "floor": 1, "type": "CardReward", "options": ["Headbutt", "Armaments", "Sword Boomerang"], "picked": "Armaments", "reasoning": ""}

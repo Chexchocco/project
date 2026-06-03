@@ -357,6 +357,15 @@ def handle_card_reward(state, avail):
     # 유물 정보를 enrich해서 전달 (synergy 정보를 score_card가 활용할 수 있게)
     enriched_relics = enrich_relics(state.get("relics", []))
     choice = choose_card_reward(state, enriched_relics)
+    
+    try:
+        from run_logger import log_major_choice
+        options = [c.get("id", c.get("name", "Unknown")) for c in offered_cards]
+        floor = state.get("floor", "?")
+        picked_name = "Skip" if choice == "skip" else offered_cards[int(choice)].get("name", "Unknown") if str(choice).isdigit() and 0 <= int(choice) < len(offered_cards) else "Fallback"
+        log_major_choice(floor, "CardReward", options, picked_name)
+    except Exception as log_err:
+        log.error(f"카드 보상 로깅 에러: {log_err}")
 
     if choice == "skip":
         log.info("skip 선택")
@@ -429,7 +438,16 @@ def handle_grid_selection(state, avail):
     for_transform = screen_state.get("for_transform", False)
 
     # 이미 고른 인덱스는 제외 (다중 선택 대비)
-    chosen_set = set(selected_cards) if isinstance(selected_cards, list) else set()
+    chosen_set = set()
+    if isinstance(selected_cards, list):
+        for sc in selected_cards:
+            if isinstance(sc, dict):
+                for i, gc in enumerate(grid_cards):
+                    if i not in chosen_set and gc.get('name') == sc.get('name') and gc.get('upgrades') == sc.get('upgrades'):
+                        chosen_set.add(i)
+                        break
+            elif isinstance(sc, int):
+                chosen_set.add(sc)
 
     if for_upgrade:
         idx = _best_upgrade_index(state, grid_cards, chosen_set)

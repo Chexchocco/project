@@ -11,6 +11,7 @@ from config import PARSED_ITEM_PATH, LOG_PATH
 from io_bridge import communication
 from router import toolformer
 
+from run_logger import *
 
 # Logging setup
 log = logging.getLogger("STS_AI")
@@ -47,7 +48,8 @@ def main():
                 real_error = data.get("error", "알 수 없는 에러")
                 log.error(f"⚠️ 엔진 에러 발생! 이유: {real_error}")
                 # 핑퐁 복구를 위해 상태를 다시 요구합니다.
-                print("wait 3000", flush=True)
+                log_error_context(data, real_error)
+                print("wait", flush=True)
                 continue
 
             if not data.get("in_game", False):
@@ -65,6 +67,12 @@ def main():
             avail = data.get("available_commands", [])
 
             if state.get("screen_type", "") == "GAME_OVER":
+                # 사망/클리어 등 게임 종료 시 기록 저장
+                try:
+                    from run_logger import log_game_over
+                    log_game_over(state)
+                except Exception as log_err:
+                    log.error(f"게임 오버 로깅 실패: {log_err}")
                 print("proceed", flush=True)
                 continue
 
@@ -83,6 +91,8 @@ def main():
         except Exception:
             log.info("\n🚨 파이썬 스크립트에 치명적 에러 발생!")
             log.info(traceback.format_exc())
+            # 에러 발생 시 게임 엔진이 무한정 기다리지 않도록 안전한 fallback 명령어 전송
+            print("wait 100", flush=True)
             time.sleep(2.0)
 
 

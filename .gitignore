@@ -14,3 +14,7 @@ llm/__pycache__
 config.py
 card_picks.txt
 CLAUDE.md
+Modelfile
+qwen2.5-7b.Q4_K_M.gguf
+Qwen2.5-7B_OLD.Q4_K_M.gguf
+sts_rulebook.jsonl

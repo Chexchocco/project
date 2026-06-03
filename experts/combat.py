@@ -45,7 +45,7 @@ with open(os.path.join(LOCAL_PATH, "db", "monsterDB.json"), "r", encoding="utf-8
     _MDB = json.load(f)
 MONSTERS_INFO = _MDB.get("monsters", {})
 
-
+from run_logger import *
 # ╔══════════════════════════════════════════════════════════════════════╗
 # ║ 특수 카드 레지스트리 — parser가 못 잡는 효과를 시뮬에 직접 반영       ║
 # ╚══════════════════════════════════════════════════════════════════════╝
@@ -1227,7 +1227,149 @@ def _resolve_target(target_idx, monsters):
 
 def handle_hand_select(state, avail):
     ss = state.get("screen_state", {})
-    if len(ss.get("selected", [])) >= ss.get("max_cards", 1):
+    selected = ss.get("selected", [])
+    max_cards = ss.get("max_cards", 1)
+    min_cards = ss.get("min_cards", 0)
+
+    
+    current_action = state.get("current_action", "")
+    if "Armaments" not in current_action:
+        log_raw_state(state)
+
+    # 1. 이미 최대로 골랐다면 confirm
+    if len(selected) >= max_cards:
+        if "confirm" in avail:
+            print("confirm", flush=True)
+        else:
+            print("wait 30", flush=True)
+        return
+
+    # 손패 정보 가져오기
+    # 화면(screen_state)에 표시된 손패가 우선, 없으면 전투 상태(combat_state)의 손패
+    hand = ss.get("hand", state.get("combat_state", {}).get("hand", []))
+
+    # [Armaments 등 특정 액션에 대한 카드 강화 선택]
+    if "Armaments" in current_action:
+        best_score = -9999
+        best_idx = -1
+
+        for i, c in enumerate(hand):
+            if i in selected:
+                continue
+
+            c_name = c.get("name", "")
+            base_info = db_loader.get_card_info(c_name)
+            upg_info = db_loader.get_card_info(c_name + "+")
+
+            score = 0
+            if base_info and upg_info:
+                def safe_cost(val):
+                    try: return float(val)
+                    except: return 99.0
+
+                cost_diff = safe_cost(base_info.get("cost", 99)) - safe_cost(upg_info.get("cost", 99))
+                # 코스트가 줄어드는 카드는 최우선
+                if cost_diff > 0:
+                    score += 1000 + cost_diff * 100
+
+                # 점수(base_value) 상승폭 반영
+                val_diff = upg_info.get("base_value", 0) - base_info.get("base_value", 0)
+                score += val_diff
+
+            # 저주나 상태이상은 강화 대상에서 제외 (혹은 최하순위)
+            c_type = str(c.get("type", c.get("card_type", ""))).upper()
+            if c_type in ("STATUS", "CURSE"):
+                score -= 10000
+
+            if score > best_score:
+                best_score = score
+                best_idx = i
+
+        if best_idx != -1:
+            print(f"choose {best_idx}", flush=True)
+            log.info(f"🔨 Armaments 강화 선택: idx={best_idx} ({hand[best_idx].get('name')}), score={best_score:.2f}")
+            return
+
+    # [ExhaustAction 등 소멸 효과에 대한 카드 선택]
+    if current_action == "ExhaustAction":
+        best_score = 9999
+        best_idx = -1
+        
+        # 나쁜 카드 우선 소멸 (저주, 상태이상 등)
+        bad_cards_indices = []
+        for i, c in enumerate(hand):        
+            if i in selected:
+                continue
+            c_type = str(c.get("type", c.get("card_type", ""))).upper()
+            if c_type in ("STATUS", "CURSE"):
+                bad_cards_indices.append(i)
+                
+        can_pick_zero = ss.get("can_pick_zero", False)
+        
+        # 1. 고를 수 있는 제한이 넉넉하거나 필수인 경우 나쁜 카드 소멸
+        if bad_cards_indices and len(selected) < max_cards:
+            print(f"choose {bad_cards_indices[0]}", flush=True)
+            log.info(f"🔥 ExhaustAction 소멸 선택 (상태이상/저주): idx={bad_cards_indices[0]} ({hand[bad_cards_indices[0]].get('name')})")
+            return
+            
+        # 2. 나쁜 카드가 없고 고르는게 자유라면 더 이상 소멸하지 않음 (confirm)
+        if can_pick_zero and not bad_cards_indices:
+            if "confirm" in avail:
+                print("confirm", flush=True)
+                log.info(f"🔥 ExhaustAction 선택 종료 (더 이상 소멸할 나쁜 카드가 없음)")
+                return
+                
+        # 3. 필수로 골라야 하는데 나쁜 카드가 없다면 가장 가치 낮은 카드 소멸
+        if not can_pick_zero and len(selected) < max_cards:
+            for i, c in enumerate(hand):
+                if i in selected:
+                    continue
+
+                c_name = c.get("name", "")
+                base_info = db_loader.get_card_info(c_name)
+                
+                score = 0
+                if base_info:
+                    # 기본 밸류가 낮을수록 소멸 우선순위 높음
+                    score += base_info.get("base_value", 50)
+                else:
+                    score += 50
+                    
+                # 타격(Strike), 수비(Defend) 기본 카드들은 소멸 1순위
+                if "Strike" in c_name or "Defend" in c_name:
+                    score -= 50
+
+                if score < best_score:
+                    best_score = score
+                    best_idx = i
+
+            if best_idx != -1:
+                print(f"choose {best_idx}", flush=True)
+                log.info(f"🔥 ExhaustAction 강제 소멸 선택: idx={best_idx} ({hand[best_idx].get('name')}), 가치 점수={best_score}")
+                return
+
+    # 2. 우선적으로 고를 대상: 상태이상(Status) 또는 저주(Curse) 카드
+    bad_cards_indices = []
+    for i, c in enumerate(hand):        
+        if i in selected:
+            continue
+        c_type = str(c.get("type", c.get("card_type", ""))).upper()
+        if c_type in ("STATUS", "CURSE"):
+            bad_cards_indices.append(i)
+            
+    if bad_cards_indices:
+        print(f"choose {bad_cards_indices[0]}", flush=True)
+        return
+
+    # 3. 나쁜 카드는 없지만 무조건 더 골라야 하는 경우(min_cards 불충족)
+    if len(selected) < min_cards:
+        for i in range(len(hand)):
+            if i not in selected:
+                print(f"choose {i}", flush=True)
+                return
+
+    # 4. 필수 할당량을 채웠고(혹은 min_cards가 0) 남은 나쁜 카드도 없다면 confirm
+    if "confirm" in avail:
         print("confirm", flush=True)
     else:
-        print("choose 0", flush=True)
+        print("wait 30", flush=True)

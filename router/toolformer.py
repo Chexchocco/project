@@ -34,7 +34,7 @@ TOOLS = [
     },
     {
         "name": "hand_select",
-        "description": "Pick cards on a HAND_SELECT prompt (e.g. Shrug It Off, Headbutt).",
+        "description": "Pick cards on a HAND_SELECT prompt (e.g. Headbutt).",
         "when_to_use": "screen_type is HAND_SELECT.",
         "fn": combat_expert.handle_hand_select,
     },

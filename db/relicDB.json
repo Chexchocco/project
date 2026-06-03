@@ -323,6 +323,92 @@
       }
     },
     {
+    "id": "Paper_Phrog",
+    "name": "Paper Phrog",
+    "tier": "Uncommon",
+    "pool": "Red",
+    "trigger": "Passive",
+    "provides_text": [
+      "Enemies with Vulnerable take 75% more damage rather than 50%."
+    ],
+    "agent_hints": "Highly valuable for scaling damage. Prioritize applying Vulnerable to maximize this multiplier.",
+    "synergy": {
+      "requires": {
+        "vulnerable": 0.1
+      },
+      "provides": {
+      }
+    }
+  },
+  {
+    "id": "Self_Forming_Clay",
+    "name": "Self-Forming Clay",
+    "tier": "Uncommon",
+    "pool": "Red",
+    "trigger": "On_Lose_HP",
+    "provides_text": [
+      "Whenever you lose HP in combat, gain 3 Block next turn."
+    ],
+    "agent_hints": "Provides delayed block when taking unblocked damage. Strong against multi-hit attacks. Synergy with self-damage cards like Bloodletting, Brutality, or Combust.",
+    "synergy": {
+      "requires": {
+        "SELF_HARM" : 0.1
+      },
+      "provides": {
+      }
+    }
+  },
+  {
+    "id": "Lizard_Tail",
+    "name": "Lizard Tail",
+    "tier": "Rare",
+    "pool": "All",
+    "trigger": "On_Death",
+    "provides_text": [
+      "When you would die, heal to 50% of your Max HP instead (works once)."
+    ],
+    "agent_hints": "A one-time safety net. Allows aggressive map pathing or risk-taking in elite and boss fights. Becomes inactive after triggering.",
+    "synergy": {
+      "requires": {},
+      "provides": {
+      }
+    }
+  },
+  {
+    "id": "Wing_Boots",
+    "name": "Wing Boots",
+    "tier": "Rare",
+    "pool": "All",
+    "trigger": "Map_Node_Selection",
+    "provides_text": [
+      "You may ignore paths when choosing the next room to travel to 3 times."
+    ],
+    "agent_hints": "Extremely powerful for map routing. Allows sniping multiple Elites for relics or dodging unfavorable paths. Use charges efficiently.",
+    "synergy": {
+      "requires": {},
+      "provides": {
+      }
+    }
+  },
+  {
+    "id": "Magic_Flower",
+    "name": "Magic Flower",
+    "tier": "Rare",
+    "pool": "Red",
+    "trigger": "On_Heal",
+    "provides_text": [
+      "Healing is 50% more effective during combat."
+    ],
+    "agent_hints": "Increases all in-combat healing. Best combined with Ironclad's starting relic (Burning Blood), Reaper, or Bite. Does not affect healing outside of combat (e.g., resting at a campfire).",
+    "synergy": {
+      "requires": {
+        "RECOVERY" : 0.1
+      },
+      "provides": {
+      }
+    }
+  },
+    {
       "id": "Happy_Flower",
       "name": "Happy Flower",
       "tier": "Common",
@@ -426,6 +512,232 @@
         }
       }
     },
+    {
+    "id": "Warped_Tongs",
+    "name": "Warped Tongs",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Start_of_Turn",
+    "provides_text": [
+      "At the start of your turn, Upgrade a random card in your hand for the rest of combat."
+    ],
+    "agent_hints": "Provides consistent value in longer fights by upgrading cards as you draw them. Reduces the need to use campfires for upgrades.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Spirit_Poop",
+    "name": "Spirit Poop",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "It's unpleasant."
+    ],
+    "agent_hints": "Has zero effect on gameplay or combat. It only applies a -1 penalty to your final score at the end of the run. Ignore in combat calculations.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Ssserpent_Head",
+    "name": "Ssserpent Head",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Enter_Question_Room",
+    "provides_text": [
+      "Whenever you enter a ? room, gain 50 Gold."
+    ],
+    "agent_hints": "Massively alters map routing priority. If you hold this, highly prioritize paths with multiple ? (Event) nodes to generate huge amounts of gold for shops.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Face_of_Cleric",
+    "name": "Face of Cleric",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "End_of_Combat",
+    "provides_text": [
+      "Raise your Max HP by 1 after each combat."
+    ],
+    "agent_hints": "Extremely powerful if acquired in Act 1, providing 20-30+ Max HP over a run. Less valuable if acquired late in Act 3.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Golden_Idol",
+    "name": "Golden Idol",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "Enemies drop 25% more gold."
+    ],
+    "agent_hints": "A pure economy relic. Increases long-term purchasing power at shops.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Gremlin_Visage",
+    "name": "Gremlin Visage",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Start_of_Combat",
+    "provides_text": [
+      "Start each combat with 1 Weak."
+    ],
+    "agent_hints": "PENALTY: Reduces your Turn 1 damage by 25%. Makes fast Hallway fights and Turn 1 burst strategies significantly harder. Countered by Artifact charges.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Nloths_Gift",
+    "name": "N'loth's Gift",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Combat_Reward",
+    "provides_text": [
+      "Triples the chance of receiving rare cards as monster rewards."
+    ],
+    "agent_hints": "Significantly alters card reward generation. Great for finding key rare synergy pieces.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Nloths_Hungry_Face",
+    "name": "N'Loth's Hungry Face",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "On_Chest_Open",
+    "provides_text": [
+      "The next non-boss chest you open is empty."
+    ],
+    "agent_hints": "PENALTY: Consumes the next small, medium, or large chest. Automatically removes itself after triggering once.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Neows_Lament",
+    "name": "Neow's Lament",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Start_of_Combat",
+    "provides_text": [
+      "Enemies in your first 3 combats will have 1 HP."
+    ],
+    "agent_hints": "Allows for instant wins in the first 3 fights. Advanced routing tactic: Try to path through ? nodes to save a charge and reach an Act 1 Elite with 1 HP.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Nilrys_Codex",
+    "name": "Nilry's Codex",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "End_of_Turn",
+    "provides_text": [
+      "At the end of each turn, you can choose 1 of 3 random cards to shuffle into your draw pile."
+    ],
+    "agent_hints": "Provides incredible long-term value in boss fights. Allows you to generate scaling cards or specific answers (like block or AoE) on demand.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Odd_Mushroom",
+    "name": "Odd Mushroom",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "When Vulnerable, take 25% more damage rather than 50%."
+    ],
+    "agent_hints": "A defensive safety net against Vulnerable. Makes fights against enemies that apply Vulnerable (like Gremlin Nob or Snecko) much safer.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Red_Mask",
+    "name": "Red Mask",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Start_of_Combat",
+    "provides_text": [
+      "At the start of each combat, apply 1 Weak to ALL enemies."
+    ],
+    "agent_hints": "Excellent Turn 1 mitigation. Also highly valuable for stripping 1 Artifact charge off of all enemies instantly at the start of combat.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Cultist_Headpiece",
+    "name": "Cultist Headpiece",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "You feel more talkative."
+    ],
+    "agent_hints": "Cosmetic only. Your character will occasionally say 'CAW!' during combat. Has no mechanical effect on the game.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Enchiridion",
+    "name": "Enchiridion",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "Start_of_Combat",
+    "provides_text": [
+      "At the start of each combat, add a random Power card to your hand. It costs 0 until the end of turn."
+    ],
+    "agent_hints": "Provides a free Turn 1 Power. Highly variable, but generally accelerates your setup phase without costing energy.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Bloody_Idol",
+    "name": "Bloody Idol",
+    "tier": "Event",
+    "pool": "All",
+    "trigger": "On_Gold_Gain",
+    "provides_text": [
+      "Whenever you gain Gold, heal 5 HP."
+    ],
+    "agent_hints": "One of the best sustain relics in the game. Triggers from combat rewards, ? nodes, and even event choices. Replaces Golden Idol.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  
     {
       "id": "Orichalcum",
       "name": "Orichalcum",
@@ -700,6 +1012,37 @@
         }
       }
     },
+      {
+      "id": "Eternal_Feather",
+      "name": "Eternal Feather",
+      "tier": "Uncommon",
+      "pool": "Any",
+      "trigger": "Rest_Site",
+      "provides_text": ["For every 5 cards in your deck, heal 3 HP whenever you enter a Rest Site."],
+            "agent_hints": "It provides additional Heal when entering a rest site.",
+      "synergy": {
+        "requires": {
+        },
+        "provides": {
+        }
+      }
+    },
+    {
+      "id": "Frozen_Egg",
+      "name": "Frozen Egg",
+      "tier": "Uncommon",
+      "pool": "Any",
+      "trigger": "Add_Card_To_Deck(Power)",
+      "provides_text": ["Whenever you add a Power card to your deck, it is Upgraded."],
+            "agent_hints": "Tremendous long-term value. Power cards become immediately potent without campfire upgrades.",
+      "synergy": {
+        "requires": {
+        },
+        "provides": {
+
+        }
+      }
+    },
     {
       "id": "Gremlin_Horn",
       "name": "Gremlin Horn",
@@ -824,6 +1167,22 @@
         "requires": {},
         "provides": {
           "AOE_DAMAGE": 1.0
+        }
+      }
+    },
+       {
+      "id": "Molten_Egg",
+      "name": "Molten Egg",
+      "tier": "Uncommon",
+      "pool": "Any",
+      "trigger": "Add_Card_To_Deck(Attack)",
+      "provides_text": ["Whenever you add an attack card to your deck, it is Upgraded."],
+            "agent_hints": "Tremendous long-term value. Attack cards become immediately potent without campfire upgrades.",
+      "synergy": {
+        "requires": {
+        },
+        "provides": {
+
         }
       }
     },
@@ -1018,7 +1377,7 @@
       "pool": "Any",
       "trigger": "Add_Card_To_Deck(Skill)",
       "provides_text": ["Whenever you add a Skill card to your deck, it is Upgraded."],
-            "agent_hints": "Tremendous long-term value. Defensive cards become immediately potent without campfire upgrades.",
+            "agent_hints": "Tremendous long-term value. Skill cards become immediately potent without campfire upgrades.",
       "synergy": {
         "requires": {},
         "provides": {
@@ -1104,6 +1463,171 @@
       }
     },
     {
+    "id": "Cauldron",
+    "name": "Cauldron",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Upon pickup, brews 5 random potions."
+    ],
+    "agent_hints": "Fills empty potion slots immediately. Very useful if you are preparing for an imminent Elite or Boss fight and need consumables.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Dollys_Mirror",
+    "name": "Dolly's Mirror",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Upon pickup, obtain an additional copy of a card in your deck."
+    ],
+    "agent_hints": "Allows you to duplicate your most powerful or crucial upgraded card. Excellent for consistency.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Frozen_Eye",
+    "name": "Frozen Eye",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "When viewing your Draw Pile, the cards are now shown in order."
+    ],
+    "agent_hints": "Provides perfect information about your upcoming draws. Allows for flawless mathematical planning and turn optimization.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Hand_Drill",
+    "name": "Hand Drill",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Block_Break",
+    "provides_text": [
+      "Whenever you break an enemy's Block, apply 2 Vulnerable."
+    ],
+    "agent_hints": "Situational but strong against specific enemies that generate Block frequently (e.g., Spheric Guardian).",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Lees_Waffle",
+    "name": "Lee's Waffle",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Raise your Max HP by 7 and heal all of your HP."
+    ],
+    "agent_hints": "Extremely high-value emergency relic. It doesn't just raise Max HP by 7, it heals you to FULL HP. Highly recommended to buy when you are at very low health.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Orrery",
+    "name": "Orrery",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Choose and add 5 cards to your deck."
+    ],
+    "agent_hints": "Provides 5 consecutive card reward screens. Great opportunity to find specific synergy pieces your deck is missing.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Prismatic_Shard",
+    "name": "Prismatic Shard",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "Passive",
+    "provides_text": [
+      "Combat reward screens now contain colorless cards and cards from other colors."
+    ],
+    "agent_hints": "WARNING: Do NOT pick this relic. Other class cards are not currently implemented in the system, making this a dead or potentially game-breaking choice.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Sling_of_Courage",
+    "name": "Sling of Courage",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "Start_of_Elite_Combat",
+    "provides_text": [
+      "Start each Elite combat with 2 Strength."
+    ],
+    "agent_hints": "Provides a massive damage boost specifically for Elite fights. Highly recommended if you plan to hunt multiple Elites in Act 2 or Act 3.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "The_Abacus",
+    "name": "The Abacus",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "On_Shuffle",
+    "provides_text": [
+      "Gain 6 Block whenever you shuffle your draw pile."
+    ],
+    "agent_hints": "Incredibly powerful for small decks or infinite combo decks that shuffle their draw pile frequently.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Toolbox",
+    "name": "Toolbox",
+    "tier": "Shop",
+    "pool": "All",
+    "trigger": "Start_of_Combat",
+    "provides_text": [
+      "At the start of each combat, choose 1 of 3 random Colorless cards and add the chosen card into your hand."
+    ],
+    "agent_hints": "Provides excellent turn 1 flexibility. Colorless cards often cost 0 and provide utility, setup, or draw.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Brimstone",
+    "name": "Brimstone",
+    "tier": "Shop",
+    "pool": "Red",
+    "trigger": "Start_of_Turn",
+    "provides_text": [
+      "At the start of your turn, gain 2 Strength and ALL enemies gain 1 Strength."
+    ],
+    "agent_hints": "WARNING: This is a double-edged sword. While you scale quickly, enemies also gain damage every turn. ONLY pick this if your deck has overwhelming Strength-scaling burst damage (e.g., Heavy Blade, Limit Break) or extremely strong defensive options. Otherwise, you will die very quickly.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+    {
       "id": "Charons_Ashes",
       "name": "Charon's Ashes",
       "tier": "Rare",
@@ -1176,6 +1700,126 @@
       }
     },
     {
+    "id": "Astrolabe",
+    "name": "Astrolabe",
+    "tier": "Boss",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Upon pickup, choose and Transform 3 cards, then Upgrade them."
+    ],
+    "agent_hints": "Excellent for replacing basic Strikes and Defends with upgraded, potentially high-value cards.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Black_Star",
+    "name": "Black Star",
+    "tier": "Boss",
+    "pool": "All",
+    "trigger": "On_Elite_Defeat",
+    "provides_text": [
+      "Elites drop an additional Relic when defeated."
+    ],
+    "agent_hints": "Provides long-term value but no immediate combat power or extra energy. Highly recommended if your deck is already strong enough to safely hunt multiple Elites in Act 2 and 3.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Empty_Cage",
+    "name": "Empty Cage",
+    "tier": "Boss",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Upon pickup, remove 2 cards from your Deck."
+    ],
+    "agent_hints": "Great for deck consistency by removing basic Strikes, Defends, or curses. Crucial for small combo decks or infinites.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Pandoras_Box",
+    "name": "Pandora's Box",
+    "tier": "Boss",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Transform all Strikes and Defends."
+    ],
+    "agent_hints": "WARNING: Massive deck transformation. While highly powerful, it can leave you with zero defensive cards (Block) or zero reliable attacks. Ensure you have alternative block or attack sources before taking this.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Tiny_House",
+    "name": "Tiny House",
+    "tier": "Boss",
+    "pool": "All",
+    "trigger": "On_Pickup",
+    "provides_text": [
+      "Obtain 1 potion. Gain 50 Gold. Raise your Max HP by 5. Obtain 1 card. Upgrade 1 Random card."
+    ],
+    "agent_hints": "Provides a safe, small boost across multiple resources but lacks the massive power spike or energy gain typical of other Boss relics. Often picked when other Boss relics have unmanageable penalties.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Black_Blood",
+    "name": "Black Blood",
+    "tier": "Boss",
+    "pool": "Red",
+    "trigger": "End_of_Combat",
+    "provides_text": [
+      "Replaces Burning Blood. At the end of combat, heal 12 HP."
+    ],
+    "agent_hints": "Replaces Ironclad's starting relic (Burning Blood). Increases the end-of-combat healing from 6 to 12. This allows for highly aggressive play and enables using campfires for Upgrades instead of Resting.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Mark_of_Pain",
+    "name": "Mark of Pain",
+    "tier": "Boss",
+    "pool": "Red",
+    "trigger": "Passive",
+    "provides_text": [
+      "Gain 1 Energy at the start of each turn. Start combats with 2 Wounds in your draw pile."
+    ],
+    "agent_hints": "PENALTY WARNING: Adds 2 unplayable Wound cards to your draw pile, which can brick your starting hands and ruin early turns. Highly recommended only if you have strong Exhaust synergy (e.g., True Grit, Fiend Fire) or status-card draw engines (e.g., Evolve, Dark Embrace) to mitigate the penalty.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+  {
+    "id": "Runic_Cube",
+    "name": "Runic Cube",
+    "tier": "Boss",
+    "pool": "Red",
+    "trigger": "On_Lose_HP",
+    "provides_text": [
+      "Whenever you lose HP, draw 1 card."
+    ],
+    "agent_hints": "Synergizes exceptionally well with Ironclad's self-damage cards like Bloodletting, Brutality, Combust, or Hemokinesis, turning health loss into massive card draw.",
+    "synergy": {
+      "requires": {},
+      "provides": {}
+    }
+  },
+    {
       "id": "Emotion_Chip",
       "name": "Emotion Chip",
       "tier": "Rare",
@@ -1217,6 +1861,18 @@
       "trigger": "Play_X_Cost_Card",
       "provides_text": ["The effects of your cost X cards are increased by 2."],
       "agent_hints": "X 코스트 카드의 효율을 미친 듯이 올려줍니다. AI는 '소용돌이', '강화된 몸' 등 X 코스트 카드를 발견하면 무조건 집도록 평가 점수가 보정됩니다.",
+      "synergy": {
+        "requires": {},
+        "provides": {}
+      }
+    },{
+      "id": "Membership_Card",
+      "name": "Membership Card",
+      "tier": "Shop",
+      "pool": "Any",
+      "trigger": "",
+      "provides_text": ["50% discount on all products."],
+      "agent_hints": "",
       "synergy": {
         "requires": {},
         "provides": {}
@@ -1689,7 +2345,7 @@
       "pool": "Any",
       "trigger": "Passive",
       "provides_text": ["Gain 1 Energy at the start of each turn. You can no longer Smith at Rest Sites."],
-            "agent_hints": "Disables upgrading at Campfires. Excellent if AI already has Apotheosis, Toxic Egg, or a fully upgraded core deck. Pairs well with Shovel/Peace Pipe.",
+            "agent_hints": "Disables upgrading at Campfires. Excellent if You already have Apotheosis, Toxic Egg, or a fully upgraded core deck. Pairs well with Shovel/Peace Pipe.",
       "synergy": {
         "requires": {
         },

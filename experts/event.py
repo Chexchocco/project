@@ -193,8 +193,22 @@ def handle_event(state, avail):
     if(len(choice_list) == 1) :
         log.info(f"옵션하나니까 바로선택 {choice_list[0]}")
         print(f"choose {choice_list[0]}", flush=True)
-        return
+        return  
+    if "choose" not in avail:
+        if "proceed" in avail:
+            log.info("🚪 이벤트 진행(proceed) 가능! 바로 진행합니다.")
+            print("proceed", flush=True)
+            return
+        if "leave" in avail:
+            log.info("🚪 이벤트 퇴장(leave) 가능! 바로 나갑니다.")
+            print("leave", flush=True)
+            return
+        if "return" in avail:
+            log.info("🚪 복귀(return) 가능! 바로 돌아갑니다.")
+            print("return", flush=True)
+            return
 
+    
     else :
         body_text = state.get("screen_state", {}).get("body_text", "")
         options = state.get("screen_state", {}).get("options", [])
