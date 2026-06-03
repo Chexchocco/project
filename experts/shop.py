@@ -25,19 +25,70 @@ shop_log = logging.getLogger("CARD_PICKER")  # reward와 동일 파일에 기록
 
 WAITING_FOR_SHOP = False
 SHOP_DONE = False
+_shop_floor = None   # 현재 처리 중인 상점의 층 — 층이 바뀌면 새 상점 → 플래그 초기화
+
+
+def _at_shop_screen(state):
+    """현재 화면이 '상점 구매 화면'인지 내용 기반으로 판정.
+    '?'방이 상점으로 판명되어 screen_type이 SHOP_SCREEN이 아니어도(예: EVENT) 잡아낸다."""
+    if state.get("screen_type", "") == "SHOP_SCREEN":
+        return True
+    ss = state.get("screen_state", {}) or {}
+    if "purge_available" in ss:           # 상점 전용 키
+        return True
+    for key in ("cards", "relics", "potions"):   # 가격표가 붙은 판매 품목 = 상점
+        for it in (ss.get(key) or []):
+            if isinstance(it, dict) and "price" in it:
+                return True
+    return False
+
+
+def _free_potion_slots(state):
+    """비어있는 포션 슬롯 수. 0이면 포션을 살 수 없다(구매 시 엔진 에러)."""
+    return sum(1 for p in (state.get("potions") or [])
+               if p.get("id", "Potion Slot") == "Potion Slot")
+
 
 def handle_shop_room(state, avail):
-    """상점 방 진입: 주인에게 말 걸어 shop screen으로 전환."""
-    global WAITING_FOR_SHOP, SHOP_DONE
-    if not WAITING_FOR_SHOP:
-        log.info("🛒 상점 주인에게 말을 겁니다.")
-        print("choose shop", flush=True)
-        WAITING_FOR_SHOP = True
-        return
-    if SHOP_DONE:
+    global WAITING_FOR_SHOP, SHOP_DONE, _shop_floor
+
+    floor = state.get("floor")
+    if floor != _shop_floor:          # 새 상점(다른 층) → 상태 초기화 (stale 제거)
+        _shop_floor = floor
         WAITING_FOR_SHOP = False
         SHOP_DONE = False
+
+    # 라우터 오인 대비: 이미 상점 구매 화면이면(내용 기반) 구매 핸들러로 위임
+    if _at_shop_screen(state):
+        handle_shop_screen(state, avail)
+        return
+
+    # 입구: 아직 상인과 대화 전 → 말 걸기 (WAITING 가드로 '단 한 번'만 실행)
+    if not WAITING_FOR_SHOP:
+        if "choose" in avail:
+            log.info("🛒 상점 주인에게 말을 겁니다.")
+            print("choose shop", flush=True)
+            WAITING_FOR_SHOP = True
+            return
+        # choose가 없는 입구(예외) → 나갈 길 있으면 진행
+        if "proceed" in avail:
+            print("proceed", flush=True)
+            return
+
+    # 진입 후 SHOP_ROOM 재방문 = 쇼핑 종료(복귀) 또는 SHOP_SCREEN 전환 대기.
+    #   나갈 수 있으면(쇼핑 끝) 나가고, 아니면 전환 대기 (재진입 안 함 → 무한루프 방지).
+    if "proceed" in avail:
+        WAITING_FOR_SHOP = False
+        SHOP_DONE = False
+        log.info("🛒 상점 종료 → 진행")
         print("proceed", flush=True)
+        return
+    if "leave" in avail:
+        WAITING_FOR_SHOP = False
+        SHOP_DONE = False
+        print("leave", flush=True)
+        return
+    print("wait 30", flush=True)   # SHOP_SCREEN 전환 대기
 
 
 def _build_deck_context(state):
@@ -137,24 +188,26 @@ def _evaluate_shop_items(state, ctx, shop_cards, shop_relics, shop_potions, purg
         if card_score >= 12.0: # 살만한 카드만 후보에 올림
             candidates.append({'action': 'buy_card', 'index': i, 'name': info['name'], 'price': price, 'score': adjusted_score, 'desc': f'Card Score: {card_score:.1f}'})
 
-    # 4. 포션 (Potions)
+    # 4. 포션 (Potions) — 빈 포션 슬롯이 있을 때만 (슬롯이 꽉 차면 구매 불가 → 엔진 에러)
+    free_slots = _free_potion_slots(state)
     survival_keywords = ['blood', 'block', 'regen', 'fairy', 'ghost', 'fruit', 'heal', 'armor']
-    for i, p in enumerate(shop_potions):
-        price = p.get('price', 999)
-        if price > gold: continue
-        name = p.get('id', p.get('name', ''))
-        
-        score = 15
-        desc = "Consumable Potion"
-        
-        # 피가 없을 때 생존 포션은 구원줄 (매우 높은 점수)
-        if hp_ratio < 0.4 and any(k in name.lower() for k in survival_keywords):
-            score = 150
-            desc = "CRITICAL SURVIVAL POTION (Low HP)"
-        
-        # 보스/엘리트 직전이거나 점수가 특별히 높을 때 추천
-        if score >= 50 or gold >= 250: 
-            candidates.append({'action': 'buy_potion', 'index': i, 'name': name, 'price': price, 'score': score, 'desc': desc})
+    if free_slots > 0:
+        for i, p in enumerate(shop_potions):
+            price = p.get('price', 999)
+            if price > gold: continue
+            name = p.get('id', p.get('name', ''))
+
+            score = 15
+            desc = "Consumable Potion"
+
+            # 피가 없을 때 생존 포션은 구원줄 (매우 높은 점수)
+            if hp_ratio < 0.4 and any(k in name.lower() for k in survival_keywords):
+                score = 150
+                desc = "CRITICAL SURVIVAL POTION (Low HP)"
+
+            # 보스/엘리트 직전이거나 점수가 특별히 높을 때 추천
+            if score >= 50 or gold >= 250:
+                candidates.append({'action': 'buy_potion', 'index': i, 'name': name, 'price': price, 'score': score, 'desc': desc})
             
     # 통합 점수 내림차순 정렬
     candidates.sort(key=lambda x: -x['score'])

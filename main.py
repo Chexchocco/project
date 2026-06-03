@@ -49,7 +49,7 @@ def main():
                 log.error(f"⚠️ 엔진 에러 발생! 이유: {real_error}")
                 # 핑퐁 복구를 위해 상태를 다시 요구합니다.
                 log_error_context(data, real_error)
-                print("wait", flush=True)
+                print("wait 100", flush=True)   # 'wait'엔 인자 필수 — 빼면 또 에러 → 무한 루프
                 continue
 
             if not data.get("in_game", False):
@@ -59,7 +59,7 @@ def main():
 
             if "game_state" not in data:
                 log.info(f"문제 발생2 {data}")
-                print("wait", flush=True)
+                print("wait 100", flush=True)
                 time.sleep(1.5)
                 continue
 

@@ -1199,7 +1199,7 @@ def battle_module(state, avail):
         if "end" in avail:
             print("end", flush=True)
             return -1
-        print("wait", flush=True)
+        print("wait 30", flush=True)   # 'wait'엔 인자 필수
         return 0
 
     # 1. 기믹 힌트 (logic_notes 기반 hp_stops/priority_target, 전투당 1회 캐시)

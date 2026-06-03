@@ -182,6 +182,14 @@ def evaluate_event(event_name, options_text, hp, max_hp, gold, deck_profile):
 
 
 def handle_event(state, avail):
+    # '?'방이 상점으로 판명되어 이벤트로 라우팅된 경우: 상점 구매 화면이면 상점 핸들러로 위임.
+    # (라우터가 SHOP_SCREEN을 EVENT로 오인해도 카드를 정상 구매/퇴장하도록.)
+    from experts.shop import _at_shop_screen, handle_shop_screen
+    if _at_shop_screen(state):
+        log.info("🛒 (이벤트 경로) 상점 구매 화면 감지 → 상점 핸들러로 위임")
+        handle_shop_screen(state, avail)
+        return
+
     log.info("❓ 이벤트 에이전트 가동 (LLM 호출)")
 
     player_hp = state.get("current_hp", 0)
