@@ -216,7 +216,7 @@ def deterministic_fallback(state, avail):
     if room_phase == "COMBAT" and screen_type == "NONE":
         if "combat_state" in state:
             return "combat"
-        return "wait"
+        return _wait_sentinel(state, avail)
     if screen_type == "COMBAT_REWARD":
         return "combat_reward"
     if screen_type == "CARD_REWARD":
@@ -239,4 +239,4 @@ def deterministic_fallback(state, avail):
         return "shop_screen"
     if screen_type == "BOSS_REWARD":
         return "boss_reward"
-    return "wait"
+    return _wait_sentinel(state, avail)
