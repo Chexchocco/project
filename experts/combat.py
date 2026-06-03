@@ -250,6 +250,11 @@ _ATTITUDE_TUNING = {
 _KILL_FLAT_BONUS = 200
 _OVERKILL_RATE = 9
 
+# 하수인을 소환하는 메인 몬스터(소환사). 이들을 죽이면 하수인은 자동 정리/재소환 중단 →
+# 하수인을 먼저 죽이는 건 낭비(재소환). 소환사를 우선 처치하도록 점수에서 우대한다.
+# (단 하수인이 강한 공격을 하면 survival 항이 알아서 방어/처치를 유도하므로 충돌 X.)
+_SUMMONER_NAMES = {'Gremlin Leader', 'Reptomancer', 'Bronze Automaton', 'The Collector'}
+
 
 def _monster_class(monster):
     """몬스터의 전투 클래스(1-4). DB에 combat_class 없으면 타입 기반 기본값."""
@@ -690,22 +695,45 @@ class SimState:
         # 태도별 공격/처치 가치 배수 (BURST/RACE는 공격 우선, TURTLE은 중립)
         _, atk_mult = _ATTITUDE_TUNING.get(self.hints.get('strategy', 'NORMAL'), (1.0, 1.0))
 
+        # 소환사(하수인 소환 메인 몬스터)가 살아있는가 → 소환사 집중 처치 유도
+        summoner_alive = any(
+            self.monsters[i].get('name', '') in _SUMMONER_NAMES and _alive_eot(self.monsters[i])
+            for i in self.alive_at_start
+        )
+
         # 적 HP 감소 (공격 가치) — eot 반영 유효 HP 기준
         # Spheric Guardian: 방어도가 누적되므로 어떻게든 공격하도록 점수 높게
+        # 소환사: 먼저 처치해야 하수인이 정리/중단되므로 데미지를 더 높게 평가 (집중 사격)
         for m in self.monsters:
             hp_dmg = m['max_hp'] - _eff_hp(m)
-            is_spheric_guardian = 'Spheric Guardian' in m.get('name', '')
-            weight = 5 if is_spheric_guardian else 3  # Spheric Guardian은 최우선
+            name = m.get('name', '')
+            if name in _SUMMONER_NAMES:
+                weight = 6   # 소환사 집중 사격 (잉여 데미지도 메인에)
+            elif 'Spheric Guardian' in name:
+                weight = 5
+            else:
+                weight = 3
             s += hp_dmg * weight * atk_mult
 
         # 처치 보너스 = 죽여서 막는 미래 위협 (스케일링 적일수록 큼)
         # [Darkling 예외] Life Link: 하나라도 살아있으면 죽은 개체는 다다음 턴 절반 HP로 부활.
         #   전부 동시에 죽여야 영구 처치 → 단독/부분 처치는 일반 보너스를 주지 않고 별도 처리.
         for i in self.alive_at_start:
-            if 'Darkling' in self.monsters[i].get('name', ''):
+            name_i = self.monsters[i].get('name', '')
+            if 'Darkling' in name_i:
                 continue   # Darkling은 아래에서 동시처치 기준으로 별도 평가
             if not _alive_eot(self.monsters[i]):
-                s += int((_KILL_FLAT_BONUS + self._kill_saves[i] * 4) * atk_mult)
+                if name_i in _SUMMONER_NAMES:
+                    # 소환사 처치 = 하수인 정리 + 재소환 차단 → 추가 보너스
+                    s += int((_KILL_FLAT_BONUS + self._kill_saves[i] * 4) * atk_mult) + 300
+                elif summoner_alive:
+                    # 소환사가 살아있는데 하수인 처치 = 곧 재소환 → 영구 제거 가치 없음.
+                    #   이번 턴 즉시 위협 제거분만 약하게 인정 (강공격 하수인은 죽일 가치 있음).
+                    now_threat = (self.monsters[i].get('move_adjusted_damage', 0)
+                                  * self.monsters[i].get('move_hits', 1))
+                    s += int(now_threat * atk_mult)
+                else:
+                    s += int((_KILL_FLAT_BONUS + self._kill_saves[i] * 4) * atk_mult)
 
         # Darkling 동시처치 평가 (부활 메커닉 반영)
         dk_idxs = [i for i in self.alive_at_start
