@@ -476,9 +476,13 @@ class SimState:
                 self.enemy_str_given += gain   # 영구 strength → 향후 여러 턴 비용 (score에서 큰 페널티)
 
         # 2. 데미지 (가변/특수 카드 모두 _base_damage가 통합 처리)
+        # 취약/약화를 부여하는 공격은 방어막에 막혀도 '낭비'가 아님 (다음 턴 피해 셋업).
+        eff = card.get('effects', {})
+        applies_debuff = ('vulnerable' in eff or 'weak' in eff)
         base, hits = _base_damage(card, self, cost)
         if base > 0:
-            dealt = self._deal(base, hits, card.get('is_aoe', False), target_idx)
+            dealt = self._deal(base, hits, card.get('is_aoe', False), target_idx,
+                               applies_debuff=applies_debuff)
             # Reaper: 가한 피해만큼 회복
             if name in ('Reaper', 'Reaper+'):
                 self.p_hp = min(self.p_max_hp, self.p_hp + dealt)
@@ -559,8 +563,9 @@ class SimState:
         self.hand.pop(card_idx)
         self.hand_indices.pop(card_idx)
 
-    def _deal(self, base, hits, is_aoe, target_idx):
+    def _deal(self, base, hits, is_aoe, target_idx, applies_debuff=False):
         """base(hit당 데미지)를 hits회 적용. Weak는 여기서 일괄(-25%), Vuln은 타겟별(+50%).
+        applies_debuff=True면 취약/약화 부여 공격 → 막혀도 wasted로 치지 않음 (셋업 가치).
         return: 적에게 실제로 들어간 총 HP 데미지 (Reaper 회복용)."""
         if self.p_weak > 0:
             base = int(base * 0.75)
@@ -621,7 +626,7 @@ class SimState:
             if tgt_hp_dmg > 0 or keeps_block:
                 wasted_on_reset_block = False
 
-        if wasted_on_reset_block:
+        if wasted_on_reset_block and not applies_debuff:
             self.wasted_attacks += 1
         # 방어막 보존 적의 방어막을 깎은 만큼 작은 가치 (다음 턴 데미지로 이어짐)
         self.block_stripped += block_stripped
@@ -776,9 +781,10 @@ class SimState:
         s += self.draw_bonus          # 드로우 기댓값 (사용 시점 고정 적립)
 
         # 디버프 가치: Vulnerable과 Weak의 효과 계산
-        # Vulnerable: 50% 추가 데미지 → 평균 3 damage × 1.5 = 1.5 extra per hit
-        # Weak: -25% 데미지 → 적 공격이 줄어듦 → 미래 턴에서 방어 덜 필요
-        vuln_value = self.vulnerable_applied * 2.0  # 각 vulnerable당 약 2점
+        # Vulnerable: 적이 받는 피해 +50% → 다음 턴 공격을 증폭. 막혀서 지금 피해를 못 줘도
+        #   취약을 2턴 이상 깔면 다음 턴 셋업으로 충분히 가치 있음 (카드 비용을 넘게 평가).
+        # Weak: -25% 적 공격 → 미래 턴 방어 절감.
+        vuln_value = self.vulnerable_applied * 3.0  # 각 vulnerable당 약 3점 (셋업 가치 반영)
         weak_value = self.weak_applied * 1.5        # 각 weak당 약 1.5점 (차후 방어 절감)
         s += vuln_value + weak_value
 
