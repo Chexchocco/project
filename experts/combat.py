@@ -1255,6 +1255,7 @@ def _resolve_target(target_idx, monsters):
     return target_idx if target_idx in alive else alive[0]
 
 
+
 def handle_hand_select(state, avail):
     ss = state.get("screen_state", {})
     selected = ss.get("selected", [])
@@ -1263,7 +1264,7 @@ def handle_hand_select(state, avail):
 
     
     current_action = state.get("current_action", "")
-    if "Armaments" not in current_action:
+    if not any(k in current_action for k in ("Armaments", "Exhaust", "DualWield")):
         log_raw_state(state)
 
     # 1. 이미 최대로 골랐다면 confirm
@@ -1378,6 +1379,48 @@ def handle_hand_select(state, avail):
                 log.info(f"🔥 ExhaustAction 강제 소멸 선택: idx={best_idx} ({hand[best_idx].get('name')}), 가치 점수={best_score}")
                 return
 
+    # [DualWieldAction 등 카드 복제에 대한 선택]
+    if "DualWield" in current_action:
+        best_score = -9999
+        best_idx = -1
+
+        for i, c in enumerate(hand):
+            if i in selected:
+                continue
+
+            c_name = c.get("name", "")
+            base_info = db_loader.get_card_info(c_name)
+
+            score = 0
+            if base_info:
+                score += base_info.get("base_value", 0)
+
+                # 코스트가 낮아서 바로 쓰기 좋은 카드에 가산점
+                cost = base_info.get("cost", 99)
+                try:
+                    cost_val = float(cost)
+                    if cost_val == 0:
+                        score += 20
+                    elif cost_val == 1:
+                        score += 10
+                except ValueError:
+                    pass
+
+            c_type = str(c.get("type", c.get("card_type", ""))).upper()
+            if c_type == "ATTACK":
+                score += 10
+            elif c_type == "POWER":
+                score += 15
+
+            if score > best_score:
+                best_score = score
+                best_idx = i
+
+        if best_idx != -1:
+            print(f"choose {best_idx}", flush=True)
+            log.info(f"✨ DualWield 복제 선택: idx={best_idx} ({hand[best_idx].get('name')}), score={best_score:.2f}")
+            return
+
     # 2. 우선적으로 고를 대상: 상태이상(Status) 또는 저주(Curse) 카드
     bad_cards_indices = []
     for i, c in enumerate(hand):        
@@ -1391,14 +1434,16 @@ def handle_hand_select(state, avail):
         print(f"choose {bad_cards_indices[0]}", flush=True)
         return
 
-    # 3. 나쁜 카드는 없지만 무조건 더 골라야 하는 경우(min_cards 불충족)
-    if len(selected) < min_cards:
+    # 3. 나쁜 카드는 없지만 무조건 더 골라야 하는 경우 (min_cards 불충족 또는 can_pick_zero가 False)
+    can_pick_zero = ss.get("can_pick_zero", True)
+    if len(selected) < min_cards or (not can_pick_zero and len(selected) < max_cards):
+        log.warning(f"⚠️ 알 수 없는 액션({current_action}) 강제 선택: 첫 번째 카드 선택 (can_pick_zero={can_pick_zero}, min_cards={min_cards})")
         for i in range(len(hand)):
             if i not in selected:
                 print(f"choose {i}", flush=True)
                 return
 
-    # 4. 필수 할당량을 채웠고(혹은 min_cards가 0) 남은 나쁜 카드도 없다면 confirm
+    # 4. 필수 할당량을 채웠고 남은 나쁜 카드도 없다면 confirm
     if "confirm" in avail:
         print("confirm", flush=True)
     else:
