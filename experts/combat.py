@@ -355,6 +355,7 @@ class SimState:
         self.p_weak = _power_amount(player, 'Weak')      # 내 공격 -25%
         self.p_frail = _power_amount(player, 'Frail')    # 내 방어 -25%
         self.p_hp = player.get('current_hp', 0)
+        self.p_hp_start = player.get('current_hp', 0)  # 턴 시작 HP (회복량 평가용)
         self.p_max_hp = player.get('max_hp', 1)
         self.hints = hints or {}
         self.strike_count = strike_count  # 덱 전체 'Strike' 이름 카드 수 (완벽한 타격용)
@@ -394,6 +395,7 @@ class SimState:
         c.p_strength, c.p_dexterity = self.p_strength, self.p_dexterity
         c.p_block, c.p_weak, c.p_frail = self.p_block, self.p_weak, self.p_frail
         c.p_hp, c.p_max_hp = self.p_hp, self.p_max_hp
+        c.p_hp_start = self.p_hp_start
         c.hints = self.hints
         c.strike_count, c.rampage_count = self.strike_count, self.rampage_count
         c.tempo, c.extra_incoming, c.recoil = self.tempo, self.extra_incoming, self.recoil
@@ -693,6 +695,14 @@ class SimState:
             s -= 50_000
         elif hp_after < self.p_max_hp * 0.15:
             s -= (self.p_max_hp * 0.15 - hp_after) ** 2 * 2
+
+        # 회복 가치 (Reaper/Feed 등): 이번 턴 순회복량.
+        # AOE 회복(사신)은 적이 많을수록 unblocked 데미지 합이 커져 회복량↑ → 자연히 적 수에 비례.
+        # 체력이 낮을수록 1HP의 가치가 커진다 (만피 근처면 cap으로 healed≈0이라 보너스도 0).
+        healed = max(0, self.p_hp - self.p_hp_start)
+        if healed > 0:
+            heal_weight = 2.0 + 3.0 * (1.0 - self.p_hp / self.p_max_hp)  # 만피~2.0, 저체력~5.0
+            s += healed * heal_weight
 
         # 내 영구 버프
         s += self.p_strength * 25 + self.p_dexterity * 18
