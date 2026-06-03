@@ -679,9 +679,29 @@ class SimState:
             s += hp_dmg * weight * atk_mult
 
         # 처치 보너스 = 죽여서 막는 미래 위협 (스케일링 적일수록 큼)
+        # [Darkling 예외] Life Link: 하나라도 살아있으면 죽은 개체는 다다음 턴 절반 HP로 부활.
+        #   전부 동시에 죽여야 영구 처치 → 단독/부분 처치는 일반 보너스를 주지 않고 별도 처리.
         for i in self.alive_at_start:
+            if 'Darkling' in self.monsters[i].get('name', ''):
+                continue   # Darkling은 아래에서 동시처치 기준으로 별도 평가
             if not _alive_eot(self.monsters[i]):
                 s += int((200 + self._kill_saves[i] * 4) * atk_mult)
+
+        # Darkling 동시처치 평가 (부활 메커닉 반영)
+        dk_idxs = [i for i in self.alive_at_start
+                   if 'Darkling' in self.monsters[i].get('name', '')]
+        if dk_idxs:
+            dk_killed = sum(1 for i in dk_idxs if not _alive_eot(self.monsters[i]))
+            if dk_killed == len(dk_idxs):
+                # 살아있던 Darkling 전부 동시 처치 = 부활 없음(영구) → 일반 처치급 보너스.
+                # (이들이 전체 적이면 위에서 이미 lethal +100000도 발동)
+                s += int(sum(200 + self._kill_saves[i] * 4 for i in dk_idxs) * atk_mult)
+            elif dk_killed >= 2:
+                # 2명 이상 동시 처치: 부활하더라도 2턴간 압박↓ + 마무리 셋업 → superlinear 보너스.
+                # (많이 한꺼번에 죽일수록 제곱으로 가중 → 3명>2명)
+                s += int(dk_killed * dk_killed * 100 * atk_mult)
+            # dk_killed == 1 (나머지 생존): 곧 부활 → 처치 보너스 없음.
+            #   → 단독 처치를 탐내지 않고 HP를 고르게 낮추도록 유도 (HP감소·incoming감소로만 평가).
 
         # 생존: 용인치 밴드 (HP 비율 + 미래 위협으로 조정)
         net = max(0, _incoming_now(self.monsters) + self.extra_incoming - self.p_block)
