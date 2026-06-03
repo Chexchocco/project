@@ -49,7 +49,7 @@ def main():
                 log.error(f"⚠️ 엔진 에러 발생! 이유: {real_error}")
                 # 핑퐁 복구를 위해 상태를 다시 요구합니다.
                 log_error_context(data, real_error)
-                print("wait", flush=True)
+                print("wait 30", flush=True)
                 continue
 
             if not data.get("in_game", False):
@@ -86,7 +86,16 @@ def main():
 
             toolformer.dispatch(tool_name, state, avail)
             if tool_name == "wait":
-                time.sleep(1.5)
+                if "proceed" in avail:
+                    print("proceed", flush=True)
+                    return
+                if "leave" in avail:
+                    print("leave", flush=True)
+                    return
+                if "return" in avail:
+                    print("return", flush=True)
+                    return
+                print("wait 30", flush=True)
 
         except Exception:
             log.info("\n🚨 파이썬 스크립트에 치명적 에러 발생!")

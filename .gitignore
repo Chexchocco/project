@@ -21,3 +21,6 @@ sts_rulebook.jsonl
 run_choices.jsonl
 run_errors.log
 run_history.log
+run_choices.jsonl
+run_history.log
+run_errors.log
