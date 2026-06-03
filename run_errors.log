@@ -48,3 +48,33 @@ Context Data:
 }
 ================================================================================
 
+[2026-06-04 02:26:21] ERROR TYPE: Engine Error
+Message: Invalid command: play. Possible commands: [potion, key, click, wait, state]
+Context Data:
+{'ready_for_command': True, 'error': 'Invalid command: play. Possible commands: [potion, key, click, wait, state]'} 
+ + error : {
+  "ready_for_command": true,
+  "error": "Invalid command: play. Possible commands: [potion, key, click, wait, state]"
+}
+================================================================================
+
+[2026-06-04 02:28:15] ERROR TYPE: Engine Error
+Message: Invalid command: play. Possible commands: [potion, key, click, wait, state]
+Context Data:
+{'ready_for_command': True, 'error': 'Invalid command: play. Possible commands: [potion, key, click, wait, state]'} 
+ + error : {
+  "ready_for_command": true,
+  "error": "Invalid command: play. Possible commands: [potion, key, click, wait, state]"
+}
+================================================================================
+
+[2026-06-04 02:33:57] ERROR TYPE: Engine Error
+Message: Invalid command: play. Possible commands: [end, potion, key, click, wait, state]
+Context Data:
+{'ready_for_command': False, 'error': 'Invalid command: play. Possible commands: [end, potion, key, click, wait, state]'} 
+ + error : {
+  "ready_for_command": false,
+  "error": "Invalid command: play. Possible commands: [end, potion, key, click, wait, state]"
+}
+================================================================================
+

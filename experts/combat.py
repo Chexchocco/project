@@ -756,9 +756,9 @@ class SimState:
         if self.barricade:
             s += self.p_block * 2
 
-        # LLM 힌트: priority_target 처치/타격 보너스
+        # LLM 힌트: priority_target 처치/타격 보너스 (LLM이 잘못된 타입을 줄 수 있어 방어적으로)
         pt = self.hints.get('priority_target')
-        if pt is not None and 0 <= pt < len(self.monsters):
+        if isinstance(pt, int) and 0 <= pt < len(self.monsters):
             tm = self.monsters[pt]
             if not _is_alive(tm):
                 s += 300
@@ -770,11 +770,14 @@ class SimState:
         # 영원히 임계 직전에 멈추는 데드락이 생긴다. 그래서:
         #   - 임계 밑에서 '죽이면' 보너스 (버스트 유도)
         #   - 임계 밑인데 '살아있으면' 페널티 없음 (데드락 방지 — 분열은 어차피 일어남)
-        for stop in self.hints.get('hp_stops', []):
+        # [방어] LLM이 hp_stops에 None/비-dict를 섞어 주는 경우가 있어 건너뛴다.
+        for stop in (self.hints.get('hp_stops') or []):
+            if not isinstance(stop, dict):
+                continue
             i = stop.get('enemy')
-            if i is not None and 0 <= i < len(self.monsters):
+            if isinstance(i, int) and 0 <= i < len(self.monsters):
                 m = self.monsters[i]
-                thresh = m['max_hp'] * stop.get('ratio', 0.5)
+                thresh = m['max_hp'] * (stop.get('ratio') or 0.5)
                 if not _is_alive(m) and self._hp_at_start.get(i, 0) > thresh:
                     s += 250   # 임계를 넘겨 한 턴에 처치 = 버스트 성공
 
@@ -956,9 +959,31 @@ Output EXACTLY this JSON, nothing else:
         log.warning(f"combat hint LLM 실패: {e}")
         hints = {}
 
+    hints = _sanitize_hints(hints)
     _HINT_CACHE[key] = hints
     combat_log.info(f"combat hints {list(key)}: {hints}")
     return hints
+
+
+def _sanitize_hints(hints):
+    """LLM이 준 hints를 정제 — None/잘못된 타입이 score()로 흘러들어 터지는 것 방지."""
+    if not isinstance(hints, dict):
+        return {}
+    clean = {}
+    pt = hints.get('priority_target')
+    if isinstance(pt, bool):
+        pt = None
+    if isinstance(pt, int):
+        clean['priority_target'] = pt
+    stops = []
+    for s in (hints.get('hp_stops') or []):
+        if isinstance(s, dict) and isinstance(s.get('enemy'), int) and not isinstance(s.get('enemy'), bool):
+            stops.append({'enemy': s['enemy'], 'ratio': s.get('ratio') or 0.5})
+    if stops:
+        clean['hp_stops'] = stops
+    if hints.get('strategy') in _ATTITUDE_TUNING:
+        clean['strategy'] = hints['strategy']
+    return clean
 
 
 # ╔══════════════════════════════════════════════════════════════════════╗

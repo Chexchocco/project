@@ -198,10 +198,10 @@ def handle_event(state, avail):
 
     event_name = state.get("screen_state", {}).get("event_name", "Unknown")
     choice_list = state.get("choice_list", "")
-    if(len(choice_list) == 1) :
-        log.info(f"옵션하나니까 바로선택 {choice_list[0]}")
-        print(f"choose {choice_list[0]}", flush=True)
-        return  
+
+    # (1) choose가 불가능한 화면(이벤트 결과/종료) → 나가기(proceed/leave/return) 우선.
+    #     [중요] 이 체크를 'choice_list==1 바로선택'보다 먼저 한다. 예전엔 leave해야 할
+    #     상황에서도 choice_list에 stale 항목 1개가 남으면 'choose'를 보내 엔진 에러가 났다.
     if "choose" not in avail:
         if "proceed" in avail:
             log.info("🚪 이벤트 진행(proceed) 가능! 바로 진행합니다.")
@@ -215,8 +215,17 @@ def handle_event(state, avail):
             log.info("🚪 복귀(return) 가능! 바로 돌아갑니다.")
             print("return", flush=True)
             return
+        log.info("⏳ 이벤트: 사용 가능한 명령 없음 → 대기")
+        print("wait 30", flush=True)   # 안전장치: 잘못된 명령 대신 대기 (멈춤/에러 방지)
+        return
 
-    
+    # (2) choose 가능 + 선택지 1개 → 바로 선택
+    if(len(choice_list) == 1) :
+        log.info(f"옵션하나니까 바로선택 {choice_list[0]}")
+        print(f"choose {choice_list[0]}", flush=True)
+        return
+
+    # (3) 다중 선택지 → LLM 처리
     else :
         body_text = state.get("screen_state", {}).get("body_text", "")
         options = state.get("screen_state", {}).get("options", [])

@@ -507,19 +507,35 @@ def _best_upgrade_index(state, grid_cards, exclude):
 
 
 def _worst_card_index(state, grid_cards, exclude):
-    """현재 덱 기준 score가 가장 낮은(=가장 성능 안 좋은) 카드의 인덱스."""
+    """제거/변화 시 '가장 나쁜' 카드의 인덱스.
+    명시적 제거 우선순위(낮을수록 먼저 제거):
+      0) Curse(저주)  1) Status(상처/어지러움 등)  2) 기본 Strike/Defend  3) 그 외 → score 최저
+    [중요] 순수 score만 쓰면 데미지 부족 덱에서 기본 Strike가 physical_bonus로 점수가 올라
+    '아직 시너지 없는 필요한 파워카드'가 더 낮게 잡혀 잘못 제거되는 문제가 있었다.
+    → tier를 1차 기준으로 둬 기본/저주/상태가 항상 먼저 제거되게 한다."""
     deck_report, strategy, relic_ids = _grid_eval_context(state)
-    worst_idx, worst_s = 0, 1e9
+    BASIC = {'Strike', 'Defend'}
+    best_idx, best_key = 0, None
     for i, c in enumerate(grid_cards):
         if i in exclude:
             continue
         info = get_card_info(c)
-        if not info:
-            continue
-        s = score_card(info, deck_report, strategy, relic_ids, SYNERGY_ENGINE, is_deck_eval=True)
-        if s < worst_s:
-            worst_s, worst_idx = s, i
-    return worst_idx
+        ctype = (info or {}).get('type', '')
+        name = (info or {}).get('name', c.get('name', ''))
+        # DB에 없는 카드(누락 저주 등)는 가장 먼저 제거 대상으로
+        s = score_card(info, deck_report, strategy, relic_ids, SYNERGY_ENGINE, is_deck_eval=True) if info else -1e9
+        if ctype == 'Curse':
+            tier = 0
+        elif ctype == 'Status':
+            tier = 1
+        elif name in BASIC:          # 강화 안 된 기본 타격/수비 (덱 압축 1순위)
+            tier = 2
+        else:
+            tier = 3
+        key = (tier, s)              # tier 우선, 동급이면 score 낮은 것
+        if best_key is None or key < best_key:
+            best_key, best_idx = key, i
+    return best_idx
 
 
 def handle_chest(state, avail):
