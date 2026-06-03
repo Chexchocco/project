@@ -242,6 +242,14 @@ _ATTITUDE_TUNING = {
     'NORMAL':  (1.0, 1.0),
 }
 
+# 처치/오버킬 튜닝
+#  _KILL_FLAT_BONUS: 적 1기 제거의 기본 가치(위협량 kill_saves와 별개의 '머릿수 감소' 가치).
+#  _OVERKILL_RATE: 처치에 필요 이상으로 쏟은 데미지(낭비)의 점당 페널티.
+#    → 딸피 적에게 강한 카드를 낭비하지 않고, 다른 적/다음 턴에 그 데미지를 쓰게 유도.
+#    단 강공격 예정 적은 survival 항이 처치를 강하게 보상하므로 여전히 즉시 처치.
+_KILL_FLAT_BONUS = 200
+_OVERKILL_RATE = 9
+
 
 def _monster_class(monster):
     """몬스터의 전투 클래스(1-4). DB에 combat_class 없으면 타입 기반 기본값."""
@@ -379,6 +387,7 @@ class SimState:
         # 디버프 추적 (Vulnerable, Weak 적용된 정도 — score에서 이득 계산)
         self.vulnerable_applied = 0  # 적용된 vulnerable 총량
         self.weak_applied = 0  # 적용된 weak 총량
+        self.overkill = 0  # 처치에 필요 이상으로 쏟은 데미지(낭비) 누적
         self.alive_at_start = frozenset(i for i, m in enumerate(self.monsters) if _is_alive(m))
         # 적별 "죽이면 막는 미래 위협" 미리 계산 (트리 전체 재사용)
         self._kill_saves = {i: _kill_saved_damage(self.monsters[i]) for i in self.alive_at_start}
@@ -404,6 +413,7 @@ class SimState:
         c.block_stripped = self.block_stripped
         c.vulnerable_applied = self.vulnerable_applied
         c.weak_applied = self.weak_applied
+        c.overkill = self.overkill
         c.draw_bonus, c.avg_draw_value = self.draw_bonus, self.avg_draw_value
         c.corruption = self.corruption
         c.rage_block = self.rage_block
@@ -589,8 +599,13 @@ class SimState:
                     m['block'] = 0
                     if keeps_block:
                         block_stripped += mb
-                    tgt_hp_dmg += per_hit - mb
-                    m['current_hp'] = max(0, m['current_hp'] - (per_hit - mb))
+                    hp_dmg_this = per_hit - mb
+                    # 처치에 필요 이상으로 들어간 데미지 = 오버킬(낭비). Barricade 적은 방어막
+                    # 자체가 자산이라 제외 (block_stripped로 이미 평가).
+                    if not keeps_block and hp_dmg_this > m['current_hp']:
+                        self.overkill += hp_dmg_this - m['current_hp']
+                    tgt_hp_dmg += hp_dmg_this
+                    m['current_hp'] = max(0, m['current_hp'] - hp_dmg_this)
                 if not m.get('_curl_used') and _is_alive(m):
                     cu = _power_amount(m, 'Curl Up')
                     if cu:
@@ -685,7 +700,7 @@ class SimState:
             if 'Darkling' in self.monsters[i].get('name', ''):
                 continue   # Darkling은 아래에서 동시처치 기준으로 별도 평가
             if not _alive_eot(self.monsters[i]):
-                s += int((200 + self._kill_saves[i] * 4) * atk_mult)
+                s += int((_KILL_FLAT_BONUS + self._kill_saves[i] * 4) * atk_mult)
 
         # Darkling 동시처치 평가 (부활 메커닉 반영)
         dk_idxs = [i for i in self.alive_at_start
@@ -695,7 +710,7 @@ class SimState:
             if dk_killed == len(dk_idxs):
                 # 살아있던 Darkling 전부 동시 처치 = 부활 없음(영구) → 일반 처치급 보너스.
                 # (이들이 전체 적이면 위에서 이미 lethal +100000도 발동)
-                s += int(sum(200 + self._kill_saves[i] * 4 for i in dk_idxs) * atk_mult)
+                s += int(sum(_KILL_FLAT_BONUS + self._kill_saves[i] * 4 for i in dk_idxs) * atk_mult)
             elif dk_killed >= 2:
                 # 2명 이상 동시 처치: 부활하더라도 2턴간 압박↓ + 마무리 셋업 → superlinear 보너스.
                 # (많이 한꺼번에 죽일수록 제곱으로 가중 → 3명>2명)
@@ -769,6 +784,10 @@ class SimState:
 
         s -= self.recoil * 4          # 반동 페널티
         s -= self.wasted_attacks * 8  # 방어막에 막힌 무의미한 공격 회피 (reset 적 한정)
+        # 오버킬 페널티: 처치에 필요 이상으로 쏟은 데미지는 낭비 (다른 적/다음 턴에 썼어야).
+        #   → 딸피 적에게 강한 카드를 낭비하지 않게. 단 전멸(lethal) 시엔 남는 적이 없어 낭비 아님.
+        if alive:
+            s -= self.overkill * _OVERKILL_RATE
         # 적에게 준 영구 strength(Enrage/Curiosity): 향후 여러 턴 데미지로 이어지므로 큰 페널티.
         # → Gremlin Nob 상대로 불필요한 스킬/파워를 피하게 됨 (생존이 더 급하면 가드가 우선).
         s -= self.enemy_str_given * 8
