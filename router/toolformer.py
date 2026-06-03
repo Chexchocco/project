@@ -22,6 +22,18 @@ class RouterError(Exception):
 
 
 def _wait_sentinel(state, avail):
+    # LLM이 할 게 없다고 판단하여 wait를 골랐지만, 
+    # 진행(proceed/leave/return)이 가능한 상태라면 무한 대기 루프에 빠지지 않도록 바로 넘어갑니다.
+    if avail:
+        if "proceed" in avail:
+            print("proceed", flush=True)
+            return
+        if "leave" in avail:
+            print("leave", flush=True)
+            return
+        if "return" in avail:
+            print("return", flush=True)
+            return
     print("wait 30", flush=True)
 
 
